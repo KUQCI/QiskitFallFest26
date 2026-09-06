@@ -17,6 +17,13 @@ export const partners: Partner[] = [
     logo: fallFestAssets.logos.khalifaUniversityTransparent.src,
     status: "confirmed",
   },
+  {
+    name: "NYU Abu Dhabi Center for Quantum and Topological Systems",
+    kind: "Supporter",
+    url: "https://nyuad.nyu.edu/en/research/faculty-labs-and-projects/cqts.html",
+    logo: fallFestAssets.logos.nyuadCqts.src,
+    status: "confirmed",
+  },
 ];
 
 export const partnersIntro =

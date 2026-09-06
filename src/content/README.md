@@ -42,7 +42,8 @@ track slugs and codes because they can be used as anchors or keys even when the 
 name changes.
 
 Never list a sponsor, speaker, or partner department based only on a conversation.
-Only IBM Quantum and Khalifa University currently appear in the confirmed partner list.
+IBM Quantum, Khalifa University, and the NYU Abu Dhabi Center for Quantum and
+Topological Systems currently appear in the confirmed partner list.
 
 ## Assets
 
