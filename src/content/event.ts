@@ -50,6 +50,7 @@ export const event = {
 
 export const homeContent = {
   heroOwner: "Khalifa University\nQuantum Computing Initiative's",
+  registrationLabel: "Registration Opens October 5th",
   about: {
     eyebrow: "What this is",
     title: "A Qiskit Fall Fest, Built Bigger",

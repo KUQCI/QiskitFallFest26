@@ -14,11 +14,13 @@ export function RegisterButton({
   variant = "primary",
   className,
   label = "Register",
+  unavailableLabel = "Registration opens soon",
 }: {
   size?: "sm" | "md" | "lg";
   variant?: "primary" | "outline";
   className?: string;
   label?: string;
+  unavailableLabel?: string;
 }) {
   const sizes = {
     sm: "px-4 py-2 text-sm",
@@ -41,7 +43,7 @@ export function RegisterButton({
     return (
       <span className={cn(base, "cursor-not-allowed border border-border bg-surface-2 text-fg-subtle")}>
         <span aria-hidden="true" className="inline-flex h-2 w-2 rounded-full bg-gold" />
-        Registration opens soon
+        {unavailableLabel}
       </span>
     );
   }
