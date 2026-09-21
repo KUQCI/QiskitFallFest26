@@ -18,16 +18,31 @@ After an edit, run `npm run build` with the development server stopped.
 | Learning links and shared section copy | `resources.ts` |
 | Public design assets and base-path-safe URLs | `assets.ts` |
 
-## Registration
+## Interest form and registration
 
-`event.registrationUrl` is `null` while registration is unavailable. Set it once to
-activate every registration control that consumes the event configuration:
+Sign-up runs in two stages, and the shared control resolves the furthest stage that is
+actually open so the button label never overstates what the link does.
+
+| Stage | Field | Button label |
+|---|---|---|
+| Interest form open | `event.interestFormUrl` | Express interest |
+| Registration open | `event.registrationUrl` | Register |
+| Neither set | — | Registration opens soon (not a link) |
+
+`registrationUrl` wins when both are set, so opening real registration is a one-line
+change and needs no edit to the interest form fields:
 
 ```ts
 registrationUrl: "https://example.com/registration",
 ```
 
-Keep `registrationNote` accurate alongside it.
+Keep `interestFormNote` and `registrationNote` accurate alongside the URLs. The CTA
+section shows `interestFormNote` while the interest form is the active stage, and drops
+the note entirely once registration is open.
+
+The current interest form collects track preferences. It is not registration, so do not
+relabel it as registration, and do not reword the FAQ answers that say registration
+information will be published before registration opens.
 
 ## Statuses and content honesty
 

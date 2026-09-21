@@ -23,6 +23,12 @@ export const faqs: FaqItem[] = [
   },
   {
     category: "Getting started",
+    question: "How do I sign up?",
+    answer:
+      "An interest form is open now. It asks for your name, email, institution, year of study, and which tracks you are interested in, and it helps the organizing team shape the programme around who wants to take part. Submitting it is not the same as registering: registration has not opened yet, and the details will be published here first.",
+  },
+  {
+    category: "Getting started",
     question: "Do I need a team?",
     answer:
       "Team requirements will depend on the track. Some challenges may allow individual participation, while others may involve teams. Full participation and team-format details will be announced with the tracks.",

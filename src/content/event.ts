@@ -22,6 +22,19 @@ export const event = {
     mapUrl: "https://maps.google.com/?q=Khalifa+University+Abu+Dhabi",
   },
 
+  /**
+   * Stage one: the live Google interest form. It collects track preferences and
+   * availability so the programme can be shaped around who wants to take part. It is
+   * not registration, and the public copy must not describe it as registration.
+   */
+  interestFormUrl:
+    "https://docs.google.com/forms/d/e/1FAIpQLScpoVvWppEMD47LRmtDzaPRb7f9Hq_MVnWkmYdp59OeAJvlZA/viewform" as
+      | string
+      | null,
+  interestFormNote:
+    "The interest form is open. Full registration details will be announced here first.",
+
+  /** Stage two: real registration. Setting this takes over every CTA from the interest form. */
   registrationUrl: null as string | null,
   registrationNote: "Track details and registration dates will be announced here first.",
   contactEmail: "100066617@ku.ac.ae",
