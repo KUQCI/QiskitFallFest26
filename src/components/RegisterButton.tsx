@@ -3,22 +3,36 @@ import { event } from "@/content/event";
 import { cn } from "@/lib/utils";
 
 /**
- * The single Register control used everywhere on the site.
+ * The single sign-up control used everywhere on the site.
  *
- * When `event.registrationUrl` is null it renders a disabled button explaining that
- * registration is not open yet, rather than a link that goes nowhere. Setting the URL
- * in src/content/event.ts turns every instance on the site live at once.
+ * Three stages, driven entirely by the two URLs in src/content/event.ts:
+ *
+ * 1. Registration open  → a single Register link.
+ * 2. Interest form open → the "Registration opens soon" status, followed by an
+ *    Express interest link so people have somewhere to go after reading the status.
+ * 3. Neither open       → the status on its own.
+ *
+ * Stage two deliberately keeps the status visible rather than replacing it. The Google
+ * form is an interest form, not registration, and pairing the two makes that difference
+ * legible instead of implying that submitting it secures a place.
  */
 export function RegisterButton({
   size = "md",
   variant = "primary",
   className,
-  label = "Register",
+  label,
+  /**
+   * Render the "Registration opens soon" status alongside the interest-form link.
+   * The compact header opts out: it sits beside the nav with no room for two pills,
+   * and the status is already stated on the pages the header links to.
+   */
+  showStatus = true,
 }: {
   size?: "sm" | "md" | "lg";
   variant?: "primary" | "outline";
   className?: string;
   label?: string;
+  showStatus?: boolean;
 }) {
   const sizes = {
     sm: "px-4 py-2 text-sm",
@@ -32,30 +46,57 @@ export function RegisterButton({
   };
 
   const base = cn(
-    "group inline-flex min-h-11 items-center justify-center gap-2 rounded-full font-semibold transition-all duration-200",
+    // `whitespace-nowrap` keeps each pill's label on one line. The CTA rows wrap to a new
+    // line instead, which reads better than breaking "Registration opens soon" in half.
+    "group inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-full font-semibold transition-all duration-200",
     sizes[size],
     className,
   );
 
-  if (!event.registrationUrl) {
-    return (
-      <span className={cn(base, "cursor-not-allowed border border-border bg-surface-2 text-fg-subtle")}>
-        <span aria-hidden="true" className="inline-flex h-2 w-2 rounded-full bg-gold" />
-        Registration opens soon
-      </span>
-    );
-  }
+  const status = (
+    <span
+      className={cn(base, "cursor-default border border-border bg-surface-2 text-fg-subtle")}
+    >
+      <span aria-hidden="true" className="inline-flex h-2 w-2 rounded-full bg-gold" />
+      Registration opens soon
+    </span>
+  );
 
-  return (
+  const link = (href: string, text: string) => (
     <a
-      href={event.registrationUrl}
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
       data-gate="X"
       className={cn(base, variants[variant])}
     >
-      {label}
+      {text}
+      {/* The link leaves the site, which a sighted user infers from context but a screen reader user does not. */}
+      <span className="sr-only"> (opens in a new tab)</span>
       <ArrowRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
     </a>
+  );
+
+  if (event.registrationUrl) {
+    return link(event.registrationUrl, label ?? "Register");
+  }
+
+  if (!event.interestFormUrl) {
+    return status;
+  }
+
+  const interest = link(event.interestFormUrl, label ?? "Express interest");
+
+  if (!showStatus) {
+    return interest;
+  }
+
+  return (
+    // `contents` keeps both children as direct flex items of whatever row the page
+    // already lays out, so the CTA cluster wraps and aligns exactly as it did before.
+    <span className="contents">
+      {status}
+      {interest}
+    </span>
   );
 }

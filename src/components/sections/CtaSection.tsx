@@ -6,6 +6,14 @@ import { ctaCopy, event } from "@/content/event";
 export function CtaSection({ variant = "default" }: { variant?: "default" | "opening" }) {
   const copy = ctaCopy[variant];
 
+  // Registration needs no caveat. The interest form does, so people understand that
+  // submitting it is not the same as being registered.
+  const note = event.registrationUrl
+    ? null
+    : event.interestFormUrl
+      ? event.interestFormNote
+      : copy.note;
+
   return (
     <Section className="relative overflow-hidden border-t border-border">
       <div className="pointer-events-none absolute inset-0 bg-grid opacity-20" aria-hidden="true" />
@@ -22,20 +30,18 @@ export function CtaSection({ variant = "default" }: { variant?: "default" | "ope
           {copy.body}
         </p>
 
-        <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
           <RegisterButton size="lg" />
           <a
             href={`mailto:${event.contactEmail}`}
-            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-border-strong px-7 py-3.5 text-base font-semibold text-fg transition-colors hover:border-pink hover:text-pink"
+            className="inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-border-strong px-7 py-3.5 text-base font-semibold text-fg transition-colors hover:border-pink hover:text-pink"
           >
             <MailIcon className="h-4.5 w-4.5" />
             Ask a question
           </a>
         </div>
 
-        {!event.registrationUrl ? (
-          <p className="mt-5 text-sm text-fg-subtle">{copy.note}</p>
-        ) : null}
+        {note ? <p className="mt-5 text-sm text-fg-subtle">{note}</p> : null}
       </Container>
     </Section>
   );

@@ -48,12 +48,12 @@ export function Hero() {
             </a>
           </div>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
             <RegisterButton size="lg" />
             <Link
               href="/#format"
               data-gate="H"
-              className="group inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-border-strong px-7 py-3.5 text-base font-semibold text-fg transition-colors hover:border-pink hover:text-pink"
+              className="group inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-border-strong px-7 py-3.5 text-base font-semibold text-fg transition-colors hover:border-pink hover:text-pink"
             >
               How it works
               <ArrowRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
