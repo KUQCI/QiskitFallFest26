@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
  * Three stages, driven entirely by the two URLs in src/content/event.ts:
  *
  * 1. Registration open  → a single Register link.
- * 2. Interest form open → the "Registration opens soon" status, followed by an
+ * 2. Interest form open → the "registration opens soon" status, followed by an
  *    Express interest link so people have somewhere to go after reading the status.
  * 3. Neither open       → the status on its own.
  *
@@ -20,11 +20,14 @@ export function RegisterButton({
   size = "md",
   variant = "primary",
   className,
+  /** Overrides the active link's label. Each stage names itself when this is omitted. */
   label,
+  /** Text of the status pill, so a caller can name a date once one is confirmed. */
+  unavailableLabel = "Registration opens soon",
   /**
-   * Render the "Registration opens soon" status alongside the interest-form link.
-   * The compact header opts out: it sits beside the nav with no room for two pills,
-   * and the status is already stated on the pages the header links to.
+   * Render the status alongside the interest-form link. The compact header opts out:
+   * it sits beside the nav with no room for two pills, and the status is already
+   * stated on the pages the header links to.
    */
   showStatus = true,
 }: {
@@ -32,6 +35,7 @@ export function RegisterButton({
   variant?: "primary" | "outline";
   className?: string;
   label?: string;
+  unavailableLabel?: string;
   showStatus?: boolean;
 }) {
   const sizes = {
@@ -47,18 +51,16 @@ export function RegisterButton({
 
   const base = cn(
     // `whitespace-nowrap` keeps each pill's label on one line. The CTA rows wrap to a new
-    // line instead, which reads better than breaking "Registration opens soon" in half.
+    // line instead, which reads better than breaking the status label in half.
     "group inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-full font-semibold transition-all duration-200",
     sizes[size],
     className,
   );
 
   const status = (
-    <span
-      className={cn(base, "cursor-default border border-border bg-surface-2 text-fg-subtle")}
-    >
+    <span className={cn(base, "cursor-default border border-border bg-surface-2 text-fg-subtle")}>
       <span aria-hidden="true" className="inline-flex h-2 w-2 rounded-full bg-gold" />
-      Registration opens soon
+      {unavailableLabel}
     </span>
   );
 

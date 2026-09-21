@@ -81,7 +81,7 @@ Order:
 3. Event introduction
 4. Four preview tracks with **TENTATIVE** badges
 5. Compact three-phase summary
-6. Linked IBM Quantum and Khalifa University logos
+6. Linked IBM Quantum, Khalifa University, and NYU Abu Dhabi CQTS logos
 7. Six learning resources
 8. First five FAQs
 9. Generic registration CTA
@@ -116,10 +116,11 @@ Leave unspecified times and formats absent rather than guessing.
 
 ### Partners
 
-Show exactly the linked IBM Quantum and Khalifa University logo cards, three
-partnership-value cards, one **IN DEVELOPMENT** sponsorship package block, and a
-focused organizing-team email CTA. Do not add participant registration, prices,
-tiers, or unconfirmed organizations.
+Show the linked IBM Quantum, Khalifa University, and NYU Abu Dhabi Center for
+Quantum and Topological Systems logo cards, three partnership-value cards, one
+**IN DEVELOPMENT** sponsorship package block, and a focused organizing-team email
+CTA. Do not add participant registration, prices, tiers, or unconfirmed
+organizations.
 
 ### About
 
@@ -175,7 +176,7 @@ Before release:
 4. Keyboard, screen-reader semantics, reduced motion, coarse touch, fine pointer,
    and cursor failure are checked.
 5. The browser console is clean and no page has horizontal overflow.
-6. Counts remain exact: four Home previews, six Tracks cards, two partner logos,
+6. Counts remain exact: four Home previews, six Tracks cards, three partner logos,
    one sponsorship block, two past events, three R&D cards, and fourteen FAQs.
 
 ## 8. Open items

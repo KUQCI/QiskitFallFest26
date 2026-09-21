@@ -18,7 +18,12 @@ export function PartnersSection({ compact = false }: { compact?: boolean }) {
           lede={partnersIntro}
         />
 
-        <div className={cn("mt-10 grid gap-4 sm:grid-cols-2 sm:gap-5", !compact && "lg:mt-12")}>
+        <div
+          className={cn(
+            "mt-10 grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3",
+            !compact && "lg:mt-12",
+          )}
+        >
           {confirmed.map((partner, index) => (
             <Reveal key={partner.name} delay={index * 60}>
               <a
@@ -34,7 +39,7 @@ export function PartnersSection({ compact = false }: { compact?: boolean }) {
                       src={partner.logo}
                       alt={`${partner.name} logo`}
                       fill
-                      sizes="(max-width: 639px) 90vw, 45vw"
+                      sizes="(max-width: 639px) 90vw, (max-width: 1023px) 45vw, 30vw"
                       className="object-contain p-5"
                     />
                   ) : (

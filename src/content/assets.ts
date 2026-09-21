@@ -54,6 +54,7 @@ export const fallFestAssets = {
       "ku-logo_black_backgroundless.png",
     ),
     khalifaUniversityWhiteBackground: imageAsset("ku-logo_white-bg.jpg", "ku-logo_white-bg.jpg"),
+    nyuadCqts: imageAsset("nyuad-cqts-logo.png", "nyuad-cqts-logo.png"),
     qciLogo: imageAsset("qci-logo.png", "qci-logo.png"),
     qciLogoFit: imageAsset("qci-logo-fit.png", "qci-logo-fit.png"),
     qciLogoHeader: imageAsset("qci-logo-header.png", "qci-logo-header.png"),
