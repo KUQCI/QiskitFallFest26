@@ -37,7 +37,14 @@ export const event = {
       | string
       | null,
   interestFormNote:
-    "Get notified when registration opens. The short form also asks which tracks interest you, so the programme can be built around it.",
+    "Fill in the short form to be notified the moment registration opens. It also asks which tracks interest you, so the programme can be built around the answers.",
+
+  /**
+   * Shown on every sign-up control while `registrationUrl` is null. Confirmed date.
+   * This lives here rather than in `homeContent` because the CTA section renders on
+   * five routes, so the status has to read the same everywhere.
+   */
+  registrationOpensLabel: "Registration Opens October 5th",
 
   /** Stage two: real registration. Setting this takes over every CTA from the interest form. */
   registrationUrl: null as string | null,
@@ -68,7 +75,6 @@ export const event = {
 
 export const homeContent = {
   heroOwner: "Khalifa University\nQuantum Computing Initiative's",
-  registrationLabel: "Registration Opens October 5th",
   about: {
     eyebrow: "What this is",
     title: "A Qiskit Fall Fest, Built Bigger",

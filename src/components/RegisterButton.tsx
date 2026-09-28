@@ -22,8 +22,11 @@ export function RegisterButton({
   className,
   /** Overrides the active link's label. Each stage names itself when this is omitted. */
   label,
-  /** Text of the status pill, so a caller can name a date once one is confirmed. */
-  unavailableLabel = "Registration opens soon",
+  /**
+   * Text of the status pill. Defaults to the shared event label so every control on
+   * every route says the same thing; a caller only passes this to override one spot.
+   */
+  unavailableLabel = event.registrationOpensLabel,
   /**
    * Render the status alongside the interest-form link. The compact header opts out:
    * it sits beside the nav with no room for two pills, and the status is already

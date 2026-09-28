@@ -27,7 +27,12 @@ actually open so the button label never overstates what the link does.
 |---|---|---|
 | Interest form open | `event.interestFormUrl` | Get notified |
 | Registration open | `event.registrationUrl` | Register |
-| Neither set | — | `unavailableLabel`, default "Registration opens soon" (not a link) |
+| Neither set | — | `event.registrationOpensLabel` (not a link) |
+
+`registrationOpensLabel` is the status text shown while registration is closed. It
+lives in `event.ts`, not `homeContent`, because the CTA section renders on five routes
+and the status has to read the same on all of them. `RegisterButton` uses it as the
+default for `unavailableLabel`, so changing the date is a single edit.
 
 `registrationUrl` wins when both are set, so opening real registration is a one-line
 change and needs no edit to the interest form fields:
