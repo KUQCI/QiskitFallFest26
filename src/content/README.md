@@ -25,9 +25,9 @@ actually open so the button label never overstates what the link does.
 
 | Stage | Field | Button label |
 |---|---|---|
-| Interest form open | `event.interestFormUrl` | Express interest |
+| Interest form open | `event.interestFormUrl` | Get notified |
 | Registration open | `event.registrationUrl` | Register |
-| Neither set | — | Registration opens soon (not a link) |
+| Neither set | — | `unavailableLabel`, default "Registration opens soon" (not a link) |
 
 `registrationUrl` wins when both are set, so opening real registration is a one-line
 change and needs no edit to the interest form fields:
@@ -40,9 +40,13 @@ Keep `interestFormNote` and `registrationNote` accurate alongside the URLs. The 
 section shows `interestFormNote` while the interest form is the active stage, and drops
 the note entirely once registration is open.
 
-The current interest form collects track preferences. It is not registration, so do not
-relabel it as registration, and do not reword the FAQ answers that say registration
-information will be published before registration opens.
+The field is named after the artifact it points at: the Google form is titled
+"Interest Form". The CTA says "Get notified" because that is why most people click it.
+Keep `interestFormNote` saying that a short form sits behind the button, so the label
+does not promise a one-field mail signup.
+
+It is not registration, so do not relabel it as registration, and do not reword the FAQ
+answers that say registration information will be published before registration opens.
 
 ## Statuses and content honesty
 

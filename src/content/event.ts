@@ -23,16 +23,21 @@ export const event = {
   },
 
   /**
-   * Stage one: the live Google interest form. It collects track preferences and
-   * availability so the programme can be shaped around who wants to take part. It is
-   * not registration, and the public copy must not describe it as registration.
+   * Stage one: the live Google form people fill in before registration opens.
+   *
+   * The field keeps the name of the artifact it points at — the form is titled
+   * "Qiskit Fall Fest '26 - Interest Form" on Google's side. The public CTA says
+   * "Get notified" instead, because that is the reason most people will click it.
+   * The note below carries the honest part: it is a short form, not a mail signup,
+   * so nobody arrives expecting a single email box. It is not registration, and the
+   * public copy must not describe it as registration.
    */
   interestFormUrl:
     "https://docs.google.com/forms/d/e/1FAIpQLScpoVvWppEMD47LRmtDzaPRb7f9Hq_MVnWkmYdp59OeAJvlZA/viewform" as
       | string
       | null,
   interestFormNote:
-    "The interest form is open. Full registration details will be announced here first.",
+    "Get notified when registration opens. The short form also asks which tracks interest you, so the programme can be built around it.",
 
   /** Stage two: real registration. Setting this takes over every CTA from the interest form. */
   registrationUrl: null as string | null,

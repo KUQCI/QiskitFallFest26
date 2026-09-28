@@ -8,8 +8,8 @@ import { cn } from "@/lib/utils";
  * Three stages, driven entirely by the two URLs in src/content/event.ts:
  *
  * 1. Registration open  → a single Register link.
- * 2. Interest form open → the "registration opens soon" status, followed by an
- *    Express interest link so people have somewhere to go after reading the status.
+ * 2. Interest form open → the "registration opens soon" status, followed by a
+ *    Get notified link so people have somewhere to go after reading the status.
  * 3. Neither open       → the status on its own.
  *
  * Stage two deliberately keeps the status visible rather than replacing it. The Google
@@ -87,7 +87,7 @@ export function RegisterButton({
     return status;
   }
 
-  const interest = link(event.interestFormUrl, label ?? "Express interest");
+  const interest = link(event.interestFormUrl, label ?? "Get notified");
 
   if (!showStatus) {
     return interest;
