@@ -67,6 +67,9 @@ export default function SponsorsPage() {
                   </li>
                 ))}
               </ul>
+              <p className="mt-8 max-w-3xl text-sm leading-relaxed text-fg-muted">
+                {boothContent.provisions}
+              </p>
               <a
                 href={boothHref}
                 {...(boothContent.applicationUrl

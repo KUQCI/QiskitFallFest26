@@ -67,9 +67,15 @@ export const boothContent = {
       description: "Meet participants and the teams behind the projects built during the Fall Fest.",
     },
   ],
+  /** Mirrors the acknowledgement applicants make on the form. */
+  provisions:
+    "Tables and booths are provided. You bring your own materials, products, equipment, and other supplies.",
   actionLabel: "Apply now",
   /** Booth registration form. Until it is set, the button opens an email to the organizing team. */
-  applicationUrl: null as string | null,
+  applicationUrl:
+    "https://docs.google.com/forms/d/e/1FAIpQLSdC5XOteOenz_B8T5wYHQPVfvwVlrhQ6Htpa5mZBCe2BXeSiw/viewform" as
+      | string
+      | null,
 } as const;
 
 export const partnersPageContent = {
