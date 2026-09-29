@@ -49,6 +49,8 @@ export const fallFestAssets = {
   logos: {
     ibmQuantum: imageAsset("IBM Quantum.png", "IBM Quantum.png"),
     ibmQuantumWordmark: imageAsset("ibm-quantum-wordmark.png", "ibm-quantum-wordmark.png"),
+    /** "IBM" cropped from the IBM Quantum wordmark; used as a CSS mask so it follows the theme. */
+    ibmWordmark: imageAsset("ibm-wordmark.png", "ibm-wordmark.png"),
     khalifaUniversityTransparent: imageAsset(
       "ku-logo_black_backgroundless.png",
       "ku-logo_black_backgroundless.png",

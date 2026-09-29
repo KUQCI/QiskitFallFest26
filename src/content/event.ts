@@ -4,15 +4,15 @@ export const event = {
   host: "Quantum Computing Initiative and Club",
   hostShort: "QCI",
   university: "Khalifa University",
-  tagline: "October – November 2026",
+  tagline: "19 October – 1 November 2026",
   intro:
-    "Two weeks of quantum computing. Built with IBM Quantum, this Qiskit Fall Fest is open to learners at every level. Participants will take on challenge tracks and coding competitions, join hands-on workshops and technical talks, connect with mentors, and build real projects. The two weeks culminate in a multi-day closing showcase at Khalifa University, with the wider international quantum community joining online.",
+    "Two weeks of quantum computing. Built with IBM Quantum, this Qiskit Fall Fest is open to learners at every level. Participants will take on challenge tracks and coding competitions, join hands-on workshops and technical talks, connect with mentors, and build real projects. The Fall Fest begins on 19 October and ends on 1 November, culminating in a two-day closing showcase on 31 October and 1 November at Khalifa University, with the wider international quantum community joining online.",
 
   /** Confirmed opening session in Gulf Standard Time (UTC+04:00). */
   countdownTarget: "2026-10-19T18:00:00+04:00",
   openingDateLabel: "19 October 2026 · 6:00 PM",
-  dateLabel: "October – November 2026",
-  closingDateLabel: "Date(s) to be announced",
+  dateLabel: "19 October – 1 November 2026",
+  closingDateLabel: "31 October – 1 November 2026",
 
   venue: {
     name: "Khalifa University",
@@ -24,7 +24,7 @@ export const event = {
 
   registrationUrl: null as string | null,
   registrationNote: "Track details and registration dates will be announced here first.",
-  contactEmail: "100066617@ku.ac.ae",
+  contactEmail: "quantum.club@ku.ac.ae",
 
   socials: {
     website: "https://qcinit.tech/",
@@ -50,6 +50,8 @@ export const event = {
 
 export const homeContent = {
   heroOwner: "Khalifa University\nQuantum Computing Initiative's",
+  /** Rendered as the IBM logo beside the first title line; kept as text for screen readers. */
+  heroTitle: { brand: "IBM", lead: "Qiskit", rest: "Fall Fest 2026" },
   registrationLabel: "Registration Opens October 5th",
   about: {
     eyebrow: "What this is",
@@ -83,7 +85,7 @@ const sharedCta = {
 
 export const ctaCopy = {
   default: {
-    eyebrow: "October–November 2026 · Khalifa University",
+    eyebrow: "19 October – 1 November 2026 · Khalifa University",
     ...sharedCta,
     note: "Track details and registration dates will be announced here first.",
   },

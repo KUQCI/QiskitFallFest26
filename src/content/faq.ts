@@ -37,7 +37,7 @@ export const faqs: FaqItem[] = [
     category: "Getting started",
     question: "How much time does this actually take?",
     answer:
-      "The main challenge period runs for approximately two weeks. The exact workload will vary by track, and more detailed expectations will be published once the challenges are finalized.",
+      "The development period runs for two weeks, from Opening Day on 19 October to the closing showcase on 31 October and 1 November. The exact workload will vary by track, and more detailed expectations will be published once the challenges are finalized.",
   },
   {
     category: "Eligibility",
@@ -61,7 +61,7 @@ export const faqs: FaqItem[] = [
     category: "Format",
     question: "What does hybrid actually mean here?",
     answer:
-      "The opening session will be available at Khalifa University and online internationally. Formats during the challenge period and closing showcases may vary by track, and will be labelled when those details are finalized.",
+      "The opening session will be available at Khalifa University and online internationally. National tracks are planned as hybrid, while international tracks are planned as virtual. Each track is labelled on the Tracks page.",
   },
   {
     category: "Format",
@@ -73,7 +73,7 @@ export const faqs: FaqItem[] = [
     category: "Format",
     question: "What happens at the closing showcase?",
     answer:
-      "The closing phase is planned to include project showcases, coding competitions, industry showcase and networking, and winner announcements. The exact format and date or dates will be announced as the programme is finalized.",
+      "The closing phase is planned to include project showcases, coding competitions, industry showcase and networking, and winner announcements. It takes place on 31 October and 1 November 2026. The exact format will be announced as the programme is finalized.",
   },
   {
     category: "Format",
@@ -97,6 +97,6 @@ export const faqs: FaqItem[] = [
     category: "The Fest",
     question: "When will the exact dates be announced?",
     answer:
-      "The Fall Fest begins on 19 October 2026 at 6:00 PM UAE time. The closing showcase date or dates and the remaining programme details will be announced here once they are confirmed.",
+      "The Fall Fest begins on 19 October 2026 at 6:00 PM UAE time and ends on 1 November, with the closing showcase on 31 October and 1 November. Remaining programme details will be announced here once they are confirmed.",
   },
 ];
