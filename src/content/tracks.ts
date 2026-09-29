@@ -1,8 +1,8 @@
 import type { Track } from "./types";
 
 /**
- * Broad track directions only. Challenges, prerequisites, formats, partners, and
- * judging details remain intentionally unpublished while each track is developed.
+ * Broad track directions, reach, and delivery format only. Challenges, prerequisites,
+ * partners, and judging details remain intentionally unpublished while each track is developed.
  * Stable slugs and codes are preserved from the original data.
  */
 export const tracks: Track[] = [
@@ -12,6 +12,8 @@ export const tracks: Track[] = [
     title: "Quantum Computing Foundations",
     summary:
       "Build a foundation in quantum computing and Qiskit through core concepts and hands-on exploration.",
+    reach: "national",
+    format: "hybrid",
     status: "planning",
   },
   {
@@ -20,14 +22,18 @@ export const tracks: Track[] = [
     title: "Quantum Machine Learning",
     summary:
       "Explore the intersection of quantum computing and machine learning, including how quantum and classical approaches can work together.",
+    reach: "national",
+    format: "hybrid",
     status: "planning",
   },
   {
     slug: "quantum-cybersecurity",
     code: "SEC-02",
-    title: "Quantum Cybersecurity",
+    title: "Quantum CTF",
     summary:
-      "Explore quantum computing in the context of cybersecurity and cryptography, including the opportunities and challenges created by quantum technologies.",
+      "A quantum cybersecurity capture-the-flag, exploring cryptography and the opportunities and challenges created by quantum technologies.",
+    reach: "national",
+    format: "hybrid",
     status: "planning",
   },
   {
@@ -36,22 +42,28 @@ export const tracks: Track[] = [
     title: "Quantum Computing & Biology",
     summary:
       "Explore potential applications of quantum computing across biology, chemistry, and the life sciences.",
+    reach: "national",
+    format: "hybrid",
     status: "planning",
   },
   {
-    slug: "quantum-finance",
-    code: "FIN-04",
-    title: "Quantum & Energy",
+    slug: "quantum-media",
+    code: "MEDIA-07",
+    title: "Quantum Media",
     summary:
-      "Explore potential applications of quantum computing across energy systems, sustainability, and related optimization challenges.",
+      "Explore quantum computing through media and creative communication, bringing quantum ideas to a wider audience.",
+    reach: "international",
+    format: "online",
     status: "planning",
   },
   {
-    slug: "open-innovation",
-    code: "OPEN-06",
-    title: "Open Innovation",
+    slug: "peaked-circuits",
+    code: "PEAK-08",
+    title: "Peaked Circuits",
     summary:
-      "A flexible track for quantum computing ideas and applications that extend beyond the other track areas.",
+      "Explore peaked quantum circuits, where a hidden output stands out from the rest, and the challenge of uncovering it.",
+    reach: "international",
+    format: "online",
     status: "planning",
   },
 ];
@@ -71,5 +83,5 @@ export const tracksPageContent = {
   note:
     "Note: Track details are currently in development, with challenges and full information to be announced soon.",
   metadataDescription:
-    "Explore the six planning-stage Qiskit Fall Fest tracks, from quantum computing foundations to specialized applications and open innovation.",
+    "Explore the six planning-stage Qiskit Fall Fest tracks, from quantum computing foundations to specialized applications, across national hybrid and international virtual formats.",
 } as const;

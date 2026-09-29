@@ -1,10 +1,10 @@
 import { Badge } from "@/components/ui/primitives";
 import type { Track } from "@/content/types";
-import { cn, statusLabel } from "@/lib/utils";
+import { cn, formatLabel, reachLabel, statusLabel } from "@/lib/utils";
 
 /**
  * A deliberately honest track summary. Until challenges are final, cards show only
- * their broad direction and a single planning-state label.
+ * their broad direction, reach, delivery format, and a planning-state label.
  */
 export function TrackCard({
   track,
@@ -42,6 +42,13 @@ export function TrackCard({
         {track.title}
       </h3>
       <p className="mt-3 text-sm leading-relaxed text-fg-muted">{track.summary}</p>
+
+      {track.reach || track.format ? (
+        <div className="mt-5 flex flex-wrap gap-2">
+          {track.reach ? <Badge tone="sky">{reachLabel(track.reach)}</Badge> : null}
+          {track.format ? <Badge tone="neutral">{formatLabel(track.format)}</Badge> : null}
+        </div>
+      ) : null}
 
       <div className="mt-auto pt-8" aria-hidden="true">
         <span className="block h-px w-12 bg-pink transition-[width] duration-300 group-hover:w-20" />
