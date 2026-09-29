@@ -1,5 +1,5 @@
 import { fallFestAssets } from "./assets";
-import type { Partner, PartnerReason, SponsorTier } from "./types";
+import type { Partner, PartnerReason } from "./types";
 
 /** Only organisations with a confirmed, public role belong here. */
 export const partners: Partner[] = [
@@ -38,7 +38,7 @@ export const partnerReasons: PartnerReason[] = [
   {
     title: "Connect with emerging quantum talent",
     description:
-      "Engage directly with students building across different areas of quantum computing. See how participants approach real problems, share expertise during the challenge period, and meet the teams behind the projects.",
+      "Engage directly with students building across different areas of quantum computing. See how participants approach real problems, share expertise during the development period, and meet the teams behind the projects.",
   },
   {
     title: "Visibility & ecosystem connection",
@@ -47,39 +47,45 @@ export const partnerReasons: PartnerReason[] = [
   },
 ];
 
-export const sponsorshipPackage = {
-  title: "Sponsorship Packages",
-  status: "in-development",
+/** Booth applications replace sponsorship packages for now. */
+export const boothContent = {
+  eyebrow: "Booths",
+  title: "Want a booth at the Fall Fest?",
   description:
-    "Packages and benefits are currently being finalized. Support may include track involvement, funding, mentorship, resources, visibility, and participation in the closing showcase. We also welcome flexible partnerships and are happy to discuss support that fits your organisation’s goals.",
+    "Showcase your organisation, research, or products to Fall Fest participants and the wider quantum community. Apply for a booth and the organizing team will follow up with next steps.",
+  benefits: [
+    {
+      title: "Visibility",
+      description: "Be seen by students, researchers, and organisations taking part in the Fall Fest.",
+    },
+    {
+      title: "Ecosystem connection",
+      description: "Connect with industry partners, researchers, and the wider UAE quantum computing community.",
+    },
+    {
+      title: "Emerging quantum talent",
+      description: "Meet participants and the teams behind the projects built during the Fall Fest.",
+    },
+  ],
+  actionLabel: "Apply now",
+  /** Booth registration form. Until it is set, the button opens an email to the organizing team. */
+  applicationUrl: null as string | null,
 } as const;
 
 export const partnersPageContent = {
   eyebrow: "Partners",
   title: "Build the ecosystem with us",
   lede:
-    "Bring your challenges, expertise, and ideas to the Fall Fest. Support participants throughout the challenge period, then join us at the closing showcase to meet the teams, explore their projects, and connect with other industry partners, researchers, and the wider quantum community.",
+    "Bring your challenges, expertise, and ideas to the Fall Fest. Support participants throughout the development period, then join us at the closing showcase to meet the teams, explore their projects, and connect with other industry partners, researchers, and the wider quantum community.",
   reasonsEyebrow: "Why partner with us",
   reasonsTitle: "What a partnership actually gets you",
-  packagesEyebrow: "Packages",
-  packagesTitle: "Ways to support the Fest",
-  contactTitle: "Talk to the organizing team",
+  contactTitle: "Want to sponsor the Fall Fest?",
   contactDescription:
-    "Tell us about what you or your organisation works on, your interests, and how you’d like to get involved. We’ll work with you to explore a contribution or partnership that fits your goals and the needs of the Fall Fest.",
-  contactActionLabel: "Start a conversation",
+    "Contact the organizing team. Tell us about what you or your organisation works on and how you’d like to get involved, and we’ll work with you on a sponsorship or partnership that fits your goals and the needs of the Fall Fest.",
+  contactActionLabel: "Contact the organizing team",
   metadataDescription:
-    "Partner with Qiskit Fall Fest 2026 through challenges, mentorship, resources, funding, or participation in the closing showcase at Khalifa University.",
+    "Partner with Qiskit Fall Fest 2026 through challenges, mentorship, resources, sponsorship, or a booth at the Fall Fest at Khalifa University.",
 } as const;
 
 /** @deprecated Academic partner claims are intentionally removed. */
 export const academicPartners: Partner[] = [];
-
-/** @deprecated Kept briefly for compatibility; consume sponsorshipPackage instead. */
-export const sponsorTiers: SponsorTier[] = [
-  {
-    name: sponsorshipPackage.title,
-    price: "",
-    summary: sponsorshipPackage.description,
-    benefits: [],
-  },
-];
