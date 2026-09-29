@@ -6,6 +6,9 @@ export type Status = "confirmed" | "planning" | "tentative" | "tba";
 /** A delivery format is optional until it has been agreed. */
 export type Format = "in-person" | "online" | "hybrid";
 
+/** Who a track is open to: participants in the UAE, or anyone internationally. */
+export type Reach = "national" | "international";
+
 /** A difficulty level is optional until track prerequisites have been agreed. */
 export type Level = "beginner" | "intermediate" | "advanced" | "all-levels";
 
@@ -18,6 +21,7 @@ export interface Track {
   summary: string;
   description?: string;
   level?: Level;
+  reach?: Reach;
   format?: Format;
   status: Status;
   partner?: string;
@@ -50,15 +54,6 @@ export interface Speaker {
   photo?: string;
   bio?: string;
   status: Status;
-}
-
-/** @deprecated Use the single sponsorshipPackage export instead of tiers. */
-export interface SponsorTier {
-  name: string;
-  price: string;
-  summary: string;
-  benefits: string[];
-  featured?: boolean;
 }
 
 export interface Partner {

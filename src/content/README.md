@@ -10,9 +10,9 @@ After an edit, run `npm run build` with the development server stopped.
 | Change | File |
 |---|---|
 | Event identity, opening time, venue, registration, contact, socials, home/footer/CTA copy | `event.ts` |
-| Track names, broad descriptions, order, and Tracks page copy | `tracks.ts` |
+| Track names, broad descriptions, reach, format, order, and Tracks page copy | `tracks.ts` |
 | Three phases, sessions, and How It Works page copy | `schedule.ts` |
-| Confirmed partners and the single in-development sponsorship package | `sponsors.ts` |
+| Confirmed partners, booth applications, and sponsorship contact copy | `sponsors.ts` |
 | Questions and cautious answers | `faq.ts` |
 | Organizer, advisor, past events, R&D projects, and speakers | `team.ts` |
 | Learning links and shared section copy | `resources.ts` |

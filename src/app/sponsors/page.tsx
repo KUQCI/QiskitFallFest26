@@ -3,14 +3,10 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
 import { Reveal } from "@/components/Reveal";
 import { PartnersSection } from "@/components/sections/PartnersSection";
-import { Badge, Container, Section, SectionHeading } from "@/components/ui/primitives";
-import { MailIcon } from "@/components/ui/Icons";
+import { Container, Section, SectionHeading } from "@/components/ui/primitives";
+import { ArrowRightIcon, MailIcon } from "@/components/ui/Icons";
 import { event } from "@/content/event";
-import {
-  partnerReasons,
-  partnersPageContent,
-  sponsorshipPackage,
-} from "@/content/sponsors";
+import { boothContent, partnerReasons, partnersPageContent } from "@/content/sponsors";
 
 export const metadata: Metadata = {
   title: "Partners",
@@ -18,6 +14,10 @@ export const metadata: Metadata = {
 };
 
 export default function SponsorsPage() {
+  const boothHref =
+    boothContent.applicationUrl ??
+    `mailto:${event.contactEmail}?subject=${encodeURIComponent(`${event.name} booth application`)}`;
+
   return (
     <>
       <PageHeader
@@ -52,22 +52,34 @@ export default function SponsorsPage() {
 
       <Section className="border-t border-border bg-surface/25">
         <Container>
-          <SectionHeading
-            eyebrow={partnersPageContent.packagesEyebrow}
-            title={partnersPageContent.packagesTitle}
-          />
+          <SectionHeading eyebrow={boothContent.eyebrow} title={boothContent.title} />
 
           <Reveal>
             <article className="card mt-12 max-w-4xl p-7 sm:p-10">
-              <div className="flex flex-wrap items-center gap-4">
-                <h3 className="text-2xl font-semibold text-fg">{sponsorshipPackage.title}</h3>
-                <Badge tone="purple">
-                  {sponsorshipPackage.status.replaceAll("-", " ")}
-                </Badge>
-              </div>
-              <p className="mt-5 max-w-3xl text-base leading-relaxed text-fg-muted sm:text-lg">
-                {sponsorshipPackage.description}
+              <p className="max-w-3xl text-base leading-relaxed text-fg-muted sm:text-lg">
+                {boothContent.description}
               </p>
+              <ul className="mt-8 grid gap-5 sm:grid-cols-3">
+                {boothContent.benefits.map((benefit) => (
+                  <li key={benefit.title}>
+                    <h3 className="text-base font-semibold text-fg">{benefit.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-fg-muted">{benefit.description}</p>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-8 max-w-3xl text-sm leading-relaxed text-fg-muted">
+                {boothContent.provisions}
+              </p>
+              <a
+                href={boothHref}
+                {...(boothContent.applicationUrl
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
+                className="group mt-9 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-gold px-7 py-3.5 text-base font-semibold text-on-gold transition-colors hover:bg-gold-strong"
+              >
+                {boothContent.actionLabel}
+                <ArrowRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+              </a>
             </article>
           </Reveal>
         </Container>
@@ -84,7 +96,7 @@ export default function SponsorsPage() {
             </p>
             <a
               href={`mailto:${event.contactEmail}?subject=${encodeURIComponent(
-                `${event.name} partnership`,
+                `${event.name} sponsorship`,
               )}`}
               className="mt-7 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-gold px-7 py-3.5 text-base font-semibold text-on-gold transition-colors hover:bg-gold-strong"
             >

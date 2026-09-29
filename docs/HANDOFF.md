@@ -63,10 +63,10 @@ Before publishing a change, keep these canonical facts consistent:
 | Institution | Khalifa University, Abu Dhabi |
 | Opening | 19 October 2026 at 6:00 PM UAE time |
 | Countdown | `2026-10-19T18:00:00+04:00` |
-| Challenge period | Approximately two weeks |
-| Closing showcase | Date(s) to be announced |
+| Development period | Two weeks, from Opening Day to the closing showcase |
+| Closing showcase | 31 October – 1 November 2026 |
 | Registration | Opening soon |
-| Contact | `100066617@ku.ac.ae` |
+| Contact | `quantum.club@ku.ac.ae` |
 | QCI website | <https://qcinit.tech/> |
 | Instagram | <https://www.instagram.com/ku.qci/?hl=en> |
 | LinkedIn | <https://www.linkedin.com/company/ku-qci/> |
@@ -145,8 +145,9 @@ Only add a partner after written approval. Add its logo to
 `public/fall-fest-assets/`, register it in `src/content/assets.ts`, and reference
 the exported asset.
 
-Do not invent sponsorship tiers, prices, or benefits. The current sponsorship
-package remains an **In Development** notice.
+Do not invent sponsorship tiers, prices, or benefits. Sponsorship packages are
+not published; the Partners page offers booth applications (`boothContent`) and
+a sponsorship contact instead.
 
 ### Add a speaker or mentor
 
