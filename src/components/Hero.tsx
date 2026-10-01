@@ -24,23 +24,9 @@ export function Hero() {
           </p>
 
           <h1 className="mt-4 max-w-4xl text-[clamp(2.7rem,8vw,5.5rem)] font-bold leading-[0.95] tracking-[-0.045em]">
-            <span className="flex items-center gap-[0.22em] text-fg">
-              {/* Masked with currentColor so the logo matches the title in both themes. */}
-              <span
-                aria-hidden="true"
-                className="inline-block h-[0.74em] aspect-[403/166] shrink-0 bg-current"
-                style={{
-                  maskImage: `url("${fallFestAssets.logos.ibmWordmark.src}")`,
-                  WebkitMaskImage: `url("${fallFestAssets.logos.ibmWordmark.src}")`,
-                  maskSize: "contain",
-                  WebkitMaskSize: "contain",
-                  maskRepeat: "no-repeat",
-                  WebkitMaskRepeat: "no-repeat",
-                }}
-              />
-              <span className="sr-only">{homeContent.heroTitle.brand} </span>
-              {homeContent.heroTitle.lead}
-            </span>
+            <span className="block text-fg">
+              {homeContent.heroTitle.brand} {homeContent.heroTitle.lead}
+            </span>{" "}
             <span className="block text-lavender">{homeContent.heroTitle.rest}</span>
           </h1>
 
@@ -65,7 +51,7 @@ export function Hero() {
           </div>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <RegisterButton size="lg" unavailableLabel={homeContent.registrationLabel} />
+            <RegisterButton size="lg" />
             <Link
               href="/#format"
               data-gate="H"

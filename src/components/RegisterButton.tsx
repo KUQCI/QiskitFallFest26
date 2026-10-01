@@ -14,7 +14,7 @@ export function RegisterButton({
   variant = "primary",
   className,
   label = "Register",
-  unavailableLabel = "Registration opens soon",
+  unavailableLabel = event.registrationOpensLabel,
 }: {
   size?: "sm" | "md" | "lg";
   variant?: "primary" | "outline";

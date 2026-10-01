@@ -29,10 +29,7 @@ export function TrackCard({
         className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-pink to-transparent opacity-60"
       />
 
-      <div className="flex items-start justify-between gap-3">
-        <span className="font-mono text-2xs uppercase tracking-[0.18em] text-fg-subtle">
-          {track.code}
-        </span>
+      <div className="flex justify-end">
         <Badge tone={planning ? "purple" : "neutral"}>
           {badgeLabel}
         </Badge>

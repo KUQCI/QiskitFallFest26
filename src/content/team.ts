@@ -4,12 +4,12 @@ import type { PastEvent, ResearchProject, Speaker, TeamMember } from "./types";
 export const aboutContent = {
   organizersEyebrow: "About Us",
   organizersTitle: "About the Organizers",
-  organizersSubtitle: "Quantum Computing Initiative and Club",
+  organizersSubtitle: "Quantum Computing Initiative",
   organizersDescription:
     "A student-led quantum computing community at Khalifa University focused on making the field more accessible and connecting students with research, industry, and opportunities to build. Through workshops, technical projects, open-source work, and events like Qiskit Fall Fest, we aim to contribute to a more connected quantum ecosystem across the UAE and beyond.",
   facultyAdvisorEyebrow: "Faculty advisor",
   facultyAdvisorDescription:
-    "Professor of Computer and Information Engineering at Khalifa University and faculty advisor to the Quantum Computing Initiative and Club.",
+    "Professor of Computer and Information Engineering at Khalifa University and faculty advisor to the Quantum Computing Initiative.",
   pastEventsEyebrow: "Past events",
   pastEventsTitle: "What we’ve already built",
   pastEventsDescription:
@@ -28,10 +28,10 @@ export const aboutContent = {
   exploreProjectsLabel: "Explore QCI projects",
   followAnnouncementsLabel: "Follow for announcements",
   metadataDescription:
-    "Meet the Quantum Computing Initiative and Club at Khalifa University, explore past events and open-source projects, and follow Qiskit Fall Fest speaker announcements.",
+    "Meet the Quantum Computing Initiative at Khalifa University, explore past events and open-source projects, and follow Qiskit Fall Fest speaker announcements.",
 } as const;
 
-/** Faculty advisor to the Quantum Computing Initiative and Club. */
+/** Faculty advisor to the Quantum Computing Initiative. */
 export const advisor = {
   name: "Prof. Ibrahim Elfadel",
   role: "Faculty Advisor",

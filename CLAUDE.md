@@ -1,7 +1,7 @@
 # CLAUDE.md — Qiskit Fall Fest 2026 site
 
-Website for Qiskit Fall Fest 2026, organized by the Quantum Computing Initiative and
-Club at Khalifa University as part of IBM Quantum’s annual global event series.
+Website for Qiskit Fall Fest 2026, organized by the Quantum Computing Initiative
+at Khalifa University as part of IBM Quantum’s annual global event series.
 
 ## Confirmed timing
 

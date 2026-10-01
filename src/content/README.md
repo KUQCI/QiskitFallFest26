@@ -36,10 +36,11 @@ Keep `registrationNote` accurate alongside it.
 - `tentative`: a proposed programme detail that may change.
 - `tba`: no publishable detail yet.
 
-The six track cards intentionally omit levels, modes, algorithms, judging criteria,
-partners, and prerequisites. Add those fields only after they are confirmed. Preserve
-track slugs and codes because they can be used as anchors or keys even when the public
-name changes.
+The six track cards show their broad direction, reach, delivery format, and planning
+status, without display codes. Keep proposed activities clearly labelled as
+possibilities; add levels, judging criteria, partners, and prerequisites only after
+they are confirmed. Preserve track slugs because they are used as anchors and keys
+even when the public name changes.
 
 Never list a sponsor, speaker, or partner department based only on a conversation.
 IBM Quantum, Khalifa University, and the NYU Abu Dhabi Center for Quantum and

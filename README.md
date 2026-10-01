@@ -1,7 +1,7 @@
 # Qiskit Fall Fest 2026
 
-Website for Qiskit Fall Fest 2026, hosted by the Quantum Computing Initiative and
-Club (QCI) at Khalifa University in Abu Dhabi. The event opens on 19 October 2026
+Website for Qiskit Fall Fest 2026, hosted by the Quantum Computing Initiative
+(QCI) at Khalifa University in Abu Dhabi. The event opens on 19 October 2026
 at 6:00 PM UAE time, followed by a two-week development period, and ends with
 closing showcases on 31 October and 1 November 2026.
 

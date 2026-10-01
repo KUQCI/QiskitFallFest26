@@ -3,12 +3,11 @@ import type { Track } from "./types";
 /**
  * Broad track directions, reach, and delivery format only. Challenges, prerequisites,
  * partners, and judging details remain intentionally unpublished while each track is developed.
- * Stable slugs and codes are preserved from the original data.
+ * Stable slugs are preserved so existing links continue to work when titles change.
  */
 export const tracks: Track[] = [
   {
     slug: "first-qubit",
-    code: "INTRO-05",
     title: "Quantum Computing Foundations",
     summary:
       "Build a foundation in quantum computing and Qiskit through core concepts and hands-on exploration.",
@@ -18,7 +17,6 @@ export const tracks: Track[] = [
   },
   {
     slug: "quantum-machine-learning",
-    code: "QML-01",
     title: "Quantum Machine Learning",
     summary:
       "Explore the intersection of quantum computing and machine learning, including how quantum and classical approaches can work together.",
@@ -28,7 +26,6 @@ export const tracks: Track[] = [
   },
   {
     slug: "quantum-cybersecurity",
-    code: "SEC-02",
     title: "Quantum CTF",
     summary:
       "A quantum cybersecurity capture-the-flag, exploring cryptography and the opportunities and challenges created by quantum technologies.",
@@ -38,7 +35,6 @@ export const tracks: Track[] = [
   },
   {
     slug: "chemistry-drug-discovery",
-    code: "CHEM-03",
     title: "Quantum Computing & Biology",
     summary:
       "Explore potential applications of quantum computing across biology, chemistry, and the life sciences.",
@@ -48,7 +44,6 @@ export const tracks: Track[] = [
   },
   {
     slug: "quantum-media",
-    code: "MEDIA-07",
     title: "Quantum Media",
     summary:
       "Explore quantum computing through media and creative communication, bringing quantum ideas to a wider audience.",
@@ -58,10 +53,9 @@ export const tracks: Track[] = [
   },
   {
     slug: "peaked-circuits",
-    code: "PEAK-08",
-    title: "Peaked Circuits",
+    title: "Quantum in the Metaverse",
     summary:
-      "Explore peaked quantum circuits, where a hidden output stands out from the rest, and the challenge of uncovering it.",
+      "Design simple quantum algorithms and visualize their results in interactive virtual worlds. Possible projects include shaping a world with quantum-generated randomness or exploring quantum search in a game, supported by workshops and starter materials for beginners.",
     reach: "international",
     format: "online",
     status: "planning",

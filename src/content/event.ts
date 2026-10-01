@@ -1,7 +1,7 @@
 /** Canonical event details shared by every route. */
 export const event = {
   name: "Qiskit Fall Fest 2026",
-  host: "Quantum Computing Initiative and Club",
+  host: "Quantum Computing Initiative",
   hostShort: "QCI",
   university: "Khalifa University",
   tagline: "19 October – 1 November 2026",
@@ -23,7 +23,8 @@ export const event = {
   },
 
   registrationUrl: null as string | null,
-  registrationNote: "Track details and registration dates will be announced here first.",
+  registrationOpensLabel: "Registration opens 5th October",
+  registrationNote: "Registration opens 5th October. Track details will be announced here first.",
   contactEmail: "quantum.club@ku.ac.ae",
 
   socials: {
@@ -50,9 +51,8 @@ export const event = {
 
 export const homeContent = {
   heroOwner: "Khalifa University\nQuantum Computing Initiative's",
-  /** Rendered as the IBM logo beside the first title line; kept as text for screen readers. */
+  /** The full hero heading is rendered as text in the shared heading typeface. */
   heroTitle: { brand: "IBM", lead: "Qiskit", rest: "Fall Fest 2026" },
-  registrationLabel: "Registration Opens October 5th",
   about: {
     eyebrow: "What this is",
     title: "A Qiskit Fall Fest, Built Bigger",
@@ -87,12 +87,12 @@ export const ctaCopy = {
   default: {
     eyebrow: "19 October – 1 November 2026 · Khalifa University",
     ...sharedCta,
-    note: "Track details and registration dates will be announced here first.",
+    note: event.registrationNote,
   },
   opening: {
     eyebrow: "19 October 2026 · 6:00 PM · Khalifa University",
     ...sharedCta,
-    note: "Track details and registration information will be announced here first.",
+    note: event.registrationNote,
   },
 } as const;
 
@@ -100,7 +100,7 @@ export const footerContent = {
   description:
     "Hosted by the Quantum Computing Initiative at Khalifa University as part of IBM Quantum’s annual global Qiskit Fall Fest event series.",
   copyright:
-    "© 2026 Quantum Computing Initiative and Club, Khalifa University. All rights reserved.",
+    "© 2026 Quantum Computing Initiative, Khalifa University. All rights reserved.",
   disclaimer:
     "Qiskit and IBM Quantum are trademarks of International Business Machines Corporation. This event is independently organized and hosted by the Quantum Computing Initiative at Khalifa University as part of the Qiskit Fall Fest event series.",
 } as const;

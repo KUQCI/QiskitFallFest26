@@ -59,13 +59,13 @@ Before publishing a change, keep these canonical facts consistent:
 | Item | Current value |
 |---|---|
 | Event | Qiskit Fall Fest 2026 |
-| Organizer | Quantum Computing Initiative and Club (QCI) |
+| Organizer | Quantum Computing Initiative (QCI) |
 | Institution | Khalifa University, Abu Dhabi |
 | Opening | 19 October 2026 at 6:00 PM UAE time |
 | Countdown | `2026-10-19T18:00:00+04:00` |
 | Development period | Two weeks, from Opening Day to the closing showcase |
 | Closing showcase | 31 October – 1 November 2026 |
-| Registration | Opening soon |
+| Registration | Opens 5th October 2026 |
 | Contact | `quantum.club@ku.ac.ae` |
 | QCI website | <https://qcinit.tech/> |
 | Instagram | <https://www.instagram.com/ku.qci/?hl=en> |
@@ -116,17 +116,19 @@ Current public order:
 
 1. Quantum Computing Foundations
 2. Quantum Machine Learning
-3. Quantum Cybersecurity
+3. Quantum CTF
 4. Quantum Computing & Biology
-5. Quantum & Energy
-6. Open Innovation
+5. Quantum Media
+6. Quantum in the Metaverse
 
-Preserve existing `slug` and `code` values unless you have checked every anchor,
-route, and external link that may use them. Those identifiers deliberately remain
-stable when visible titles change.
+Preserve existing `slug` values because they are used as anchors and keys, even when
+visible titles change. Quantum in the Metaverse retains the `peaked-circuits` anchor
+for existing links. Track codes have been removed from the data and all cards.
 
-Do not publish difficulty, delivery mode, prerequisites, datasets, hardware,
-judging criteria, partner assignments, or challenge details until confirmed.
+The first four tracks are National / Hybrid; the final two are International /
+Virtual. Keep proposed activities clearly labelled as possibilities. Do not publish
+difficulty, prerequisites, datasets, hardware, judging criteria, partner assignments,
+or fixed challenge requirements until confirmed.
 
 ### Update How It Works
 

@@ -15,8 +15,6 @@ export type Level = "beginner" | "intermediate" | "advanced" | "all-levels";
 export interface Track {
   /** Stable internal anchor. Preserve this when a visible track name changes. */
   slug: string;
-  /** Stable internal/decorative code. Do not invent replacements. */
-  code: string;
   title: string;
   summary: string;
   description?: string;

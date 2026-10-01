@@ -91,7 +91,7 @@ export const faqs: FaqItem[] = [
     category: "The Fest",
     question: "Who is organizing this?",
     answer:
-      "The event is organized by the Quantum Computing Initiative and Club at Khalifa University as part of the Qiskit Fall Fest event series.",
+      "The event is organized by the Quantum Computing Initiative at Khalifa University as part of the Qiskit Fall Fest event series.",
   },
   {
     category: "The Fest",
