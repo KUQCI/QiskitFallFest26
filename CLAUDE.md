@@ -1,15 +1,16 @@
 # CLAUDE.md — Qiskit Fall Fest 2026 site
 
-Website for Qiskit Fall Fest 2026, organized by the Quantum Computing Initiative and
-Club at Khalifa University as part of IBM Quantum’s annual global event series.
+Website for Qiskit Fall Fest 2026, organized by the Quantum Computing Initiative
+at Khalifa University as part of IBM Quantum’s annual global event series.
 
 ## Confirmed timing
 
 - **19 October 2026 at 6:00 PM UAE time (UTC+04:00)** — opening session and countdown target
-- **Closing showcase date(s): to be announced**
+- **31 October – 1 November 2026** — closing showcases (the Fall Fest ends 1 November)
 - **5 October 2026** — team target for the site to be live
 
 Never restore a previous unconfirmed closing date or regional-superlative claim.
+The middle phase is the “development period”, not a “challenge period”.
 
 ## Stack
 
@@ -32,8 +33,9 @@ exports. See `src/content/README.md` for the file map.
 
 - Never list a sponsor, speaker, department, or partner that has not agreed in writing.
 - Use `confirmed`, `planning`, `tentative`, and `tba` accurately.
-- The six tracks are in the **Planning phase**. Do not publish difficulty, format,
-  prerequisites, algorithms, datasets, judging criteria, or partner details yet.
+- The six tracks are in the **Planning phase**. National tracks are hybrid and
+  international tracks are virtual; do not publish difficulty, prerequisites,
+  algorithms, datasets, judging criteria, or partner details yet.
 - Do not invent attendance numbers, eligibility rules, team rules, workloads, closing
   dates, speaker formats, or selection processes.
 - Keep the empty `speakers` array until people agree to be announced.
@@ -42,7 +44,7 @@ exports. See `src/content/README.md` for the file map.
 ## Public links and contact
 
 - QCI: `https://qcinit.tech/`
-- Contact: `100066617@ku.ac.ae`
+- Contact: `quantum.club@ku.ac.ae`
 - LinkedIn: `https://www.linkedin.com/company/ku-qci/`
 - Instagram: `https://www.instagram.com/ku.qci/?hl=en`
 - GitHub: `https://github.com/KUQCI`

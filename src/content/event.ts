@@ -1,18 +1,18 @@
 /** Canonical event details shared by every route. */
 export const event = {
   name: "Qiskit Fall Fest 2026",
-  host: "Quantum Computing Initiative and Club",
+  host: "Quantum Computing Initiative",
   hostShort: "QCI",
   university: "Khalifa University",
-  tagline: "October – November 2026",
+  tagline: "19 October – 1 November 2026",
   intro:
-    "Two weeks of quantum computing. Built with IBM Quantum, this Qiskit Fall Fest is open to learners at every level. Participants will take on challenge tracks and coding competitions, join hands-on workshops and technical talks, connect with mentors, and build real projects. The two weeks culminate in a multi-day closing showcase at Khalifa University, with the wider international quantum community joining online.",
+    "Two weeks of quantum computing. Built with IBM Quantum, this Qiskit Fall Fest is open to learners at every level. Participants will take on challenge tracks and coding competitions, join hands-on workshops and technical talks, connect with mentors, and build real projects. The Fall Fest begins on 19 October and ends on 1 November, culminating in a two-day closing showcase on 31 October and 1 November at Khalifa University, with the wider international quantum community joining online.",
 
   /** Confirmed opening session in Gulf Standard Time (UTC+04:00). */
   countdownTarget: "2026-10-19T18:00:00+04:00",
   openingDateLabel: "19 October 2026 · 6:00 PM",
-  dateLabel: "October – November 2026",
-  closingDateLabel: "Date(s) to be announced",
+  dateLabel: "19 October – 1 November 2026",
+  closingDateLabel: "31 October – 1 November 2026",
 
   venue: {
     name: "Khalifa University",
@@ -48,8 +48,9 @@ export const event = {
 
   /** Stage two: real registration. Setting this takes over every CTA from the interest form. */
   registrationUrl: null as string | null,
-  registrationNote: "Track details and registration dates will be announced here first.",
-  contactEmail: "100066617@ku.ac.ae",
+  registrationOpensLabel: "Registration opens 5th October",
+  registrationNote: "Registration opens 5th October. Track details will be announced here first.",
+  contactEmail: "quantum.club@ku.ac.ae",
 
   socials: {
     website: "https://qcinit.tech/",
@@ -75,6 +76,8 @@ export const event = {
 
 export const homeContent = {
   heroOwner: "Khalifa University\nQuantum Computing Initiative's",
+  /** The full hero heading is rendered as text in the shared heading typeface. */
+  heroTitle: { brand: "IBM", lead: "Qiskit", rest: "Fall Fest 2026" },
   about: {
     eyebrow: "What this is",
     title: "A Qiskit Fall Fest, Built Bigger",
@@ -107,14 +110,14 @@ const sharedCta = {
 
 export const ctaCopy = {
   default: {
-    eyebrow: "October–November 2026 · Khalifa University",
+    eyebrow: "19 October – 1 November 2026 · Khalifa University",
     ...sharedCta,
-    note: "Track details and registration dates will be announced here first.",
+    note: event.registrationNote,
   },
   opening: {
     eyebrow: "19 October 2026 · 6:00 PM · Khalifa University",
     ...sharedCta,
-    note: "Track details and registration information will be announced here first.",
+    note: event.registrationNote,
   },
 } as const;
 
@@ -122,7 +125,7 @@ export const footerContent = {
   description:
     "Hosted by the Quantum Computing Initiative at Khalifa University as part of IBM Quantum’s annual global Qiskit Fall Fest event series.",
   copyright:
-    "© 2026 Quantum Computing Initiative and Club, Khalifa University. All rights reserved.",
+    "© 2026 Quantum Computing Initiative, Khalifa University. All rights reserved.",
   disclaimer:
     "Qiskit and IBM Quantum are trademarks of International Business Machines Corporation. This event is independently organized and hosted by the Quantum Computing Initiative at Khalifa University as part of the Qiskit Fall Fest event series.",
 } as const;

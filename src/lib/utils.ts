@@ -16,7 +16,7 @@ export function statusLabel(status: Status): string | null {
 /** Human-readable label for a track or session format. */
 export function formatLabel(format: "in-person" | "online" | "hybrid"): string {
   if (format === "in-person") return "In person";
-  if (format === "online") return "Online";
+  if (format === "online") return "Virtual";
   return "Hybrid";
 }
 
@@ -26,4 +26,9 @@ export function levelLabel(
 ): string {
   if (level === "all-levels") return "All levels";
   return level.charAt(0).toUpperCase() + level.slice(1);
+}
+
+/** Human-readable label for who a track is open to. */
+export function reachLabel(reach: "national" | "international"): string {
+  return reach === "national" ? "National" : "International";
 }

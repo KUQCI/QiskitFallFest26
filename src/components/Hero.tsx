@@ -24,8 +24,10 @@ export function Hero() {
           </p>
 
           <h1 className="mt-4 max-w-4xl text-[clamp(2.7rem,8vw,5.5rem)] font-bold leading-[0.95] tracking-[-0.045em]">
-            <span className="block text-fg">Qiskit</span>
-            <span className="block text-lavender">Fall Fest 2026</span>
+            <span className="block text-fg">
+              {homeContent.heroTitle.brand} {homeContent.heroTitle.lead}
+            </span>{" "}
+            <span className="block text-lavender">{homeContent.heroTitle.rest}</span>
           </h1>
 
           <p className="mt-6 max-w-[68ch] text-base leading-relaxed text-fg-muted sm:text-lg">

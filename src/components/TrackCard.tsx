@@ -1,10 +1,10 @@
 import { Badge } from "@/components/ui/primitives";
 import type { Track } from "@/content/types";
-import { cn, statusLabel } from "@/lib/utils";
+import { cn, formatLabel, reachLabel, statusLabel } from "@/lib/utils";
 
 /**
  * A deliberately honest track summary. Until challenges are final, cards show only
- * their broad direction and a single planning-state label.
+ * their broad direction, reach, delivery format, and a planning-state label.
  */
 export function TrackCard({
   track,
@@ -29,10 +29,7 @@ export function TrackCard({
         className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-pink to-transparent opacity-60"
       />
 
-      <div className="flex items-start justify-between gap-3">
-        <span className="font-mono text-2xs uppercase tracking-[0.18em] text-fg-subtle">
-          {track.code}
-        </span>
+      <div className="flex justify-end">
         <Badge tone={planning ? "purple" : "neutral"}>
           {badgeLabel}
         </Badge>
@@ -42,6 +39,13 @@ export function TrackCard({
         {track.title}
       </h3>
       <p className="mt-3 text-sm leading-relaxed text-fg-muted">{track.summary}</p>
+
+      {track.reach || track.format ? (
+        <div className="mt-5 flex flex-wrap gap-2">
+          {track.reach ? <Badge tone="sky">{reachLabel(track.reach)}</Badge> : null}
+          {track.format ? <Badge tone="neutral">{formatLabel(track.format)}</Badge> : null}
+        </div>
+      ) : null}
 
       <div className="mt-auto pt-8" aria-hidden="true">
         <span className="block h-px w-12 bg-pink transition-[width] duration-300 group-hover:w-20" />

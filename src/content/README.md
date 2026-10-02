@@ -10,9 +10,9 @@ After an edit, run `npm run build` with the development server stopped.
 | Change | File |
 |---|---|
 | Event identity, opening time, venue, registration, contact, socials, home/footer/CTA copy | `event.ts` |
-| Track names, broad descriptions, order, and Tracks page copy | `tracks.ts` |
+| Track names, broad descriptions, reach, format, order, and Tracks page copy | `tracks.ts` |
 | Three phases, sessions, and How It Works page copy | `schedule.ts` |
-| Confirmed partners and the single in-development sponsorship package | `sponsors.ts` |
+| Confirmed partners, booth applications, and sponsorship contact copy | `sponsors.ts` |
 | Questions and cautious answers | `faq.ts` |
 | Organizer, advisor, past events, R&D projects, and speakers | `team.ts` |
 | Learning links and shared section copy | `resources.ts` |
@@ -60,10 +60,11 @@ answers that say registration information will be published before registration 
 - `tentative`: a proposed programme detail that may change.
 - `tba`: no publishable detail yet.
 
-The six track cards intentionally omit levels, modes, algorithms, judging criteria,
-partners, and prerequisites. Add those fields only after they are confirmed. Preserve
-track slugs and codes because they can be used as anchors or keys even when the public
-name changes.
+The six track cards show their broad direction, reach, delivery format, and planning
+status, without display codes. Keep proposed activities clearly labelled as
+possibilities; add levels, judging criteria, partners, and prerequisites only after
+they are confirmed. Preserve track slugs because they are used as anchors and keys
+even when the public name changes.
 
 Never list a sponsor, speaker, or partner department based only on a conversation.
 IBM Quantum, Khalifa University, and the NYU Abu Dhabi Center for Quantum and

@@ -4,7 +4,7 @@
 
 **Reconciled:** 2026-08-14
 
-**Owner:** Quantum Computing Initiative and Club (QCI), Khalifa University
+**Owner:** Quantum Computing Initiative (QCI), Khalifa University
 **Status:** Current implementation reference
 
 This revision replaces earlier planning assumptions. When this document and
@@ -13,7 +13,7 @@ This revision replaces earlier planning assumptions. When this document and
 ## 1. Confirmed event facts
 
 - Event: **Qiskit Fall Fest 2026**
-- Local organizer: **Quantum Computing Initiative and Club (QCI)**
+- Local organizer: **Quantum Computing Initiative (QCI)**
 - Host institution: **Khalifa University, Abu Dhabi**
 - Opening: **19 October 2026 at 6:00 PM UAE time**
 - Countdown target: `2026-10-19T18:00:00+04:00`
@@ -95,13 +95,15 @@ Show exactly six broad cards, in this order:
 
 1. Quantum Computing Foundations
 2. Quantum Machine Learning
-3. Quantum Cybersecurity
+3. Quantum CTF
 4. Quantum Computing & Biology
-5. Quantum & Energy
-6. Open Innovation
+5. Quantum Media
+6. Quantum in the Metaverse
 
-All six use **PLANNING PHASE**. Preserve existing internal slugs and codes. Do not
-show level, delivery mode, partner, algorithm, dataset, or judging details.
+All six use **PLANNING PHASE**, without display codes. Preserve existing internal
+slugs for existing links. The first four tracks are National / Hybrid; the final
+two are International / Virtual. Keep proposed activities clearly labelled as
+possibilities. Do not show unconfirmed level, partner, dataset, or judging details.
 
 ### How It Works
 
