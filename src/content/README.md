@@ -18,16 +18,40 @@ After an edit, run `npm run build` with the development server stopped.
 | Learning links and shared section copy | `resources.ts` |
 | Public design assets and base-path-safe URLs | `assets.ts` |
 
-## Registration
+## Interest form and registration
 
-`event.registrationUrl` is `null` while registration is unavailable. Set it once to
-activate every registration control that consumes the event configuration:
+Sign-up runs in two stages, and the shared control resolves the furthest stage that is
+actually open so the button label never overstates what the link does.
+
+| Stage | Field | Button label |
+|---|---|---|
+| Interest form open | `event.interestFormUrl` | Get notified |
+| Registration open | `event.registrationUrl` | Register |
+| Neither set | — | `event.registrationOpensLabel` (not a link) |
+
+`registrationOpensLabel` is the status text shown while registration is closed. It
+lives in `event.ts`, not `homeContent`, because the CTA section renders on five routes
+and the status has to read the same on all of them. `RegisterButton` uses it as the
+default for `unavailableLabel`, so changing the date is a single edit.
+
+`registrationUrl` wins when both are set, so opening real registration is a one-line
+change and needs no edit to the interest form fields:
 
 ```ts
 registrationUrl: "https://example.com/registration",
 ```
 
-Keep `registrationNote` accurate alongside it.
+Keep `interestFormNote` and `registrationNote` accurate alongside the URLs. The CTA
+section shows `interestFormNote` while the interest form is the active stage, and drops
+the note entirely once registration is open.
+
+The field is named after the artifact it points at: the Google form is titled
+"Interest Form". The CTA says "Get notified" because that is why most people click it.
+Keep `interestFormNote` saying that a short form sits behind the button, so the label
+does not promise a one-field mail signup.
+
+It is not registration, so do not relabel it as registration, and do not reword the FAQ
+answers that say registration information will be published before registration opens.
 
 ## Statuses and content honesty
 

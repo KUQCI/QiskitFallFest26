@@ -243,7 +243,7 @@ export function SiteHeader() {
                 />
               </Link>
               <ThemeToggle />
-              <RegisterButton size="sm" />
+              <RegisterButton size="sm" showStatus={false} />
             </div>
             <button
               ref={menuTrigger}
@@ -320,7 +320,11 @@ export function SiteHeader() {
           </nav>
 
           <div className="border-t border-border px-5 py-5">
-            <RegisterButton size="lg" className="w-full" />
+            {/* Flex wrapper: the button renders as `display: contents` when it pairs the
+                status with the interest link, so the gap has to come from this row. */}
+            <div className="flex flex-col gap-3">
+              <RegisterButton size="lg" className="w-full" />
+            </div>
             <a
               href={`mailto:${event.contactEmail}`}
               className="mt-3 inline-flex min-h-11 w-full items-center gap-2 text-sm text-fg-muted transition-colors hover:text-fg"

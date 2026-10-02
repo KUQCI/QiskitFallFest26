@@ -23,6 +23,12 @@ export const faqs: FaqItem[] = [
   },
   {
     category: "Getting started",
+    question: "How do I sign up?",
+    answer:
+      "Registration has not opened yet. Until it does, you can fill in a short form to be notified when it does: it asks for your name, email, institution, year of study, and which tracks you are interested in, which also helps the organizing team shape the programme around who wants to take part. Submitting it is not the same as registering, and the registration details will be published here first.",
+  },
+  {
+    category: "Getting started",
     question: "Do I need a team?",
     answer:
       "Team requirements will depend on the track. Some challenges may allow individual participation, while others may involve teams. Full participation and team-format details will be announced with the tracks.",
