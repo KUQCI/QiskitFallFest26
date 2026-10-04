@@ -65,7 +65,7 @@ Before publishing a change, keep these canonical facts consistent:
 | Countdown | `2026-10-19T18:00:00+04:00` |
 | Development period | Two weeks, from Opening Day to the closing showcase |
 | Closing showcase | 31 October – 1 November 2026 |
-| Registration | Opens 5th October 2026 |
+| Registration | Opens 10th October 2026 |
 | Contact | `quantum.club@ku.ac.ae` |
 | QCI website | <https://qcinit.tech/> |
 | Instagram | <https://www.instagram.com/ku.qci/?hl=en> |
