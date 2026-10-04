@@ -118,7 +118,7 @@ Current public order:
 2. Quantum Machine Learning
 3. Quantum CTF
 4. Quantum Computing & Biology
-5. Quantum Media
+5. Quantum in Entertainment
 6. Quantum in the Metaverse
 
 Preserve existing `slug` values because they are used as anchors and keys, even when

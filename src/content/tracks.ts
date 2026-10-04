@@ -44,7 +44,7 @@ export const tracks: Track[] = [
   },
   {
     slug: "quantum-media",
-    title: "Quantum Media",
+    title: "Quantum in Entertainment",
     summary:
       "Explore quantum computing through media and creative communication, bringing quantum ideas to a wider audience.",
     reach: "international",
