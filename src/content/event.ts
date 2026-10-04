@@ -44,7 +44,7 @@ export const event = {
    * This lives here rather than in `homeContent` because the CTA section renders on
    * five routes, so the status has to read the same everywhere.
    */
-  registrationOpensLabel: "Registration Opens October 10th",
+  registrationOpensLabel: "Registration opens 10th October",
 
   /** Stage two: real registration. Setting this takes over every CTA from the interest form. */
   registrationUrl: null as string | null,
