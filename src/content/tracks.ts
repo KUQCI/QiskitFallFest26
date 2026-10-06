@@ -44,6 +44,10 @@ export const tracks: Track[] = [
     reach: "national",
     format: "hybrid",
     status: "planning",
+    details: {
+      // Logo and About Us text to be added once the chapter supplies them.
+      organizer: { name: "ASBMB Student Chapter" },
+    },
   },
   {
     slug: "quantum-media",
