@@ -4,6 +4,9 @@ import type { Track } from "./types";
  * Broad track directions, reach, and delivery format only. Challenges, prerequisites,
  * partners, and judging details remain intentionally unpublished while each track is developed.
  * Stable slugs are preserved so existing links continue to work when titles change.
+ *
+ * `details` feeds the expanded track panel (`/tracks/#<slug>`). Leave a field out until
+ * it is confirmed; the panel hides empty sections and shows the shared challenge notice.
  */
 export const tracks: Track[] = [
   {
@@ -76,6 +79,22 @@ export const tracksPageContent = {
     "Explore tracks ranging from quantum fundamentals to specialized applications. Each track runs independently, so participants can choose the area that best matches their interests.",
   note:
     "Note: Track details are currently in development, with challenges and full information to be announced soon.",
+  /** Copy for the expandable track cards and the full-screen track panel. */
+  panel: {
+    openLabel: "View track details",
+    closeLabel: "Close track details",
+    switcherLabel: "All tracks",
+    descriptionHeading: "About this track",
+    sponsorsHeading: "Sponsors",
+    challengesHeading: "Challenges",
+    challengesPending: "Challenge details are to be announced soon.",
+    tasksHeading: "What you need to do",
+    submissionHeading: "How to submit",
+    resourcesHeading: "Resources",
+    organizerHeading: "Organized by",
+  },
   metadataDescription:
     "Explore the six planning-stage Qiskit Fall Fest tracks, from quantum computing foundations to specialized applications, across national hybrid and international virtual formats.",
 } as const;
+
+export type TrackPanelCopy = (typeof tracksPageContent)["panel"];

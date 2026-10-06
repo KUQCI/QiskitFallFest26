@@ -24,6 +24,47 @@ export interface Track {
   status: Status;
   partner?: string;
   highlights?: string[];
+  /** Content for the expanded track panel. Every field is optional; empty sections are hidden. */
+  details?: TrackDetails;
+}
+
+export interface TrackLink {
+  label: string;
+  href: string;
+}
+
+/** A sponsor or organizer shown inside a track panel. Logo falls back to the name. */
+export interface TrackOrganization {
+  name: string;
+  /** Use a `fallFestAssets` src so the GitHub Pages base path is applied. */
+  logo?: string;
+  url?: string;
+}
+
+export interface TrackOrganizer extends TrackOrganization {
+  /** "About us" paragraphs supplied by the organizing group. */
+  about?: string[];
+}
+
+/**
+ * Expanded panel content. Add only details that are confirmed in writing. Until
+ * `challenges` is set, the panel shows the shared "to be announced" notice instead.
+ */
+export interface TrackDetails {
+  /** Overview paragraphs. Falls back to the track summary when omitted. */
+  description?: string[];
+  /** Only organizations that have agreed in writing to sponsor this track. */
+  sponsors?: TrackOrganization[];
+  challenges?: string[];
+  /** What participants need to do. */
+  tasks?: string[];
+  submission?: {
+    where?: string;
+    how?: string[];
+    links?: TrackLink[];
+  };
+  resources?: TrackLink[];
+  organizer?: TrackOrganizer;
 }
 
 export interface Session {
