@@ -13,7 +13,7 @@ import { Container, Section, SectionHeading } from "@/components/ui/primitives";
 import { ArrowRightIcon } from "@/components/ui/Icons";
 import { homeContent } from "@/content/event";
 import { faqs } from "@/content/faq";
-import { featuredTrackSlugs, tracks } from "@/content/tracks";
+import { featuredTrackSlugs, tracks, tracksPageContent } from "@/content/tracks";
 
 const featured = featuredTrackSlugs
   .map((slug) => tracks.find((track) => track.slug === slug))
@@ -66,7 +66,11 @@ export default function HomePage() {
           <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {featured.map((track, index) => (
               <Reveal as="li" key={track.slug} delay={index * 50}>
-                <TrackCard track={track} />
+                <TrackCard
+                  track={track}
+                  href={`/tracks/#${track.slug}`}
+                  actionLabel={tracksPageContent.panel.openLabel}
+                />
               </Reveal>
             ))}
           </ul>
