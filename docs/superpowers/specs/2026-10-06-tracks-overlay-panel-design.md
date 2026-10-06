@@ -30,29 +30,20 @@ participant instructions without component changes.
 
 ## Content model (`src/content/`)
 
-`Track` gains one optional `details` object. Every field is optional. The panel renders a
-section only when that section has content, and it never shows a placeholder for missing
-data.
+`Track` gains one optional `details` object (`TrackDetails` in `types.ts`). Every field
+is optional. The panel renders a section only when it has content. No placeholders.
 
-```ts
-interface TrackLink { label: string; href: string }
+| Field | Panel section |
+|---|---|
+| `description` | About this track. Falls back to `summary` |
+| `sponsors` | Sponsors: a logo on a neutral plate, or the name when there is no logo. Agreed in writing only |
+| `challenges` | Challenges. When empty, shows "Challenge details are to be announced soon." |
+| `tasks` | What you need to do |
+| `submission` (`where`, `how`, `links`) | How to submit |
+| `resources` | Resources |
+| `organizer` (`name`, `logo`, `url`, `about`) | Organized by, last, so the challenge notice sits above it |
 
-interface TrackDetails {
-  description?: string[];          // overview paragraphs
-  sponsorSlugs?: string[];         // references into sponsors.ts (confirmed only)
-  challenges?: string[];           // what the challenges are
-  tasks?: string[];                // what participants need to do
-  submission?: {
-    where?: string;
-    how?: string[];
-    links?: TrackLink[];
-  };
-  resources?: TrackLink[];
-}
-```
-
-Panel section headings are stored as content strings in `tracks.ts`, so they can change
-without editing a component.
+Headings and labels live in `tracksPageContent.panel`.
 
 ## Components
 
@@ -83,5 +74,8 @@ motion, and that the console has no errors or horizontal overflow.
 
 ## Pending input
 
-The track content document from the organisers. Review it against the six tracks and this
-schema before implementation starts.
+- ASBMB student chapter: official name, logo, About Us, and agreement to be named.
+  This goes in the bio track (`chemistry-drug-discovery`) `organizer`.
+- Whether the other tracks show "Organized by" QCI.
+- Track sponsors confirmed in writing.
+- Longer descriptions, if any.
