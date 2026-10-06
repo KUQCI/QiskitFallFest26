@@ -135,8 +135,16 @@
    BASE
    ========================================================================== */
 
-* {
-  border-color: var(--c-border);
+/* Default border colour. Layered so Tailwind's border-colour utilities
+   (in @layer utilities) can override it; unlayered CSS would beat them. */
+@layer base {
+  *,
+  ::before,
+  ::after,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--c-border);
+  }
 }
 
 html {
