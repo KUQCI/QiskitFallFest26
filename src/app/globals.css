@@ -467,19 +467,6 @@ p {
   }
 }
 
-/* Border colours live here because the unlayered `*` border-color rule above
-   outranks Tailwind's border-colour utilities. */
-.track-switch {
-  border-color: transparent;
-}
-.track-switch:hover {
-  border-color: var(--c-border-strong);
-}
-.track-switch[aria-current="true"] {
-  border-color: color-mix(in srgb, var(--c-gold) 60%, transparent);
-  background-color: color-mix(in srgb, var(--c-gold) 10%, transparent);
-}
-
 /* The mobile chip row still scrolls by touch, trackpad, and keyboard focus; only the
    bar itself is hidden because it competes with the chips at phone width. */
 .track-switcher {
@@ -487,10 +474,6 @@ p {
 }
 .track-switcher::-webkit-scrollbar {
   display: none;
-}
-
-.track-notice {
-  border-left: 2px solid color-mix(in srgb, var(--c-pink) 60%, transparent);
 }
 
 /* The custom pointer opts in only after its client-side safety checks pass. */

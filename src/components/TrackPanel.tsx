@@ -278,8 +278,10 @@ export function TrackPanel({
                       aria-current={active ? "true" : undefined}
                       onClick={() => onSelect(item.slug)}
                       className={cn(
-                        "track-switch inline-flex min-h-11 w-full items-center whitespace-nowrap rounded-full border px-4 text-left text-sm transition-colors lg:whitespace-normal lg:rounded-xl lg:py-2",
-                        active ? "font-semibold text-fg" : "text-fg-muted hover:text-fg",
+                        "inline-flex min-h-11 w-full items-center whitespace-nowrap rounded-full border px-4 text-left text-sm transition-colors lg:whitespace-normal lg:rounded-xl lg:py-2",
+                        active
+                          ? "border-gold/60 bg-gold/10 font-semibold text-fg"
+                          : "border-transparent text-fg-muted hover:border-border-strong hover:text-fg",
                       )}
                     >
                       {item.title}
@@ -316,7 +318,7 @@ export function TrackPanel({
                 {details.challenges?.length ? (
                   <BulletList items={details.challenges} />
                 ) : (
-                  <p className="track-notice pl-4 text-base leading-relaxed text-fg sm:text-lg">
+                  <p className="border-l-2 border-pink/60 pl-4 text-base leading-relaxed text-fg sm:text-lg">
                     {copy.challengesPending}
                   </p>
                 )}
