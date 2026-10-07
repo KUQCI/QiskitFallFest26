@@ -467,6 +467,11 @@ p {
   }
 }
 
+/* A card is hidden while the panel animates in its place, so only one box is seen. */
+[data-track-hidden] {
+  opacity: 0;
+}
+
 /* The mobile chip row still scrolls by touch, trackpad, and keyboard focus; only the
    bar itself is hidden because it competes with the chips at phone width. */
 .track-switcher {
