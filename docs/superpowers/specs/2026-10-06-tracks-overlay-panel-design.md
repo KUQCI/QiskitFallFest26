@@ -18,8 +18,8 @@ participant instructions without component changes.
   without animation.
 - **Close.** Use the ✕ button, `Esc`, or a backdrop click. Focus returns to the card that
   opened the panel.
-- **Track switcher.** The panel lists all six tracks. Selecting another track swaps the
-  panel's content in place.
+- **Changing tracks.** There is no switcher inside the panel. Close it (✕, `Esc`, or a
+  click outside) and open another card. Removed on 2026-10-07 at the user's request.
 - **Shareable links.** An open panel sets the URL hash to the track slug, for example
   `/tracks#quantum-cybersecurity`. Loading `/tracks` with a valid slug hash scrolls to
   that card and opens its panel. Closing the panel clears the hash. History uses
@@ -41,7 +41,7 @@ is optional. The panel renders a section only when it has content. No placeholde
 | `tasks` | What you need to do |
 | `submission` (`where`, `how`, `links`) | How to submit |
 | `resources` | Resources |
-| `organizer` (`name`, `logo`, `url`, `about`) | Organized by, last, so the challenge notice sits above it |
+| `track.hostedBy` (from `trackHosts`) | "Hosted by" labels on the card and panel header, plus a "Hosted by" section (logo and About Us) below the challenges |
 
 Headings and labels live in `tracksPageContent.panel`.
 
@@ -49,7 +49,7 @@ Headings and labels live in `tracksPageContent.panel`.
 
 - `TrackCard`: existing card, now a button-like trigger on `/tracks`. The home `preview`
   variant becomes a link to `/tracks#<slug>`.
-- `TrackPanel` (new, client): dialog markup, focus trap, `Esc`/backdrop close, switcher,
+- `TrackPanel` (new, client): dialog markup, focus trap, `Esc`/backdrop close,
   section rendering.
 - `TrackExplorer` (new, client): owns the open slug, hash sync, scroll-to-card on load,
   and renders the grid plus the panel. `tracks/page.tsx` stays a server component that
@@ -74,8 +74,6 @@ motion, and that the console has no errors or horizontal overflow.
 
 ## Pending input
 
-- ASBMB student chapter: official name, logo, About Us, and agreement to be named.
-  This goes in the bio track (`chemistry-drug-discovery`) `organizer`.
-- Whether the other tracks show "Organized by" QCI.
-- Track sponsors confirmed in writing.
-- Longer descriptions, if any.
+- Moth Quantum logo and link (currently a name-only label).
+- Further track sponsors confirmed in writing.
+- Final track descriptions to replace the temporary ones.

@@ -74,11 +74,15 @@ Topological Systems currently appear in the confirmed partner list.
 
 Each track card on `/tracks/` opens a full-screen panel. It can also be opened directly
 at `/tracks/#<slug>`. The panel reads `track.details`, and every field is optional:
-`description`, `sponsors`, `challenges`, `tasks`, `submission`, `resources`, and
-`organizer`. Empty sections are hidden. Until `challenges` is set, the panel shows
+`description`, `sponsors`, `challenges`, `tasks`, `submission`, and `resources`.
+Empty sections are hidden. Until `challenges` is set, the panel shows
 `tracksPageContent.panel.challengesPending`. Add day-of instructions by filling these
-fields; no component change is needed. Sponsor and organizer logos must use a
-`fallFestAssets` src.
+fields; no component change is needed. To change tracks, visitors close the panel and
+open another card.
+
+"Hosted by" labels come from `track.hostedBy`, which picks entries from `trackHosts`.
+A host with a logo or About Us text also gets a "Hosted by" section in the panel, below
+the challenges. Sponsor and host logos must use a `fallFestAssets` src.
 
 ## Assets
 
