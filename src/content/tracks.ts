@@ -17,6 +17,7 @@ export const trackHosts = {
   },
   mothQuantum: {
     name: "Moth Quantum",
+    url: "https://mothquantum.com/",
   },
 } satisfies Record<string, TrackHost>;
 
@@ -108,13 +109,14 @@ export const tracks: Track[] = [
     slug: "peaked-circuits",
     title: "Quantum in the Metaverse",
     summary:
-      "Design simple quantum algorithms and visualize their results in interactive virtual worlds. Possible projects include shaping a world with quantum-generated randomness or exploring quantum search in a game, supported by workshops and starter materials for beginners.",
-    reach: "international",
-    format: "online",
+      "An in-person, challenge-based track held at the KU Metaverse Hub on Friday, 30 October. There are no qualifiers.",
+    reach: "national",
+    format: "in-person",
     status: "planning",
     details: {
       description: [
-        "Design simple quantum algorithms and show how they work, or what they produce, inside interactive virtual environments. Example challenges include using quantum-generated randomness to shape a virtual world or demonstrating quantum search within a game. Workshops and starter materials make the track accessible to beginners.",
+        "A challenge-based track that runs in person at the KU Metaverse Hub on Friday, 30 October 2026.",
+        "Unlike the other national tracks, there are no qualifiers: participants take on the challenge directly on the day.",
       ],
     },
   },
@@ -148,7 +150,7 @@ export const tracksPageContent = {
     hostedByHeading: "Hosted by",
   },
   metadataDescription:
-    "Explore the six planning-stage Qiskit Fall Fest tracks, from quantum computing foundations to specialized applications, across national hybrid and international virtual formats.",
+    "Explore the six planning-stage Qiskit Fall Fest tracks, from quantum computing foundations to specialized applications, across hybrid, in-person, and virtual formats.",
 } as const;
 
 export type TrackPanelCopy = (typeof tracksPageContent)["panel"];
