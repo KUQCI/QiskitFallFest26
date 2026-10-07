@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { Badge } from "@/components/ui/primitives";
 import { ArrowRightIcon } from "@/components/ui/Icons";
+import { tracksPageContent } from "@/content/tracks";
 import type { Track } from "@/content/types";
 import { cn, formatLabel, reachLabel, statusLabel } from "@/lib/utils";
 
@@ -76,6 +77,17 @@ export function TrackCard({
         )}
       </h3>
       <p className="mt-3 text-sm leading-relaxed text-fg-muted">{track.summary}</p>
+
+      {track.hostedBy?.length ? (
+        <p className="mt-5 flex flex-wrap items-center gap-2 text-xs text-fg-muted">
+          {tracksPageContent.panel.hostedByHeading}{" "}
+          {track.hostedBy.map((host) => (
+            <Badge key={host.name} tone="gold">
+              {host.label ?? host.name}
+            </Badge>
+          ))}
+        </p>
+      ) : null}
 
       {track.reach || track.format ? (
         <div className="mt-5 flex flex-wrap gap-2">

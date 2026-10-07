@@ -472,14 +472,6 @@ p {
   opacity: 0;
 }
 
-/* The mobile chip row still scrolls by touch, trackpad, and keyboard focus; only the
-   bar itself is hidden because it competes with the chips at phone width. */
-.track-switcher {
-  scrollbar-width: none;
-}
-.track-switcher::-webkit-scrollbar {
-  display: none;
-}
 
 /* The custom pointer opts in only after its client-side safety checks pass. */
 @media (pointer: fine) {

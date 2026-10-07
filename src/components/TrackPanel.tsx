@@ -62,18 +62,14 @@ function settle(animation: Animation, ms: number) {
  */
 export function TrackPanel({
   track,
-  tracks,
   copy,
   origin,
-  onSelect,
   onClosed,
 }: {
   track: Track;
-  tracks: Track[];
   copy: TrackPanelCopy;
   /** Bounding box of the card the panel was opened from, for the grow animation. */
   origin: DOMRect | null;
-  onSelect: (slug: string) => void;
   /** Called once the close animation has finished. */
   onClosed: () => void;
 }) {
@@ -81,10 +77,7 @@ export function TrackPanel({
   const shellRef = useRef<HTMLDivElement>(null);
   const backdropRef = useRef<HTMLDivElement>(null);
   const innerRef = useRef<HTMLDivElement>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
   const closingRef = useRef(false);
-  const firstSlugRef = useRef(track.slug);
 
   // Open: the card itself appears to grow into the panel. The shell starts exactly on
   // the card's box (fully opaque, contents hidden), the real card is hidden underneath
@@ -140,31 +133,8 @@ export function TrackPanel({
       animations.forEach((animation) => animation.cancel());
       card?.removeAttribute("data-track-hidden");
     };
-    // Only on mount (origin is captured at open time); later track switches use the
-    // crossfade below.
+    // Only on mount: origin is captured at open time.
   }, []);
-
-  // Keep the active track visible in the horizontally scrolling switcher on small screens.
-  useEffect(() => {
-    shellRef.current
-      ?.querySelector('nav [aria-current="true"]')
-      ?.scrollIntoView({ block: "nearest", inline: "center" });
-  }, [track.slug]);
-
-  // Switching tracks inside the panel: reset scroll and crossfade the new content.
-  useEffect(() => {
-    if (track.slug === firstSlugRef.current) return;
-    firstSlugRef.current = track.slug;
-    scrollRef.current?.scrollTo({ top: 0 });
-    if (prefersReducedMotion()) return;
-    contentRef.current?.animate(
-      [
-        { opacity: 0, transform: "translate3d(0, 10px, 0)" },
-        { opacity: 1, transform: "none" },
-      ],
-      { duration: 320, easing: EASE_OUT },
-    );
-  }, [track.slug]);
 
   // Initial focus, scroll lock, and inert page behind the dialog.
   useEffect(() => {
@@ -268,6 +238,9 @@ export function TrackPanel({
   const details = track.details ?? {};
   const description = details.description?.length ? details.description : [track.summary];
   const badge = statusLabel(track.status);
+  const hosts = track.hostedBy ?? [];
+  // Hosts with only a name are already shown as labels in the header.
+  const profiledHosts = hosts.filter((host) => host.logo || host.about?.length);
 
   return createPortal(
     <div className="fixed inset-0 z-[80]">
@@ -304,6 +277,16 @@ export function TrackPanel({
               <h2 id={titleId} className="mt-3 text-2xl font-semibold text-fg sm:text-3xl lg:text-4xl">
                 {track.title}
               </h2>
+              {hosts.length ? (
+                <p className="mt-3 flex flex-wrap items-center gap-2 text-sm text-fg-muted">
+                  {copy.hostedByHeading}{" "}
+                  {hosts.map((host) => (
+                    <Badge key={host.name} tone="gold">
+                      {host.label ?? host.name}
+                    </Badge>
+                  ))}
+                </p>
+              ) : null}
             </div>
             <button
               type="button"
@@ -315,115 +298,86 @@ export function TrackPanel({
             </button>
           </header>
 
-          <div className="flex min-h-0 flex-1 flex-col lg:flex-row">
-            <nav
-              aria-label={copy.switcherLabel}
-              className="shrink-0 border-b border-border lg:w-64 lg:overflow-y-auto lg:border-r lg:border-b-0"
-            >
-              <p className="hidden px-6 pt-6 font-mono text-2xs uppercase tracking-[0.22em] text-fg-subtle lg:block">
-                {copy.switcherLabel}
-              </p>
-              <ul className="track-switcher flex gap-2 overflow-x-auto px-5 py-3 sm:px-8 lg:flex-col lg:gap-1 lg:overflow-visible lg:px-4 lg:py-3">
-                {tracks.map((item) => {
-                  const active = item.slug === track.slug;
-                  return (
-                    <li key={item.slug} className="shrink-0">
-                      <button
-                        type="button"
-                        aria-current={active ? "true" : undefined}
-                        onClick={() => onSelect(item.slug)}
-                        className={cn(
-                          "inline-flex min-h-11 w-full items-center whitespace-nowrap rounded-full border px-4 text-left text-sm transition-colors lg:whitespace-normal lg:rounded-xl lg:py-2",
-                          active
-                            ? "border-gold/60 bg-gold/10 font-semibold text-fg"
-                            : "border-transparent text-fg-muted hover:border-border-strong hover:text-fg",
-                        )}
-                      >
-                        {item.title}
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
-            </nav>
+          <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
+            <div className="mx-auto max-w-3xl space-y-12 px-5 py-8 sm:px-8 sm:py-10">
+              <PanelSection heading={copy.descriptionHeading}>
+                <div className="space-y-4 text-base leading-relaxed text-fg-muted sm:text-lg">
+                  {description.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                </div>
+              </PanelSection>
 
-            <div ref={scrollRef} className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
-              <div ref={contentRef} className="mx-auto max-w-3xl space-y-12 px-5 py-8 sm:px-8 sm:py-10">
-                <PanelSection heading={copy.descriptionHeading}>
-                  <div className="space-y-4 text-base leading-relaxed text-fg-muted sm:text-lg">
-                    {description.map((paragraph) => (
-                      <p key={paragraph}>{paragraph}</p>
+              {details.sponsors?.length ? (
+                <PanelSection heading={copy.sponsorsHeading}>
+                  <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {details.sponsors.map((sponsor) => (
+                      <li key={sponsor.name}>
+                        <OrganizationTile organization={sponsor} />
+                      </li>
+                    ))}
+                  </ul>
+                </PanelSection>
+              ) : null}
+
+              <PanelSection heading={copy.challengesHeading}>
+                {details.challenges?.length ? (
+                  <BulletList items={details.challenges} />
+                ) : (
+                  <p className="border-l-2 border-pink/60 pl-4 text-base leading-relaxed text-fg sm:text-lg">
+                    {copy.challengesPending}
+                  </p>
+                )}
+              </PanelSection>
+
+              {details.tasks?.length ? (
+                <PanelSection heading={copy.tasksHeading}>
+                  <BulletList items={details.tasks} ordered />
+                </PanelSection>
+              ) : null}
+
+              {details.submission &&
+              (details.submission.where || details.submission.how?.length || details.submission.links?.length) ? (
+                <PanelSection heading={copy.submissionHeading}>
+                  <div className="space-y-4">
+                    {details.submission.where ? (
+                      <p className="text-base leading-relaxed text-fg">{details.submission.where}</p>
+                    ) : null}
+                    {details.submission.how?.length ? <BulletList items={details.submission.how} ordered /> : null}
+                    {details.submission.links?.length ? <LinkList links={details.submission.links} /> : null}
+                  </div>
+                </PanelSection>
+              ) : null}
+
+              {details.resources?.length ? (
+                <PanelSection heading={copy.resourcesHeading}>
+                  <LinkList links={details.resources} />
+                </PanelSection>
+              ) : null}
+
+              {profiledHosts.length ? (
+                <PanelSection heading={copy.hostedByHeading}>
+                  <div className="space-y-4">
+                    {profiledHosts.map((host) => (
+                      <div key={host.name} className="card flex flex-col gap-6 p-5 sm:flex-row sm:items-start sm:p-6">
+                        {host.logo ? (
+                          <div className="w-full shrink-0 sm:w-56">
+                            <OrganizationTile organization={host} />
+                          </div>
+                        ) : null}
+                        <div className="min-w-0 space-y-3">
+                          <p className="text-lg font-semibold text-fg">{host.name}</p>
+                          {host.about?.map((paragraph) => (
+                            <p key={paragraph} className="text-base leading-relaxed text-fg-muted">
+                              {paragraph}
+                            </p>
+                          ))}
+                        </div>
+                      </div>
                     ))}
                   </div>
                 </PanelSection>
-
-                {details.sponsors?.length ? (
-                  <PanelSection heading={copy.sponsorsHeading}>
-                    <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                      {details.sponsors.map((sponsor) => (
-                        <li key={sponsor.name}>
-                          <OrganizationTile organization={sponsor} />
-                        </li>
-                      ))}
-                    </ul>
-                  </PanelSection>
-                ) : null}
-
-                <PanelSection heading={copy.challengesHeading}>
-                  {details.challenges?.length ? (
-                    <BulletList items={details.challenges} />
-                  ) : (
-                    <p className="border-l-2 border-pink/60 pl-4 text-base leading-relaxed text-fg sm:text-lg">
-                      {copy.challengesPending}
-                    </p>
-                  )}
-                </PanelSection>
-
-                {details.tasks?.length ? (
-                  <PanelSection heading={copy.tasksHeading}>
-                    <BulletList items={details.tasks} ordered />
-                  </PanelSection>
-                ) : null}
-
-                {details.submission &&
-                (details.submission.where || details.submission.how?.length || details.submission.links?.length) ? (
-                  <PanelSection heading={copy.submissionHeading}>
-                    <div className="space-y-4">
-                      {details.submission.where ? (
-                        <p className="text-base leading-relaxed text-fg">{details.submission.where}</p>
-                      ) : null}
-                      {details.submission.how?.length ? <BulletList items={details.submission.how} ordered /> : null}
-                      {details.submission.links?.length ? <LinkList links={details.submission.links} /> : null}
-                    </div>
-                  </PanelSection>
-                ) : null}
-
-                {details.resources?.length ? (
-                  <PanelSection heading={copy.resourcesHeading}>
-                    <LinkList links={details.resources} />
-                  </PanelSection>
-                ) : null}
-
-                {details.organizer ? (
-                  <PanelSection heading={copy.organizerHeading}>
-                    <div className="card flex flex-col gap-6 p-5 sm:flex-row sm:items-start sm:p-6">
-                      {details.organizer.logo ? (
-                        <div className="w-full shrink-0 sm:w-48">
-                          <OrganizationTile organization={details.organizer} />
-                        </div>
-                      ) : null}
-                      <div className="min-w-0 space-y-3">
-                        <p className="text-lg font-semibold text-fg">{details.organizer.name}</p>
-                        {details.organizer.about?.map((paragraph) => (
-                          <p key={paragraph} className="text-base leading-relaxed text-fg-muted">
-                            {paragraph}
-                          </p>
-                        ))}
-                      </div>
-                    </div>
-                  </PanelSection>
-                ) : null}
-              </div>
+              ) : null}
             </div>
           </div>
         </div>

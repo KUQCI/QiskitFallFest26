@@ -47,6 +47,8 @@ export const fallFestAssets = {
     ),
   },
   logos: {
+    /** ASBMB Khalifa University Student Chapter, as supplied (white background). */
+    asbmbKu: imageAsset("asbmb-ku-logo.png", "asbmb-ku-logo.png"),
     ibmQuantum: imageAsset("IBM Quantum.png", "IBM Quantum.png"),
     ibmQuantumWordmark: imageAsset("ibm-quantum-wordmark.png", "ibm-quantum-wordmark.png"),
     /** "IBM" cropped from the IBM Quantum wordmark; used as a CSS mask so it follows the theme. */

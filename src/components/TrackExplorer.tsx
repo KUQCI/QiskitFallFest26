@@ -12,7 +12,8 @@ import type { Track } from "@/content/types";
  * The tracks grid plus its full-screen detail panel. The open track is mirrored in
  * the URL hash (`/tracks/#<slug>`) so links, including the home page's featured
  * cards, scroll to the card and open it. `replaceState` keeps Back leaving the page
- * instead of stepping through every track that was viewed.
+ * instead of stepping through every track that was viewed. To change tracks, close the
+ * panel and open another card.
  */
 export function TrackExplorer({ tracks, copy }: { tracks: Track[]; copy: TrackPanelCopy }) {
   const [openSlug, setOpenSlug] = useState<string | null>(null);
@@ -21,11 +22,6 @@ export function TrackExplorer({ tracks, copy }: { tracks: Track[]; copy: TrackPa
 
   const open = useCallback((slug: string, rect: DOMRect | null) => {
     setOrigin(rect);
-    setOpenSlug(slug);
-    window.history.replaceState(null, "", `#${slug}`);
-  }, []);
-
-  const select = useCallback((slug: string) => {
     setOpenSlug(slug);
     window.history.replaceState(null, "", `#${slug}`);
   }, []);
@@ -91,10 +87,8 @@ export function TrackExplorer({ tracks, copy }: { tracks: Track[]; copy: TrackPa
       {openTrack ? (
         <TrackPanel
           track={openTrack}
-          tracks={tracks}
           copy={copy}
           origin={origin}
-          onSelect={select}
           onClosed={handleClosed}
         />
       ) : null}
