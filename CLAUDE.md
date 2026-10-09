@@ -33,9 +33,15 @@ exports. See `src/content/README.md` for the file map.
 
 - Never list a sponsor, speaker, department, or partner that has not agreed in writing.
 - Use `confirmed`, `planning`, `tentative`, and `tba` accurately.
-- The six tracks are in the **Planning phase**. National tracks are hybrid and
-  international tracks are virtual; do not publish difficulty, prerequisites,
-  algorithms, datasets, judging criteria, or partner details yet.
+- The six tracks are in the **Planning phase**. National tracks are hybrid, except
+  Quantum in the Metaverse (national, in person at the KU Metaverse Hub on Friday
+  30 October 2026, no qualifiers); international tracks are virtual; do not publish difficulty, prerequisites,
+  algorithms, datasets, or judging criteria yet. Track names follow the organisers'
+  proposal, and each panel's short challenge-focused description is temporary.
+- Per-track hosts come from `trackHosts` in `src/content/tracks.ts` and are shown as
+  "Hosted by" labels. Confirmed so far: ASBMB Student Chapter at Khalifa University
+  (Quantum Biology) and Moth Quantum (Quantum Entertainment). QCI and NYUAD are the
+  overall organisers and are not added to individual tracks.
 - Do not invent attendance numbers, eligibility rules, team rules, workloads, closing
   dates, speaker formats, or selection processes.
 - Keep the empty `speakers` array until people agree to be announced.

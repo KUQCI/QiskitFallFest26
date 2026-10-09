@@ -24,6 +24,53 @@ export interface Track {
   status: Status;
   partner?: string;
   highlights?: string[];
+  /**
+   * Organizations hosting this track, picked from `trackHosts` in `tracks.ts`. Shown as
+   * "Hosted by" labels on the card and panel, with logo and About Us in the panel.
+   */
+  hostedBy?: TrackHost[];
+  /** Content for the expanded track panel. Every field is optional; empty sections are hidden. */
+  details?: TrackDetails;
+}
+
+export interface TrackLink {
+  label: string;
+  href: string;
+}
+
+/** A sponsor or host shown inside a track panel. Logo falls back to the name. */
+export interface TrackOrganization {
+  name: string;
+  /** Use a `fallFestAssets` src so the GitHub Pages base path is applied. */
+  logo?: string;
+  url?: string;
+}
+
+export interface TrackHost extends TrackOrganization {
+  /** Short name for the label chip, e.g. "ASBMB". Falls back to `name`. */
+  label?: string;
+  /** "About us" paragraphs supplied by the host. */
+  about?: string[];
+}
+
+/**
+ * Expanded panel content. Add only details that are confirmed in writing. Until
+ * `challenges` is set, the panel shows the shared "to be announced" notice instead.
+ */
+export interface TrackDetails {
+  /** Overview paragraphs. Falls back to the track summary when omitted. */
+  description?: string[];
+  /** Only organizations that have agreed in writing to sponsor this track. */
+  sponsors?: TrackOrganization[];
+  challenges?: string[];
+  /** What participants need to do. */
+  tasks?: string[];
+  submission?: {
+    where?: string;
+    how?: string[];
+    links?: TrackLink[];
+  };
+  resources?: TrackLink[];
 }
 
 export interface Session {

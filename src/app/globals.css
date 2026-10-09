@@ -135,8 +135,16 @@
    BASE
    ========================================================================== */
 
-* {
-  border-color: var(--c-border);
+/* Default border colour. Layered so Tailwind's border-colour utilities
+   (in @layer utilities) can override it; unlayered CSS would beat them. */
+@layer base {
+  *,
+  ::before,
+  ::after,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--c-border);
+  }
 }
 
 html {
@@ -431,6 +439,39 @@ p {
   transform: translateY(-2px);
   box-shadow: var(--shadow-card);
 }
+
+/* Full-screen track details panel and the dimmed page behind it. Defined here rather
+   than with utilities so the mobile/desktop radius is not fighting class order. */
+.track-panel-backdrop {
+  background: color-mix(in srgb, var(--c-bg) 78%, transparent);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.track-panel {
+  background:
+    linear-gradient(
+      160deg,
+      color-mix(in srgb, var(--c-purple) 12%, var(--c-surface)) 0%,
+      var(--c-surface) 45%
+    ),
+    var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: 0;
+  box-shadow: var(--shadow-card), var(--glow-purple);
+}
+
+@media (min-width: 40rem) {
+  .track-panel {
+    border-radius: 20px;
+  }
+}
+
+/* A card is hidden while the panel animates in its place, so only one box is seen. */
+[data-track-hidden] {
+  opacity: 0;
+}
+
 
 /* The custom pointer opts in only after its client-side safety checks pass. */
 @media (pointer: fine) {

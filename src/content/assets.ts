@@ -47,6 +47,8 @@ export const fallFestAssets = {
     ),
   },
   logos: {
+    /** ASBMB Khalifa University Student Chapter, as supplied (white background). */
+    asbmbKu: imageAsset("asbmb-ku-logo.png", "asbmb-ku-logo.png"),
     ibmQuantum: imageAsset("IBM Quantum.png", "IBM Quantum.png"),
     ibmQuantumWordmark: imageAsset("ibm-quantum-wordmark.png", "ibm-quantum-wordmark.png"),
     /** "IBM" cropped from the IBM Quantum wordmark; used as a CSS mask so it follows the theme. */
@@ -57,6 +59,7 @@ export const fallFestAssets = {
     ),
     khalifaUniversityWhiteBackground: imageAsset("ku-logo_white-bg.jpg", "ku-logo_white-bg.jpg"),
     nyuadCqts: imageAsset("nyuad-cqts-logo.png", "nyuad-cqts-logo.png"),
+    /** QCI badge cut from "QCI logo badge.png" (supplied original, kept alongside). */
     qciLogo: imageAsset("qci-logo.png", "qci-logo.png"),
     qciLogoFit: imageAsset("qci-logo-fit.png", "qci-logo-fit.png"),
     qciLogoHeader: imageAsset("qci-logo-header.png", "qci-logo-header.png"),

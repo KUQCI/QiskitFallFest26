@@ -64,8 +64,8 @@ export default function AboutPage() {
                 <Image
                   src={fallFestAssets.logos.qciLogoFit.src}
                   alt="Quantum Computing Initiative logo"
-                  width={720}
-                  height={720}
+                  width={363}
+                  height={363}
                   className="h-auto w-full max-w-sm object-contain transition-transform duration-500 group-hover:scale-[1.03]"
                   priority
                 />

@@ -67,7 +67,7 @@ export const faqs: FaqItem[] = [
     category: "Format",
     question: "What does hybrid actually mean here?",
     answer:
-      "The opening session will be available at Khalifa University and online internationally. National tracks are planned as hybrid, while international tracks are planned as virtual. Each track is labelled on the Tracks page.",
+      "The opening session will be available at Khalifa University and online internationally. Most national tracks are planned as hybrid, the Quantum in the Metaverse track runs in person, and international tracks are planned as virtual. Each track is labelled on the Tracks page.",
   },
   {
     category: "Format",
