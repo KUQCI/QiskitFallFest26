@@ -40,15 +40,15 @@ export const event = {
     "Fill in the short form to be notified the moment registration opens. It also asks which tracks interest you, so the programme can be built around the answers.",
 
   /**
-   * Shown on every sign-up control while `registrationUrl` is null. Confirmed date.
+   * Shown on every sign-up control while `registrationUrl` is null. No date is published.
    * This lives here rather than in `homeContent` because the CTA section renders on
    * five routes, so the status has to read the same everywhere.
    */
-  registrationOpensLabel: "Registration opens 10th October",
+  registrationOpensLabel: "Registration opening soon",
 
   /** Stage two: real registration. Setting this takes over every CTA from the interest form. */
   registrationUrl: null as string | null,
-  registrationNote: "Registration opens 10th October. Track details will be announced here first.",
+  registrationNote: "Registration opening soon. Track details will be announced here first.",
   contactEmail: "quantum.club@ku.ac.ae",
 
   socials: {
