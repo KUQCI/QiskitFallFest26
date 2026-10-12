@@ -267,7 +267,18 @@ export function TrackPanel({
         />
 
         <div ref={innerRef} className="flex min-h-0 flex-1 flex-col">
-          <header className="flex items-start justify-between gap-4 border-b border-border px-5 py-4 sm:px-8 sm:py-6">
+          <header
+            className={cn(
+              "relative isolate flex items-start justify-between gap-4 overflow-hidden border-b border-border px-5 py-4 sm:px-8 sm:py-6",
+              // Keep the title and close button below the banner, on the plain surface.
+              track.banner && "pt-28 sm:pt-36",
+            )}
+          >
+            {track.banner ? (
+              <span aria-hidden="true" className="track-banner pointer-events-none absolute inset-x-0 top-0 -z-10 h-32 sm:h-40">
+                <Image src={track.banner} alt="" fill sizes="(max-width: 1151px) 100vw, 1152px" className="object-cover" />
+              </span>
+            ) : null}
             <div className="min-w-0">
               <div className="flex flex-wrap gap-2">
                 {badge ? <Badge tone="purple">{badge}</Badge> : null}

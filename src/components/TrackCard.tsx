@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/primitives";
@@ -40,11 +41,19 @@ export function TrackCard({
       id={track.slug}
       data-track-card={track.slug}
       className={cn(
-        "card group relative flex h-full scroll-mt-28 flex-col overflow-hidden p-6",
+        "card group relative isolate flex h-full scroll-mt-28 flex-col overflow-hidden p-6",
         planning && "sm:p-8",
+        // Push the content below the banner so the title stays on the plain surface.
+        track.banner && "pt-24 sm:pt-28",
         interactive && "card-interactive",
       )}
     >
+      {track.banner ? (
+        <span aria-hidden="true" className="track-banner pointer-events-none absolute inset-x-0 top-0 -z-10 h-32 sm:h-36">
+          <Image src={track.banner} alt="" fill sizes="(max-width: 767px) 100vw, 560px" className="object-cover" />
+        </span>
+      ) : null}
+
       <span
         aria-hidden="true"
         className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-pink to-transparent opacity-60"

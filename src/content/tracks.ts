@@ -85,6 +85,7 @@ export const tracks: Track[] = [
     format: "hybrid",
     status: "planning",
     hostedBy: [trackHosts.asbmb],
+    banner: fallFestAssets.trackBanners.quantumBiology.src,
     details: {
       description: [
         "This track combines quantum machine learning with disease identification at the microscopic level. The challenge is being developed with the ASBMB Student Chapter at Khalifa University.",

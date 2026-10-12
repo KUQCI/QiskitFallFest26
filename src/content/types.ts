@@ -29,6 +29,11 @@ export interface Track {
    * "Hosted by" labels on the card and panel, with logo and About Us in the panel.
    */
   hostedBy?: TrackHost[];
+  /**
+   * Decorative image behind the top of the card and panel header, supplied by the
+   * track's host. Use a `fallFestAssets` src so the GitHub Pages base path is applied.
+   */
+  banner?: string;
   /** Content for the expanded track panel. Every field is optional; empty sections are hidden. */
   details?: TrackDetails;
 }
