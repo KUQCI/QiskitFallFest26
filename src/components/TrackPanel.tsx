@@ -240,7 +240,7 @@ export function TrackPanel({
   const badge = statusLabel(track.status);
   const hosts = track.hostedBy ?? [];
   // Hosts with only a name are already shown as labels in the header.
-  const profiledHosts = hosts.filter((host) => host.logo || host.about?.length);
+  const profiledHosts = hosts.filter((host) => host.logo || host.about?.length || host.links?.length);
 
   return createPortal(
     <div className="fixed inset-0 z-[80]">
@@ -372,6 +372,7 @@ export function TrackPanel({
                               {paragraph}
                             </p>
                           ))}
+                          {host.links?.length ? <LinkList links={host.links} /> : null}
                         </div>
                       </div>
                     ))}

@@ -51,6 +51,8 @@ export interface TrackHost extends TrackOrganization {
   label?: string;
   /** "About us" paragraphs supplied by the host. */
   about?: string[];
+  /** The host's own public links (social, website), listed under its About Us. */
+  links?: TrackLink[];
 }
 
 /**
