@@ -43,49 +43,67 @@ export function TrackCard({
       className={cn(
         "card group relative isolate flex h-full scroll-mt-28 flex-col overflow-hidden p-6",
         planning && "sm:p-8",
-        // Push the content below the banner so the title stays on the plain surface.
-        track.banner && "pt-24 sm:pt-28",
         interactive && "card-interactive",
       )}
     >
-      {track.banner ? (
-        <span aria-hidden="true" className="track-banner pointer-events-none absolute inset-x-0 top-0 -z-10 h-32 sm:h-36">
-          <Image src={track.banner} alt="" fill sizes="(max-width: 767px) 100vw, 560px" className="object-cover" />
-        </span>
-      ) : null}
-
       <span
         aria-hidden="true"
         className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-pink to-transparent opacity-60"
       />
 
-      <div className="flex justify-end">
-        <Badge tone={planning ? "purple" : "neutral"}>
-          {badgeLabel}
-        </Badge>
-      </div>
+      {/* Badge, title, and summary. With a banner, the image shares this block's grid cell,
+          so it always covers exactly this text (however it wraps) and fades out below it.
+          Grid stacking rather than absolute positioning keeps the stretched title link
+          sized to the whole card. */}
+      <div className={cn("grid", track.banner && "-mx-6 -mt-6", track.banner && planning && "sm:-mx-8 sm:-mt-8")}>
+        {track.banner ? (
+          <span aria-hidden="true" className="track-banner-behind pointer-events-none relative -z-10 [grid-area:1/1]">
+            <Image src={track.banner} alt="" fill sizes="(max-width: 767px) 100vw, 560px" className="object-cover" />
+          </span>
+        ) : null}
+        <div
+          className={cn(
+            "[grid-area:1/1]",
+            // Re-apply the card padding inside the full-bleed block; the bottom padding is
+            // where the banner fades out.
+            track.banner && "px-6 pb-12 pt-6",
+            track.banner && planning && "sm:px-8 sm:pt-8",
+          )}
+        >
+          <div className="flex justify-end">
+            {/* Over a banner, the translucent badge sits on a solid surface so it stays legible. */}
+            <span className={cn("rounded-full", track.banner && "bg-surface")}>
+              <Badge tone={planning ? "purple" : "neutral"}>
+                {badgeLabel}
+              </Badge>
+            </span>
+          </div>
 
-      <h3 className={cn("mt-4 font-semibold text-fg", planning ? "text-2xl" : "text-xl")}>
-        {href ? (
-          <Link href={href} className={stretched}>
-            {track.title}
-          </Link>
-        ) : onOpen ? (
-          <button
-            type="button"
-            data-track-trigger={track.slug}
-            aria-haspopup="dialog"
-            aria-expanded={expanded ?? false}
-            onClick={(event) => onOpen(event.currentTarget)}
-            className={stretched}
-          >
-            {track.title}
-          </button>
-        ) : (
-          track.title
-        )}
-      </h3>
-      <p className="mt-3 text-sm leading-relaxed text-fg-muted">{track.summary}</p>
+          <h3 className={cn("mt-4 font-semibold", track.banner ? "text-on-image" : "text-fg", planning ? "text-2xl" : "text-xl")}>
+            {href ? (
+              <Link href={href} className={stretched}>
+                {track.title}
+              </Link>
+            ) : onOpen ? (
+              <button
+                type="button"
+                data-track-trigger={track.slug}
+                aria-haspopup="dialog"
+                aria-expanded={expanded ?? false}
+                onClick={(event) => onOpen(event.currentTarget)}
+                className={stretched}
+              >
+                {track.title}
+              </button>
+            ) : (
+              track.title
+            )}
+          </h3>
+          <p className={cn("mt-3 text-sm leading-relaxed", track.banner ? "text-on-image" : "text-fg-muted")}>
+            {track.summary}
+          </p>
+        </div>
+      </div>
 
       {track.hostedBy?.length ? (
         <p className="mt-5 flex flex-wrap items-center gap-2 text-xs text-fg-muted">
