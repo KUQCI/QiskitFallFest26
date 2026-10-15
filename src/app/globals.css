@@ -38,6 +38,10 @@
   /* Fixed-meaning colors */
   --c-on-gold: #111426;
   --c-on-pink: #241020;
+  /* Text over host-supplied photography (track banners). The same in both themes. */
+  --c-on-image: #f5f7ff;
+  /* Darkens track banners under --c-on-image text. The same in both themes. */
+  --c-image-scrim: #070a18;
   --c-logo-plate: #ffffff;
   --c-logo-ink: #10142a;
   --c-success: #35c77f;
@@ -117,6 +121,7 @@
 
   --color-on-gold: var(--c-on-gold);
   --color-on-pink: var(--c-on-pink);
+  --color-on-image: var(--c-on-image);
   --color-logo-ink: var(--c-logo-ink);
   --color-success: var(--c-success);
   --color-danger: var(--c-danger);
@@ -465,6 +470,34 @@ p {
   .track-panel {
     border-radius: 20px;
   }
+}
+
+/* Host-supplied track image behind the top of a card or panel header. It fades out
+   through a mask rather than an overlay colour, so it blends into either theme's surface
+   and the title below it sits on the plain surface. */
+.track-banner {
+  -webkit-mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
+}
+
+/* Behind a card's title and summary: solid under that text so its light colour keeps its
+   contrast in both themes, then fading out across the block's 3rem bottom padding. */
+.track-banner-behind {
+  -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 3rem), transparent 100%);
+  mask-image: linear-gradient(to bottom, black calc(100% - 3rem), transparent 100%);
+}
+
+/* Light at the top so the image shows, dark under the summary. Tuned against this image:
+   title ≥ 4:1 and summary ≥ 5.5:1 against its brightest pixels, 375–1280 px. Re-check for a new image. */
+.track-banner-behind::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--c-image-scrim) 10%, transparent) 0%,
+    color-mix(in srgb, var(--c-image-scrim) 62%, transparent) 35%
+  );
 }
 
 /* A card is hidden while the panel animates in its place, so only one box is seen. */

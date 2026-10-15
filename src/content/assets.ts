@@ -77,6 +77,10 @@ export const fallFestAssets = {
       "Qiskit Fall Fest 2026 Black.png",
     ),
   },
+  trackBanners: {
+    /** Supplied by the ASBMB Student Chapter for the Quantum Biology card. */
+    quantumBiology: imageAsset("quantum-biology-banner.jpg", "quantum-biology-banner.jpg"),
+  },
   pastEvents: {
     hackathon: imageAsset("hackathon.jpg", "hackathon.jpg"),
     bootcamp: imageAsset("bootcamp-web.jpg", "bootcamp-web.jpg"),
@@ -114,6 +118,7 @@ export const allFallFestAssets: readonly FallFestAsset[] = [
   ...Object.values(fallFestAssets.hero),
   ...Object.values(fallFestAssets.logos),
   ...Object.values(fallFestAssets.qiskitMarks),
+  ...Object.values(fallFestAssets.trackBanners),
   ...Object.values(fallFestAssets.pastEvents),
   ...Object.values(fallFestAssets.stickers),
   ...Object.values(fallFestAssets.textPills),
