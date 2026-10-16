@@ -24,6 +24,7 @@ export default function HomePage() {
     <>
       <Hero />
       <StatsStrip />
+      <PartnersSection compact />
 
       <Section className="border-t border-border">
         <Container>
@@ -78,7 +79,6 @@ export default function HomePage() {
       </Section>
 
       <FormatSection />
-      <PartnersSection compact />
       <ResourcesSection />
 
       <Section className="border-t border-border">
