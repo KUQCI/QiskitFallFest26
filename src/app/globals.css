@@ -472,6 +472,14 @@ p {
   }
 }
 
+/* One challenge theme option inside the track panel (e.g. Moth Quantum's tiers). */
+.track-theme {
+  background: color-mix(in srgb, var(--c-bg) 35%, var(--c-surface));
+  border: 1px solid var(--c-border);
+  border-left: 2px solid color-mix(in srgb, var(--c-pink) 70%, transparent);
+  border-radius: 12px;
+}
+
 /* Host-supplied track image behind the top of a card or panel header. It fades out
    through a mask rather than an overlay colour, so it blends into either theme's surface
    and the title below it sits on the plain surface. */

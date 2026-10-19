@@ -237,7 +237,7 @@ export function TrackPanel({
 
   const details = track.details ?? {};
   const description = details.description?.length ? details.description : [track.summary];
-  const badge = statusLabel(track.status);
+  const badge = statusLabel(track.status) ?? copy.announcedLabel;
   const hosts = track.hostedBy ?? [];
   // Hosts with only a name are already shown as labels in the header.
   const profiledHosts = hosts.filter((host) => host.logo || host.about?.length || host.links?.length);
@@ -319,6 +319,12 @@ export function TrackPanel({
                 </div>
               </PanelSection>
 
+              {details.dates?.length ? (
+                <PanelSection heading={copy.datesHeading}>
+                  <BulletList items={details.dates} />
+                </PanelSection>
+              ) : null}
+
               {details.sponsors?.length ? (
                 <PanelSection heading={copy.sponsorsHeading}>
                   <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -332,8 +338,29 @@ export function TrackPanel({
               ) : null}
 
               <PanelSection heading={copy.challengesHeading}>
-                {details.challenges?.length ? (
-                  <BulletList items={details.challenges} />
+                {details.challenge?.length || details.challengeThemes?.length ? (
+                  <div className="space-y-8">
+                    {details.challenge?.length ? (
+                      <div className="space-y-4 text-base leading-relaxed text-fg sm:text-lg">
+                        {details.challenge.map((paragraph) => (
+                          <p key={paragraph}>{paragraph}</p>
+                        ))}
+                      </div>
+                    ) : null}
+                    {details.challengeThemes?.map((group) => (
+                      <div key={group.title}>
+                        <h4 className="text-lg font-semibold text-fg">{group.title}</h4>
+                        <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+                          {group.themes.map((theme) => (
+                            <li key={theme.title} className="track-theme p-4">
+                              <p className="font-semibold text-fg">{theme.title}</p>
+                              <p className="mt-1.5 text-sm leading-relaxed text-fg-muted">{theme.description}</p>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
                 ) : (
                   <p className="border-l-2 border-pink/60 pl-4 text-base leading-relaxed text-fg sm:text-lg">
                     {copy.challengesPending}
@@ -351,18 +378,34 @@ export function TrackPanel({
               (details.submission.where || details.submission.how?.length || details.submission.links?.length) ? (
                 <PanelSection heading={copy.submissionHeading}>
                   <div className="space-y-4">
+                    {details.submission.how?.length ? <BulletList items={details.submission.how} /> : null}
                     {details.submission.where ? (
                       <p className="text-base leading-relaxed text-fg">{details.submission.where}</p>
                     ) : null}
-                    {details.submission.how?.length ? <BulletList items={details.submission.how} ordered /> : null}
                     {details.submission.links?.length ? <LinkList links={details.submission.links} /> : null}
                   </div>
                 </PanelSection>
               ) : null}
 
-              {details.resources?.length ? (
+              {details.judging?.length ? (
+                <PanelSection heading={copy.judgingHeading}>
+                  <div className="space-y-4 text-base leading-relaxed text-fg-muted">
+                    {details.judging.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                  </div>
+                </PanelSection>
+              ) : null}
+
+              {details.resources?.length || details.resourceItems?.length || details.resourcesNote ? (
                 <PanelSection heading={copy.resourcesHeading}>
-                  <LinkList links={details.resources} />
+                  <div className="space-y-4">
+                    {details.resources?.length ? <LinkList links={details.resources} /> : null}
+                    {details.resourceItems?.length ? <BulletList items={details.resourceItems} /> : null}
+                    {details.resourcesNote ? (
+                      <p className="text-sm leading-relaxed text-fg-muted">{details.resourcesNote}</p>
+                    ) : null}
+                  </div>
                 </PanelSection>
               ) : null}
 

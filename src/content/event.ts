@@ -91,8 +91,8 @@ export const homeContent = {
     eyebrow: "Tracks",
     title: "Choose where to explore",
     lede:
-      "Whether you’re new to quantum computing or want to explore specialized applications, there’s a track for you. Track details are currently in development, with more information coming soon.",
-    linkLabel: "All tracks",
+      "Whether you’re new to quantum computing or want to explore specialized applications, there’s a track for you. Every track’s challenge is now live.",
+    linkLabel: "See all challenges",
   },
   faq: {
     eyebrow: "Questions",

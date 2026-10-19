@@ -33,13 +33,16 @@ exports. See `src/content/README.md` for the file map.
 
 - Never list a sponsor, speaker, department, or partner that has not agreed in writing.
 - Use `confirmed`, `planning`, `tentative`, and `tba` accurately.
-- The six tracks are in the **Planning phase**. National tracks are hybrid, except
-  Quantum in the Metaverse (national, in person at the KU Metaverse Hub on Friday
-  30 October 2026, no qualifiers). Quantum Cybersecurity is international and virtual,
-  with a single online CTF and no qualifier or separate final round. International tracks
-  are virtual. Each track has its own registration; do not publish difficulty, prerequisites,
-  algorithms, datasets, or judging criteria yet. Track names follow the organisers'
-  proposal, and each panel's short challenge-focused description is temporary.
+- The six tracks' challenges were published at the 19 October premiere (`status:
+  "confirmed"`). Challenge statements, judging, submissions, resources, and dates come
+  from the organisers' track document ("Fall Fest '26 Tracks"); publish only what it
+  states. National tracks are hybrid (online qualifiers, in-person finals on 31 October
+  or 1 November), except Quantum in the Metaverse (national, in person at Khalifa
+  University's MetaHub Lab on 30 October 2026, no qualifiers). Quantum Cybersecurity is
+  international and virtual, with a single online CTF on 30 October and no qualifier or
+  separate final round. International tracks are virtual. Each track has its own
+  registration; registration links and resource URLs were not supplied, so omit them
+  until they are. Track names follow the organisers' proposal.
 - Per-track hosts come from `trackHosts` in `src/content/tracks.ts` and are shown as
   "Hosted by" labels. Confirmed so far: ASBMB Student Chapter at Khalifa University
   (Quantum Biology) and Moth Quantum (Quantum Entertainment). QCI and NYUAD are the

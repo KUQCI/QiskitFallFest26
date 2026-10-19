@@ -8,8 +8,9 @@ import type { Track } from "@/content/types";
 import { cn, formatLabel, reachLabel, statusLabel } from "@/lib/utils";
 
 /**
- * A deliberately honest track summary. Until challenges are final, cards show only
- * their broad direction, reach, delivery format, and a planning-state label.
+ * A short track summary: the challenge in one line, reach, delivery format, and a
+ * status label. A confirmed track shows the "challenge live" label; the full challenge
+ * lives in the track panel.
  *
  * Pass `href` to make the whole card a link (home page), or `onOpen` to make it open
  * the track panel (tracks page). The title carries the control and a stretched
@@ -31,7 +32,7 @@ export function TrackCard({
   expanded?: boolean;
 }) {
   const planning = variant === "planning";
-  const badgeLabel = statusLabel(track.status) ?? "Planning phase";
+  const badgeLabel = statusLabel(track.status) ?? tracksPageContent.panel.announcedLabel;
   const interactive = Boolean(href || onOpen);
   const stretched =
     "text-left after:absolute after:inset-0 after:rounded-[14px] after:content-[''] focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:-outline-offset-4 focus-visible:after:outline-gold";

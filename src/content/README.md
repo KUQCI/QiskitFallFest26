@@ -60,11 +60,11 @@ answers that say registration information will be published before registration 
 - `tentative`: a proposed programme detail that may change.
 - `tba`: no publishable detail yet.
 
-The six track cards show their broad direction, reach, delivery format, and planning
-status, without display codes. Keep proposed activities clearly labelled as
-possibilities; add levels, judging criteria, partners, and prerequisites only after
-they are confirmed. Preserve track slugs because they are used as anchors and keys
-even when the public name changes.
+The six track cards show a one-line challenge summary, reach, delivery format, and
+status. A `confirmed` track shows the `panel.announcedLabel` badge. Challenge details
+come from the organisers' track document; add levels, partners, prerequisites, and
+links only after they are confirmed. Preserve track slugs because they are used as
+anchors and keys even when the public name changes.
 
 Never list a sponsor, speaker, or partner department based only on a conversation.
 IBM Quantum, Khalifa University, and the NYU Abu Dhabi Center for Quantum and
@@ -74,10 +74,16 @@ Topological Systems currently appear in the confirmed partner list.
 
 Each track card on `/tracks/` opens a full-screen panel. It can also be opened directly
 at `/tracks/#<slug>`. The panel reads `track.details`, and every field is optional:
-`description`, `sponsors`, `challenges`, `tasks`, `submission`, and `resources`.
-Empty sections are hidden. Until `challenges` is set, the panel shows
-`tracksPageContent.panel.challengesPending`. Add day-of instructions by filling these
-fields; no component change is needed. To change tracks, visitors close the panel and
+`description`, `dates`, `sponsors`, `challenge` (paragraphs), `challengeThemes`
+(named options grouped by tier), `tasks`, `submission`, `judging`, `resources`
+(links), `resourceItems` (confirmed resources without a public link yet), and
+`resourcesNote`. Empty sections are hidden. Until `challenge` or `challengeThemes` is
+set, the panel shows `tracksPageContent.panel.challengesPending`. When a registration
+or resource URL is shared, move the item from `resourceItems` into `resources` or
+`submission.links`; no component change is needed.
+
+The tracks page also shows `tracksPageContent.formats`, the national and international
+competition formats. To change tracks, visitors close the panel and
 open another card.
 
 "Hosted by" labels come from `track.hostedBy`, which picks entries from `trackHosts`.
