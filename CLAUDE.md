@@ -33,8 +33,10 @@ exports. See `src/content/README.md` for the file map.
 
 - Never list a sponsor, speaker, department, or partner that has not agreed in writing.
 - Use `confirmed`, `planning`, `tentative`, and `tba` accurately.
-- Five tracks remain in the **Planning phase**. Quantum Biology's challenge brief is
-  published with six challenge panels and a separate Hosts tab in
+- All six tracks' challenges have been published (`status: "confirmed"`). The other
+  five tracks use the organisers' "Fall Fest '26 Tracks" document; keep their published
+  challenge statements, dates, judging, submissions, resources and Moth Quantum themes.
+- Quantum Biology's challenge brief is published with six challenge panels and a separate Hosts tab in
   `src/content/quantum-biology.ts`. The Hosts tab uses the supplied ASBMB description,
   logo and approved social links. The newer
   `qiskit bio track website details (1) (1).pdf` is the sole source for challenge content:
@@ -51,9 +53,11 @@ exports. See `src/content/README.md` for the file map.
   30 October 2026, no qualifiers). Quantum Cybersecurity is international and virtual,
   with a single online CTF and no qualifier or separate final round. International tracks
   are virtual. Each track has its own registration. For tracks other than Biology,
-  do not publish difficulty, prerequisites, algorithms, datasets, or judging criteria yet.
-  Track names follow the organisers'
-  proposal, and the planning tracks' short challenge-focused descriptions are temporary.
+  publish only details present in that track document. Registration and resource URLs
+  were not supplied; do not invent them. Track names follow the organisers' proposal.
+  The national tracks' in-person finals are on 31 October or 1 November, except
+  Quantum in the Metaverse at the MetaHub Lab on 30 October. The international
+  Quantum Cybersecurity CTF runs online on 30 October.
 - Per-track hosts come from `trackHosts` in `src/content/tracks.ts` and are shown as
   "Hosted by" labels. Confirmed so far: ASBMB Student Chapter at Khalifa University
   (Quantum Biology) and Moth Quantum (Quantum Entertainment). QCI and NYUAD are the

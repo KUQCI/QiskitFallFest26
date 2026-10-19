@@ -30,29 +30,35 @@ export const trackHosts = {
 } satisfies Record<string, TrackHost>;
 
 /**
- * Track names follow the organisers' proposal. Planning tracks keep challenges,
- * prerequisites and judging details unpublished. Biology has an approved brief.
- * Stable slugs are preserved
- * so existing links continue to work when titles change.
+ * Track names follow the organisers' proposal. Stable slugs are preserved so existing
+ * links continue to work when titles change.
  *
- * `details.description` is a temporary, challenge-focused overview approved by the
- * organisers; expect it to be edited as each track is finalised.
+ * Challenge statements, judging, submissions, resources, and dates come from the
+ * organisers' track document released at the 19 October premiere. Biology uses its
+ * separate, latest approved brief in `quantum-biology.ts` and the user's overrides.
+ * Registration links
+ * and resource URLs were not yet supplied: add them to `resources` or
+ * `submission.links` when they are shared, and do not fill a gap with a guess.
  *
  * `details` feeds the expanded track panel (`/tracks/#<slug>`). Leave a field out until
- * it is confirmed; the panel hides empty sections and shows the shared challenge notice.
+ * it is confirmed; the panel hides empty sections.
  */
 export const tracks: Track[] = [
   {
     slug: "first-qubit",
     title: "Quantum Foundations",
     summary:
-      "Build a foundation in quantum computing and Qiskit through core concepts and hands-on exploration.",
+      "For high school students: complete unfinished quantum circuits so they produce a target output or setup.",
     reach: "national",
     format: "hybrid",
-    status: "planning",
+    status: "confirmed",
     details: {
       description: [
-        "An introduction to quantum computing through basic quantum concepts and simple circuit building. The challenges test introductory understanding, for example by asking you to complete partially finished notebooks.",
+        "Reserved for high school students, this track is an introduction to quantum computing through circuit building.",
+      ],
+      dates: ["31 October 2026: in-person competition at Khalifa University."],
+      challenge: [
+        "Participants take on circuit-building challenges. You will be given incomplete quantum circuits and must fill in the blanks so that each circuit achieves a given output or setup.",
       ],
     },
   },
@@ -60,13 +66,26 @@ export const tracks: Track[] = [
     slug: "quantum-machine-learning",
     title: "Quantum Machine Learning",
     summary:
-      "Explore the intersection of quantum computing and machine learning, including how quantum and classical approaches can work together.",
+      "Pick a healthcare problem, build a classical machine learning baseline, then use quantum techniques to beat it.",
     reach: "national",
     format: "hybrid",
-    status: "planning",
+    status: "confirmed",
     details: {
       description: [
-        "The challenges connect quantum machine learning with classical machine learning, with the emphasis on the quantum side: what quantum models add, and how quantum and classical parts work together on a problem.",
+        "Push past conventional machine learning by bringing quantum techniques to a real healthcare problem, and show what they add.",
+      ],
+      challenge: [
+        "Identify a specific problem within healthcare and establish a robust classical machine learning baseline to solve it.",
+        "Then use quantum techniques either to improve the classical model or to develop a fully quantum model that outperforms the baseline in key metrics. The quantum integration must serve a clear purpose, directly addressing the limitations of the classical approach to drive measurable performance gains.",
+      ],
+      submission: {
+        how: [
+          "A functional codebase.",
+          "A comparative evaluation showing both the classical and the quantum model.",
+        ],
+      },
+      judging: [
+        "Submissions are scored on the quantum model's performance relative to its classical baseline, and on the ingenuity, depth, and soundness of the team's chosen approach.",
       ],
     },
   },
@@ -74,14 +93,32 @@ export const tracks: Track[] = [
     slug: "quantum-cybersecurity",
     title: "Quantum Cybersecurity",
     summary:
-      "A single online quantum cybersecurity capture-the-flag (CTF) for international participants, exploring cryptography and quantum technologies.",
+      "A Quantum CTF on model extraction: query quantum machine learning models to uncover hidden details and capture flags.",
     reach: "international",
     format: "online",
-    status: "planning",
+    status: "confirmed",
     details: {
       description: [
-        "A single online quantum capture-the-flag (CTF) competition open to international participants. You solve cybersecurity challenges built around quantum technologies and cryptography.",
+        "A Capture the Flag (CTF) competition that investigates the security of quantum machine learning, focused on model extraction.",
       ],
+      dates: ["30 October 2026: a standalone online CTF. Exact timings will be announced."],
+      challenge: [
+        "Teams interact with quantum machine learning models through provided interfaces, using the information revealed by their inputs and outputs to uncover hidden details and capture flags.",
+        "The aim is to explore how access to a model's predictions can expose protected information about its internal behaviour. You may adapt existing model-stealing techniques or develop your own strategies. Each challenge specifies its objectives, access conditions, and flag submission requirements.",
+      ],
+      judging: [
+        "The competition rewards analytical reasoning, creative problem solving, and effective extraction strategies. Teams are ranked by the total points earned from successfully captured flags.",
+      ],
+      submission: {
+        how: ["Submit flags according to the requirements specified for each challenge."],
+      },
+      resourceItems: [
+        "Competition platform",
+        "Challenge instructions",
+        "Model access interfaces",
+        "Supporting guides and introductory workshops",
+      ],
+      resourcesNote: "Links and availability will be announced.",
     },
   },
   {
@@ -103,29 +140,115 @@ export const tracks: Track[] = [
     slug: "quantum-media",
     title: "Quantum Entertainment",
     summary:
-      "Explore quantum computing through media and creative communication, bringing quantum ideas to a wider audience.",
+      "Use Moth Quantum's media engines to make images, sound, video, games, or apps, with or without code.",
     reach: "international",
     format: "online",
-    status: "planning",
+    status: "confirmed",
     hostedBy: [trackHosts.mothQuantum],
     details: {
       description: [
-        "A quantum entertainment challenge built on Moth Quantum's latest platform, using quantum computing in creative work and bringing quantum ideas to a wider audience.",
+        "Create with Moth Quantum's quantum media engines: Atlas API, Tessa, Blur, and the Entanglement Shader.",
       ],
+      dates: ["30 October 2026, 11:59 PM Pacific Time: submission deadline."],
+      challenge: [
+        "Use Moth's quantum media engines to process, generate, or build media applications or artifacts. Submissions are split into two tiers: projects made on the online platform, and projects that use the Atlas API in code. Pick a theme from either tier.",
+      ],
+      challengeThemes: [
+        {
+          title: "No-code themes",
+          themes: [
+            {
+              title: "One image, one engine",
+              description:
+                "Run an image through a visual engine (Blur, Tessa, or another) and submit the result with the parameters used.",
+            },
+            {
+              title: "Make it audible",
+              description:
+                "Use an Atlas engine for sound production. Submit an audio file (song, sample, or sound effect) with a summary of your workflow.",
+            },
+            {
+              title: "Three dimensions",
+              description:
+                "Use an engine to do something three-dimensional, for example a video where the Entanglement Shader has been applied to a 3D asset.",
+            },
+            {
+              title: "Moving image",
+              description: "Use at least one engine in a video piece. Any format.",
+            },
+            {
+              title: "Quantum game",
+              description:
+                "Use at least one engine in the making of a game, for example a browser game whose sprites are generated with Tessa.",
+            },
+            {
+              title: "Daisy chain",
+              description:
+                "Use as many engines as possible in a single project. Measured on the number of engines and how effectively they are used.",
+            },
+            {
+              title: "Make a VST or AU",
+              description:
+                "Build a music plugin using at least one engine. Submit the plugin and audio examples of it in use.",
+            },
+          ],
+        },
+        {
+          title: "Code themes (Atlas API)",
+          themes: [
+            {
+              title: "Make a web app",
+              description:
+                "Build a web app that calls the Atlas API. Submit a link and a short description of what it does.",
+            },
+            {
+              title: "Quantum native 1",
+              description:
+                "Provide a repo of a quantum application that runs a process on some kind of media (for example a video or a game). Applications that use the Atlas API are especially welcome.",
+            },
+            {
+              title: "Quantum native 2",
+              description:
+                "Provide a Python notebook showing how you used the API to build a workflow that generates some kind of media or application (for example a game).",
+            },
+          ],
+        },
+      ],
+      resourceItems: [
+        "Platform access, with a Khalifa University Fall Fest code",
+        "Starter guide",
+        "Discord community",
+        "Submission link",
+      ],
+      resourcesNote: "Links will be shared here.",
     },
   },
   {
     slug: "peaked-circuits",
     title: "Quantum in the Metaverse",
     summary:
-      "An in-person, challenge-based track held at the KU Metaverse Hub on Friday, 30 October. There are no qualifiers.",
+      "In VR at Khalifa University's MetaHub Lab, build gate sequences that steer a qubit along a path on the Bloch sphere.",
     reach: "national",
     format: "in-person",
-    status: "planning",
+    status: "confirmed",
     details: {
       description: [
-        "A challenge-based track that runs in person at the KU Metaverse Hub on Friday, 30 October 2026.",
-        "Unlike the other national tracks, there are no qualifiers: participants take on the challenge directly on the day.",
+        "Explore quantum computing through an immersive, one-day VR experience at Khalifa University's MetaHub Lab. It connects foundational quantum concepts with hands-on problem solving.",
+        "Unlike the other national tracks, there are no qualifiers: participants take on the challenge directly on the day, in scheduled sessions for groups of 12 students.",
+      ],
+      dates: ["30 October 2026: one-day, in-person challenge. Session timings will be announced."],
+      challenge: [
+        "Using provided VR headsets, you interact with an application that visualizes a single qubit on the Bloch sphere. The challenge is to construct a sequence of quantum gates that guides the qubit along a specified path.",
+        "Experiment with different gates and the order you apply them in, observing how each operation changes the qubit's state and contributes to the overall result.",
+      ],
+      submission: {
+        how: [
+          "Complete the assigned quantum gate challenges within the VR application during your session, demonstrating successful gate sequences.",
+        ],
+      },
+      judging: ["Winners are determined by completion time and the accuracy of their solutions."],
+      resourceItems: [
+        "VR headsets and access to the quantum visualization application, provided at the MetaHub Lab",
       ],
     },
   },
@@ -142,24 +265,47 @@ export const tracksPageContent = {
   eyebrow: "Tracks",
   title: "Find your path into quantum",
   intro:
-    "Explore tracks ranging from quantum fundamentals to specialized applications. Each track runs independently and has its own registration, so participants can choose the area that best matches their interests.",
-  note:
-    "Note: Track details are currently in development, with challenges and full information to be announced soon.",
+    "The challenges are live. Explore six tracks, from quantum fundamentals to specialized applications. Each track runs independently and has its own registration, so participants can choose the area that best matches their interests.",
+  /** How national and international tracks run, from the organisers' event format table. */
+  formats: {
+    heading: "How the tracks run",
+    items: [
+      {
+        reach: "national",
+        label: "National tracks",
+        format: "Hybrid",
+        description:
+          "Most national tracks combine online qualifiers with in-person finals at Khalifa University. Where qualifiers are needed, they take place before 31 October, and each track sets its own cutoff. In-person finals are on 31 October or 1 November, depending on the track. Quantum in the Metaverse runs in person on 30 October.",
+      },
+      {
+        reach: "international",
+        label: "International tracks",
+        format: "Fully virtual",
+        description:
+          "Each track opens on 19 October and finishes by 1 November at the latest. International tracks set their own format and schedule within that window, separately from the national qualifiers and finals.",
+      },
+    ],
+  },
+  note: "Registration links and resource links for each track will be added here as they are shared.",
   /** Copy for the expandable track cards and the full-screen track panel. */
   panel: {
-    openLabel: "View track details",
+    openLabel: "View challenge",
     closeLabel: "Close track details",
+    /** Card and panel badge for a track whose challenge has been published. */
+    announcedLabel: "Challenge live",
     descriptionHeading: "About this track",
+    datesHeading: "Key dates",
     sponsorsHeading: "Sponsors",
-    challengesHeading: "Challenges",
+    challengesHeading: "The challenge",
     challengesPending: "Challenge details are to be announced soon.",
+    judgingHeading: "How it's judged",
     tasksHeading: "What you need to do",
-    submissionHeading: "How to submit",
+    submissionHeading: "What to submit",
     resourcesHeading: "Resources",
     hostedByHeading: "Hosted by",
   },
   metadataDescription:
-    "Explore the six planning-stage Qiskit Fall Fest tracks, from quantum computing foundations to specialized applications, across hybrid, in-person, and virtual formats.",
+    "Challenges for the six Qiskit Fall Fest 2026 tracks, from quantum circuit building to quantum machine learning, biology, cybersecurity, media, and VR, across hybrid, in-person, and virtual formats.",
 } as const;
 
 export type TrackPanelCopy = (typeof tracksPageContent)["panel"];

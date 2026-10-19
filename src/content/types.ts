@@ -62,18 +62,38 @@ export interface TrackHost extends TrackOrganization {
   links?: TrackLink[];
 }
 
+/** One named option inside a challenge theme group, e.g. "Make it audible". */
+export interface TrackChallengeTheme {
+  title: string;
+  description: string;
+}
+
+/** A set of challenge themes, e.g. Moth Quantum's "No-code" and "Code" tiers. */
+export interface TrackChallengeThemeGroup {
+  title: string;
+  themes: TrackChallengeTheme[];
+}
+
 /**
  * Expanded panel content. Add only details that are confirmed in writing. Until
- * `challenges` is set, the panel shows the shared "to be announced" notice instead.
+ * `challenge` or `challengeThemes` is set, the panel shows the shared "to be announced"
+ * notice instead.
  */
 export interface TrackDetails {
   /** Published brief with one navigable panel visible at a time. */
   brief?: TrackBrief;
   /** Overview paragraphs. Falls back to the track summary when omitted. */
   description?: string[];
+  /** Confirmed track dates and deadlines, one line each. Omit unknown dates. */
+  dates?: string[];
   /** Only organizations that have agreed in writing to sponsor this track. */
   sponsors?: TrackOrganization[];
-  challenges?: string[];
+  /** The problem statement, as paragraphs. */
+  challenge?: string[];
+  /** Named challenge options participants choose from, grouped by tier. */
+  challengeThemes?: TrackChallengeThemeGroup[];
+  /** How submissions are evaluated, as published by the track organisers. */
+  judging?: string[];
   /** What participants need to do. */
   tasks?: string[];
   submission?: {
@@ -82,6 +102,12 @@ export interface TrackDetails {
     links?: TrackLink[];
   };
   resources?: TrackLink[];
+  /**
+   * Resources that are confirmed but have no public link yet. Shown as a plain list,
+   * followed by `resourcesNote`. Move an item into `resources` once its URL is shared.
+   */
+  resourceItems?: string[];
+  resourcesNote?: string;
 }
 
 /** A resource stays unavailable until an approved URL and explicit release flag exist. */
