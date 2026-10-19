@@ -33,13 +33,27 @@ exports. See `src/content/README.md` for the file map.
 
 - Never list a sponsor, speaker, department, or partner that has not agreed in writing.
 - Use `confirmed`, `planning`, `tentative`, and `tba` accurately.
-- The six tracks are in the **Planning phase**. National tracks are hybrid, except
+- Five tracks remain in the **Planning phase**. Quantum Biology's challenge brief is
+  published with six challenge panels and a separate Hosts tab in
+  `src/content/quantum-biology.ts`. The Hosts tab uses the supplied ASBMB description,
+  logo and approved social links. The newer
+  `qiskit bio track website details (1) (1).pdf` is the sole source for challenge content:
+  scoring metrics, rubric weights, classifier settings, submission requirements and
+  external-data policy remain unconfirmed. Preserve the user's overrides: the initial
+  proposal deadline is to be decided and the copy must not prescribe a software framework.
+  Do not retain extra rules, release dates or logistical promises from the older handoff.
+  Only registration is dated 20 October; resource availability is to be confirmed.
+  Its resources and registration remain disabled until an approved URL and explicit release
+  flag are supplied; the date alone does not enable them. Do not publish the handoff
+  PDF, datasets, private organizer files, hidden tests, or reference solutions.
+  National tracks are hybrid, except
   Quantum in the Metaverse (national, in person at the KU Metaverse Hub on Friday
   30 October 2026, no qualifiers). Quantum Cybersecurity is international and virtual,
   with a single online CTF and no qualifier or separate final round. International tracks
-  are virtual. Each track has its own registration; do not publish difficulty, prerequisites,
-  algorithms, datasets, or judging criteria yet. Track names follow the organisers'
-  proposal, and each panel's short challenge-focused description is temporary.
+  are virtual. Each track has its own registration. For tracks other than Biology,
+  do not publish difficulty, prerequisites, algorithms, datasets, or judging criteria yet.
+  Track names follow the organisers'
+  proposal, and the planning tracks' short challenge-focused descriptions are temporary.
 - Per-track hosts come from `trackHosts` in `src/content/tracks.ts` and are shown as
   "Hosted by" labels. Confirmed so far: ASBMB Student Chapter at Khalifa University
   (Quantum Biology) and Moth Quantum (Quantum Entertainment). QCI and NYUAD are the
@@ -108,3 +122,13 @@ npm run build
 Then check all six routes in dark and light themes at 375, 768, and 1280 px. Confirm no
 console errors, horizontal overflow, missing base-path assets, inaccessible controls, or
 legacy event claims. Test keyboard navigation and reduced motion.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

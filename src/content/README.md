@@ -11,6 +11,7 @@ After an edit, run `npm run build` with the development server stopped.
 |---|---|
 | Event identity, opening time, venue, registration, contact, socials, home/footer/CTA copy | `event.ts` |
 | Track names, broad descriptions, reach, format, order, Tracks page copy, and expanded panel `details` | `tracks.ts` |
+| Published Quantum Biology brief, six panels, and participant resource/form release flags | `quantum-biology.ts` |
 | Three phases, sessions, and How It Works page copy | `schedule.ts` |
 | Confirmed partners, booth applications, and sponsorship contact copy | `sponsors.ts` |
 | Questions and cautious answers | `faq.ts` |
@@ -19,6 +20,20 @@ After an edit, run `npm run build` with the development server stopped.
 | Public design assets and base-path-safe URLs | `assets.ts` |
 
 ## Interest form and registration
+
+Quantum Biology has independent release controls in `biologyReleases`. To publish a
+participant resource or form, supply its approved `href` and set `enabled: true`.
+Both are required; calendar dates never activate links. Registration shows non-clickable
+"Opens 20 October" text; resource availability is "To be confirmed". Keep datasets, hidden tests, private organizer
+files, reference solutions, and the implementation handoff PDF out of public assets.
+The published brief is rendered as six challenge tabs plus a dedicated Hosts tab inside
+the existing track modal. The Hosts tab uses the previously supplied ASBMB description,
+logo and approved social links; the profile is not repeated under Overview.
+The newer Biology website-details document is the sole source for challenge content.
+Do not add older handoff rules, material-release dates, form types, classifier parameters,
+rubric weights or submission requirements absent from it. Keep the initial proposal
+deadline undecided and framework names out of the implementation requirements, per
+the user's explicit overrides. Existing track identity and approved host social links remain.
 
 Sign-up runs in two stages, and the shared control resolves the furthest stage that is
 actually open so the button label never overstates what the link does.
@@ -60,8 +75,9 @@ answers that say registration information will be published before registration 
 - `tentative`: a proposed programme detail that may change.
 - `tba`: no publishable detail yet.
 
-The six track cards show their broad direction, reach, delivery format, and planning
-status, without display codes. Keep proposed activities clearly labelled as
+The track cards show their broad direction, reach, delivery format, and current
+status, without display codes. Biology has a published challenge brief; the remaining
+tracks are in planning. Keep proposed activities clearly labelled as
 possibilities; add levels, judging criteria, partners, and prerequisites only after
 they are confirmed. Preserve track slugs because they are used as anchors and keys
 even when the public name changes.

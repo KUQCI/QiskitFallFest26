@@ -22,6 +22,8 @@ export interface Track {
   reach?: Reach;
   format?: Format;
   status: Status;
+  /** Optional published status text for a track with a released challenge brief. */
+  statusLabel?: string;
   partner?: string;
   highlights?: string[];
   /**
@@ -65,6 +67,8 @@ export interface TrackHost extends TrackOrganization {
  * `challenges` is set, the panel shows the shared "to be announced" notice instead.
  */
 export interface TrackDetails {
+  /** Published brief with one navigable panel visible at a time. */
+  brief?: TrackBrief;
   /** Overview paragraphs. Falls back to the track summary when omitted. */
   description?: string[];
   /** Only organizations that have agreed in writing to sponsor this track. */
@@ -78,6 +82,27 @@ export interface TrackDetails {
     links?: TrackLink[];
   };
   resources?: TrackLink[];
+}
+
+/** A resource stays unavailable until an approved URL and explicit release flag exist. */
+export interface TrackReleaseLink {
+  label: string;
+  href: string | null;
+  enabled: boolean;
+  availability: string;
+}
+
+export type TrackBriefBlock =
+  | { type: "paragraph" | "heading" | "note"; text: string }
+  | { type: "notice"; paragraphs: string[] }
+  | { type: "list"; ordered?: boolean; items: { title: string; text: string }[] }
+  | { type: "table"; columns: string[]; rows: string[][] }
+  | { type: "releases"; columns: [string, string]; items: TrackReleaseLink[] }
+  | { type: "links"; items: TrackLink[] };
+
+export interface TrackBrief {
+  navigationLabel: string;
+  panels: { id: string; title: string; blocks: TrackBriefBlock[]; showHosts?: boolean }[];
 }
 
 export interface Session {

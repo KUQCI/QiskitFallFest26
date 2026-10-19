@@ -5,9 +5,10 @@ import { useCallback, useEffect, useId, useLayoutEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 
 import { Badge } from "@/components/ui/primitives";
+import { TrackBriefTabs } from "@/components/TrackBriefTabs";
 import { CloseIcon, ExternalLinkIcon } from "@/components/ui/Icons";
 import type { TrackPanelCopy } from "@/content/tracks";
-import type { Track, TrackLink, TrackOrganization } from "@/content/types";
+import type { Track, TrackHost, TrackLink, TrackOrganization } from "@/content/types";
 import { cn, formatLabel, reachLabel, statusLabel } from "@/lib/utils";
 
 const EASE_OUT = "cubic-bezier(0.16, 1, 0.3, 1)";
@@ -237,7 +238,7 @@ export function TrackPanel({
 
   const details = track.details ?? {};
   const description = details.description?.length ? details.description : [track.summary];
-  const badge = statusLabel(track.status);
+  const badge = track.statusLabel ?? statusLabel(track.status);
   const hosts = track.hostedBy ?? [];
   // Hosts with only a name are already shown as labels in the header.
   const profiledHosts = hosts.filter((host) => host.logo || host.about?.length || host.links?.length);
@@ -271,11 +272,11 @@ export function TrackPanel({
             className={cn(
               "relative isolate flex items-start justify-between gap-4 overflow-hidden border-b border-border px-5 py-4 sm:px-8 sm:py-6",
               // Keep the title and close button below the banner, on the plain surface.
-              track.banner && "pt-28 sm:pt-36",
+              track.banner && (details.brief ? "pt-12 sm:pt-16" : "pt-28 sm:pt-36"),
             )}
           >
             {track.banner ? (
-              <span aria-hidden="true" className="track-banner pointer-events-none absolute inset-x-0 top-0 -z-10 h-32 sm:h-40">
+              <span aria-hidden="true" className={cn("track-banner pointer-events-none absolute inset-x-0 top-0 -z-10", details.brief ? "h-16 sm:h-20" : "h-32 sm:h-40")}>
                 <Image src={track.banner} alt="" fill sizes="(max-width: 1151px) 100vw, 1152px" className="object-cover" />
               </span>
             ) : null}
@@ -309,6 +310,13 @@ export function TrackPanel({
             </button>
           </header>
 
+          {details.brief ? (
+            <TrackBriefTabs
+              key={track.slug}
+              brief={details.brief}
+              hostProfiles={profiledHosts.length ? <HostProfiles hosts={profiledHosts} heading={copy.hostedByHeading} compact /> : null}
+            />
+          ) : (
           <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
             <div className="mx-auto max-w-3xl space-y-12 px-5 py-8 sm:px-8 sm:py-10">
               <PanelSection heading={copy.descriptionHeading}>
@@ -367,35 +375,36 @@ export function TrackPanel({
               ) : null}
 
               {profiledHosts.length ? (
-                <PanelSection heading={copy.hostedByHeading}>
-                  <div className="space-y-4">
-                    {profiledHosts.map((host) => (
-                      <div key={host.name} className="card flex flex-col gap-6 p-5 sm:flex-row sm:items-start sm:p-6">
-                        {host.logo ? (
-                          <div className="w-full shrink-0 sm:w-56">
-                            <OrganizationTile organization={host} />
-                          </div>
-                        ) : null}
-                        <div className="min-w-0 space-y-3">
-                          <p className="text-lg font-semibold text-fg">{host.name}</p>
-                          {host.about?.map((paragraph) => (
-                            <p key={paragraph} className="text-base leading-relaxed text-fg-muted">
-                              {paragraph}
-                            </p>
-                          ))}
-                          {host.links?.length ? <LinkList links={host.links} /> : null}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </PanelSection>
+                <HostProfiles hosts={profiledHosts} heading={copy.hostedByHeading} />
               ) : null}
             </div>
           </div>
+          )}
         </div>
       </div>
     </div>,
     document.body,
+  );
+}
+
+function HostProfiles({ hosts, heading, compact = false }: { hosts: TrackHost[]; heading: string; compact?: boolean }) {
+  return (
+    <PanelSection heading={heading}>
+      <div className="space-y-4">
+        {hosts.map((host) => (
+          <div key={host.name} className={cn("card flex flex-col gap-6 p-5 sm:p-6", !compact && "sm:flex-row sm:items-start")}>
+            {host.logo ? (
+              <div className="w-full shrink-0 sm:w-56"><OrganizationTile organization={host} /></div>
+            ) : null}
+            <div className="min-w-0 space-y-3">
+              <p className="text-lg font-semibold text-fg">{host.name}</p>
+              {host.about?.map((paragraph) => <p key={paragraph} className="text-base leading-relaxed text-fg-muted">{paragraph}</p>)}
+              {host.links?.length ? <LinkList links={host.links} /> : null}
+            </div>
+          </div>
+        ))}
+      </div>
+    </PanelSection>
   );
 }
 

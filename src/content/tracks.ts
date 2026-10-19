@@ -1,4 +1,5 @@
 import { fallFestAssets } from "./assets";
+import { quantumBiologyBrief } from "./quantum-biology";
 import type { Track, TrackHost } from "./types";
 
 /**
@@ -29,8 +30,9 @@ export const trackHosts = {
 } satisfies Record<string, TrackHost>;
 
 /**
- * Track names follow the organisers' proposal. Challenges, prerequisites, and judging
- * details remain unpublished while each track is developed. Stable slugs are preserved
+ * Track names follow the organisers' proposal. Planning tracks keep challenges,
+ * prerequisites and judging details unpublished. Biology has an approved brief.
+ * Stable slugs are preserved
  * so existing links continue to work when titles change.
  *
  * `details.description` is a temporary, challenge-focused overview approved by the
@@ -86,16 +88,15 @@ export const tracks: Track[] = [
     slug: "chemistry-drug-discovery",
     title: "Quantum Biology",
     summary:
-      "Explore potential applications of quantum computing across biology, chemistry, and the life sciences.",
+      "Use quantum optimization to identify a four-gene panel that distinguishes lung tumour from non-cancerous tissue, and compare your approach with classical methods.",
     reach: "national",
     format: "hybrid",
-    status: "planning",
+    status: "confirmed",
+    statusLabel: "Challenge brief available",
     hostedBy: [trackHosts.asbmb],
     banner: fallFestAssets.trackBanners.quantumBiology.src,
     details: {
-      description: [
-        "This track combines quantum machine learning with disease identification at the microscopic level. The challenge is being developed with the ASBMB Student Chapter at Khalifa University.",
-      ],
+      brief: quantumBiologyBrief,
     },
   },
   {

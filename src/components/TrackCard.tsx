@@ -31,7 +31,7 @@ export function TrackCard({
   expanded?: boolean;
 }) {
   const planning = variant === "planning";
-  const badgeLabel = statusLabel(track.status) ?? "Planning phase";
+  const badgeLabel = track.statusLabel ?? statusLabel(track.status) ?? "Planning phase";
   const interactive = Boolean(href || onOpen);
   const stretched =
     "text-left after:absolute after:inset-0 after:rounded-[14px] after:content-[''] focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:-outline-offset-4 focus-visible:after:outline-gold";
