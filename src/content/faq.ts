@@ -25,7 +25,7 @@ export const faqs: FaqItem[] = [
     category: "Getting started",
     question: "How do I sign up?",
     answer:
-      "Registration has not opened yet. Until it does, you can fill in a short form to be notified when it does: it asks for your name, email, institution, year of study, and which tracks you are interested in, which also helps the organizing team shape the programme around who wants to take part. Submitting it is not the same as registering, and the registration details will be published here first.",
+      "Each track has its own registration. Registration has not opened yet. Until it does, you can fill in a short form to be notified when it does: it asks for your name, email, institution, year of study, and which tracks you are interested in, which also helps the organizing team shape the programme around who wants to take part. Submitting it is not the same as registering, and the registration details will be published here first.",
   },
   {
     category: "Getting started",
@@ -73,7 +73,7 @@ export const faqs: FaqItem[] = [
     category: "Format",
     question: "Can I join from outside the UAE?",
     answer:
-      "The opening session will be available online internationally, and some later activities may also support online participation. Track-specific access and eligibility will be announced with the full track details.",
+      "The opening session will be available online internationally. Quantum Cybersecurity and Quantum Entertainment are international, virtual tracks. Quantum Cybersecurity consists of a single online CTF. Track-specific access and eligibility details will be published with each track's registration.",
   },
   {
     category: "Format",

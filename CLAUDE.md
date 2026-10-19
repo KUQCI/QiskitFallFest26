@@ -35,7 +35,9 @@ exports. See `src/content/README.md` for the file map.
 - Use `confirmed`, `planning`, `tentative`, and `tba` accurately.
 - The six tracks are in the **Planning phase**. National tracks are hybrid, except
   Quantum in the Metaverse (national, in person at the KU Metaverse Hub on Friday
-  30 October 2026, no qualifiers); international tracks are virtual; do not publish difficulty, prerequisites,
+  30 October 2026, no qualifiers). Quantum Cybersecurity is international and virtual,
+  with a single online CTF and no qualifier or separate final round. International tracks
+  are virtual. Each track has its own registration; do not publish difficulty, prerequisites,
   algorithms, datasets, or judging criteria yet. Track names follow the organisers'
   proposal, and each panel's short challenge-focused description is temporary.
 - Per-track hosts come from `trackHosts` in `src/content/tracks.ts` and are shown as

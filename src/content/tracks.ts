@@ -72,13 +72,13 @@ export const tracks: Track[] = [
     slug: "quantum-cybersecurity",
     title: "Quantum Cybersecurity",
     summary:
-      "A quantum cybersecurity capture-the-flag, exploring cryptography and the opportunities and challenges created by quantum technologies.",
-    reach: "national",
-    format: "hybrid",
+      "A single online quantum cybersecurity capture-the-flag (CTF) for international participants, exploring cryptography and quantum technologies.",
+    reach: "international",
+    format: "online",
     status: "planning",
     details: {
       description: [
-        "A quantum capture-the-flag (CTF) competition. You solve cybersecurity challenges built around quantum technologies and cryptography, first in an online qualifier CTF and then in a final CTF challenge.",
+        "A single online quantum capture-the-flag (CTF) competition open to international participants. You solve cybersecurity challenges built around quantum technologies and cryptography.",
       ],
     },
   },
@@ -141,7 +141,7 @@ export const tracksPageContent = {
   eyebrow: "Tracks",
   title: "Find your path into quantum",
   intro:
-    "Explore tracks ranging from quantum fundamentals to specialized applications. Each track runs independently, so participants can choose the area that best matches their interests.",
+    "Explore tracks ranging from quantum fundamentals to specialized applications. Each track runs independently and has its own registration, so participants can choose the area that best matches their interests.",
   note:
     "Note: Track details are currently in development, with challenges and full information to be announced soon.",
   /** Copy for the expandable track cards and the full-screen track panel. */
