@@ -14,7 +14,13 @@ export const trackHosts = {
     about: [
       "We're the ASBMB Student Chapter at Khalifa University, part of a larger international society dedicated to advancing biochemistry and molecular biology. Our purpose is simple: expose students to the field through real networking opportunities, connecting them with researchers, postgraduates, and industry professionals so they can see where this field can actually take them.",
     ],
-    links: [{ label: "Instagram", href: "https://www.instagram.com/ku.asbmb/" }],
+    links: [
+      { label: "Instagram", href: "https://www.instagram.com/ku.asbmb/" },
+      {
+        label: "LinkedIn",
+        href: "https://www.linkedin.com/company/american-society-of-biochemistry-and-molecular-biology-asbmb-at-ku/",
+      },
+    ],
   },
   mothQuantum: {
     name: "Moth Quantum",
