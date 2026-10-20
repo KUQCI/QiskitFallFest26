@@ -237,7 +237,6 @@ export const tracks: Track[] = [
         "https://discord.gg/sDh29KsG5",
         // "Submission link",
       ],
-      resourcesNote: "Links will be shared here.",
     },
   },
   {
