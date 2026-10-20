@@ -3,7 +3,8 @@ import Link from "next/link";
 
 import { Badge } from "@/components/ui/primitives";
 import { TrackCoverMark } from "@/components/TrackCoverMark";
-import { ArrowRightIcon } from "@/components/ui/Icons";
+import { TrackStatusBadge } from "@/components/TrackStatusBadge";
+import { ArrowRightIcon, CalendarIcon, MapPinIcon, UsersIcon } from "@/components/ui/Icons";
 import { tracksPageContent } from "@/content/tracks";
 import type { Track } from "@/content/types";
 import { cn, formatLabel, reachLabel } from "@/lib/utils";
@@ -33,6 +34,7 @@ export function TrackCard({
 }) {
   const planning = variant === "planning";
   const interactive = Boolean(href || onOpen);
+  const participation = track.participationLabel ?? track.teamSizeLabel;
   const stretched =
     "text-left after:absolute after:inset-0 after:rounded-[14px] after:content-[''] focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:-outline-offset-4 focus-visible:after:outline-gold";
 
@@ -44,6 +46,8 @@ export function TrackCard({
         "card track-summary-card group relative isolate flex h-full scroll-mt-28 flex-col overflow-hidden p-6",
         interactive && "card-interactive",
         track.coverIcon && "biology-track-card",
+        track.venueLabel && "track-venue-card",
+        track.subtitle && "track-subtitled-card",
       )}
     >
       <span
@@ -73,9 +77,9 @@ export function TrackCard({
             <TrackCoverMark icon={track.coverIcon} logo={track.coverLogo} logoAlt={`${track.hostedBy?.[0]?.name ?? track.title} logo`} />
             {track.statusLabels?.length ? (
               <div className="track-status-badges ml-auto flex flex-wrap justify-end gap-1.5">
-                {track.statusLabels.map((label) => (
-                  <span key={label} className={cn("inline-flex rounded-full", track.banner && "bg-surface")}>
-                    <Badge tone={planning ? "purple" : "neutral"}>{label}</Badge>
+                {track.statusLabels.filter(status => typeof status === "string" || status.cardPlacement !== "metadata").map((status) => (
+                  <span key={typeof status === "string" ? status : status.label} className={cn("inline-flex rounded-full", track.banner && "bg-surface")}>
+                    <TrackStatusBadge status={status} tone={planning ? "purple" : "neutral"} />
                   </span>
                 ))}
               </div>
@@ -102,6 +106,7 @@ export function TrackCard({
               track.title
             )}
           </h3>
+          {track.subtitle ? <p className="mt-1 text-xs font-semibold text-purple">{track.subtitle}</p> : null}
           <p className={cn("mt-3 text-sm leading-relaxed", track.banner ? "text-on-image" : "text-fg-muted")}>
             {track.summary}
           </p>
@@ -119,13 +124,19 @@ export function TrackCard({
         </p>
       ) : null}
 
-      {track.reach || track.format || track.tags?.length ? (
+      {track.venueLabel ? <p className="mt-4 flex items-start gap-2 text-xs leading-relaxed text-fg-muted"><MapPinIcon className="mt-0.5 h-4 w-4 shrink-0" />{track.venueLabel}</p> : null}
+
+      {track.reach || track.format || participation || track.tags?.length ? (
         <div className="track-card-tags mt-4 flex flex-wrap gap-2">
           {track.reach ? <Badge tone="sky">{reachLabel(track.reach)}</Badge> : null}
-          {track.format ? <Badge tone="neutral">{formatLabel(track.format)}</Badge> : null}
+          {track.format ? <Badge tone="neutral">{track.formatDisplayLabel ?? formatLabel(track.format)}</Badge> : null}
+          {participation ? <Badge tone="purple"><UsersIcon className="h-3.5 w-3.5 shrink-0" />{participation}</Badge> : null}
+          {track.statusLabels?.filter(status => typeof status !== "string" && status.cardPlacement === "metadata").map(status => <TrackStatusBadge key={typeof status === "string" ? status : status.label} status={status} />)}
           {track.tags?.map((tag) => <Badge key={tag} tone="purple">{tag}</Badge>)}
         </div>
       ) : null}
+
+      {track.deadlineLabel ? <p className="mt-3 flex items-start gap-2 text-xs leading-relaxed text-gold"><CalendarIcon className="mt-0.5 h-4 w-4 shrink-0" />{track.deadlineLabel}</p> : null}
 
       <div className="mt-auto flex items-center justify-between gap-4 pt-6">
         <span aria-hidden="true" className="block h-px w-12 bg-pink transition-[width] duration-300 group-hover:w-20" />

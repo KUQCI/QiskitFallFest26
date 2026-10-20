@@ -49,7 +49,8 @@ export const fallFestAssets = {
   logos: {
     /** Original vector wordmark from the official AD-OMICS website. */
     adOmics: imageAsset("adomics-logo.svg", "adomics-logo.svg"),
-    mothQuantum: imageAsset("moth-quantum-logo.png", "moth-quantum-logo.png"),
+    /** Latest vector lockup supplied by Moth Quantum. Black artwork on a white plate. */
+    mothQuantum: imageAsset("moth-lockup.svg", "moth-lockup.svg"),
     /** ASBMB Khalifa University Student Chapter, as supplied (white background). */
     asbmbKu: imageAsset("asbmb-ku-logo.png", "asbmb-ku-logo.png"),
     ibmQuantum: imageAsset("IBM Quantum.png", "IBM Quantum.png"),

@@ -33,8 +33,9 @@ exports. See `src/content/README.md` for the file map.
 
 - Never list a sponsor, speaker, department, or partner that has not agreed in writing.
 - Use `confirmed`, `planning`, `tentative`, and `tba` accurately.
-- All six tracks' challenges have been published (`status: "confirmed"`). The other
-  five tracks use the organisers' "Fall Fest '26 Tracks" document; keep their published
+- All six tracks' challenges have been published (`status: "confirmed"`). The tracks
+  use the organisers' "Fall Fest '26 Tracks" document except where the user's newer
+  approved briefs below override it; keep their published
   challenge statements, dates, judging, submissions, resources and Moth Quantum themes.
 - Quantum Biology's challenge brief is published with six challenge panels and a separate Hosts tab in
   `src/content/quantum-biology.ts`. The Hosts tab uses the supplied ASBMB description,
@@ -57,20 +58,52 @@ exports. See `src/content/README.md` for the file map.
   after initial submissions. Resource links stay disabled until approved URLs and explicit
   release flags are supplied; dates alone do not enable them. Do not publish the handoff
   PDF, datasets, private organizer files, hidden tests, or reference solutions.
-  National tracks are hybrid, except
-  Quantum in the Metaverse (national, in person at the KU Metaverse Hub on Friday
-  30 October 2026, no qualifiers). Quantum Cybersecurity is international and virtual,
-  with a single online CTF and no qualifier or separate final round. International tracks
+  National tracks include hybrid competitions and entirely in-person challenges.
+  Quantum Foundations uses the user's newer four-panel `quantum-foundations.ts` brief,
+  preserving the `first-qubit` slug. It is the High School Track: National, In person,
+  individual participation at Khalifa University on 31 October 2026. Registration
+  opens 23 October 2026; its independent approved form URL remains unset. Require
+  that UAE date, an explicit release flag and an approved URL; support `closed: true`.
+  Keep Limited spots and email confirmation clear. Do not copy Metaverse's first-come
+  allocation policy or invent equipment requirements, assessment rules, hours, prizes,
+  deadlines, total capacity, specific rooms or additional eligibility restrictions.
+  Quantum in the Metaverse uses the user's newer four-panel `quantum-metaverse.ts`
+  brief: National, In person, individual registration opening 22 October 2026 and a
+  single-day VR challenge at Khalifa University's MetaHub Lab on 30 October. Groups
+  of 12 are scheduled sessions, not teams or total capacity. Slots are allocated first
+  come, first served by submission time, with organizer confirmation by email.
+  Its independent registration URL remains unset. Require an approved URL, explicit
+  release flag and UAE opening date; `closed: true` overrides them all. Preserve the
+  limited-slot note beside the action. Do not invent hours, deadlines, capacity,
+  prizes, prerequisites or required laptops. Quantum Cybersecurity uses the user's newer four-panel
+  brief in `src/content/quantum-cybersecurity.ts`, overriding the older track document.
+  It is international and online, for 1–4 participants. Registration opens 22 October
+  2026; the CTF is on 30 October. Its form and platform URLs are independent of global
+  registration and remain unset. A form needs an approved URL, an explicit release flag
+  and the opening date to be reached in UAE time; the date alone never enables it.
+  Do not invent an opening hour, competition hours, deadline, prizes or eligibility rules.
+  International tracks
   are virtual. Each track has its own registration. For tracks other than Biology,
-  publish only details present in that track document. Registration and resource URLs
+  publish only details present in that track document or the user's explicit updates. Registration and resource URLs
   were not supplied; do not invent them. Track names follow the organisers' proposal.
   National tracks have in-person days on 30 October, 31 October or 1 November, with
-  Quantum in the Metaverse at the MetaHub Lab on 30 October. The international
+  Quantum in the Metaverse at the MetaHub Lab on 30 October and Quantum Foundations
+  at Khalifa University on 31 October. The international
   Quantum Cybersecurity CTF runs online on 30 October.
 - Per-track hosts come from `trackHosts` in `src/content/tracks.ts` and are shown as
   "Hosted by" labels. Confirmed so far: ASBMB Student Chapter at Khalifa University
-  (Quantum Biology) and Moth Quantum (Media with Moth). QCI and NYUAD are the
+  (Quantum Biology) and Moth Quantum (Quantum in Media). QCI and NYUAD are the
   overall organisers and are not added to individual tracks.
+- Quantum in Media preserves the `quantum-media` slug and Moth's approved themes and
+  clickable resources. The challenge is live. Submissions are due 30 October 2026,
+  11:59 PM Pacific Time; submission details will be shared soon. Use the supplied
+  `moth-lockup.svg` on white logo plates, including the technical sponsor display.
+- The supplied premiere HTML is a visual reference only; its dates, rules, framework
+  restrictions and challenge text are outdated. `TrackVisual` adapts its five animated
+  illustrations with theme tokens, responsive canvases, reduced-motion stills and
+  pausing offscreen/in background tabs. Foundations gates stay hidden; CTF shows no
+  flag values or private model data. QML's comparison is explicitly illustrative.
+  Keep Biology artwork and content unchanged.
 - Do not invent attendance numbers, eligibility rules, team rules, workloads, closing
   dates, speaker formats, or selection processes.
 - Keep the empty `speakers` array until people agree to be announced.

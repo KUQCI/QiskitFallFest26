@@ -57,7 +57,7 @@ export const phases: Phase[] = [
     title: "Development Period",
     dateRange: "From Opening Day to the closing showcase",
     summary:
-      "Participants work on their track challenges over the development period, with workshops, technical sessions, mentorship, and other guidance from organizers and track partners. Some tracks may include intermediate submissions or shortlisting ahead of the closing showcase.",
+      "Participants work on their track challenges over the development period, with workshops, technical sessions, mentorship, and other guidance from organizers and track partners. Some tracks may include intermediate submissions or shortlisting ahead of the closing showcase. Quantum in the Metaverse runs as a single-day, in-person challenge at Khalifa University’s MetaHub Lab on 30 October 2026. Quantum Foundations takes place entirely in person at Khalifa University on 31 October 2026, with individual participation for high school students.",
     status: "confirmed",
     sessions: [
       {

@@ -555,7 +555,14 @@ p {
   flex-shrink: 0;
   border: 1px solid var(--c-border-strong);
   border-radius: .75rem;
-  background: var(--c-image-scrim);
+  background: var(--c-logo-plate);
+}
+
+.track-visual {
+  overflow: hidden;
+  border: 1px solid var(--c-border);
+  border-radius: 1rem;
+  background: radial-gradient(ellipse at 50% 40%, color-mix(in srgb, var(--c-purple) 7%, var(--c-surface)), var(--c-surface));
 }
 
 .biology-track-card .track-banner-behind img {
@@ -575,7 +582,12 @@ p {
 .biology-track-card .track-banner-behind { mask-image: none; }
 .track-card-masthead { min-height: 2rem; }
 .track-status-badges > span > span { padding-inline: .5rem; font-size: .6rem; line-height: 1.4; letter-spacing: .03em; }
+.track-date-badge { text-transform: none; letter-spacing: 0; }
+.track-status-badges > span > .track-date-badge { font-size: .6875rem; line-height: 1.5; letter-spacing: 0; }
+.track-status-badges:has(.track-date-badge) { justify-content: flex-start; margin-left: 0; }
 .biology-track-card h3 { margin-top: .75rem; }
+.track-venue-card h3 { font-size: 1.25rem; }
+.track-venue-card .track-card-tags { margin-top: .75rem; }
 .track-card-masthead .track-cover-icon { width: 2rem; height: 2rem; border-radius: .6rem; }
 .track-card-masthead .track-host-mark { width: 7rem; min-height: 2rem; padding: .4rem .65rem; }
 .track-summary-grid { grid-auto-rows: 1fr; }
@@ -591,6 +603,20 @@ p {
   .track-summary-card > div:last-child { padding-top: 1rem; }
   .track-card-tags > span { letter-spacing: .03em; }
 }
+
+.track-subtitled-card > p,
+.track-subtitled-card .track-card-tags { margin-top: .5rem; }
+.track-subtitled-card h3 ~ p:last-child { margin-top: .5rem; }
+.track-subtitled-card > div:last-child { padding-top: .75rem; }
+
+.track-text-brief-cover {
+  flex-shrink: 0;
+  padding: 1rem 4.25rem 1rem 1.25rem;
+}
+.track-text-brief-cover h2 { margin-top: .625rem; font-size: clamp(1.25rem, 2vw, 1.75rem); }
+.track-text-brief-cover .track-date-badge { font-size: .6875rem; }
+.track-text-brief-cover > button { position: absolute; right: 1.25rem; top: 1rem; }
+.track-brief-metadata > span:not(.track-date-badge) { font-size: .6rem; }
 
 .biology-panel-cover {
   padding: 1rem 4.25rem 1rem 4.5rem;

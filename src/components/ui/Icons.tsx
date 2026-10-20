@@ -27,6 +27,31 @@ export function CalendarIcon({ className }: IconProps) {
   );
 }
 
+export function StudentIcon({ className }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <path d="m2 8 10-5 10 5-10 5-10-5ZM6 10v6c4 3 8 3 12 0v-6M22 8v8" />
+    </svg>
+  );
+}
+
+export function FlagIcon({ className }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <path d="M5 21V3c5-4 9 4 14 0v11c-5 4-9-4-14 0" />
+    </svg>
+  );
+}
+
+export function VrHeadsetIcon({ className }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <path d="M7 6V4h10v2M5 7h14a3 3 0 0 1 3 3v5a3 3 0 0 1-3 3h-3l-4-3-4 3H5a3 3 0 0 1-3-3v-5a3 3 0 0 1 3-3Z" />
+      <path d="M7 10v3M17 10v3" />
+    </svg>
+  );
+}
+
 export function MapPinIcon({ className }: IconProps) {
   return (
     <svg {...base} className={className}>

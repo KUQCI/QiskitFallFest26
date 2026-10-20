@@ -6,8 +6,10 @@ import { createPortal } from "react-dom";
 
 import { Badge } from "@/components/ui/primitives";
 import { TrackBriefTabs } from "@/components/TrackBriefTabs";
+import { TrackVisual } from "@/components/TrackVisual";
 import { TrackCoverMark } from "@/components/TrackCoverMark";
-import { CloseIcon, ExternalLinkIcon } from "@/components/ui/Icons";
+import { TrackStatusBadge } from "@/components/TrackStatusBadge";
+import { CloseIcon, ExternalLinkIcon, MapPinIcon, UsersIcon } from "@/components/ui/Icons";
 import type { TrackPanelCopy } from "@/content/tracks";
 import type { Track, TrackHost, TrackLink, TrackOrganization } from "@/content/types";
 import { cn, formatLabel, reachLabel } from "@/lib/utils";
@@ -238,6 +240,7 @@ export function TrackPanel({
   }
 
   const details = track.details ?? {};
+  const participation = track.participationLabel ?? track.teamSizeLabel;
   const description = details.description?.length ? details.description : [track.summary];
   const hosts = track.hostedBy ?? [];
   // Hosts with only a name are already shown as labels in the header.
@@ -275,6 +278,7 @@ export function TrackPanel({
               // Keep the title and close button below the banner, on the plain surface.
               track.banner && (details.brief ? "pt-12 sm:pt-16" : "pt-28 sm:pt-36"),
               track.coverIcon && "biology-panel-cover",
+              details.brief && !track.banner && "track-text-brief-cover",
             )}
           >
             {track.banner ? (
@@ -285,14 +289,17 @@ export function TrackPanel({
             {track.coverIcon ? <div aria-hidden="true" className="biology-panel-icon"><TrackCoverMark icon={track.coverIcon} /></div> : null}
             <div className="min-w-0">
               {track.coverLogo ? <div className="mb-4"><TrackCoverMark logo={track.coverLogo} logoAlt={`${track.hostedBy?.[0]?.name ?? track.title} logo`} /></div> : null}
-              <div className="flex flex-wrap gap-2">
-                {track.statusLabels?.map((label) => <Badge key={label} tone="purple">{label}</Badge>)}
+              <div className={cn("flex flex-wrap gap-2", details.brief && !track.banner && "track-brief-metadata")}>
+                {track.statusLabels?.map((status) => <TrackStatusBadge key={typeof status === "string" ? status : status.label} status={status} />)}
                 {track.reach ? <Badge tone="sky">{reachLabel(track.reach)}</Badge> : null}
-                {track.format ? <Badge tone="neutral">{formatLabel(track.format)}</Badge> : null}
+                {track.format ? <Badge tone="neutral">{track.formatDisplayLabel ?? formatLabel(track.format)}</Badge> : null}
+                {participation ? <Badge tone="purple"><UsersIcon className="h-3.5 w-3.5 shrink-0" />{participation}</Badge> : null}
               </div>
               <h2 id={titleId} className="mt-3 text-2xl font-semibold text-fg sm:text-3xl lg:text-4xl">
                 {track.title}
               </h2>
+              {track.subtitle ? <p className="mt-1 text-xs font-semibold text-purple">{track.subtitle}</p> : null}
+              {track.venueLabel ? <p className="mt-2 flex items-start gap-2 text-xs leading-relaxed text-fg-muted"><MapPinIcon className="mt-0.5 h-4 w-4 shrink-0" />{track.venueLabel}</p> : null}
               {hosts.length ? (
                 <p className="mt-3 flex flex-wrap items-center gap-2 text-sm text-fg-muted">
                   {copy.hostedByHeading}{" "}
@@ -329,6 +336,7 @@ export function TrackPanel({
                     <p key={paragraph}>{paragraph}</p>
                   ))}
                 </div>
+                {details.overviewVisual ? <div className="mt-6"><TrackVisual kind={details.overviewVisual} /></div> : null}
               </PanelSection>
 
               {details.dates?.length ? (

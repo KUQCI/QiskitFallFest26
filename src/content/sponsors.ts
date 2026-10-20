@@ -42,7 +42,7 @@ export const technicalSponsors: Partner[] = [
     kind: "Technical sponsor",
     url: "https://mothquantum.com/",
     logo: fallFestAssets.logos.mothQuantum.src,
-    logoOnDark: true,
+    logoOnDark: false,
     status: "confirmed",
   },
 ];

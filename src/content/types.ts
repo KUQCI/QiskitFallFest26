@@ -16,14 +16,21 @@ export interface Track {
   /** Stable internal anchor. Preserve this when a visible track name changes. */
   slug: string;
   title: string;
+  subtitle?: string;
   summary: string;
   description?: string;
   level?: Level;
   reach?: Reach;
   format?: Format;
+  /** Optional approved wording without changing other tracks' format labels. */
+  formatDisplayLabel?: string;
+  teamSizeLabel?: string;
+  participationLabel?: string;
+  venueLabel?: string;
+  deadlineLabel?: string;
   status: Status;
   /** Explicitly approved status chips. Omit until that track's labels are agreed. */
-  statusLabels?: string[];
+  statusLabels?: (string | TrackStatusLabel)[];
   /** Approved descriptive chips, shown on the card and published brief. */
   tags?: string[];
   /** Decorative artwork and host branding in the card/popup cover. */
@@ -43,6 +50,14 @@ export interface Track {
   banner?: string;
   /** Content for the expanded track panel. Every field is optional; empty sections are hidden. */
   details?: TrackDetails;
+}
+
+export interface TrackStatusLabel {
+  label: string;
+  tone: "gold" | "sky" | "purple";
+  icon?: "calendar" | "flag";
+  /** Keep descriptive availability beside the card's category/format chips. */
+  cardPlacement?: "metadata";
 }
 
 export interface TrackLink {
@@ -88,6 +103,8 @@ export interface TrackChallengeThemeGroup {
  * notice instead.
  */
 export interface TrackDetails {
+  /** Decorative overview artwork; it never supplies challenge rules. */
+  overviewVisual?: TrackVisualKind;
   /** Profiles in Hosts, without adding partners to the track's Hosted by labels. */
   hostPartners?: TrackHost[];
   /** Published brief with one navigable panel visible at a time. */
@@ -128,14 +145,35 @@ export interface TrackReleaseLink {
   availability: string;
 }
 
+/** Date is an earliest-day guard; enabled confirms the organizer has opened the form. */
+export interface TrackRegistration {
+  href: string | null;
+  enabled: boolean;
+  opensOn: string;
+  timeZone: string;
+  label: string;
+  beforeLabel: string;
+  unavailableLabel: string;
+  /** Closure overrides the URL, release flag and opening date. */
+  closed?: boolean;
+  closedLabel?: string;
+  note?: string;
+}
+
 export type TrackBriefBlock =
   | { type: "paragraph" | "heading" | "note"; text: string; presentation?: "spotlight" }
   | { type: "notice"; paragraphs: string[] }
-  | { type: "list"; ordered?: boolean; presentation?: "cards" | "steps"; items: { title: string; text: string }[] }
+  | { type: "list"; ordered?: boolean; presentation?: "cards" | "steps" | "compact-steps"; items: { title: string; text: string }[] }
   | { type: "table"; presentation?: "timeline"; columns: string[]; rows: string[][] }
   | { type: "visual"; src: string; motion?: "float" | "wave" }
+  | { type: "circuit-motif" }
+  | { type: "track-visual"; kind: TrackVisualKind }
   | { type: "releases"; presentation?: "cta"; columns: [string, string]; items: TrackReleaseLink[] }
+  | { type: "registration"; registration: TrackRegistration }
+  | { type: "facts"; columns?: 2 | 3; items: { label: string; value: string; icon: "location" | "headset" | "users" | "students" | "calendar" }[] }
   | { type: "links"; items: TrackLink[] };
+
+export type TrackVisualKind = "circuit" | "qml" | "bloch" | "ctf" | "media";
 
 export interface TrackBrief {
   navigationLabel: string;

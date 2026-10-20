@@ -2,9 +2,12 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 
-import { ArrowRightIcon, ExternalLinkIcon, SparkIcon } from "@/components/ui/Icons";
+import { ArrowRightIcon, CalendarIcon, ExternalLinkIcon, MapPinIcon, SparkIcon, StudentIcon, UsersIcon, VrHeadsetIcon } from "@/components/ui/Icons";
 import { Badge } from "@/components/ui/primitives";
 import { BiologyArtwork } from "@/components/BiologyArtwork";
+import { CircuitMotif } from "@/components/CircuitMotif";
+import { TrackVisual } from "@/components/TrackVisual";
+import { TrackRegistrationAction } from "@/components/TrackRegistrationAction";
 import type { TrackBrief, TrackBriefBlock } from "@/content/types";
 import { cn } from "@/lib/utils";
 
@@ -140,8 +143,27 @@ function BriefBlock({ block }: { block: TrackBriefBlock }) {
           <BiologyArtwork src={block.src} />
         </figure>
       );
+    case "circuit-motif":
+      return <CircuitMotif />;
+    case "track-visual":
+      return <TrackVisual kind={block.kind} />;
     case "list": {
       const List = block.ordered ? "ol" : "ul";
+      if (block.presentation === "compact-steps") {
+        return (
+          <List className="space-y-3">
+            {block.items.map((item, index) => (
+              <li key={item.title} className="biology-detail-card flex items-start gap-4">
+                <span aria-hidden="true" className="biology-step-number">{index + 1}</span>
+                <div className="min-w-0">
+                  <strong className="block text-base font-semibold text-fg">{item.title}</strong>
+                  <p className="mt-1 text-sm leading-relaxed text-fg-muted">{item.text}</p>
+                </div>
+              </li>
+            ))}
+          </List>
+        );
+      }
       return (
         <List className={cn(
           block.presentation ? "grid gap-4 sm:grid-cols-2" : "space-y-5 pl-5 text-base leading-relaxed text-fg-muted marker:text-pink",
@@ -209,6 +231,22 @@ function BriefBlock({ block }: { block: TrackBriefBlock }) {
             </li>
           ))}
         </ul>
+      );
+    case "registration":
+      return <TrackRegistrationAction registration={block.registration} />;
+    case "facts":
+      return (
+        <dl className={cn("grid gap-3", block.columns === 2 ? "sm:grid-cols-2" : "sm:grid-cols-3")}>
+          {block.items.map((item) => {
+            const Icon = item.icon === "location" ? MapPinIcon : item.icon === "headset" ? VrHeadsetIcon : item.icon === "students" ? StudentIcon : item.icon === "calendar" ? CalendarIcon : UsersIcon;
+            return (
+              <div key={item.label} className="biology-detail-card">
+                <dt className="text-sm font-semibold text-fg"><Icon className="mb-3 h-5 w-5 text-purple" />{item.label}</dt>
+                <dd className="mt-2 text-sm leading-relaxed text-fg-muted">{item.value}</dd>
+              </div>
+            );
+          })}
+        </dl>
       );
     case "links":
       return (

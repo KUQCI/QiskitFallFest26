@@ -12,12 +12,16 @@ After an edit, run `npm run build` with the development server stopped.
 | Event identity, opening time, venue, registration, contact, socials, home/footer/CTA copy | `event.ts` |
 | Track names, broad descriptions, reach, format, order, Tracks page copy, and expanded panel `details` | `tracks.ts` |
 | Published Quantum Biology brief, six panels, and participant resource/form release flags | `quantum-biology.ts` |
+| Quantum Cybersecurity four-panel brief, date labels, independent registration and platform configuration | `quantum-cybersecurity.ts` |
+| Quantum in the Metaverse four-panel brief, venue, date labels and independent registration controls | `quantum-metaverse.ts` |
+| Quantum Foundations four-panel brief, high-school audience, date labels and independent registration controls | `quantum-foundations.ts` |
 | Three phases, sessions, and How It Works page copy | `schedule.ts` |
 | Confirmed partners, booth applications, and sponsorship contact copy | `sponsors.ts` |
 | Questions and cautious answers | `faq.ts` |
 | Organizer, advisor, past events, R&D projects, and speakers | `team.ts` |
 | Learning links and shared section copy | `resources.ts` |
 | Public design assets and base-path-safe URLs | `assets.ts` |
+| Labels for decorative track animations; no challenge rules or measured results | `track-visuals.ts` |
 
 ## Interest form and registration
 
@@ -51,8 +55,61 @@ elements. Keep illustrations after their explanatory copy, retain reduced-motion
 and keep the compact popup header so the selected panel has room to scroll. The track
 directory groups national tracks before international tracks, with uniform card spacing.
 Track status chips are opt-in through `statusLabels`. Only Biology currently shows
-"Challenge live" and "Submissions open"; leave other tracks' status chips unset until
-the user supplies their individual updates. A confirmed track never adds a chip by itself.
+"Challenge live" and "Submissions open". Cybersecurity now uses the user's approved
+registration and CTF date badges, with separate gold and sky tones. Metaverse uses its
+registration/challenge date labels and Limited slots notice. Foundations uses its own
+23 October registration / 31 October challenge dates and Limited spots notice. Leave the remaining tracks'
+status chips unset until the user supplies their individual updates. A confirmed track
+never adds a chip by itself.
+
+Cybersecurity's newer approved content is in `quantum-cybersecurity.ts`, with four
+panels inside the same modal: Overview, How It Works, Participation & Registration,
+and Schedule & Preparation. Registration opens 22 October 2026 and the online CTF
+takes place on 30 October. Set `cybersecurityLinks.registration.href` to the approved
+form and `enabled: true` only when registration has actually opened. The UAE calendar
+date is an additional guard, not a guessed opening hour. Without both an approved URL
+and release flag the action remains unavailable, including after 22 October. Keep
+`competitionPlatform` separate and unset until supplied. The global interest form must
+never register someone for this track. Do not add Biology rules to Cybersecurity.
+
+Metaverse's approved four-panel brief is in `quantum-metaverse.ts`, preserving the
+`peaked-circuits` slug. It is National, In person, with individual registration.
+Registration opens 22 October 2026; the VR challenge is at Khalifa University's
+MetaHub Lab on 30 October. Groups of 12 are scheduled sessions, not teams or capacity.
+Slots are first come, first served by registration submission time, with organizer
+confirmation by email. No form URL has been supplied. Set `metaverseRegistration.href`
+to the approved form and `enabled: true` only when registration is actually open.
+The UAE calendar date is an additional guard. Set `closed: true` to show Registration
+closed and remove the link regardless of the date, URL or release flag. Keep the
+limited-slot/email-confirmation note beside the registration action in every state.
+No booking system, automated emails, capacity counters or invented session hours.
+
+Foundations uses `quantum-foundations.ts`, preserving the `first-qubit` slug and
+Quantum Foundations / High School Track identity. It is National and entirely
+In person at Khalifa University, with individual participation for high school students.
+Registration opens 23 October 2026; the challenge takes place on 31 October. Set
+`foundationsRegistration.href` to the approved form and `enabled: true` only when
+registration has actually opened. The UAE date guards against early release, while
+`closed: true` overrides the URL, date and release flag. No form URL has been supplied.
+Keep the limited-spots/email-confirmation note beside the action in every state.
+An allocation policy has not been confirmed: do not copy Metaverse's first-come rule.
+The circuit motif is decorative, with no actual gate choices, target or solution.
+Keep event timings unconfirmed; do not invent hours, rooms, deadlines, capacity,
+scoring rules, mandatory software/laptops, prizes or further eligibility restrictions.
+
+The newer premiere HTML supplies visual references only, never replacement challenge
+copy. `TrackVisual` and `track-visuals/draw.ts` adapt its circuit, model comparison,
+Bloch sphere, CTF query flow and media pixel field. The Foundations circuit keeps its
+missing gates hidden, while the CTF contains no actual flags or challenge data.
+QML's comparison carries an illustration caption rather than presenting benchmark
+results. Canvases read the existing theme tokens, pause offscreen and in hidden tabs,
+and render a complete static frame under reduced motion. Biology is unchanged.
+
+Quantum in Media (stable slug `quantum-media`) is hosted by Moth Quantum. Its challenge
+is live, with a submission deadline of 30 October 2026, 11:59 PM Pacific Time.
+Submission details will be shared soon. Preserve the published themes and clickable
+platform/video/Discord links. The new supplied `moth-lockup.svg` is the canonical
+Moth logo, shown on white plates in the track and technical sponsors.
 
 Sign-up runs in two stages, and the shared control resolves the furthest stage that is
 actually open so the button label never overstates what the link does.
@@ -94,10 +151,10 @@ answers that say registration information will be published before registration 
 - `tentative`: a proposed programme detail that may change.
 - `tba`: no publishable detail yet.
 
-The six track cards show a one-line challenge summary, reach, delivery format, and
-status. A track-specific `statusLabel` takes priority; otherwise a `confirmed` track
-shows the `panel.announcedLabel` badge. Biology uses its dedicated approved brief and
-seven-tab popup; the other tracks use the organisers' track document.
+The six track cards show a challenge summary, reach, delivery format, and explicitly
+approved `statusLabels`, which can be strings or date badges with a tone and icon.
+Biology uses its dedicated seven-tab popup; Cybersecurity, Metaverse and Foundations use their
+newer four-panel briefs. The other tracks use the organisers' track document.
 Add levels, partners, prerequisites, and
 links only after they are confirmed. Preserve track slugs because they are used as
 anchors and keys even when the public name changes.

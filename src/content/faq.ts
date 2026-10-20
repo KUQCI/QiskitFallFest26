@@ -37,7 +37,7 @@ export const faqs: FaqItem[] = [
     category: "Getting started",
     question: "What do I need to bring?",
     answer:
-      "For in-person activities, participants should expect to bring a laptop. Any required software, accounts, datasets, or other track-specific resources will be communicated before the event.",
+      "Equipment and preparation requirements depend on the track. Quantum in the Metaverse provides VR headsets; check your email for preparation instructions. Any required software, accounts, datasets, or other track-specific resources will be communicated before the event.",
   },
   {
     category: "Getting started",
@@ -67,13 +67,13 @@ export const faqs: FaqItem[] = [
     category: "Format",
     question: "What does hybrid actually mean here?",
     answer:
-      "The opening session will be available at Khalifa University and online internationally. Most national tracks are planned as hybrid, the Quantum in the Metaverse track runs in person, and international tracks are planned as virtual. Each track is labelled on the Tracks page.",
+      "The opening session will be available at Khalifa University and online internationally. National tracks include hybrid competitions and entirely in-person challenges. Quantum Foundations runs entirely in person at Khalifa University on 31 October 2026, and Quantum in the Metaverse runs in person on 30 October. International tracks are virtual. Each track is labelled on the Tracks page.",
   },
   {
     category: "Format",
     question: "Can I join from outside the UAE?",
     answer:
-      "The opening session will be available online internationally. Quantum Cybersecurity and Media with Moth are international, virtual tracks. Quantum Cybersecurity consists of a single online CTF. Track-specific access and eligibility details will be published with each track's registration.",
+      "The opening session will be available online internationally. Quantum Cybersecurity and Quantum in Media are international, virtual tracks. Quantum Cybersecurity consists of a single online CTF. Track-specific access and eligibility details will be published with each track's registration.",
   },
   {
     category: "Format",

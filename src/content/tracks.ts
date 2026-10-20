@@ -1,5 +1,8 @@
 import { fallFestAssets } from "./assets";
 import { biologyTags, quantumBiologyBrief } from "./quantum-biology";
+import { cybersecurityDateLabels, quantumCybersecurityBrief } from "./quantum-cybersecurity";
+import { metaverseStatusLabels, metaverseVenue, quantumMetaverseBrief } from "./quantum-metaverse";
+import { foundationsStatusLabels, quantumFoundationsBrief } from "./quantum-foundations";
 import { adOmics } from "./sponsors";
 import type { Track, TrackHost } from "./types";
 
@@ -28,7 +31,7 @@ export const trackHosts = {
     name: "Moth Quantum",
     url: "https://mothquantum.com/",
     logo: fallFestAssets.logos.mothQuantum.src,
-    logoOnDark: true,
+    logoOnDark: false,
   },
 } satisfies Record<string, TrackHost>;
 
@@ -39,9 +42,9 @@ export const trackHosts = {
  * Challenge statements, judging, submissions, resources, and dates come from the
  * organisers' track document released at the 19 October premiere. Biology uses its
  * separate, latest approved brief in `quantum-biology.ts` and the user's overrides.
- * Registration links
- * and resource URLs were not yet supplied: add them to `resources` or
- * `submission.links` when they are shared, and do not fill a gap with a guess.
+ * Cybersecurity, Metaverse and Foundations use their newer approved four-panel
+ * briefs and independent registration controls. Other resource and submission links go in
+ * `resources` or `submission.links` only when supplied; never fill a gap with a guess.
  *
  * `details` feeds the expanded track panel (`/tracks/#<slug>`). Leave a field out until
  * it is confirmed; the panel hides empty sections.
@@ -50,21 +53,17 @@ export const tracks: Track[] = [
   {
     slug: "first-qubit",
     title: "Quantum Foundations",
+    subtitle: "High School Track",
     summary:
-      "For high school students: complete unfinished quantum circuits so they produce a target output or setup.",
+      "Complete unfinished quantum circuits by filling in the missing gates to achieve a specified target output or quantum state.",
     reach: "national",
-    format: "hybrid",
+    format: "in-person",
+    participationLabel: "Individual",
+    venueLabel: "Khalifa University",
     status: "confirmed",
+    statusLabels: foundationsStatusLabels,
     details: {
-      description: [
-        "Reserved for high schoolers, this track introduces participants to quantum circuit design. Participants will be provided with incomplete quantum circuits, and must fill in the blanks in the circuit to achieve a certain output or setup.",
-      ],
-      dates: ["31 October 2026: in-person competition at Khalifa University."],
-      challenge: [
-        "Participants take on circuit-building challenges. \
-        You will be given incomplete quantum circuits and must fill in the blanks so that each circuit achieves a given output or setup.",
-        "Registration for the in-person challenge will be shared soon."
-      ],
+      brief: quantumFoundationsBrief,
     },
   },
   {
@@ -76,6 +75,7 @@ export const tracks: Track[] = [
     format: "hybrid",
     status: "confirmed",
     details: {
+      overviewVisual: "qml",
       description: [
         "Push past conventional machine learning by bringing quantum techniques to a real healthcare problem, and show what they add.",
       ],
@@ -101,32 +101,15 @@ export const tracks: Track[] = [
     slug: "quantum-cybersecurity",
     title: "Quantum Cybersecurity",
     summary:
-      "A Quantum CTF on model extraction: query quantum machine learning models to uncover hidden details and capture flags.",
+      "Query quantum machine learning models, uncover protected information and capture flags in an online model-extraction competition.",
     reach: "international",
     format: "online",
+    formatDisplayLabel: "Online",
+    teamSizeLabel: "1–4 participants",
     status: "confirmed",
+    statusLabels: cybersecurityDateLabels,
     details: {
-      description: [
-        "A Capture the Flag (CTF) competition that investigates the security of quantum machine learning, focused on model extraction.",
-      ],
-      dates: ["30 October 2026: a standalone online CTF. Exact timings will be announced."],
-      challenge: [
-        "Teams interact with quantum machine learning models through provided interfaces, using the information revealed by their inputs and outputs to uncover hidden details and capture flags.",
-        "The aim is to explore how access to a model's predictions can expose protected information about its internal behaviour. You may adapt existing model-stealing techniques or develop your own strategies. Each challenge specifies its objectives, access conditions, and flag submission requirements.",
-      ],
-      judging: [
-        "The competition rewards analytical reasoning, creative problem solving, and effective extraction strategies. Teams are ranked by the total points earned from successfully captured flags.",
-      ],
-      submission: {
-        how: ["Submit flags according to the requirements specified for each challenge."],
-      },
-      resourceItems: [
-        "Competition platform",
-        "Challenge instructions",
-        "Model access interfaces",
-        "Supporting guides and introductory workshops",
-      ],
-      resourcesNote: "Links and availability will be announced.",
+      brief: quantumCybersecurityBrief,
     },
   },
   {
@@ -154,19 +137,25 @@ export const tracks: Track[] = [
   },
   {
     slug: "quantum-media",
-    title: "Media with Moth",
+    title: "Quantum in Media",
     coverLogo: fallFestAssets.logos.mothQuantum.src,
     summary:
       "Use Moth Quantum's media engines to make images, sound, video, games, or apps, with or without code.",
     reach: "international",
     format: "online",
     status: "confirmed",
+    statusLabels: ["Challenge live"],
+    deadlineLabel: "30 October · 11:59 PM Pacific Time",
     hostedBy: [trackHosts.mothQuantum],
     details: {
+      overviewVisual: "media",
       description: [
         "Create with Moth Quantum's quantum media engines: Atlas API, Tessa, Blur, and the Entanglement Shader.",
       ],
       dates: ["30 October 2026, 11:59 PM Pacific Time: submission deadline."],
+      submission: {
+        how: ["Submission details will be shared soon."],
+      },
       challenge: [
         "Use Moth's quantum media engines to process, generate, or build media applications or artifacts. Submissions are split into two tiers: projects made on the online platform, and projects that use the Atlas API in code. Pick a theme from either tier.",
       ],
@@ -242,29 +231,15 @@ export const tracks: Track[] = [
     slug: "peaked-circuits",
     title: "Quantum in the Metaverse",
     summary:
-      "In VR at Khalifa University's MetaHub Lab, build gate sequences that steer a qubit along a path on the Bloch sphere.",
+      "Use VR to arrange quantum gates and guide a virtual qubit along a path on the Bloch sphere. Compete on completion time and accuracy.",
     reach: "national",
     format: "in-person",
+    participationLabel: "Individual",
+    venueLabel: metaverseVenue,
     status: "confirmed",
+    statusLabels: metaverseStatusLabels,
     details: {
-      description: [
-        "Explore quantum computing through an immersive, one-day VR experience at Khalifa University's MetaHub Lab. It connects foundational quantum concepts with hands-on problem solving.",
-        "Unlike the other national tracks, there are no qualifiers: participants take on the challenge directly on the day, in scheduled sessions for groups of 12 students.",
-      ],
-      dates: ["30 October 2026: one-day, in-person challenge. Session timings will be announced."],
-      challenge: [
-        "Using provided VR headsets, you interact with an application that visualizes a single qubit on the Bloch sphere. The challenge is to construct a sequence of quantum gates that guides the qubit along a specified path.",
-        "Experiment with different gates and the order you apply them in, observing how each operation changes the qubit's state and contributes to the overall result.",
-      ],
-      submission: {
-        how: [
-          "Complete the assigned quantum gate challenges within the VR application during your session, demonstrating successful gate sequences.",
-        ],
-      },
-      judging: ["Winners are determined by completion time and the accuracy of their solutions."],
-      resourceItems: [
-        "VR headsets and access to the quantum visualization application, provided at the MetaHub Lab",
-      ],
+      brief: quantumMetaverseBrief,
     },
   },
 ];
@@ -284,7 +259,7 @@ export const tracksPageContent = {
   eyebrow: "Tracks",
   title: "Find your path into quantum",
   intro:
-    "The challenges are live. Explore six tracks, from quantum fundamentals to specialized applications. Each track runs independently and has its own registration, so participants can choose the area that best matches their interests.",
+    "Explore six tracks, from quantum fundamentals to specialized applications. Each track runs independently and has its own registration and competition schedule, so participants can choose the area that best matches their interests.",
   /** How national and international tracks run, from the organisers' event format table. */
   formats: {
     heading: "How the tracks run",
@@ -292,16 +267,16 @@ export const tracksPageContent = {
       {
         reach: "national",
         label: "National tracks",
-        format: "Hybrid",
+        format: "Hybrid & in person",
         description:
-          "Most national tracks combine online qualifiers with in-person finals at Khalifa University. Where qualifiers are needed, they take place before 31 October, and each track sets its own cutoff. In-person days are on 30 October, 31 October or 1 November, depending on the track. Quantum in the Metaverse runs in person on 30 October.",
+          "National tracks include hybrid competitions and entirely in-person challenges. Where qualifiers are needed, they take place before 31 October, and each track sets its own cutoff. In-person days are on 30 October, 31 October or 1 November, depending on the track. Quantum Foundations runs entirely in person at Khalifa University on 31 October 2026. Quantum in the Metaverse is a single-day, in-person challenge at Khalifa University’s MetaHub Lab on 30 October 2026, with individual registration and scheduled sessions.",
       },
       {
         reach: "international",
         label: "International tracks",
         format: "Fully virtual",
         description:
-          "Each track opens on 19 October and finishes by 1 November at the latest. International tracks set their own format and schedule within that window, separately from the national qualifiers and finals.",
+          "The Fall Fest begins on 19 October. International tracks set their own registration and competition schedules, separately from the national qualifiers and finals. The Quantum Cybersecurity CTF takes place online on 30 October.",
       },
     ],
   },
