@@ -138,7 +138,7 @@ export const tracks: Track[] = [
   },
   {
     slug: "quantum-media",
-    title: "Quantum Entertainment",
+    title: "Quantum Media",
     summary:
       "Use Moth Quantum's media engines to make images, sound, video, games, or apps, with or without code.",
     reach: "international",
