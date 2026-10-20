@@ -26,6 +26,33 @@ export const partners: Partner[] = [
   },
 ];
 
+/** Shared identity for the sponsor list and Biology workshop partner profile. */
+export const adOmics = {
+  name: "AD-OMICS",
+  kind: "Technical sponsor",
+  url: "https://adomics.ae/",
+  logo: fallFestAssets.logos.adOmics.src,
+  status: "confirmed",
+} satisfies Partner;
+
+export const technicalSponsors: Partner[] = [
+  adOmics,
+  {
+    name: "Moth Quantum",
+    kind: "Technical sponsor",
+    url: "https://mothquantum.com/",
+    logo: fallFestAssets.logos.mothQuantum.src,
+    logoOnDark: true,
+    status: "confirmed",
+  },
+];
+
+export const partnersSectionContent = {
+  eyebrow: "Partners",
+  organizersTitle: "Who is behind the Fest",
+  technicalSponsorsTitle: "Technical sponsors",
+} as const;
+
 export const partnersIntro =
   "The Qiskit Fall Fest is IBM Quantum’s annual global event series. This PLUS edition is organised by the Quantum Computing Initiative at Khalifa University.";
 

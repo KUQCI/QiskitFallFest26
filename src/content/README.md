@@ -29,11 +29,22 @@ files, reference solutions, and the implementation handoff PDF out of public ass
 The published brief is rendered as six challenge tabs plus a dedicated Hosts tab inside
 the existing track modal. The Hosts tab uses the previously supplied ASBMB description,
 logo and approved social links; the profile is not repeated under Overview.
+The Hosts panel also shows AD-OMICS as "Workshop partner · Biology and data", with
+its linked logo. This partner profile does not change the track's Hosted by label.
 The newer Biology website-details document is the sole source for challenge content.
 Do not add older handoff rules, material-release dates, form types, classifier parameters,
-rubric weights or submission requirements absent from it. Keep the initial proposal
-deadline undecided and framework names out of the implementation requirements, per
-the user's explicit overrides. Existing track identity and approved host social links remain.
+rubric weights or submission requirements absent from it. The user has confirmed the
+initial proposal deadline as 24 October 2026 and supplied explicit wording requiring
+QAOA with flexible library choice (Qiskit is an example). Preserve that wording and
+the reproducibility requirement. Existing track identity and approved host social links remain.
+The supplied Biology SVGs are decorative explanations alongside the approved copy.
+Do not import the scoring-weight or journey graphics: they contain unapproved weights,
+old dates, participant/finalist counts and format restrictions. Visual styling lives
+in `TrackBriefTabs`, `BiologyArtwork` and `globals.css`; list and timeline presentation does not change rules.
+`BiologyArtwork` adapts the supplied SVG geometry to theme tokens and animates individual
+elements. Keep illustrations after their explanatory copy, retain reduced-motion support,
+and keep the compact popup header so the selected panel has room to scroll. The track
+directory groups national tracks before international tracks, with uniform card spacing.
 
 Sign-up runs in two stages, and the shared control resolves the furthest stage that is
 actually open so the button label never overstates what the link does.

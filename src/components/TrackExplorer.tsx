@@ -5,7 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Reveal } from "@/components/Reveal";
 import { TrackCard } from "@/components/TrackCard";
 import { TrackPanel } from "@/components/TrackPanel";
-import type { TrackPanelCopy } from "@/content/tracks";
+import { tracksPageContent, type TrackPanelCopy } from "@/content/tracks";
 import type { Track } from "@/content/types";
 
 /**
@@ -68,21 +68,28 @@ export function TrackExplorer({ tracks, copy }: { tracks: Track[]; copy: TrackPa
 
   return (
     <>
-      <ul className="grid gap-5 md:grid-cols-2">
-        {tracks.map((track, index) => (
-          <Reveal as="li" key={track.slug} delay={(index % 2) * 55}>
-            <TrackCard
-              track={track}
-              variant="planning"
-              actionLabel={copy.openLabel}
-              expanded={openSlug === track.slug}
-              onOpen={(trigger) =>
-                open(track.slug, trigger.closest("article")?.getBoundingClientRect() ?? null)
-              }
-            />
-          </Reveal>
+      <div className="space-y-12">
+        {tracksPageContent.groups.map((group) => (
+          <section key={group.reach} aria-labelledby={`tracks-${group.reach}`}>
+            <h2 id={`tracks-${group.reach}`} className="mb-5 text-2xl font-semibold text-fg sm:text-3xl">{group.heading}</h2>
+            <ul className="track-summary-grid grid gap-5 md:grid-cols-2">
+              {tracks.filter((track) => track.reach === group.reach).map((track, index) => (
+                <Reveal as="li" key={track.slug} delay={(index % 2) * 55}>
+                  <TrackCard
+                    track={track}
+                    variant="planning"
+                    actionLabel={copy.openLabel}
+                    expanded={openSlug === track.slug}
+                    onOpen={(trigger) =>
+                      open(track.slug, trigger.closest("article")?.getBoundingClientRect() ?? null)
+                    }
+                  />
+                </Reveal>
+              ))}
+            </ul>
+          </section>
         ))}
-      </ul>
+      </div>
 
       {openTrack ? (
         <TrackPanel

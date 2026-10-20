@@ -2,7 +2,9 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 
-import { ExternalLinkIcon } from "@/components/ui/Icons";
+import { ExternalLinkIcon, SparkIcon } from "@/components/ui/Icons";
+import { Badge } from "@/components/ui/primitives";
+import { BiologyArtwork } from "@/components/BiologyArtwork";
 import type { TrackBrief, TrackBriefBlock } from "@/content/types";
 import { cn } from "@/lib/utils";
 
@@ -92,6 +94,19 @@ export function TrackBriefTabs({
           >
             {selected === index ? <>
               <h3 className="text-2xl font-semibold text-fg">{panel.title}</h3>
+              {panel.id === "overview" ? <>
+                {brief.tags?.length ? <div className="flex flex-wrap gap-2">{brief.tags.map(tag => <Badge key={tag} tone="purple">{tag}</Badge>)}</div> : null}
+                {brief.highlights?.length ? (
+                  <dl className="biology-highlights grid grid-cols-2 gap-3 xl:grid-cols-4">
+                    {brief.highlights.map(item => (
+                      <div key={item.label} className="biology-highlight">
+                        <dt className="text-xs leading-relaxed text-fg-muted">{item.label}</dt>
+                        <dd className="mt-2 text-xl font-semibold tracking-tight text-gold">{item.value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                ) : null}
+              </> : null}
               {panel.blocks.map((block, blockIndex) => <BriefBlock key={blockIndex} block={block} />)}
               {panel.showHosts ? hostProfiles : null}
             </> : null}
@@ -105,42 +120,75 @@ export function TrackBriefTabs({
 function BriefBlock({ block }: { block: TrackBriefBlock }) {
   switch (block.type) {
     case "heading":
-      return <h4 className="pt-3 text-lg font-semibold text-fg">{block.text}</h4>;
+      return <h4 className="biology-section-heading pt-4 text-lg font-semibold text-fg">{block.text}</h4>;
     case "paragraph":
-      return <p className="text-base leading-relaxed text-fg-muted">{block.text}</p>;
+      return block.presentation === "spotlight" ? (
+        <div className="biology-award"><BiologyGlyph index={6} /><p className="text-base leading-relaxed text-fg">{block.text}</p></div>
+      ) : <p className="text-base leading-relaxed text-fg-muted">{block.text}</p>;
     case "note":
       return <p className="border-l-2 border-pink/60 pl-4 text-sm leading-relaxed text-fg-muted">{block.text}</p>;
     case "notice":
       return (
-        <div className="space-y-2 rounded-xl border border-gold/30 bg-gold/5 p-4 text-sm leading-relaxed text-fg">
-          {block.paragraphs.map((text) => <p key={text}>{text}</p>)}
+        <div className="biology-notice flex items-start gap-3 text-sm leading-relaxed text-fg">
+          <SparkIcon className="mt-0.5 h-5 w-5 shrink-0 text-gold" />
+          <div className="space-y-2">{block.paragraphs.map((text) => <p key={text}>{text}</p>)}</div>
         </div>
+      );
+    case "visual":
+      return (
+        <figure aria-hidden="true" className={cn("biology-visual", block.motion && `biology-visual--${block.motion}`)}>
+          <BiologyArtwork src={block.src} />
+        </figure>
       );
     case "list": {
       const List = block.ordered ? "ol" : "ul";
       return (
-        <List className={cn("space-y-5 pl-5 text-base leading-relaxed text-fg-muted marker:text-pink", block.ordered ? "list-decimal" : "list-disc")}>
-          {block.items.map((item) => (
-            <li key={item.title}>
-              <strong className="font-semibold text-fg">{item.title}</strong>{" "}{item.text}
+        <List className={cn(
+          block.presentation ? "grid gap-4 sm:grid-cols-2" : "space-y-5 pl-5 text-base leading-relaxed text-fg-muted marker:text-pink",
+          !block.presentation && (block.ordered ? "list-decimal" : "list-disc"),
+        )}>
+          {block.items.map((item, index) => (
+            <li key={item.title} className={block.presentation ? "biology-detail-card" : undefined}>
+              {block.presentation ? <>
+                {block.presentation === "steps" ? <span aria-hidden="true" className="biology-step-number">{String(index + 1).padStart(2, "0")}</span> : <BiologyGlyph index={index} />}
+                <strong className="mt-4 block text-base font-semibold text-fg">{item.title}</strong>
+                <p className="mt-2 text-sm leading-relaxed text-fg-muted">{item.text}</p>
+              </> : <><strong className="font-semibold text-fg">{item.title}</strong>{" "}{item.text}</>}
             </li>
           ))}
         </List>
       );
     }
     case "table":
-      return <BriefTable columns={block.columns} rows={block.rows} />;
+      return block.presentation === "timeline" ? (
+        <div>
+          <p className="mb-5 font-mono text-xs uppercase tracking-wider text-fg-subtle">{block.columns[0]}</p>
+          <ol className="biology-timeline" aria-label={block.columns.join(" · ")}>
+            {block.rows.map(row => (
+              <li key={row[0]}>
+                <span className="biology-timeline-dot" aria-hidden="true" />
+                <p className="font-mono text-sm font-semibold text-gold">{row[0]}</p>
+                <p className="mt-2 text-base leading-relaxed text-fg-muted">{row[1]}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      ) : <BriefTable columns={block.columns} rows={block.rows} />;
     case "releases":
       return (
-        <BriefTable columns={block.columns} rows={block.items.map((item) => [
-          item.label,
-          item.enabled && item.href && /^https?:\/\//i.test(item.href) ? (
-            <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 font-semibold text-gold underline underline-offset-4">
-              {item.label}<ExternalLinkIcon className="h-4 w-4 shrink-0" />
-              <span className="sr-only"> (opens in a new tab)</span>
-            </a>
-          ) : <span key={item.label} className="font-medium text-fg-subtle">{item.availability}</span>,
-        ])} />
+        <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+          {block.items.map((item, index) => (
+            <li key={item.label} className="biology-detail-card">
+              <BiologyGlyph index={index} />
+              {item.enabled && item.href && /^https?:\/\//i.test(item.href) ? (
+                <a href={item.href} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex min-h-11 items-center gap-2 font-semibold text-gold underline underline-offset-4">
+                  {item.label}<ExternalLinkIcon className="h-4 w-4 shrink-0" />
+                  <span className="sr-only"> (opens in a new tab)</span>
+                </a>
+              ) : <><p className="mt-4 font-semibold text-fg">{item.label}</p><p className="mt-2 text-sm text-fg-subtle">{item.availability}</p></>}
+            </li>
+          ))}
+        </ul>
       );
     case "links":
       return (
@@ -156,6 +204,23 @@ function BriefBlock({ block }: { block: TrackBriefBlock }) {
         </ul>
       );
   }
+}
+
+function BiologyGlyph({ index }: { index: number }) {
+  const colors = ["text-purple", "text-sky", "text-pink", "text-gold"];
+  return (
+    <span aria-hidden="true" className={cn("biology-detail-icon", colors[index % colors.length])}>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
+        {index === 6 ? <><path d="M7 3h10v6a5 5 0 0 1-10 0V3ZM9 20h6M12 14v6M7 5H3v3a4 4 0 0 0 4 4M17 5h4v3a4 4 0 0 1-4 4" /></> :
+          index % 6 === 0 ? <><rect x="4" y="4" width="16" height="16" rx="2" /><path d="M4 9h16M4 14h16M10 4v16M15 4v16" /></> :
+          index % 6 === 1 ? <><path d="m6 6 12 2-2 11-11-2Z" /><circle cx="6" cy="6" r="2" /><circle cx="18" cy="8" r="2" /><circle cx="16" cy="19" r="2" /><circle cx="5" cy="17" r="2" /><path d="m6 6 10 13M5 17 18 8" /></> :
+          index % 6 === 2 ? <><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)" /><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(-60 12 12)" /><circle cx="12" cy="12" r="2" /></> :
+          index % 6 === 3 ? <>{[[7,7],[17,7],[7,17],[17,17]].map(([cx,cy]) => <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r="3" />)}</> :
+          index % 6 === 4 ? <><circle cx="10" cy="10" r="7" /><path d="m15 15 6 6m-15-11 3 3 5-6" /></> :
+          <><path d="M3 19h18M6 15V9M12 15V4M18 15v-4" /></>}
+      </svg>
+    </span>
+  );
 }
 
 function BriefTable({ columns, rows }: { columns: string[]; rows: React.ReactNode[][] }) {

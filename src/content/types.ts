@@ -24,6 +24,11 @@ export interface Track {
   status: Status;
   /** Optional published status text for a track with a released challenge brief. */
   statusLabel?: string;
+  /** Approved descriptive chips, shown on the card and published brief. */
+  tags?: string[];
+  /** Decorative artwork and host branding in the card/popup cover. */
+  coverIcon?: string;
+  coverLogo?: string;
   partner?: string;
   highlights?: string[];
   /**
@@ -50,10 +55,13 @@ export interface TrackOrganization {
   name: string;
   /** Use a `fallFestAssets` src so the GitHub Pages base path is applied. */
   logo?: string;
+  logoOnDark?: boolean;
   url?: string;
 }
 
 export interface TrackHost extends TrackOrganization {
+  /** Approved contribution shown beside a partner's profile. */
+  contribution?: string;
   /** Short name for the label chip, e.g. "ASBMB". Falls back to `name`. */
   label?: string;
   /** "About us" paragraphs supplied by the host. */
@@ -80,6 +88,8 @@ export interface TrackChallengeThemeGroup {
  * notice instead.
  */
 export interface TrackDetails {
+  /** Profiles in Hosts, without adding partners to the track's Hosted by labels. */
+  hostPartners?: TrackHost[];
   /** Published brief with one navigable panel visible at a time. */
   brief?: TrackBrief;
   /** Overview paragraphs. Falls back to the track summary when omitted. */
@@ -119,15 +129,18 @@ export interface TrackReleaseLink {
 }
 
 export type TrackBriefBlock =
-  | { type: "paragraph" | "heading" | "note"; text: string }
+  | { type: "paragraph" | "heading" | "note"; text: string; presentation?: "spotlight" }
   | { type: "notice"; paragraphs: string[] }
-  | { type: "list"; ordered?: boolean; items: { title: string; text: string }[] }
-  | { type: "table"; columns: string[]; rows: string[][] }
+  | { type: "list"; ordered?: boolean; presentation?: "cards" | "steps"; items: { title: string; text: string }[] }
+  | { type: "table"; presentation?: "timeline"; columns: string[]; rows: string[][] }
+  | { type: "visual"; src: string; motion?: "float" | "wave" }
   | { type: "releases"; columns: [string, string]; items: TrackReleaseLink[] }
   | { type: "links"; items: TrackLink[] };
 
 export interface TrackBrief {
   navigationLabel: string;
+  tags?: string[];
+  highlights?: { value: string; label: string }[];
   panels: { id: string; title: string; blocks: TrackBriefBlock[]; showHosts?: boolean }[];
 }
 
@@ -162,6 +175,7 @@ export interface Speaker {
 export interface Partner {
   name: string;
   logo?: string;
+  logoOnDark?: boolean;
   url?: string;
   kind: string;
   status: Status;

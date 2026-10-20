@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/Reveal";
+import { PremiereLink } from "@/components/PremiereLink";
 import { Badge, Container, Section, SectionHeading } from "@/components/ui/primitives";
 import { formatSectionCopy, homePhases, phases } from "@/content/schedule";
 import { formatLabel, statusLabel } from "@/lib/utils";
@@ -70,6 +71,7 @@ export function FormatSection({ variant = "compact" }: { variant?: "compact" | "
                   <p className="mt-2 font-mono text-xs leading-relaxed text-fg-subtle">
                     {phase.dateRange}
                   </p>
+                  {phase.slug === "opening" ? <PremiereLink className="mt-5" /> : null}
                 </div>
 
                 <div className="md:col-span-8">

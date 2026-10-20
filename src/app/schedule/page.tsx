@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { Countdown } from "@/components/Countdown";
 import { PageHeader } from "@/components/PageHeader";
+import { PremiereLink } from "@/components/PremiereLink";
 import { CtaSection } from "@/components/sections/CtaSection";
 import { FormatSection } from "@/components/sections/FormatSection";
 import { Container } from "@/components/ui/primitives";
@@ -36,7 +37,10 @@ export default function SchedulePage() {
               {event.venue.name}, {event.venue.city}
             </p>
           </div>
-          <Countdown className="lg:col-span-7" />
+          <div className="space-y-5 lg:col-span-7">
+            <Countdown />
+            <PremiereLink />
+          </div>
         </div>
       </Container>
 

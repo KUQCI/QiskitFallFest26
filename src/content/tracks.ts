@@ -1,5 +1,6 @@
 import { fallFestAssets } from "./assets";
-import { quantumBiologyBrief } from "./quantum-biology";
+import { biologyTags, quantumBiologyBrief } from "./quantum-biology";
+import { adOmics } from "./sponsors";
 import type { Track, TrackHost } from "./types";
 
 /**
@@ -26,6 +27,8 @@ export const trackHosts = {
   mothQuantum: {
     name: "Moth Quantum",
     url: "https://mothquantum.com/",
+    logo: fallFestAssets.logos.mothQuantum.src,
+    logoOnDark: true,
   },
 } satisfies Record<string, TrackHost>;
 
@@ -130,15 +133,24 @@ export const tracks: Track[] = [
     format: "hybrid",
     status: "confirmed",
     statusLabel: "Challenge brief available",
+    tags: biologyTags,
+    coverIcon: fallFestAssets.biologyVisuals.icon.src,
     hostedBy: [trackHosts.asbmb],
     banner: fallFestAssets.trackBanners.quantumBiology.src,
     details: {
       brief: quantumBiologyBrief,
+      hostPartners: [{
+        name: adOmics.name,
+        logo: adOmics.logo,
+        url: adOmics.url,
+        contribution: "Workshop partner · Biology and data",
+      }],
     },
   },
   {
     slug: "quantum-media",
-    title: "Quantum Entertainment",
+    title: "Media with Moth",
+    coverLogo: fallFestAssets.logos.mothQuantum.src,
     summary:
       "Use Moth Quantum's media engines to make images, sound, video, games, or apps, with or without code.",
     reach: "international",
@@ -262,6 +274,10 @@ export const featuredTrackSlugs = [
 ] as const;
 
 export const tracksPageContent = {
+  groups: [
+    { reach: "national", heading: "National" },
+    { reach: "international", heading: "International" },
+  ] as const,
   eyebrow: "Tracks",
   title: "Find your path into quantum",
   intro:
@@ -275,7 +291,7 @@ export const tracksPageContent = {
         label: "National tracks",
         format: "Hybrid",
         description:
-          "Most national tracks combine online qualifiers with in-person finals at Khalifa University. Where qualifiers are needed, they take place before 31 October, and each track sets its own cutoff. In-person finals are on 31 October or 1 November, depending on the track. Quantum in the Metaverse runs in person on 30 October.",
+          "Most national tracks combine online qualifiers with in-person finals at Khalifa University. Where qualifiers are needed, they take place before 31 October, and each track sets its own cutoff. In-person days are on 30 October, 31 October or 1 November, depending on the track. Quantum in the Metaverse runs in person on 30 October.",
       },
       {
         reach: "international",

@@ -6,6 +6,7 @@ import { createPortal } from "react-dom";
 
 import { Badge } from "@/components/ui/primitives";
 import { TrackBriefTabs } from "@/components/TrackBriefTabs";
+import { TrackCoverMark } from "@/components/TrackCoverMark";
 import { CloseIcon, ExternalLinkIcon } from "@/components/ui/Icons";
 import type { TrackPanelCopy } from "@/content/tracks";
 import type { Track, TrackHost, TrackLink, TrackOrganization } from "@/content/types";
@@ -242,6 +243,7 @@ export function TrackPanel({
   const hosts = track.hostedBy ?? [];
   // Hosts with only a name are already shown as labels in the header.
   const profiledHosts = hosts.filter((host) => host.logo || host.about?.length || host.links?.length);
+  const hostProfiles = [...profiledHosts, ...(details.hostPartners ?? [])];
 
   return createPortal(
     <div className="fixed inset-0 z-[80]">
@@ -260,7 +262,7 @@ export function TrackPanel({
         tabIndex={-1}
         onKeyDown={handleKeyDown}
         style={{ transformOrigin: "0 0" }}
-        className="track-panel absolute inset-0 flex flex-col overflow-hidden outline-none sm:inset-x-0 sm:inset-y-6 sm:mx-auto sm:w-[min(72rem,calc(100%-3rem))] lg:inset-y-10"
+        className="track-panel absolute inset-0 flex flex-col overflow-clip outline-none sm:inset-x-0 sm:inset-y-6 sm:mx-auto sm:w-[min(72rem,calc(100%-3rem))] lg:inset-y-10"
       >
         <span
           aria-hidden="true"
@@ -273,6 +275,7 @@ export function TrackPanel({
               "relative isolate flex items-start justify-between gap-4 overflow-hidden border-b border-border px-5 py-4 sm:px-8 sm:py-6",
               // Keep the title and close button below the banner, on the plain surface.
               track.banner && (details.brief ? "pt-12 sm:pt-16" : "pt-28 sm:pt-36"),
+              track.coverIcon && "biology-panel-cover",
             )}
           >
             {track.banner ? (
@@ -280,7 +283,9 @@ export function TrackPanel({
                 <Image src={track.banner} alt="" fill sizes="(max-width: 1151px) 100vw, 1152px" className="object-cover" />
               </span>
             ) : null}
+            {track.coverIcon ? <div aria-hidden="true" className="biology-panel-icon"><TrackCoverMark icon={track.coverIcon} /></div> : null}
             <div className="min-w-0">
+              {track.coverLogo ? <div className="mb-4"><TrackCoverMark logo={track.coverLogo} logoAlt={`${track.hostedBy?.[0]?.name ?? track.title} logo`} /></div> : null}
               <div className="flex flex-wrap gap-2">
                 {badge ? <Badge tone="purple">{badge}</Badge> : null}
                 {track.reach ? <Badge tone="sky">{reachLabel(track.reach)}</Badge> : null}
@@ -314,7 +319,7 @@ export function TrackPanel({
             <TrackBriefTabs
               key={track.slug}
               brief={details.brief}
-              hostProfiles={profiledHosts.length ? <HostProfiles hosts={profiledHosts} heading={copy.hostedByHeading} compact /> : null}
+              hostProfiles={hostProfiles.length ? <HostProfiles hosts={hostProfiles} heading={copy.hostedByHeading} compact /> : null}
             />
           ) : (
           <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
@@ -435,12 +440,13 @@ function HostProfiles({ hosts, heading, compact = false }: { hosts: TrackHost[];
     <PanelSection heading={heading}>
       <div className="space-y-4">
         {hosts.map((host) => (
-          <div key={host.name} className={cn("card flex flex-col gap-6 p-5 sm:p-6", !compact && "sm:flex-row sm:items-start")}>
+          <div key={host.name} className={cn("card flex flex-col gap-6 p-5 sm:p-6", !compact && "sm:flex-row sm:items-start", host.contribution && "sm:flex-row sm:items-center")}>
             {host.logo ? (
-              <div className="w-full shrink-0 sm:w-56"><OrganizationTile organization={host} /></div>
+              <div className={cn("w-full shrink-0", host.contribution ? "sm:w-40" : "sm:w-56")}><OrganizationTile organization={host} /></div>
             ) : null}
             <div className="min-w-0 space-y-3">
               <p className="text-lg font-semibold text-fg">{host.name}</p>
+              {host.contribution ? <p className="text-sm leading-relaxed text-fg-muted">{host.contribution}</p> : null}
               {host.about?.map((paragraph) => <p key={paragraph} className="text-base leading-relaxed text-fg-muted">{paragraph}</p>)}
               {host.links?.length ? <LinkList links={host.links} /> : null}
             </div>
@@ -500,7 +506,7 @@ function LinkList({ links }: { links: TrackLink[] }) {
 /** Logo on a neutral plate when supplied, otherwise the organization's name. */
 function OrganizationTile({ organization }: { organization: TrackOrganization }) {
   const plate = (
-    <span className="logo-plate relative flex h-24 w-full items-center justify-center overflow-hidden px-5">
+    <span className={cn("logo-plate relative flex h-24 w-full items-center justify-center overflow-hidden px-5", organization.logoOnDark && "logo-plate-dark")}>
       {organization.logo ? (
         <Image
           src={organization.logo}

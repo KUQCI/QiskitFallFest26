@@ -9,7 +9,7 @@ export const withBasePath = (path: string): string => {
 };
 
 const fallFestAsset = (fileName: string) =>
-  withBasePath(`/fall-fest-assets/${encodeURIComponent(fileName)}`);
+  withBasePath(`/fall-fest-assets/${fileName.split("/").map(encodeURIComponent).join("/")}`);
 
 export type FallFestAsset = {
   name: string;
@@ -47,6 +47,9 @@ export const fallFestAssets = {
     ),
   },
   logos: {
+    /** Original vector wordmark from the official AD-OMICS website. */
+    adOmics: imageAsset("adomics-logo.svg", "adomics-logo.svg"),
+    mothQuantum: imageAsset("moth-quantum-logo.png", "moth-quantum-logo.png"),
     /** ASBMB Khalifa University Student Chapter, as supplied (white background). */
     asbmbKu: imageAsset("asbmb-ku-logo.png", "asbmb-ku-logo.png"),
     ibmQuantum: imageAsset("IBM Quantum.png", "IBM Quantum.png"),
@@ -80,6 +83,15 @@ export const fallFestAssets = {
   trackBanners: {
     /** Supplied by the ASBMB Student Chapter for the Quantum Biology card. */
     quantumBiology: imageAsset("quantum-biology-banner.jpg", "quantum-biology-banner.jpg"),
+  },
+  biologyVisuals: {
+    lung: imageAsset("biology-lung.svg", "biology/01-hero-lung-rna.svg"),
+    notes: imageAsset("biology-notes.svg", "biology/02-four-notes.svg"),
+    complementary: imageAsset("biology-complementary.svg", "biology/03-redundant-vs-complementary.svg"),
+    team: imageAsset("biology-team.svg", "biology/04-team.svg"),
+    pipeline: imageAsset("biology-pipeline.svg", "biology/05-pipeline.svg"),
+    data: imageAsset("biology-data.svg", "biology/06-cells-to-samples.svg"),
+    icon: imageAsset("biology-icon.svg", "biology/10-card-icon.svg"),
   },
   pastEvents: {
     hackathon: imageAsset("hackathon.jpg", "hackathon.jpg"),

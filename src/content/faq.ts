@@ -73,7 +73,7 @@ export const faqs: FaqItem[] = [
     category: "Format",
     question: "Can I join from outside the UAE?",
     answer:
-      "The opening session will be available online internationally. Quantum Cybersecurity and Quantum Entertainment are international, virtual tracks. Quantum Cybersecurity consists of a single online CTF. Track-specific access and eligibility details will be published with each track's registration.",
+      "The opening session will be available online internationally. Quantum Cybersecurity and Media with Moth are international, virtual tracks. Quantum Cybersecurity consists of a single online CTF. Track-specific access and eligibility details will be published with each track's registration.",
   },
   {
     category: "Format",

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Countdown } from "@/components/Countdown";
+import { PremiereLink } from "@/components/PremiereLink";
 import { QuantumField } from "@/components/QuantumField";
 import { RegisterButton } from "@/components/RegisterButton";
 import { Container } from "@/components/ui/primitives";
@@ -83,6 +84,7 @@ export function Hero() {
                 {event.openingDateLabel}
               </p>
               <Countdown className="mt-4" />
+              <PremiereLink className="mt-4" />
             </div>
           </div>
         </div>

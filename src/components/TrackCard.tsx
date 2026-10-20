@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/primitives";
+import { TrackCoverMark } from "@/components/TrackCoverMark";
 import { ArrowRightIcon } from "@/components/ui/Icons";
 import { tracksPageContent } from "@/content/tracks";
 import type { Track } from "@/content/types";
@@ -42,9 +43,9 @@ export function TrackCard({
       id={track.slug}
       data-track-card={track.slug}
       className={cn(
-        "card group relative isolate flex h-full scroll-mt-28 flex-col overflow-hidden p-6",
-        planning && "sm:p-8",
+        "card track-summary-card group relative isolate flex h-full scroll-mt-28 flex-col overflow-hidden p-6",
         interactive && "card-interactive",
+        track.coverIcon && "biology-track-card",
       )}
     >
       <span
@@ -56,7 +57,7 @@ export function TrackCard({
           so it always covers exactly this text (however it wraps) and fades out below it.
           Grid stacking rather than absolute positioning keeps the stretched title link
           sized to the whole card. */}
-      <div className={cn("grid", track.banner && "-mx-6 -mt-6", track.banner && planning && "sm:-mx-8 sm:-mt-8")}>
+      <div className={cn("grid", track.banner && "-mx-6 -mt-6")}>
         {track.banner ? (
           <span aria-hidden="true" className="track-banner-behind pointer-events-none relative -z-10 [grid-area:1/1]">
             <Image src={track.banner} alt="" fill sizes="(max-width: 767px) 100vw, 560px" className="object-cover" />
@@ -65,15 +66,15 @@ export function TrackCard({
         <div
           className={cn(
             "[grid-area:1/1]",
-            // Re-apply the card padding inside the full-bleed block; the bottom padding is
-            // where the banner fades out.
-            track.banner && "px-6 pb-12 pt-6",
-            track.banner && planning && "sm:px-8 sm:pt-8",
+            // Re-apply the card padding inside the full-bleed block. Its overlay blends
+            // into the card surface without adding a taller hero area.
+            track.banner && "px-6 pt-6",
           )}
         >
-          <div className="flex justify-end">
+          <div className="track-card-masthead flex items-center justify-between gap-3">
+            <TrackCoverMark icon={track.coverIcon} logo={track.coverLogo} logoAlt={`${track.hostedBy?.[0]?.name ?? track.title} logo`} />
             {/* Over a banner, the translucent badge sits on a solid surface so it stays legible. */}
-            <span className={cn("rounded-full", track.banner && "bg-surface")}>
+            <span className={cn("ml-auto rounded-full", track.banner && "bg-surface")}>
               <Badge tone={planning ? "purple" : "neutral"}>
                 {badgeLabel}
               </Badge>
@@ -107,7 +108,7 @@ export function TrackCard({
       </div>
 
       {track.hostedBy?.length ? (
-        <p className="mt-5 flex flex-wrap items-center gap-2 text-xs text-fg-muted">
+        <p className="mt-4 flex flex-wrap items-center gap-2 text-xs text-fg-muted">
           {tracksPageContent.panel.hostedByHeading}{" "}
           {track.hostedBy.map((host) => (
             <Badge key={host.name} tone="gold">
@@ -117,14 +118,15 @@ export function TrackCard({
         </p>
       ) : null}
 
-      {track.reach || track.format ? (
-        <div className="mt-5 flex flex-wrap gap-2">
+      {track.reach || track.format || track.tags?.length ? (
+        <div className="track-card-tags mt-4 flex flex-wrap gap-2">
           {track.reach ? <Badge tone="sky">{reachLabel(track.reach)}</Badge> : null}
           {track.format ? <Badge tone="neutral">{formatLabel(track.format)}</Badge> : null}
+          {track.tags?.map((tag) => <Badge key={tag} tone="purple">{tag}</Badge>)}
         </div>
       ) : null}
 
-      <div className="mt-auto flex items-center justify-between gap-4 pt-8">
+      <div className="mt-auto flex items-center justify-between gap-4 pt-6">
         <span aria-hidden="true" className="block h-px w-12 bg-pink transition-[width] duration-300 group-hover:w-20" />
         {interactive && actionLabel ? (
           <span

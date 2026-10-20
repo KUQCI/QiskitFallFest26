@@ -13,11 +13,7 @@ import { Container, Section, SectionHeading } from "@/components/ui/primitives";
 import { ArrowRightIcon } from "@/components/ui/Icons";
 import { homeContent } from "@/content/event";
 import { faqs } from "@/content/faq";
-import { featuredTrackSlugs, tracks, tracksPageContent } from "@/content/tracks";
-
-const featured = featuredTrackSlugs
-  .map((slug) => tracks.find((track) => track.slug === slug))
-  .filter((track): track is NonNullable<typeof track> => Boolean(track));
+import { tracks, tracksPageContent } from "@/content/tracks";
 
 export default function HomePage() {
   return (
@@ -64,17 +60,24 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {featured.map((track, index) => (
-              <Reveal as="li" key={track.slug} delay={index * 50}>
-                <TrackCard
-                  track={track}
-                  href={`/tracks/#${track.slug}`}
-                  actionLabel={tracksPageContent.panel.openLabel}
-                />
-              </Reveal>
+          <div className="mt-12 space-y-10">
+            {tracksPageContent.groups.map((group) => (
+              <section key={group.reach} aria-labelledby={`home-tracks-${group.reach}`}>
+                <h3 id={`home-tracks-${group.reach}`} className="mb-5 text-2xl font-semibold text-fg">{group.heading}</h3>
+                <ul className="track-summary-grid grid gap-5 md:grid-cols-2">
+                  {tracks.filter((track) => track.reach === group.reach).map((track, index) => (
+                    <Reveal as="li" key={track.slug} delay={(index % 2) * 50}>
+                      <TrackCard
+                        track={track}
+                        href={`/tracks/#${track.slug}`}
+                        actionLabel={tracksPageContent.panel.openLabel}
+                      />
+                    </Reveal>
+                  ))}
+                </ul>
+              </section>
             ))}
-          </ul>
+          </div>
         </Container>
       </Section>
 
