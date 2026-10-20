@@ -58,7 +58,9 @@ export const tracks: Track[] = [
       ],
       dates: ["31 October 2026: in-person competition at Khalifa University."],
       challenge: [
-        "Participants take on circuit-building challenges. You will be given incomplete quantum circuits and must fill in the blanks so that each circuit achieves a given output or setup.",
+        "Participants take on circuit-building challenges. \
+        You will be given incomplete quantum circuits and must fill in the blanks so that each circuit achieves a given output or setup.",
+        "Registration for the in-person challenge will be shared soon."
       ],
     },
   },
