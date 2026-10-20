@@ -6,12 +6,11 @@ import { TrackCoverMark } from "@/components/TrackCoverMark";
 import { ArrowRightIcon } from "@/components/ui/Icons";
 import { tracksPageContent } from "@/content/tracks";
 import type { Track } from "@/content/types";
-import { cn, formatLabel, reachLabel, statusLabel } from "@/lib/utils";
+import { cn, formatLabel, reachLabel } from "@/lib/utils";
 
 /**
  * A short track summary: the challenge in one line, reach, delivery format, and a
- * status label. A confirmed track shows the "challenge live" label; the full challenge
- * lives in the track panel.
+ * explicitly approved status chips. The full challenge lives in the track panel.
  *
  * Pass `href` to make the whole card a link (home page), or `onOpen` to make it open
  * the track panel (tracks page). The title carries the control and a stretched
@@ -33,7 +32,6 @@ export function TrackCard({
   expanded?: boolean;
 }) {
   const planning = variant === "planning";
-  const badgeLabel = track.statusLabel ?? statusLabel(track.status) ?? tracksPageContent.panel.announcedLabel;
   const interactive = Boolean(href || onOpen);
   const stretched =
     "text-left after:absolute after:inset-0 after:rounded-[14px] after:content-[''] focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:-outline-offset-4 focus-visible:after:outline-gold";
@@ -73,12 +71,15 @@ export function TrackCard({
         >
           <div className="track-card-masthead flex items-center justify-between gap-3">
             <TrackCoverMark icon={track.coverIcon} logo={track.coverLogo} logoAlt={`${track.hostedBy?.[0]?.name ?? track.title} logo`} />
-            {/* Over a banner, the translucent badge sits on a solid surface so it stays legible. */}
-            <span className={cn("ml-auto rounded-full", track.banner && "bg-surface")}>
-              <Badge tone={planning ? "purple" : "neutral"}>
-                {badgeLabel}
-              </Badge>
-            </span>
+            {track.statusLabels?.length ? (
+              <div className="track-status-badges ml-auto flex flex-wrap justify-end gap-1.5">
+                {track.statusLabels.map((label) => (
+                  <span key={label} className={cn("inline-flex rounded-full", track.banner && "bg-surface")}>
+                    <Badge tone={planning ? "purple" : "neutral"}>{label}</Badge>
+                  </span>
+                ))}
+              </div>
+            ) : null}
           </div>
 
           <h3 className={cn("mt-4 font-semibold", track.banner ? "text-on-image" : "text-fg", planning ? "text-2xl" : "text-xl")}>

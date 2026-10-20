@@ -50,6 +50,9 @@ in `TrackBriefTabs`, `BiologyArtwork` and `globals.css`; list and timeline prese
 elements. Keep illustrations after their explanatory copy, retain reduced-motion support,
 and keep the compact popup header so the selected panel has room to scroll. The track
 directory groups national tracks before international tracks, with uniform card spacing.
+Track status chips are opt-in through `statusLabels`. Only Biology currently shows
+"Challenge live" and "Submissions open"; leave other tracks' status chips unset until
+the user supplies their individual updates. A confirmed track never adds a chip by itself.
 
 Sign-up runs in two stages, and the shared control resolves the furthest stage that is
 actually open so the button label never overstates what the link does.

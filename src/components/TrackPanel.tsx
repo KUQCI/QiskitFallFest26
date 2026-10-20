@@ -10,7 +10,7 @@ import { TrackCoverMark } from "@/components/TrackCoverMark";
 import { CloseIcon, ExternalLinkIcon } from "@/components/ui/Icons";
 import type { TrackPanelCopy } from "@/content/tracks";
 import type { Track, TrackHost, TrackLink, TrackOrganization } from "@/content/types";
-import { cn, formatLabel, reachLabel, statusLabel } from "@/lib/utils";
+import { cn, formatLabel, reachLabel } from "@/lib/utils";
 
 const EASE_OUT = "cubic-bezier(0.16, 1, 0.3, 1)";
 const EASE_IN = "cubic-bezier(0.7, 0, 0.84, 0)";
@@ -239,7 +239,6 @@ export function TrackPanel({
 
   const details = track.details ?? {};
   const description = details.description?.length ? details.description : [track.summary];
-  const badge = track.statusLabel ?? statusLabel(track.status) ?? copy.announcedLabel;
   const hosts = track.hostedBy ?? [];
   // Hosts with only a name are already shown as labels in the header.
   const profiledHosts = hosts.filter((host) => host.logo || host.about?.length || host.links?.length);
@@ -287,7 +286,7 @@ export function TrackPanel({
             <div className="min-w-0">
               {track.coverLogo ? <div className="mb-4"><TrackCoverMark logo={track.coverLogo} logoAlt={`${track.hostedBy?.[0]?.name ?? track.title} logo`} /></div> : null}
               <div className="flex flex-wrap gap-2">
-                {badge ? <Badge tone="purple">{badge}</Badge> : null}
+                {track.statusLabels?.map((label) => <Badge key={label} tone="purple">{label}</Badge>)}
                 {track.reach ? <Badge tone="sky">{reachLabel(track.reach)}</Badge> : null}
                 {track.format ? <Badge tone="neutral">{formatLabel(track.format)}</Badge> : null}
               </div>

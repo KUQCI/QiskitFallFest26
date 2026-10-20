@@ -22,8 +22,8 @@ export interface Track {
   reach?: Reach;
   format?: Format;
   status: Status;
-  /** Optional published status text for a track with a released challenge brief. */
-  statusLabel?: string;
+  /** Explicitly approved status chips. Omit until that track's labels are agreed. */
+  statusLabels?: string[];
   /** Approved descriptive chips, shown on the card and published brief. */
   tags?: string[];
   /** Decorative artwork and host branding in the card/popup cover. */

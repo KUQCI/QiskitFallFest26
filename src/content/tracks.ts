@@ -137,7 +137,7 @@ export const tracks: Track[] = [
     reach: "national",
     format: "hybrid",
     status: "confirmed",
-    statusLabel: "Registration open",
+    statusLabels: ["Challenge live", "Submissions open"],
     tags: biologyTags,
     coverIcon: fallFestAssets.biologyVisuals.icon.src,
     hostedBy: [trackHosts.asbmb],
@@ -312,8 +312,6 @@ export const tracksPageContent = {
   panel: {
     openLabel: "View challenge",
     closeLabel: "Close track details",
-    /** Card and panel badge for a track whose challenge has been published. */
-    announcedLabel: "Challenge live",
     descriptionHeading: "About this track",
     datesHeading: "Key dates",
     sponsorsHeading: "Sponsors",
