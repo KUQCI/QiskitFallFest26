@@ -231,11 +231,10 @@ export const tracks: Track[] = [
           ],
         },
       ],
-      resourceItems: [
-        "https://mql.ink/khalifa",
-        "https://youtu.be/LcKl6Rsg2yk?si=r2uF8eQgrBfFDMd5&t=589",
-        "https://discord.gg/sDh29KsG5",
-        // "Submission link",
+      resources: [
+        { label: "Platform access", href: "https://mql.ink/khalifa" },
+        { label: "Starter guide (video)", href: "https://youtu.be/LcKl6Rsg2yk?si=r2uF8eQgrBfFDMd5&t=589" },
+        { label: "Discord community", href: "https://discord.gg/sDh29KsG5" },
       ],
     },
   },
