@@ -691,6 +691,15 @@ p {
   color: var(--c-gold);
 }
 
+.biology-registration {
+  padding: 1.25rem;
+  border: 1px solid color-mix(in srgb, var(--c-gold) 35%, var(--c-border));
+  border-radius: 1rem;
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--c-gold) 8%, var(--c-surface)),
+    color-mix(in srgb, var(--c-purple) 6%, var(--c-surface)));
+}
+
 .biology-visual {
   position: relative;
   overflow: hidden;

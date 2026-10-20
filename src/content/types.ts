@@ -134,7 +134,7 @@ export type TrackBriefBlock =
   | { type: "list"; ordered?: boolean; presentation?: "cards" | "steps"; items: { title: string; text: string }[] }
   | { type: "table"; presentation?: "timeline"; columns: string[]; rows: string[][] }
   | { type: "visual"; src: string; motion?: "float" | "wave" }
-  | { type: "releases"; columns: [string, string]; items: TrackReleaseLink[] }
+  | { type: "releases"; presentation?: "cta"; columns: [string, string]; items: TrackReleaseLink[] }
   | { type: "links"; items: TrackLink[] };
 
 export interface TrackBrief {

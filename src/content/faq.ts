@@ -25,7 +25,7 @@ export const faqs: FaqItem[] = [
     category: "Getting started",
     question: "How do I sign up?",
     answer:
-      "Each track has its own registration. Registration has not opened yet. Until it does, you can fill in a short form to be notified when it does: it asks for your name, email, institution, year of study, and which tracks you are interested in, which also helps the organizing team shape the programme around who wants to take part. Submitting it is not the same as registering, and the registration details will be published here first.",
+      "Each track has its own registration. For Quantum Biology, submitting the one-page proposal through the form in the track’s Submissions panel also registers you for that track. Check each track for its registration details. The general interest form is for updates and does not register you for a track.",
   },
   {
     category: "Getting started",

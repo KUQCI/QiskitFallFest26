@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 
-import { ExternalLinkIcon, SparkIcon } from "@/components/ui/Icons";
+import { ArrowRightIcon, ExternalLinkIcon, SparkIcon } from "@/components/ui/Icons";
 import { Badge } from "@/components/ui/primitives";
 import { BiologyArtwork } from "@/components/BiologyArtwork";
 import type { TrackBrief, TrackBriefBlock } from "@/content/types";
@@ -175,6 +175,26 @@ function BriefBlock({ block }: { block: TrackBriefBlock }) {
         </div>
       ) : <BriefTable columns={block.columns} rows={block.rows} />;
     case "releases":
+      if (block.presentation === "cta") {
+        return (
+          <ul className="space-y-4">
+            {block.items.map((item) => (
+              <li key={item.label} className="biology-registration flex flex-col items-start gap-5 lg:flex-row lg:items-center">
+                <div className="min-w-0 flex-1">
+                  <p className="font-mono text-2xs uppercase tracking-wider text-gold">{block.columns[0]}</p>
+                  <p className="mt-2 text-base font-semibold leading-relaxed text-fg">{item.availability}</p>
+                </div>
+                {item.enabled && item.href && /^https?:\/\//i.test(item.href) ? (
+                  <a href={item.href} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-gold px-5 py-3 text-center text-sm font-semibold text-on-gold transition-colors hover:bg-gold-strong lg:w-auto lg:max-w-64">
+                    {item.label}<ArrowRightIcon className="h-4 w-4 shrink-0" />
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  </a>
+                ) : <p className="text-sm text-fg-subtle">{item.label}</p>}
+              </li>
+            ))}
+          </ul>
+        );
+      }
       return (
         <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {block.items.map((item, index) => (

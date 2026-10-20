@@ -137,7 +137,7 @@ export const tracks: Track[] = [
     reach: "national",
     format: "hybrid",
     status: "confirmed",
-    statusLabel: "Challenge brief available",
+    statusLabel: "Registration open",
     tags: biologyTags,
     coverIcon: fallFestAssets.biologyVisuals.icon.src,
     hostedBy: [trackHosts.asbmb],

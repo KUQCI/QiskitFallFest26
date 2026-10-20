@@ -40,16 +40,22 @@ exports. See `src/content/README.md` for the file map.
   `src/content/quantum-biology.ts`. The Hosts tab uses the supplied ASBMB description,
   logo and approved social links. The newer
   `qiskit bio track website details (1) (1).pdf` is the sole source for challenge content:
-  scoring metrics, rubric weights, classifier settings, submission requirements and
+  scoring metrics, rubric weights, classifier settings, final-submission formats and
   external-data policy remain unconfirmed. Preserve the user's overrides: the initial
   proposal deadline is confirmed as **24 October 2026**. QAOA is required; any suitable
   quantum computing library may be used, with Qiskit as an example only. Preserve the
   user's exact implementation and reproducibility wording. Visual references do not
   authorize added rules, rubric weights, participant counts, or submission formats.
   Do not retain extra rules, release dates or logistical promises from the older handoff.
-  Only registration is dated 20 October; resource availability is to be confirmed.
-  Its resources and registration remain disabled until an approved URL and explicit release
-  flag are supplied; the date alone does not enable them. Do not publish the handoff
+  Registration opens 20 October through the initial-submission form, now explicitly
+  approved and enabled at `https://forms.gle/WLmXeHMbmCTj92tb9`. Submitting the proposal
+  registers the team for Biology. It must be one PDF page, include participant names
+  and team name, and briefly cover the challenge, approach, checks and work plan.
+  Keep the user's supplied instructions. The form takes a viewable cloud link to the PDF.
+  Teams of 3–4 remain encouraged; the user will update the form to match that wording.
+  Resources, including the dataset and starter notebook, go to shortlisted candidates
+  after initial submissions. Resource links stay disabled until approved URLs and explicit
+  release flags are supplied; dates alone do not enable them. Do not publish the handoff
   PDF, datasets, private organizer files, hidden tests, or reference solutions.
   National tracks are hybrid, except
   Quantum in the Metaverse (national, in person at the KU Metaverse Hub on Friday

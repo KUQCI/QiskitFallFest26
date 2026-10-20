@@ -23,8 +23,13 @@ After an edit, run `npm run build` with the development server stopped.
 
 Quantum Biology has independent release controls in `biologyReleases`. To publish a
 participant resource or form, supply its approved `href` and set `enabled: true`.
-Both are required; calendar dates never activate links. Registration shows non-clickable
-"Opens 20 October" text; resource availability is "To be confirmed". Keep datasets, hidden tests, private organizer
+Both are required; calendar dates never activate links. The user has explicitly approved
+and enabled the Biology registration/initial-proposal form at `https://forms.gle/WLmXeHMbmCTj92tb9`.
+Submitting the one-page PDF proposal is registration for this track, due 24 October 2026.
+Include participant names, team name and the four supplied proposal points. The form
+accepts a viewable cloud link to the PDF. Teams of 3–4 remain encouraged; the user will
+update the form's team-size requirement. Resources go to shortlisted candidates after
+initial submissions; their public links remain disabled. Keep datasets, hidden tests, private organizer
 files, reference solutions, and the implementation handoff PDF out of public assets.
 The published brief is rendered as six challenge tabs plus a dedicated Hosts tab inside
 the existing track modal. The Hosts tab uses the previously supplied ASBMB description,

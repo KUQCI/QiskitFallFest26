@@ -7,6 +7,9 @@ import { fallFestAssets } from "./assets";
 // User overrides: proposal deadline confirmed as 24 October; QAOA required with flexible library choice;
 // Qiskit is an example only; use the user's implementation and reproducibility wording;
 // use the supplied host profile/social links and asbmbclub@ku.ac.ae contact.
+// Initial proposal submission is registration: one PDF page, using the approved form.
+// Resources are shared with shortlisted candidates after initial submissions.
+// Teams of 3–4 remain encouraged; the user will update the form's team-size wording.
 // This contains no datasets, private organizer material, or reference solution.
 // A date never enables a resource: supply its approved URL AND set enabled to true.
 const pendingRelease = (label: string, availability = "To be confirmed"): TrackReleaseLink => ({
@@ -17,10 +20,15 @@ const pendingRelease = (label: string, availability = "To be confirmed"): TrackR
 });
 
 export const biologyReleases = {
-  statement: pendingRelease("Full challenge task statement"),
-  dataset: pendingRelease("Prepared data package"),
-  notebooks: pendingRelease("Starter notebook"),
-  registration: pendingRelease("Registration", "Opens 20 October"),
+  statement: pendingRelease("Full challenge task statement", "Shared with shortlisted candidates after initial submissions"),
+  dataset: pendingRelease("Prepared data package", "Shared with shortlisted candidates after initial submissions"),
+  notebooks: pendingRelease("Starter notebook", "Shared with shortlisted candidates after initial submissions"),
+  registration: {
+    label: "Register & submit proposal",
+    href: "https://forms.gle/WLmXeHMbmCTj92tb9",
+    enabled: true,
+    availability: "One PDF page · Due 24 October 2026",
+  },
 } satisfies Record<string, TrackReleaseLink>;
 
 export const biologyTags = ["Teams of 3–4", "All majors", "No experience needed"];
@@ -59,11 +67,15 @@ export const quantumBiologyBrief: TrackBrief = {
         { type: "heading", text: "At a glance" },
         { type: "table", columns: ["Item", "Details"], rows: [
           ["Host", "ASBMB"],
+          ["Registration", "Your initial proposal submission registers you for this track."],
           ["Initial proposal", "24 October 2026"],
           ["Workshops", "26 October 2026"],
           ["Final submission", "28 October 2026"],
           ["Final presentations", "1 November 2026, on campus at Khalifa University"],
         ] },
+        { type: "heading", text: "Registration & initial proposal" },
+        { type: "paragraph", text: "Submit your one-page proposal through the initial-submission form to register for the Quantum Biology track. Initial proposals are due no later than 24 October 2026. Semifinalists will be selected to continue." },
+        { type: "releases", presentation: "cta", columns: ["Registration & initial submission", "Deadline"], items: [biologyReleases.registration] },
         { type: "heading", text: "Background reading" },
         { type: "links", items: [
           { label: "Broad Institute: LUAD biomarkers, drug targets and risk factors", href: "https://www.broadinstitute.org/news/study-finds-biomarkers-drug-targets-risk-factors-most-common-form-lung-cancer" },
@@ -107,9 +119,9 @@ export const quantumBiologyBrief: TrackBrief = {
       id: "data-resources",
       title: "Data & Resources",
       blocks: [
-        { type: "notice", paragraphs: ["Resource links, workshop access details, and the mentor contact channel are to be confirmed."] },
+        { type: "notice", paragraphs: ["Resources, including the prepared dataset and starter notebook, will be provided to shortlisted candidates after initial submissions.", "Workshop access details and the mentor contact channel are to be confirmed."] },
         { type: "heading", text: "What you will receive" },
-        { type: "paragraph", text: "You will receive a prepared dataset based on single-cell RNA sequencing, a technique that measures gene activity in individual cells." },
+        { type: "paragraph", text: "Shortlisted candidates will receive a prepared dataset based on single-cell RNA sequencing, a technique that measures gene activity in individual cells." },
         { type: "paragraph", text: "To make the data easier to work with, the organizers have combined these measurements into sample-level gene expression profiles. You will work with a table showing how active each gene is in each sample—you do not need to process individual cells yourself." },
         { type: "visual", src: fallFestAssets.biologyVisuals.data.src },
         { type: "list", presentation: "cards", items: [
@@ -123,7 +135,7 @@ export const quantumBiologyBrief: TrackBrief = {
         { type: "paragraph", text: "Use only the supplied training and validation splits to develop and tune your method. The hidden test set remains with the organizers." },
         { type: "paragraph", text: "The policy on external datasets is to be confirmed." },
         { type: "heading", text: "Starter materials and support" },
-        { type: "paragraph", text: "You will receive the full challenge task statement, the prepared data package, and a starter notebook covering data loading, QUBO construction, a classical baseline, and the scoring function. Workshops will introduce the relevant biology and quantum optimization concepts, with mentor support during the development period." },
+        { type: "paragraph", text: "After initial submissions, shortlisted candidates will receive the full challenge task statement, the prepared data package, and a starter notebook covering data loading, QUBO construction, a classical baseline, and the scoring function. Workshops will introduce the relevant biology and quantum optimization concepts, with mentor support during the development period." },
         { type: "heading", text: "Resources" },
         { type: "releases", columns: ["Resource", "Availability"], items: [biologyReleases.statement, biologyReleases.dataset, biologyReleases.notebooks] },
       ],
@@ -160,12 +172,22 @@ export const quantumBiologyBrief: TrackBrief = {
       id: "submissions",
       title: "Submissions",
       blocks: [
-        { type: "notice", paragraphs: ["Registration opens on 20 October 2026. Submit your initial idea."] },
-        { type: "releases", columns: ["Registration", "Availability"], items: [biologyReleases.registration] },
+        { type: "notice", paragraphs: ["Your initial proposal submission is your registration for the Quantum Biology track."] },
         { type: "heading", text: "Initial proposal - due 24 October 2026" },
+        { type: "paragraph", text: "Submit your one-page proposal at registration, no later than 24 October 2026. Semifinalists will be selected to continue." },
+        { type: "paragraph", text: "Keep it short: one PDF page. Include your names and team name and cover these four points, briefly:" },
+        { type: "list", ordered: true, presentation: "steps", items: [
+          { title: "The challenge", text: "What you want to achieve, and why a small gene panel could identify cancerous tissue." },
+          { title: "Your approach", text: "How you’d choose useful genes, where quantum optimization fits, and how you’d compare it to a classical method." },
+          { title: "Your checks", text: "How you’d assess whether your panel works, and investigate what the selected genes mean biologically." },
+          { title: "Your work plan", text: "Your contribution or team responsibilities, main steps, and what you hope to learn in the workshops." },
+        ] },
+        { type: "releases", presentation: "cta", columns: ["Registration & initial submission", "Deadline"], items: [biologyReleases.registration] },
+        { type: "note", text: "The form asks for a link to your PDF. Upload it to cloud storage, allow anyone with the link to view it, and check that it opens without requesting access." },
+        { type: "paragraph", text: "Resources, including the prepared dataset and starter notebook, will be provided to shortlisted candidates after initial submissions." },
         { type: "heading", text: "Final submission - due 28 October 2026" },
         { type: "paragraph", text: "Your work should make it clear which genes you selected, how you selected them, and what your results show." },
-        { type: "notice", paragraphs: ["Proposed submission checklist — final requirements to be confirmed."] },
+        { type: "notice", paragraphs: ["Proposed final-submission checklist — final requirements to be confirmed."] },
         { type: "list", presentation: "cards", items: [
           { title: "Selected genes:", text: "Your selected four genes, with identifiers matching the provided dataset." },
           { title: "Code or notebook:", text: "Include the QUBO formulation, quantum method, and classical comparison." },
@@ -173,7 +195,7 @@ export const quantumBiologyBrief: TrackBrief = {
           { title: "Biological explanation:", text: "A short explanation of the selected genes and their possible biological relevance." },
           { title: "Reproducibility requirements:", text: "Provide runnable code, dependency versions, backend details, execution settings and instructions sufficient to reproduce your results." },
         ] },
-        { type: "paragraph", text: "Submission platform, file formats, naming requirements, and length limits are to be confirmed." },
+        { type: "paragraph", text: "Final-submission platform, file formats, naming requirements, and length limits are to be confirmed." },
         { type: "heading", text: "Finalist presentations - 1 November 2026" },
         { type: "paragraph", text: "Shortlisted teams will present their work to a judging panel on campus at Khalifa University. Presentation duration, required materials, and any remote participation arrangements are to be confirmed." },
       ],
@@ -184,15 +206,16 @@ export const quantumBiologyBrief: TrackBrief = {
       blocks: [
         { type: "table", presentation: "timeline", columns: ["Date (2026)", "Milestone"], rows: [
           ["19 October, 6:00 PM", "Premiere: Introduction to the event and biology track."],
-          ["20 October", "Registration opens: Submit your initial idea."],
-          ["24 October", "Initial proposals close; semifinalist selection follows."],
+          ["20 October", "Registration opens through the initial-submission form: Submit your one-page proposal to register."],
+          ["24 October", "Initial proposals due; semifinalists will be selected to continue."],
           ["26 October", "AD Omics and quantum computing workshops."],
           ["28 October", "Final submissions due; finalist selection follows."],
           ["1 November", "On-campus final presentations at Khalifa University."],
         ] },
+        { type: "note", text: "Resources, including the prepared dataset and starter notebook, will be provided to shortlisted candidates after initial submissions." },
         { type: "heading", text: "Workshops and support" },
         { type: "paragraph", text: "The biology workshop will introduce the disease context, dataset and interpretation of gene expression. The quantum computing workshop will introduce the optimization concepts and computational workflow. Starter materials and mentor support will help teams develop their approach." },
-        { type: "paragraph", text: "Resource links, workshop access details, and the mentor contact channel are to be confirmed. No prior expertise in both biology and quantum computing is assumed." },
+        { type: "paragraph", text: "Workshop access details and the mentor contact channel are to be confirmed. No prior expertise in both biology and quantum computing is assumed." },
         { type: "heading", text: "Contact" },
         { type: "links", items: [
           { label: "asbmbclub@ku.ac.ae", href: "mailto:asbmbclub@ku.ac.ae" },
