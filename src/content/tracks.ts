@@ -57,11 +57,13 @@ export const tracks: Track[] = [
     status: "confirmed",
     details: {
       description: [
-        "Reserved for high school students, this track is an introduction to quantum computing through circuit building.",
+        "Reserved for high schoolers, this track introduces participants to quantum circuit design. Participants will be provided with incomplete quantum circuits, and must fill in the blanks in the circuit to achieve a certain output or setup.",
       ],
       dates: ["31 October 2026: in-person competition at Khalifa University."],
       challenge: [
-        "Participants take on circuit-building challenges. You will be given incomplete quantum circuits and must fill in the blanks so that each circuit achieves a given output or setup.",
+        "Participants take on circuit-building challenges. \
+        You will be given incomplete quantum circuits and must fill in the blanks so that each circuit achieves a given output or setup.",
+        "Registration for the in-person challenge will be shared soon."
       ],
     },
   },
@@ -69,7 +71,7 @@ export const tracks: Track[] = [
     slug: "quantum-machine-learning",
     title: "Quantum Machine Learning",
     summary:
-      "Pick a healthcare problem, build a classical machine learning baseline, then use quantum techniques to beat it.",
+      "Pick a healthcare problem, build/find a classical machine learning baseline, then use quantum techniques to beat it.",
     reach: "national",
     format: "hybrid",
     status: "confirmed",
@@ -79,16 +81,19 @@ export const tracks: Track[] = [
       ],
       challenge: [
         "Identify a specific problem within healthcare and establish a robust classical machine learning baseline to solve it.",
-        "Then use quantum techniques either to improve the classical model or to develop a fully quantum model that outperforms the baseline in key metrics. The quantum integration must serve a clear purpose, directly addressing the limitations of the classical approach to drive measurable performance gains.",
+        "Then use quantum techniques either to improve the classical model or to develop a fully quantum model \
+        that outperforms the baseline in key metrics. The quantum integration must serve a clear purpose, \
+        directly addressing the limitations of the classical approach to drive measurable performance gains.",
+        "Both the problem choice and problem solving approach should be justified.",
       ],
       submission: {
         how: [
           "A functional codebase.",
-          "A comparative evaluation showing both the classical and the quantum model.",
+          "A comparative evaluation showing both the classical and the quantum model and explaining the main decisions.",
         ],
       },
       judging: [
-        "Submissions are scored on the quantum model's performance relative to its classical baseline, and on the ingenuity, depth, and soundness of the team's chosen approach.",
+        "Submissions are scored on the quantum model's performance relative to its classical baseline, and on the correctness, depth, and soundness of the team's chosen approach.",
       ],
     },
   },
