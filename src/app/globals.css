@@ -720,6 +720,49 @@ p {
 @keyframes bio-flow { 50% { opacity: .3; } }
 @keyframes bio-cell { 50% { opacity: .6; } }
 
+/* All bronchial branches and terminals breathe around the same fixed airway anchor.
+   RNA bases remain attached; only the sampled light signals travel along its paths. */
+.lung-scene .lung-breath {
+  transform-box: view-box;
+  transform-origin: 470px 52px;
+  animation: lung-breath 9s cubic-bezier(.45, 0, .25, 1) infinite;
+}
+.lung-scene .lung-rna {
+  transform-box: view-box;
+  transform-origin: 600px 276px;
+  animation: lung-rna-sway 9s ease-in-out infinite;
+}
+.lung-scene .lung-gene-halo {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: lung-gene-pulse 9s ease-in-out infinite;
+}
+.lung-scene .lung-dust {
+  animation: lung-dust 12s ease-in-out infinite alternate;
+}
+.lung-scene .lung-dust:nth-child(3n) { animation-delay: -4s; }
+.lung-scene .lung-dust:nth-child(3n + 1) { animation-delay: -8s; }
+.lung-scene .lung-signal { opacity: 0; }
+.lung-scene[data-motion-paused="true"] * { animation-play-state: paused !important; }
+@keyframes lung-breath {
+  0%, 100% { transform: scale(1); }
+  42% { transform: scale(1.025, 1.018); }
+  68% { transform: scale(1.008, 1.006); }
+}
+@keyframes lung-rna-sway {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  42% { transform: translateY(-3px) rotate(-.35deg); }
+  72% { transform: translateY(2px) rotate(.2deg); }
+}
+@keyframes lung-gene-pulse {
+  0%, 58%, 100% { transform: scale(.86); opacity: .32; }
+  84% { transform: scale(1.3); opacity: .7; }
+}
+@keyframes lung-dust {
+  from { transform: translate(0, 0); }
+  to { transform: translate(3px, -6px); }
+}
+
 .biology-timeline {
   position: relative;
   margin-left: .5rem;
