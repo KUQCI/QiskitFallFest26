@@ -47,6 +47,8 @@ export const fallFestAssets = {
     ),
   },
   logos: {
+    /** Cybersecurity Club logo supplied for its co-organized workshops. */
+    cybersecurityClub: imageAsset("cybersecurity-club.png", "cybersecurity-club.png"),
     /** Original vector wordmark from the official AD-OMICS website. */
     adOmics: imageAsset("adomics-logo.svg", "adomics-logo.svg"),
     /** Latest vector lockup supplied by Moth Quantum. Black artwork on a white plate. */

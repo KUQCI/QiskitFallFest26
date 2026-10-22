@@ -4,6 +4,17 @@ import { qmlDeadline, qmlFinalPresentations } from "./quantum-machine-learning";
 import { metaverseCapacityLabel, metaverseRegistration } from "./quantum-metaverse";
 import { cybersecurityLinks } from "./quantum-cybersecurity";
 import { tracks } from "./tracks";
+import { fallFestAssets } from "./assets";
+
+export interface WorkshopRegistration {
+  href: string | null;
+  enabled: boolean;
+  closed: boolean;
+}
+export interface WorkshopBrand {
+  name: string;
+  logo: string;
+}
 
 export type AgendaKind = "registration" | "workshop" | "event" | "deadline";
 export interface AgendaWorkshop {
@@ -11,6 +22,13 @@ export interface AgendaWorkshop {
   organizers?: string;
   topics?: string[];
   certificates?: boolean;
+  branding?: WorkshopBrand[];
+  registration?: WorkshopRegistration;
+  resources?: { label: string; href: string; description?: string }[];
+  /** Supply only a joining URL approved for public display, distinct from registration. */
+  joiningLink?: { label: string; href: string };
+  audience?: string;
+  preparation?: string[];
 }
 export interface AgendaWorkshopLabels {
   speaker: string;
@@ -34,6 +52,32 @@ export interface AgendaItem {
   workshop?: AgendaWorkshop;
 }
 export interface AgendaDay { date: string; day: string; month: string; items: AgendaItem[] }
+
+export const workshopDialogCopy = {
+  label: "Workshop",
+  openLabel: "View workshop details",
+  closeLabel: "Close workshop details",
+  detailsLabel: "Workshop details",
+  aboutHeading: "About the workshop",
+  topicsHeading: "Topics covered",
+  audienceHeading: "Audience",
+  preparationHeading: "Preparation",
+  sessionHeading: "Session details",
+  dateLabel: "Date",
+  timeLabel: "Time",
+  timezoneLabel: "Time zone",
+  timezone: "UAE time (UTC+4)",
+  venueLabel: "Platform / venue",
+  unconfirmedLabel: "To be confirmed",
+  registrationHeading: "Registration & resources",
+  registerLabel: "Register for this workshop",
+  pendingLabel: "Registration link coming soon",
+  closedLabel: "Registration closed",
+  resourcesHeading: "Resources",
+  joiningHeading: "Joining information",
+  relatedTrackLabel: "View related track",
+} as const;
+export type WorkshopDialogCopy = typeof workshopDialogCopy;
 
 export const agendaPageContent = {
   eyebrow: event.dateLabel,
@@ -106,9 +150,13 @@ export const agendaItems: AgendaItem[] = [
     title: "Cryptography in the Quantum Era", context: event.name,
     description: "An introduction to classical and quantum cryptography.",
     time: "8–9 PM · UAE time (GMT+4)", venue: "Online · Microsoft Teams",
-    href: "https://forms.gle/cSh5o9JDtdcB7oLv8", actionLabel: "Register for workshop", external: true,
     workshop: {
+      registration: { href: "https://forms.gle/cSh5o9JDtdcB7oLv8", enabled: true, closed: false },
       organizers: "Quantum Computing Initiative × Cybersecurity Club",
+      branding: [
+        { name: "Quantum Computing Initiative", logo: fallFestAssets.logos.qciLogoFit.src },
+        { name: "Khalifa University Cybersecurity Club", logo: fallFestAssets.logos.cybersecurityClub.src },
+      ],
       topics: ["Classical ciphers & RSA", "The quantum threat", "Quantum key distribution", "Post-quantum cryptography"],
       certificates: true,
     },
@@ -116,6 +164,10 @@ export const agendaItems: AgendaItem[] = [
   trackItem("chemistry-drug-discovery", {
     id: "biology-workshops", date: "2026-10-26", kind: "workshop", title: "Biology and quantum computing workshops",
     description: "AD-OMICS and quantum computing workshops. Access details and session timings are to be confirmed.",
+    workshop: {
+      registration: { href: null, enabled: false, closed: false },
+      branding: [{ name: "AD-OMICS", logo: fallFestAssets.logos.adOmics.src }],
+    },
   }),
   trackItem("chemistry-drug-discovery", {
     id: "biology-submission", date: "2026-10-28", kind: "deadline", title: "Final submissions due",

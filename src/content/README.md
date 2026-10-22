@@ -50,14 +50,30 @@ When an approved track milestone changes, update its Agenda entry to match. Regi
 opening dates for Cybersecurity, Metaverse and Foundations read their track settings.
 Agenda links open the track details; they never enable an unreleased form.
 
+Every Agenda card has one whole-card control. Track milestones link to their existing
+track popup, and the premiere retains its recording link. Workshop cards open the
+reusable `WorkshopDialog`, with a single scrolling content view and a fixed close button.
+Native modal inertness, focus trapping/restoration, scroll locking and reduced-motion
+transitions are preserved. A related-track link closes the workshop before navigating;
+do not stack dialogs. Filters and date grouping remain independent of dialog state.
+
 Add workshops to `agendaItems` with `kind: "workshop"`, an ISO `date`, `title`,
 event/track `context`, and confirmed `time` and `venue` (including online platform).
 Keep descriptions brief and optional. The optional `workshop` object supports
 `speakers: [{ name, title?, organization?, profileUrl? }]`, `organizers`, short `topics`, and
 `certificates: true` only when confirmed. Omitted details render no placeholders.
-Add `href` plus `actionLabel` only for an approved registration or joining URL;
-set `external: true` for a new-tab external link. No URL means no fake button.
+Workshop registration lives in `workshop.registration: { href, enabled, closed }`.
+An approved HTTP(S) URL and `enabled: true` are required for an active Register for this
+workshop action; `closed: true` overrides both. Otherwise show the non-clickable pending
+state. Keep registration separate from track/global forms. Optional `resources` and
+`joiningLink` contain only approved public URLs; a Teams joining link is never registration.
+For a workshop created with `trackItem`, its existing `/tracks/#...` href supplies the
+View related track action. No URL means no fake button.
 An approved speaker `profileUrl` makes their name a link that opens in a new tab.
+Workshop branding uses `workshop.branding: [{ name, logo }]` with canonical asset paths.
+The supplied `cybersecurity-club.png` belongs to the Cryptography workshop alongside QCI,
+with readable organizer text retained. Only inner branding floats by 2px; pause it on hover,
+focus and interaction, and disable motion under reduced motion. Card controls stay still.
 The user removed the Introduction to Qiskit and Quantum Computing workshop from the
 Agenda; do not restore that entry or its speaker details without a new request.
 Cryptography in the Quantum Era remains on 24 October 2026, 8–9 PM UAE time (GMT+4),
