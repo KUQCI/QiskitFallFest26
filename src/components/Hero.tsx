@@ -34,6 +34,13 @@ export function Hero() {
           <p className="mt-6 max-w-[68ch] text-base leading-relaxed text-fg-muted sm:text-lg">
             {event.intro}
           </p>
+          <ul className="mt-3 max-w-[68ch] list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-fg-muted marker:text-purple sm:text-base">
+            {homeContent.heroHighlights.map(highlight => <li key={highlight}>{highlight}</li>)}
+          </ul>
+          <p className="mt-4 max-w-[68ch] text-sm leading-relaxed text-fg-muted">
+            <strong className="font-semibold text-fg">{homeContent.heroShowcase.label}: {homeContent.heroShowcase.dates}.</strong>{" "}
+            {homeContent.heroShowcase.detail}
+          </p>
 
           <div className="mt-7 flex flex-col gap-3 text-sm text-fg-muted sm:flex-row sm:flex-wrap sm:items-center sm:gap-6 sm:text-base">
             <span className="inline-flex items-center gap-2.5">

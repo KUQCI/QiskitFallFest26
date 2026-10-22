@@ -3,6 +3,7 @@ import { biologyTags, quantumBiologyBrief } from "./quantum-biology";
 import { cybersecurityDateLabels, quantumCybersecurityBrief } from "./quantum-cybersecurity";
 import { metaverseStatusLabels, metaverseVenue, quantumMetaverseBrief } from "./quantum-metaverse";
 import { foundationsStatusLabels, quantumFoundationsBrief } from "./quantum-foundations";
+import { qmlDeadline, qmlDeadlineCardLabel, qmlStatusLabels, qmlSummary, quantumMachineLearningBrief } from "./quantum-machine-learning";
 import { adOmics } from "./sponsors";
 import type { Track, TrackHost } from "./types";
 
@@ -69,32 +70,16 @@ export const tracks: Track[] = [
   {
     slug: "quantum-machine-learning",
     title: "Quantum Machine Learning",
-    summary:
-      "Pick a healthcare problem, build/find a classical machine learning baseline, then use quantum techniques to beat it.",
+    summary: qmlSummary,
     reach: "national",
     format: "hybrid",
     status: "confirmed",
+    statusLabels: qmlStatusLabels,
+    deadlineLabel: qmlDeadlineCardLabel,
     details: {
-      overviewVisual: "qml",
-      description: [
-        "Push past conventional machine learning by bringing quantum techniques to a real healthcare problem, and show what they add.",
-      ],
-      challenge: [
-        "Identify a specific problem within healthcare and establish a robust classical machine learning baseline to solve it.",
-        "Then use quantum techniques either to improve the classical model or to develop a fully quantum model \
-        that outperforms the baseline in key metrics. The quantum integration must serve a clear purpose, \
-        directly addressing the limitations of the classical approach to drive measurable performance gains.",
-        "Both the problem choice and problem solving approach should be justified.",
-      ],
-      submission: {
-        how: [
-          "A functional codebase.",
-          "A comparative evaluation showing both the classical and the quantum model and explaining the main decisions.",
-        ],
-      },
-      judging: [
-        "Submissions are scored on the quantum model's performance relative to its classical baseline, and on the correctness, depth, and soundness of the team's chosen approach.",
-      ],
+      headerSummary: qmlSummary,
+      deadline: qmlDeadline,
+      brief: quantumMachineLearningBrief,
     },
   },
   {
@@ -244,6 +229,20 @@ export const tracks: Track[] = [
   },
 ];
 
+/** Short homepage teasers; full challenge descriptions remain on the Tracks page. */
+const homeTrackDescriptions: Record<string, string> = {
+  "first-qubit": "Fill in missing gates",
+  "quantum-machine-learning": "Quantum ML for healthcare",
+  "chemistry-drug-discovery": "Find a four-gene panel",
+  "peaked-circuits": "Quantum gates in VR",
+  "quantum-cybersecurity": "Quantum model extraction",
+  "quantum-media": "Create with Moth Quantum",
+};
+
+export const homeTrackPreviews = tracks.map(({ slug, title, reach }) => ({
+  slug, title, reach, description: homeTrackDescriptions[slug],
+}));
+
 export const featuredTrackSlugs = [
   "first-qubit",
   "quantum-machine-learning",
@@ -259,7 +258,7 @@ export const tracksPageContent = {
   eyebrow: "Tracks",
   title: "Find your path into quantum",
   intro:
-    "Explore six tracks, from quantum fundamentals to specialized applications. Each track runs independently and has its own registration and competition schedule, so participants can choose the area that best matches their interests.",
+    "Explore six independent tracks, from quantum fundamentals to specialized applications. Choose a challenge and check its registration and competition dates.",
   /** How national and international tracks run, from the organisers' event format table. */
   formats: {
     heading: "How the tracks run",
@@ -268,15 +267,21 @@ export const tracksPageContent = {
         reach: "national",
         label: "National tracks",
         format: "Hybrid & in person",
-        description:
-          "National tracks include hybrid competitions and entirely in-person challenges. Where qualifiers are needed, they take place before 31 October, and each track sets its own cutoff. In-person days are on 30 October, 31 October or 1 November, depending on the track. Quantum Foundations runs entirely in person at Khalifa University on 31 October 2026. Quantum in the Metaverse is a single-day, in-person challenge at Khalifa University’s MetaHub Lab on 30 October 2026, with individual registration and scheduled sessions.",
+        points: [
+          { label: "Qualifiers", text: "Before 31 October where required; each track sets its cutoff." },
+          { label: "In-person days", text: "30 or 31 October, or 1 November, depending on the track." },
+          { label: "Quantum in the Metaverse · 30 October 2026", text: "Single-day challenge at Khalifa University’s MetaHub Lab, with individual registration and scheduled sessions." },
+          { label: "Quantum Foundations · 31 October 2026", text: "Entirely in person at Khalifa University." },
+        ],
       },
       {
         reach: "international",
         label: "International tracks",
         format: "Fully virtual",
-        description:
-          "The Fall Fest begins on 19 October. International tracks set their own registration and competition schedules, separately from the national qualifiers and finals. The Quantum Cybersecurity CTF takes place online on 30 October.",
+        points: [
+          { label: "Schedules", text: "Track-specific registration and competition dates, separate from national qualifiers and finals." },
+          { label: "Quantum Cybersecurity · 30 October", text: "Online CTF competition." },
+        ],
       },
     ],
   },

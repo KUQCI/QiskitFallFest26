@@ -9,7 +9,7 @@ import { TrackBriefTabs } from "@/components/TrackBriefTabs";
 import { TrackVisual } from "@/components/TrackVisual";
 import { TrackCoverMark } from "@/components/TrackCoverMark";
 import { TrackStatusBadge } from "@/components/TrackStatusBadge";
-import { CloseIcon, ExternalLinkIcon, MapPinIcon, UsersIcon } from "@/components/ui/Icons";
+import { CalendarIcon, CloseIcon, ExternalLinkIcon, MapPinIcon, UsersIcon } from "@/components/ui/Icons";
 import type { TrackPanelCopy } from "@/content/tracks";
 import type { Track, TrackHost, TrackLink, TrackOrganization } from "@/content/types";
 import { cn, formatLabel, reachLabel } from "@/lib/utils";
@@ -246,6 +246,14 @@ export function TrackPanel({
   // Hosts with only a name are already shown as labels in the header.
   const profiledHosts = hosts.filter((host) => host.logo || host.about?.length || host.links?.length);
   const hostProfiles = [...profiledHosts, ...(details.hostPartners ?? [])];
+  const metadata = (
+    <div className={cn("flex flex-wrap gap-2", details.brief && !track.banner && "track-brief-metadata")}>
+      {track.statusLabels?.map((status) => <TrackStatusBadge key={typeof status === "string" ? status : status.label} status={status} />)}
+      {track.reach ? <Badge tone="sky">{reachLabel(track.reach)}</Badge> : null}
+      {track.format ? <Badge tone="neutral">{track.formatDisplayLabel ?? formatLabel(track.format)}</Badge> : null}
+      {participation ? <Badge tone="purple"><UsersIcon className="h-3.5 w-3.5 shrink-0" />{participation}</Badge> : null}
+    </div>
+  );
 
   return createPortal(
     <div className="fixed inset-0 z-[80]">
@@ -279,6 +287,7 @@ export function TrackPanel({
               track.banner && (details.brief ? "pt-12 sm:pt-16" : "pt-28 sm:pt-36"),
               track.coverIcon && "biology-panel-cover",
               details.brief && !track.banner && "track-text-brief-cover",
+              details.headerSummary && "track-intro-brief-cover",
             )}
           >
             {track.banner ? (
@@ -289,16 +298,18 @@ export function TrackPanel({
             {track.coverIcon ? <div aria-hidden="true" className="biology-panel-icon"><TrackCoverMark icon={track.coverIcon} /></div> : null}
             <div className="min-w-0">
               {track.coverLogo ? <div className="mb-4"><TrackCoverMark logo={track.coverLogo} logoAlt={`${track.hostedBy?.[0]?.name ?? track.title} logo`} /></div> : null}
-              <div className={cn("flex flex-wrap gap-2", details.brief && !track.banner && "track-brief-metadata")}>
-                {track.statusLabels?.map((status) => <TrackStatusBadge key={typeof status === "string" ? status : status.label} status={status} />)}
-                {track.reach ? <Badge tone="sky">{reachLabel(track.reach)}</Badge> : null}
-                {track.format ? <Badge tone="neutral">{track.formatDisplayLabel ?? formatLabel(track.format)}</Badge> : null}
-                {participation ? <Badge tone="purple"><UsersIcon className="h-3.5 w-3.5 shrink-0" />{participation}</Badge> : null}
-              </div>
+              {details.deadline ? <div className="track-header-topline">
+                {metadata}
+                <p className="track-header-deadline flex items-start gap-2 rounded-lg border border-gold/30 bg-gold/5 px-2.5 py-1.5 text-xs font-semibold leading-relaxed text-gold">
+                  <CalendarIcon className="mt-0.5 h-4 w-4 shrink-0" />
+                  <span>Deadline: <time dateTime={details.deadline.at}>{details.deadline.label}</time></span>
+                </p>
+              </div> : metadata}
               <h2 id={titleId} className="mt-3 text-2xl font-semibold text-fg sm:text-3xl lg:text-4xl">
                 {track.title}
               </h2>
               {track.subtitle ? <p className="mt-1 text-xs font-semibold text-purple">{track.subtitle}</p> : null}
+              {details.headerSummary ? <p className="mt-2 max-w-3xl text-xs leading-relaxed text-fg-muted sm:text-sm">{details.headerSummary}</p> : null}
               {track.venueLabel ? <p className="mt-2 flex items-start gap-2 text-xs leading-relaxed text-fg-muted"><MapPinIcon className="mt-0.5 h-4 w-4 shrink-0" />{track.venueLabel}</p> : null}
               {hosts.length ? (
                 <p className="mt-3 flex flex-wrap items-center gap-2 text-sm text-fg-muted">

@@ -8,6 +8,8 @@ import { BiologyArtwork } from "@/components/BiologyArtwork";
 import { CircuitMotif } from "@/components/CircuitMotif";
 import { TrackVisual } from "@/components/TrackVisual";
 import { TrackRegistrationAction } from "@/components/TrackRegistrationAction";
+import { TrackSubmissionAction } from "@/components/TrackSubmissionAction";
+import { TrackResourceCards } from "@/components/TrackResourceCards";
 import type { TrackBrief, TrackBriefBlock } from "@/content/types";
 import { cn } from "@/lib/utils";
 
@@ -234,6 +236,28 @@ function BriefBlock({ block }: { block: TrackBriefBlock }) {
       );
     case "registration":
       return <TrackRegistrationAction registration={block.registration} />;
+    case "submission-control":
+      return <TrackSubmissionAction submission={block.submission} />;
+    case "comparison":
+      return (
+        <div className="qml-workflow">
+          <div className="grid gap-3 sm:grid-cols-2">
+            {block.methods.map((method, index) => <div key={method.title} className="biology-detail-card flex flex-col items-start">
+              <BiologyGlyph index={index === 0 ? 0 : 2} />
+              <h4 className="mt-4 text-base font-semibold text-fg">{method.title}</h4>
+              <p className="mt-2 text-sm leading-relaxed text-fg-muted">{method.text}</p>
+            </div>)}
+          </div>
+          <div aria-hidden="true" className="qml-workflow-connector" />
+          <div className="biology-detail-card flex items-start gap-3">
+            <BiologyGlyph index={4} />
+            <div className="min-w-0"><h4 className="text-base font-semibold text-fg">{block.evaluation.title}</h4>
+              <p className="mt-1 text-sm leading-relaxed text-fg-muted">{block.evaluation.text}</p></div>
+          </div>
+        </div>
+      );
+    case "resource-cards":
+      return <TrackResourceCards items={block.items} sourceLabels={block.sourceLabels} />;
     case "facts":
       return (
         <dl className={cn("grid gap-3", block.columns === 2 ? "sm:grid-cols-2" : "sm:grid-cols-3")}>

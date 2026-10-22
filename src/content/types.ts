@@ -103,6 +103,9 @@ export interface TrackChallengeThemeGroup {
  * notice instead.
  */
 export interface TrackDetails {
+  /** Optional compact popup introduction and approved deadline callout. */
+  headerSummary?: string;
+  deadline?: { at: string; label: string };
   /** Decorative overview artwork; it never supplies challenge rules. */
   overviewVisual?: TrackVisualKind;
   /** Profiles in Hosts, without adding partners to the track's Hosted by labels. */
@@ -160,6 +163,26 @@ export interface TrackRegistration {
   note?: string;
 }
 
+/** A submission form has independent release and closure controls and an exact deadline. */
+export interface TrackSubmission {
+  href: string | null;
+  enabled: boolean;
+  closed: boolean;
+  deadline: { at: string; label: string };
+  label: string;
+  unavailableLabel: string;
+  closedLabel: string;
+}
+
+export interface TrackBriefResource {
+  title: string;
+  description: string;
+  type: string;
+  source: "official" | "external";
+  href: string;
+  actionLabel: string;
+}
+
 export type TrackBriefBlock =
   | { type: "paragraph" | "heading" | "note"; text: string; presentation?: "spotlight" }
   | { type: "notice"; paragraphs: string[] }
@@ -170,6 +193,9 @@ export type TrackBriefBlock =
   | { type: "track-visual"; kind: TrackVisualKind }
   | { type: "releases"; presentation?: "cta"; columns: [string, string]; items: TrackReleaseLink[] }
   | { type: "registration"; registration: TrackRegistration }
+  | { type: "submission-control"; submission: TrackSubmission }
+  | { type: "comparison"; methods: { title: string; text: string }[]; evaluation: { title: string; text: string } }
+  | { type: "resource-cards"; items: TrackBriefResource[]; sourceLabels: { official: string; external: string } }
   | { type: "facts"; columns?: 2 | 3; items: { label: string; value: string; icon: "location" | "headset" | "users" | "students" | "calendar" }[] }
   | { type: "links"; items: TrackLink[] };
 

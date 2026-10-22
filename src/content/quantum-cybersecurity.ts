@@ -5,17 +5,17 @@ export const cybersecurityLinks = {
   registration: {
     href: null,
     enabled: false,
-    opensOn: "2026-10-22",
+    opensOn: "2026-10-23",
     timeZone: "Asia/Dubai",
     label: "Register for the CTF",
-    beforeLabel: "Registration opens 22 October",
+    beforeLabel: "Registration opens 23 October",
     unavailableLabel: "Registration link to be announced",
   } satisfies TrackRegistration,
   competitionPlatform: null as string | null,
 };
 
 export const cybersecurityDateLabels: TrackStatusLabel[] = [
-  { label: "Registration opens 22 October", tone: "gold", icon: "calendar" },
+  { label: "Registration opens 23 October", tone: "gold", icon: "calendar" },
   { label: "CTF challenge: 30 October", tone: "sky", icon: "flag" },
 ];
 
@@ -57,7 +57,7 @@ export const quantumCybersecurityBrief: TrackBrief = {
       blocks: [
         { type: "heading", text: "Participate individually or as a team" },
         { type: "paragraph", text: "Enter individually or in a team of up to four people, including the team lead. Only the team lead needs to submit the registration form on behalf of the team." },
-        { type: "notice", paragraphs: ["Registration opens 22 October 2026."] },
+        { type: "notice", paragraphs: ["Registration opens 23 October 2026."] },
         { type: "paragraph", text: "Prepare your team name, team size, the team lead’s contact details and institution, and the names, email addresses and institutions of any additional members." },
         { type: "paragraph", text: "Competition timings, platform access and preparation instructions will be shared through email. All announced times will use UAE time (UTC+4)." },
         { type: "registration", registration: cybersecurityLinks.registration },
@@ -72,7 +72,7 @@ export const quantumCybersecurityBrief: TrackBrief = {
           presentation: "timeline",
           columns: ["2026 · UAE time (UTC+4)", "Milestone"],
           rows: [
-            ["22 October 2026 — Registration opens", "The team lead submits one registration form for the team."],
+            ["23 October 2026 — Registration opens", "The team lead submits one registration form for the team."],
             ["30 October 2026 — Online CTF competition", "A single-day competition featuring quantum machine learning model-extraction challenges."],
           ],
         },

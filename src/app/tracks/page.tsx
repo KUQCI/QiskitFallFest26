@@ -34,10 +34,14 @@ export default function TracksPage() {
               {tracksPageContent.formats.items.map((item) => (
                 <li key={item.reach} className="card p-6">
                   <div className="flex flex-wrap items-center gap-3">
-                    <p className="text-lg font-semibold text-fg">{item.label}</p>
+                    <h3 className="text-lg font-semibold text-fg">{item.label}</h3>
                     <Badge tone={item.reach === "national" ? "sky" : "neutral"}>{item.format}</Badge>
                   </div>
-                  <p className="mt-3 text-sm leading-relaxed text-fg-muted sm:text-base">{item.description}</p>
+                  <ul className="mt-4 list-disc space-y-3 pl-5 text-sm leading-relaxed text-fg-muted marker:text-purple sm:text-base">
+                    {item.points.map(point => (
+                      <li key={point.label}><strong className="font-semibold text-fg">{point.label}:</strong>{" "}{point.text}</li>
+                    ))}
+                  </ul>
                 </li>
               ))}
             </ul>

@@ -3,6 +3,18 @@
 Event facts and page copy live in this folder. Components should render these exports;
 they should not duplicate dates, track descriptions, partner claims, or other event data.
 
+Keep the homepage introduction concise: `event.intro` covers audience and duration;
+`homeContent.heroHighlights` lists activities and `heroShowcase` gives the closing
+showcase dates and participation format. The About paragraphs explain the global series,
+PLUS edition and QCI's purpose without repeating activities. Track-format summaries use
+labelled `points` for qualifiers, in-person dates and independent international schedules.
+The homepage How It Works section uses short `homePhaseSummaries` in `schedule.ts`
+and links to `/schedule/`. Keep the full `phases` summaries and sessions on that page;
+shortening the homepage preview must not remove those details or change phase dates.
+Keep the homepage track list compact: canonical names and groups come from `tracks`,
+with short `homeTrackDescriptions` teasers in `tracks.ts`. On narrow screens show names
+only. Full cards, status labels, deadlines, artwork and challenge panels stay on `/tracks/`.
+
 After an edit, run `npm run build` with the development server stopped.
 
 ## Where things live
@@ -15,7 +27,9 @@ After an edit, run `npm run build` with the development server stopped.
 | Quantum Cybersecurity four-panel brief, date labels, independent registration and platform configuration | `quantum-cybersecurity.ts` |
 | Quantum in the Metaverse four-panel brief, venue, date labels and independent registration controls | `quantum-metaverse.ts` |
 | Quantum Foundations four-panel brief, high-school audience, date labels and independent registration controls | `quantum-foundations.ts` |
+| Quantum Machine Learning four-panel healthcare brief, exact deadline, submission controls and approved resources | `quantum-machine-learning.ts` |
 | Three phases, sessions, and How It Works page copy | `schedule.ts` |
+| Day-by-day Agenda milestones, category filters, time-zone notes and track links | `agenda.ts` |
 | Confirmed partners, booth applications, and sponsorship contact copy | `sponsors.ts` |
 | Questions and cautious answers | `faq.ts` |
 | Organizer, advisor, past events, R&D projects, and speakers | `team.ts` |
@@ -24,6 +38,32 @@ After an edit, run `npm run build` with the development server stopped.
 | Labels for decorative track animations; no challenge rules or measured results | `track-visuals.ts` |
 
 ## Interest form and registration
+
+The Agenda page at `/agenda/` replaces the standalone Partners page in navigation.
+Keep organiser and technical-sponsor logos on the homepage. `/sponsors/` forwards to
+the Agenda with a static-host-compatible meta refresh and a normal fallback link.
+The Agenda lists published milestones, not an invented daily running order. Keep
+unknown session hours unlisted. QML's submission milestone derives from its canonical
+28 October 2026, 11:59 PM UAE time (UTC+4) deadline.
+The Media submission deadline is in Pacific Time; other announced times use UAE time.
+When an approved track milestone changes, update its Agenda entry to match. Registration
+opening dates for Cybersecurity, Metaverse and Foundations read their track settings.
+Agenda links open the track details; they never enable an unreleased form.
+
+Add workshops to `agendaItems` with `kind: "workshop"`, an ISO `date`, `title`,
+event/track `context`, and confirmed `time` and `venue` (including online platform).
+Keep descriptions brief and optional. The optional `workshop` object supports
+`speakers: [{ name, title?, organization?, profileUrl? }]`, `organizers`, short `topics`, and
+`certificates: true` only when confirmed. Omitted details render no placeholders.
+Add `href` plus `actionLabel` only for an approved registration or joining URL;
+set `external: true` for a new-tab external link. No URL means no fake button.
+An approved speaker `profileUrl` makes their name a link that opens in a new tab.
+The public Qiskit introduction workshop is 23 October 2026, 3–4 PM UAE time (GMT+4),
+presented by Kiran Kaur Raina with the user's supplied LinkedIn profile, online on
+Microsoft Teams. Cryptography in the Quantum Era is
+24 October 2026, 8–9 PM UAE time (GMT+4), online on Microsoft Teams, organized by
+QCI × Cybersecurity Club, with certificates. Its speaker name remains unconfirmed.
+Neither workshop has an approved registration/join URL. The cryptography poster supplies its topics.
 
 Quantum Biology has independent release controls in `biologyReleases`. To publish a
 participant resource or form, supply its approved `href` and set `enabled: true`.
@@ -54,8 +94,9 @@ in `TrackBriefTabs`, `BiologyArtwork` and `globals.css`; list and timeline prese
 elements. Keep illustrations after their explanatory copy, retain reduced-motion support,
 and keep the compact popup header so the selected panel has room to scroll. The track
 directory groups national tracks before international tracks, with uniform card spacing.
-Track status chips are opt-in through `statusLabels`. Only Biology currently shows
-"Challenge live" and "Submissions open". Cybersecurity now uses the user's approved
+Track status chips are opt-in through `statusLabels`. Biology shows
+"Challenge live" and "Submissions open"; QML shows "Challenge live" and "Submission
+form coming soon". Media also shows its approved "Challenge live" status. Cybersecurity uses the user's approved
 registration and CTF date badges, with separate gold and sky tones. Metaverse uses its
 registration/challenge date labels and Limited slots notice. Foundations uses its own
 23 October registration / 31 October challenge dates and Limited spots notice. Leave the remaining tracks'
@@ -64,11 +105,11 @@ never adds a chip by itself.
 
 Cybersecurity's newer approved content is in `quantum-cybersecurity.ts`, with four
 panels inside the same modal: Overview, How It Works, Participation & Registration,
-and Schedule & Preparation. Registration opens 22 October 2026 and the online CTF
+and Schedule & Preparation. Registration opens 23 October 2026 and the online CTF
 takes place on 30 October. Set `cybersecurityLinks.registration.href` to the approved
 form and `enabled: true` only when registration has actually opened. The UAE calendar
 date is an additional guard, not a guessed opening hour. Without both an approved URL
-and release flag the action remains unavailable, including after 22 October. Keep
+and release flag the action remains unavailable, including after 23 October. Keep
 `competitionPlatform` separate and unset until supplied. The global interest form must
 never register someone for this track. Do not add Biology rules to Cybersecurity.
 
@@ -101,9 +142,25 @@ The newer premiere HTML supplies visual references only, never replacement chall
 copy. `TrackVisual` and `track-visuals/draw.ts` adapt its circuit, model comparison,
 Bloch sphere, CTF query flow and media pixel field. The Foundations circuit keeps its
 missing gates hidden, while the CTF contains no actual flags or challenge data.
-QML's comparison carries an illustration caption rather than presenting benchmark
-results. Canvases read the existing theme tokens, pause offscreen and in hidden tabs,
+QML retains its original animated graphical comparison alongside the balanced
+classical/quantum workflow and shared evaluation strip. Its caption makes clear that
+the graphic is illustrative, not measured results. Canvases read the existing theme tokens, pause offscreen and in hidden tabs,
 and render a complete static frame under reduced motion. Biology is unchanged.
+
+QML's newer approved four-panel brief is in `quantum-machine-learning.ts`. It remains
+National / Hybrid with a healthcare theme and a live challenge. The canonical deadline
+is `2026-10-28T23:59:00+04:00`; card, popup, timeline, Agenda and submission controls
+derive from it. No QML submission URL or resource URLs have been supplied. Set
+`qmlSubmission.href` to the approved URL and `enabled: true` to activate the form before
+the deadline. `closed: true` or reaching the exact deadline shows Submissions closed.
+An invalid or missing URL never links to the general interest form. Add approved resources
+to `qmlResources` with descriptive titles, source (official/external), types and action labels.
+Invalid URLs are omitted; an empty array renders no fake cards or download controls.
+Preserve the approved challenge and evaluation, including correctness and justification.
+Shortlisted individuals will be invited to final presentations on 31 October 2026.
+Keep that milestone consistent in Overview, Submissions, the timeline and Agenda.
+No fixed algorithm, framework, dataset, team size or scoring weights. Presentation
+hours, venue and further logistics remain unconfirmed.
 
 Quantum in Media (stable slug `quantum-media`) is hosted by Moth Quantum. Its challenge
 is live, with a submission deadline of 30 October 2026, 11:59 PM Pacific Time.
@@ -153,8 +210,8 @@ answers that say registration information will be published before registration 
 
 The six track cards show a challenge summary, reach, delivery format, and explicitly
 approved `statusLabels`, which can be strings or date badges with a tone and icon.
-Biology uses its dedicated seven-tab popup; Cybersecurity, Metaverse and Foundations use their
-newer four-panel briefs. The other tracks use the organisers' track document.
+Biology uses its dedicated seven-tab popup; Cybersecurity, Metaverse, Foundations and
+QML use their newer four-panel briefs. Media retains the organisers' track document and user updates.
 Add levels, partners, prerequisites, and
 links only after they are confirmed. Preserve track slugs because they are used as
 anchors and keys even when the public name changes.

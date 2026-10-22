@@ -16,7 +16,7 @@ import { resources } from "@/content/resources";
 const siteLinks = [
   { href: "/tracks/", label: "Tracks" },
   { href: "/schedule/", label: "How It Works" },
-  { href: "/sponsors/", label: "Partners" },
+  { href: "/agenda/", label: "Agenda" },
   { href: "/about/", label: "About" },
   { href: "/faq/", label: "FAQ", gate: "Z" },
 ];

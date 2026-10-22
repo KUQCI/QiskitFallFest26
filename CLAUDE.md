@@ -29,6 +29,13 @@ Dates, names, public descriptions, page headings, partner details, links, and CT
 must be editable without opening a component. Shared components consume shared content
 exports. See `src/content/README.md` for the file map.
 
+The standalone Partners page has been replaced by `/agenda/`; header/footer navigation
+uses Agenda. The homepage keeps the organiser and technical-sponsor logos. Old
+`/sponsors/` bookmarks forward to Agenda using a static-compatible meta refresh and
+fallback link. `src/content/agenda.ts` holds published track milestones, with no invented
+session hours or running order. Preserve the Media deadline's Pacific Time exception.
+Keep `/schedule/` as the separate How It Works overview of event phases.
+
 ## Content honesty
 
 - Never list a sponsor, speaker, department, or partner that has not agreed in writing.
@@ -77,7 +84,7 @@ exports. See `src/content/README.md` for the file map.
   limited-slot note beside the action. Do not invent hours, deadlines, capacity,
   prizes, prerequisites or required laptops. Quantum Cybersecurity uses the user's newer four-panel
   brief in `src/content/quantum-cybersecurity.ts`, overriding the older track document.
-  It is international and online, for 1–4 participants. Registration opens 22 October
+  It is international and online, for 1–4 participants. Registration opens 23 October
   2026; the CTF is on 30 October. Its form and platform URLs are independent of global
   registration and remain unset. A form needs an approved URL, an explicit release flag
   and the opening date to be reached in UAE time; the date alone never enables it.
@@ -98,11 +105,27 @@ exports. See `src/content/README.md` for the file map.
   clickable resources. The challenge is live. Submissions are due 30 October 2026,
   11:59 PM Pacific Time; submission details will be shared soon. Use the supplied
   `moth-lockup.svg` on white logo plates, including the technical sponsor display.
+- Quantum Machine Learning uses its newer four-panel healthcare brief in
+  `src/content/quantum-machine-learning.ts`. Keep National / Hybrid, Challenge live,
+  and the canonical submission deadline `2026-10-28T23:59:00+04:00` (28 October 2026,
+  11:59 PM UAE time, UTC+4). All labels, Agenda and closure controls derive from it.
+  The submission URL and resources remain unset. An active form requires an approved
+  HTTP(S) URL, explicit enabled flag and a time before the deadline; organizer closure
+  overrides these. No general interest form substitution. Resources distinguish official
+  challenge files from external learning links and omit invalid URLs. Overview uses equal
+  classical/quantum method cards with shared evaluation. Preserve the original animated
+  comparison graphic alongside them, with its illustrative/non-measured-results caption.
+  Preserve justification, correctness and the approved comparative evaluation; no algorithm,
+  dataset, framework, team-size restrictions, scoring weights or unconfirmed logistics.
+  Shortlisted individuals will be invited to final presentations on 31 October 2026;
+  keep Overview, Submissions, the timeline and Agenda consistent. Presentation hours
+  and venue remain unconfirmed.
 - The supplied premiere HTML is a visual reference only; its dates, rules, framework
   restrictions and challenge text are outdated. `TrackVisual` adapts its five animated
   illustrations with theme tokens, responsive canvases, reduced-motion stills and
   pausing offscreen/in background tabs. Foundations gates stay hidden; CTF shows no
-  flag values or private model data. QML's comparison is explicitly illustrative.
+  flag values or private model data. QML retains its graphical comparison and approved
+  workflow comparison; the graphical comparison is explicitly illustrative.
   Keep Biology artwork and content unchanged.
 - Do not invent attendance numbers, eligibility rules, team rules, workloads, closing
   dates, speaker formats, or selection processes.

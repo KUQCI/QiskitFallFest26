@@ -38,7 +38,8 @@ Most common edits:
 | Turn on registration | `src/content/event.ts` → set `registrationUrl` |
 | Change dates or venue | `src/content/event.ts` |
 | Add or edit a track | `src/content/tracks.ts` |
-| Update the agenda | `src/content/schedule.ts` |
+| Update the day-by-day agenda | `src/content/agenda.ts` |
+| Update the event phases and How It Works page | `src/content/schedule.ts` |
 | Add a sponsor | `src/content/sponsors.ts` |
 | Add a speaker | `src/content/team.ts` |
 | Add an FAQ | `src/content/faq.ts` |

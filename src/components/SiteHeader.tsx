@@ -24,7 +24,7 @@ const navLinks = [
   { href: "/", label: "Home" },
   { href: "/tracks/", label: "Tracks" },
   { href: "/schedule/", label: "How It Works" },
-  { href: "/sponsors/", label: "Partners" },
+  { href: "/agenda/", label: "Agenda" },
   { href: "/about/", label: "About Us" },
   { href: "/faq/", label: "FAQ" },
 ];

@@ -1,6 +1,9 @@
+import Link from "next/link";
+
 import { Reveal } from "@/components/Reveal";
 import { PremiereLink } from "@/components/PremiereLink";
 import { Badge, Container, Section, SectionHeading } from "@/components/ui/primitives";
+import { ArrowRightIcon } from "@/components/ui/Icons";
 import { formatSectionCopy, homePhases, phases } from "@/content/schedule";
 import { formatLabel, statusLabel } from "@/lib/utils";
 
@@ -13,7 +16,12 @@ export function FormatSection({ variant = "compact" }: { variant?: "compact" | "
       <Section id="format" className="relative overflow-hidden border-t border-border">
         <div className="pointer-events-none absolute inset-0 bg-fest-dots opacity-25" aria-hidden="true" />
         <Container className="relative">
-          <SectionHeading eyebrow={copy.eyebrow} title={copy.title} lede={copy.lede} />
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <SectionHeading eyebrow={copy.eyebrow} title={copy.title} lede={copy.lede} />
+            <Link href={formatSectionCopy.compact.link.href} className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-semibold text-on-gold transition-colors hover:bg-gold-strong">
+              {formatSectionCopy.compact.link.label}<ArrowRightIcon className="h-4 w-4 shrink-0" />
+            </Link>
+          </div>
           <ol className="mt-12 grid gap-5 lg:mt-14">
             {homePhases.map((phase, index) => (
               <Reveal as="li" key={phase.label} delay={index * 55}>

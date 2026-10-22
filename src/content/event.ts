@@ -6,7 +6,7 @@ export const event = {
   university: "Khalifa University",
   tagline: "19 October – 1 November 2026",
   intro:
-    "Two weeks of quantum computing. Built with IBM Quantum, this Qiskit Fall Fest is open to learners at every level. Participants will take on challenge tracks and coding competitions, join hands-on workshops and technical talks, connect with mentors, and build real projects. The Fall Fest begins on 19 October and ends on 1 November, culminating in a two-day closing showcase on 31 October and 1 November at Khalifa University, with the wider international quantum community joining online.",
+    "Two weeks of quantum computing for learners at every level.",
 
   /** Confirmed opening session in Gulf Standard Time (UTC+04:00). */
   countdownTarget: "2026-10-19T18:00:00+04:00",
@@ -79,13 +79,22 @@ export const homeContent = {
   heroOwner: "Khalifa University\nQuantum Computing Initiative's",
   /** The full hero heading is rendered as text in the shared heading typeface. */
   heroTitle: { brand: "IBM", lead: "Qiskit", rest: "Fall Fest 2026" },
+  heroHighlights: [
+    "Challenge tracks, coding competitions and real projects",
+    "Hands-on workshops, technical talks and mentorship",
+  ],
+  heroShowcase: {
+    label: "Two-day closing showcase",
+    dates: event.closingDateLabel,
+    detail: "At Khalifa University, with the international quantum community joining online.",
+  },
   about: {
     eyebrow: "What this is",
     title: "A Qiskit Fall Fest, Built Bigger",
     paragraphs: [
-      "The Qiskit Fall Fest is IBM Quantum’s annual global event series, with each event hosted by an approved institution as part of the wider IBM Quantum ecosystem.",
-      "At Khalifa University, QCI has been selected to host a PLUS Qiskit Fall Fest, featuring expanded IBM Quantum support. Over two weeks, participants will take on challenge tracks, workshops, technical talks, mentorship, and project work, culminating in closing showcases.",
-      "The event supports QCI’s broader goal of helping build a more connected quantum computing ecosystem across the UAE and beyond.",
+      "The Qiskit Fall Fest is IBM Quantum’s annual global event series, hosted by approved institutions across its ecosystem.",
+      "QCI was selected to host this PLUS edition at Khalifa University, with expanded IBM Quantum support.",
+      "It supports QCI’s goal of building a more connected quantum computing ecosystem across the UAE and beyond.",
     ],
     linkLabel: "More about QCI",
   },
@@ -93,8 +102,8 @@ export const homeContent = {
     eyebrow: "Tracks",
     title: "Choose where to explore",
     lede:
-      "Whether you’re new to quantum computing or want to explore specialized applications, there’s a track for you. Explore each challenge and check its registration and competition dates.",
-    linkLabel: "See all challenges",
+      "Find your challenge. Visit the Tracks page for full briefs, dates and registration details.",
+    linkLabel: "View all tracks",
   },
   faq: {
     eyebrow: "Questions",

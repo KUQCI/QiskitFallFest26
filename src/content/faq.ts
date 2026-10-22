@@ -79,7 +79,7 @@ export const faqs: FaqItem[] = [
     category: "Format",
     question: "What happens at the closing showcase?",
     answer:
-      "The closing phase is planned to include project showcases, coding competitions, industry showcase and networking, and winner announcements. It takes place on 31 October and 1 November 2026. The exact format will be announced as the programme is finalized.",
+      "The closing phase is planned to include project showcases, coding competitions, and winner announcements. It takes place on 31 October and 1 November 2026. The exact format will be announced as the programme is finalized.",
   },
   {
     category: "Format",

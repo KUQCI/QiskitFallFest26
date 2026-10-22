@@ -5,7 +5,8 @@ export const formatSectionCopy = {
     eyebrow: "How it works",
     title: "Three phases, two weeks of building",
     lede:
-      "The Fall Fest begins with an opening session, followed by two weeks of development and presentation, and concludes with closing showcases on 31 October and 1 November where participants present their work and winners are announced.",
+      "Get started, take on your challenge, then share your work.",
+    link: { label: "View How It Works", href: "/schedule/" },
   },
   detailed: {
     eyebrow: "How it works",
@@ -86,7 +87,7 @@ export const phases: Phase[] = [
     title: "Closing Showcase",
     dateRange: "31 October – 1 November 2026",
     summary:
-      "The development period concludes with project showcases, coding competitions, industry showcase and networking, and final track activities. Participants present their work, compete in challenges, and come together for the announcement of track winners.",
+      "The development period concludes with project showcases, coding competitions, and final track activities. Participants present their work, compete in challenges, and come together for the announcement of track winners.",
     status: "confirmed",
     sessions: [
       {
@@ -102,12 +103,6 @@ export const phases: Phase[] = [
         status: "confirmed",
       },
       {
-        title: "Industry Showcase and Networking",
-        description:
-          "Participants connect with industry partners, researchers, and members of the wider quantum community while exploring projects, ideas, and opportunities across the ecosystem.",
-        status: "confirmed",
-      },
-      {
         title: "Winner Announcements",
         description:
           "Track and competition winners are announced as the Fall Fest comes to a close.",
@@ -117,12 +112,19 @@ export const phases: Phase[] = [
   },
 ];
 
+/** Homepage previews only; the full summaries and session details remain above. */
+const homePhaseSummaries: Record<string, string> = {
+  opening: "Get to know the Fest and its tracks at Khalifa University or online.",
+  hacking: "Work on your track challenge with workshops and mentors. In-person track days start on 30 October.",
+  closing: "Project presentations, coding competitions and track winner announcements.",
+};
+
 export const homePhases: Phase[] = phases.map(({ slug, label, title, dateRange, summary, status }) => ({
   slug,
   label,
   title,
   dateRange,
-  summary,
+  summary: homePhaseSummaries[slug] ?? summary,
   status,
   sessions: [],
 }));

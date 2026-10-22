@@ -48,11 +48,13 @@ export function PageHeader({
   title,
   lede,
   art,
+  compact = false,
 }: {
   eyebrow: string;
   title: string;
   lede?: string;
   art?: PageHeaderArt;
+  compact?: boolean;
 }) {
   const selectedArtwork = art ? artwork[art] : null;
 
@@ -61,7 +63,7 @@ export function PageHeader({
       <div className="pointer-events-none absolute inset-0 bg-grid opacity-25" aria-hidden="true" />
       <div className="pointer-events-none absolute -right-20 top-8 h-40 w-72 -rotate-6 rounded-full bg-purple/10 blur-3xl" aria-hidden="true" />
 
-      <Container className="relative grid items-center gap-9 py-16 sm:py-20 md:grid-cols-12 md:gap-8 lg:py-24">
+      <Container className={cn("relative grid items-center gap-9 md:grid-cols-12 md:gap-8", compact ? "py-8 sm:py-12" : "py-16 sm:py-20 lg:py-24")}>
         <div className={selectedArtwork ? "md:col-span-8" : "md:col-span-12"}>
           <Eyebrow>{eyebrow}</Eyebrow>
           <h1 className="max-w-4xl text-4xl font-bold leading-[1.04] sm:text-5xl lg:text-7xl">

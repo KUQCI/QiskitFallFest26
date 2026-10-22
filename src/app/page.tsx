@@ -1,8 +1,6 @@
 import Link from "next/link";
 
 import { Hero } from "@/components/Hero";
-import { Reveal } from "@/components/Reveal";
-import { TrackCard } from "@/components/TrackCard";
 import { CtaSection } from "@/components/sections/CtaSection";
 import { FaqAccordion } from "@/components/sections/FaqAccordion";
 import { FormatSection } from "@/components/sections/FormatSection";
@@ -13,7 +11,7 @@ import { Container, Section, SectionHeading } from "@/components/ui/primitives";
 import { ArrowRightIcon } from "@/components/ui/Icons";
 import { homeContent } from "@/content/event";
 import { faqs } from "@/content/faq";
-import { tracks, tracksPageContent } from "@/content/tracks";
+import { homeTrackPreviews, tracksPageContent } from "@/content/tracks";
 
 export default function HomePage() {
   return (
@@ -54,25 +52,27 @@ export default function HomePage() {
               title={homeContent.tracks.title}
               lede={homeContent.tracks.lede}
             />
-            <Link href="/tracks/" className="group inline-flex min-h-11 items-center gap-2 font-semibold text-gold">
+            <Link href="/tracks/" className="group inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full border border-border-strong px-6 py-3 text-sm font-semibold text-gold transition-colors hover:border-gold">
               {homeContent.tracks.linkLabel}
               <ArrowRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
             </Link>
           </div>
 
-          <div className="mt-12 space-y-10">
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
             {tracksPageContent.groups.map((group) => (
               <section key={group.reach} aria-labelledby={`home-tracks-${group.reach}`}>
-                <h3 id={`home-tracks-${group.reach}`} className="mb-5 text-2xl font-semibold text-fg">{group.heading}</h3>
-                <ul className="track-summary-grid grid gap-5 md:grid-cols-2">
-                  {tracks.filter((track) => track.reach === group.reach).map((track, index) => (
-                    <Reveal as="li" key={track.slug} delay={(index % 2) * 50}>
-                      <TrackCard
-                        track={track}
-                        href={`/tracks/#${track.slug}`}
-                        actionLabel={tracksPageContent.panel.openLabel}
-                      />
-                    </Reveal>
+                <h3 id={`home-tracks-${group.reach}`} className="mb-4 text-xl font-semibold text-fg">{group.heading}</h3>
+                <ul className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface">
+                  {homeTrackPreviews.filter((track) => track.reach === group.reach).map((track) => (
+                    <li key={track.slug}>
+                      <Link href={`/tracks/#${track.slug}`} data-home-track={track.slug} className="group flex min-h-16 items-center justify-between gap-4 px-5 py-4 transition-colors hover:bg-surface-2 focus-visible:outline-offset-[-3px]">
+                        <div className="min-w-0">
+                          <h4 className="text-base font-semibold text-fg group-hover:text-gold">{track.title}</h4>
+                          {track.description ? <p className="mt-1 hidden text-sm leading-relaxed text-fg-muted sm:block">{track.description}</p> : null}
+                        </div>
+                        <ArrowRightIcon className="h-4 w-4 shrink-0 text-gold transition-transform group-hover:translate-x-1" />
+                      </Link>
+                    </li>
                   ))}
                 </ul>
               </section>

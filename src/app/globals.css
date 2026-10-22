@@ -617,6 +617,52 @@ p {
 .track-text-brief-cover .track-date-badge { font-size: .6875rem; }
 .track-text-brief-cover > button { position: absolute; right: 1.25rem; top: 1rem; }
 .track-brief-metadata > span:not(.track-date-badge) { font-size: .6rem; }
+.track-intro-brief-cover { padding-right: 1.25rem; }
+.track-intro-brief-cover > .min-w-0 { width: 100%; }
+.track-intro-brief-cover .track-date-badge { padding-inline: .5rem; font-size: .625rem; }
+.track-header-topline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: .5rem .75rem;
+  padding-right: 3.5rem;
+}
+.track-header-topline .track-brief-metadata { flex: 1 1 12rem; }
+.track-header-deadline {
+  max-width: 100%;
+  margin-left: auto;
+  font-size: .6875rem;
+}
+@media (min-width: 768px) {
+  .track-header-topline { flex-wrap: nowrap; }
+  .track-header-deadline { flex: 0 1 auto; max-width: 45%; }
+}
+
+.qml-workflow-connector {
+  position: relative;
+  width: 1px;
+  height: 1.5rem;
+  margin-inline: auto;
+  background: var(--c-border-strong);
+}
+.qml-workflow-connector::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -2px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--c-purple);
+  animation: qml-workflow-flow 3s ease-in-out infinite;
+}
+@keyframes qml-workflow-flow {
+  0%, 100% { transform: translateY(0); opacity: .4; }
+  65% { transform: translateY(1.2rem); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .qml-workflow-connector::after { animation: none; top: 50%; }
+}
 
 .biology-panel-cover {
   padding: 1rem 4.25rem 1rem 4.5rem;
