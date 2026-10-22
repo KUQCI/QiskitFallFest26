@@ -1,7 +1,7 @@
 import { event } from "./event";
 import { foundationsRegistration } from "./quantum-foundations";
 import { qmlDeadline, qmlFinalPresentations } from "./quantum-machine-learning";
-import { metaverseRegistration } from "./quantum-metaverse";
+import { metaverseCapacityLabel, metaverseRegistration } from "./quantum-metaverse";
 import { cybersecurityLinks } from "./quantum-cybersecurity";
 import { tracks } from "./tracks";
 
@@ -91,24 +91,12 @@ export const agendaItems: AgendaItem[] = [
   }),
   trackItem("peaked-circuits", {
     id: "metaverse-registration", date: metaverseRegistration.opensOn, kind: "registration", title: "Individual registration opens",
-    description: "Limited slots, allocated first come, first served by registration submission time. Slot confirmation is sent by email.",
+    description: `${metaverseCapacityLabel}. Slots are allocated first come, first served by registration submission time, with confirmation by email.`,
   }),
   trackItem("first-qubit", {
     id: "foundations-registration", date: foundationsRegistration.opensOn, kind: "registration", title: "Individual registration opens",
-    description: "For high school students. Places are limited, with participation confirmed by email.",
+    description: "Registration is open for high school students. Limited spots; your place is confirmed by email.",
   }),
-  {
-    id: "qiskit-introduction-workshop", date: "2026-10-23", kind: "workshop",
-    title: "Introduction to Qiskit and Quantum Computing", context: event.name,
-    time: "3–4 PM · UAE time (GMT+4)",
-    venue: "Online · Microsoft Teams",
-    workshop: {
-      speakers: [{
-        name: "Kiran Kaur Raina",
-        profileUrl: "https://www.linkedin.com/in/kiran-kaur-raina-b2922622a/",
-      }],
-    },
-  },
   trackItem("chemistry-drug-discovery", {
     id: "biology-proposal", date: "2026-10-24", kind: "deadline", title: "Initial proposals due",
     description: "Submit one PDF page at registration. Semifinalists will be selected to continue.",
@@ -118,6 +106,7 @@ export const agendaItems: AgendaItem[] = [
     title: "Cryptography in the Quantum Era", context: event.name,
     description: "An introduction to classical and quantum cryptography.",
     time: "8–9 PM · UAE time (GMT+4)", venue: "Online · Microsoft Teams",
+    href: "https://forms.gle/cSh5o9JDtdcB7oLv8", actionLabel: "Register for workshop", external: true,
     workshop: {
       organizers: "Quantum Computing Initiative × Cybersecurity Club",
       topics: ["Classical ciphers & RSA", "The quantum threat", "Quantum key distribution", "Post-quantum cryptography"],

@@ -58,12 +58,13 @@ Keep descriptions brief and optional. The optional `workshop` object supports
 Add `href` plus `actionLabel` only for an approved registration or joining URL;
 set `external: true` for a new-tab external link. No URL means no fake button.
 An approved speaker `profileUrl` makes their name a link that opens in a new tab.
-The public Qiskit introduction workshop is 23 October 2026, 3–4 PM UAE time (GMT+4),
-presented by Kiran Kaur Raina with the user's supplied LinkedIn profile, online on
-Microsoft Teams. Cryptography in the Quantum Era is
-24 October 2026, 8–9 PM UAE time (GMT+4), online on Microsoft Teams, organized by
-QCI × Cybersecurity Club, with certificates. Its speaker name remains unconfirmed.
-Neither workshop has an approved registration/join URL. The cryptography poster supplies its topics.
+The user removed the Introduction to Qiskit and Quantum Computing workshop from the
+Agenda; do not restore that entry or its speaker details without a new request.
+Cryptography in the Quantum Era remains on 24 October 2026, 8–9 PM UAE time (GMT+4),
+online on Microsoft Teams, organized by QCI × Cybersecurity Club, with certificates.
+Its approved registration URL is `https://forms.gle/cSh5o9JDtdcB7oLv8`, shown as
+Register for workshop. Its speaker name and Teams joining URL remain unconfirmed.
+The poster supplies its topics.
 
 Quantum Biology has independent release controls in `biologyReleases`. To publish a
 participant resource or form, supply its approved `href` and set `enabled: true`.
@@ -98,8 +99,8 @@ Track status chips are opt-in through `statusLabels`. Biology shows
 "Challenge live" and "Submissions open"; QML shows "Challenge live" and "Submission
 form coming soon". Media also shows its approved "Challenge live" status. Cybersecurity uses the user's approved
 registration and CTF date badges, with separate gold and sky tones. Metaverse uses its
-registration/challenge date labels and Limited slots notice. Foundations uses its own
-23 October registration / 31 October challenge dates and Limited spots notice. Leave the remaining tracks'
+registration/challenge date labels and 80-competitor limit. Foundations shows Registration
+open, its 31 October challenge date and Limited spots notice. Leave the remaining tracks'
 status chips unset until the user supplies their individual updates. A confirmed track
 never adds a chip by itself.
 
@@ -116,7 +117,9 @@ never register someone for this track. Do not add Biology rules to Cybersecurity
 Metaverse's approved four-panel brief is in `quantum-metaverse.ts`, preserving the
 `peaked-circuits` slug. It is National, In person, with individual registration.
 Registration opens 22 October 2026; the VR challenge is at Khalifa University's
-MetaHub Lab on 30 October. Groups of 12 are scheduled sessions, not teams or capacity.
+MetaHub Lab on 30 October. The confirmed total capacity is 80 competitors, displayed
+through `metaverseCapacity` and `metaverseCapacityLabel`. Groups of 12 are scheduled
+sessions, not teams or total capacity.
 Slots are first come, first served by registration submission time, with organizer
 confirmation by email. No form URL has been supplied. Set `metaverseRegistration.href`
 to the approved form and `enabled: true` only when registration is actually open.
@@ -128,10 +131,11 @@ No booking system, automated emails, capacity counters or invented session hours
 Foundations uses `quantum-foundations.ts`, preserving the `first-qubit` slug and
 Quantum Foundations / High School Track identity. It is National and entirely
 In person at Khalifa University, with individual participation for high school students.
-Registration opens 23 October 2026; the challenge takes place on 31 October. Set
-`foundationsRegistration.href` to the approved form and `enabled: true` only when
-registration has actually opened. The UAE date guards against early release, while
-`closed: true` overrides the URL, date and release flag. No form URL has been supplied.
+The user explicitly opened registration on 22 October 2026, replacing the previous
+23 October opening date. The approved form is `https://forms.gle/hyKcfkuXYmFnb7TE8`,
+with `enabled: true`; the challenge remains on 31 October. Keep the UAE date guard
+and `closed: true` override. A form submission alone does not confirm a place:
+participants must receive a confirmation email.
 Keep the limited-spots/email-confirmation note beside the action in every state.
 An allocation policy has not been confirmed: do not copy Metaverse's first-come rule.
 The circuit motif is decorative, with no actual gate choices, target or solution.

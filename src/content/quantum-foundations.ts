@@ -1,21 +1,21 @@
 import type { TrackBrief, TrackRegistration, TrackStatusLabel } from "./types";
 
-/** Independent of global registration and all other tracks. No approved URL supplied yet. */
+/** Explicitly opened by the organizer on 22 October, independently of other forms. */
 export const foundationsRegistration: TrackRegistration = {
-  href: null,
-  enabled: false,
+  href: "https://forms.gle/hyKcfkuXYmFnb7TE8",
+  enabled: true,
   closed: false,
-  opensOn: "2026-10-23",
+  opensOn: "2026-10-22",
   timeZone: "Asia/Dubai",
   label: "Register for Quantum Foundations",
-  beforeLabel: "Registration opens 23 October",
+  beforeLabel: "Registration opens 22 October",
   unavailableLabel: "Registration link to be announced",
   closedLabel: "Registration closed",
-  note: "Limited spots. Participation will be confirmed through email.",
+  note: "Limited spots. Your place is confirmed only when you receive a confirmation email.",
 };
 
 export const foundationsStatusLabels: TrackStatusLabel[] = [
-  { label: "Registration opens 23 October", tone: "gold", icon: "calendar" },
+  { label: "Registration open", tone: "gold", icon: "calendar" },
   { label: "In-person challenge: 31 October", tone: "sky", icon: "flag" },
   { label: "Limited spots", tone: "purple", cardPlacement: "metadata" },
 ];
@@ -31,6 +31,7 @@ export const quantumFoundationsBrief: TrackBrief = {
         { type: "paragraph", text: "Explore quantum computing through a single-day challenge for high school students, taking place entirely in person at Khalifa University on 31 October 2026." },
         { type: "paragraph", text: "Participants will compete individually, completing unfinished quantum circuits by identifying and inserting the missing gates needed to achieve a specified target output or quantum state." },
         { type: "paragraph", text: "The challenge develops an understanding of quantum gates, circuit structure and how the order of operations affects a circuit’s behaviour." },
+        { type: "notice", paragraphs: ["Registration is open. Limited spots; your place will be confirmed by email."] },
         { type: "circuit-motif" },
       ],
     },
@@ -57,10 +58,8 @@ export const quantumFoundationsBrief: TrackBrief = {
       blocks: [
         { type: "heading", text: "For high school students" },
         { type: "paragraph", text: "Each participant should submit their own registration form." },
-        { type: "notice", paragraphs: ["Registration opens 23 October 2026."] },
         { type: "paragraph", text: "Provide the requested student, school and contact details through the registration form." },
-        { type: "heading", text: "Limited spots" },
-        { type: "paragraph", text: "Places are limited. You will receive an email confirming your place if one is allocated to you." },
+        { type: "heading", text: "Limited spots — confirmation by email" },
         { type: "registration", registration: foundationsRegistration },
         { type: "heading", text: "Physical attendance" },
         { type: "paragraph", text: "Participants must attend in person at Khalifa University on 31 October 2026. Event timings, check-in details and preparation instructions will be shared through email." },
@@ -75,7 +74,7 @@ export const quantumFoundationsBrief: TrackBrief = {
           type: "table", presentation: "timeline",
           columns: ["2026 · UAE time (UTC+4)", "Milestone"],
           rows: [
-            ["23 October 2026 — Registration opens", "Submit an individual registration form. Places are limited, and confirmation will be sent through email."],
+            ["22 October 2026 — Registration opens", "Submit an individual registration form. Places are limited, and confirmation will be sent through email."],
             ["31 October 2026 — In-person challenge", "Attend the Quantum Foundations challenge at Khalifa University."],
           ],
         },

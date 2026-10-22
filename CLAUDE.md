@@ -69,19 +69,21 @@ Keep `/schedule/` as the separate How It Works overview of event phases.
   Quantum Foundations uses the user's newer four-panel `quantum-foundations.ts` brief,
   preserving the `first-qubit` slug. It is the High School Track: National, In person,
   individual participation at Khalifa University on 31 October 2026. Registration
-  opens 23 October 2026; its independent approved form URL remains unset. Require
-  that UAE date, an explicit release flag and an approved URL; support `closed: true`.
+  was explicitly opened on 22 October 2026, overriding the old 23 October date,
+  at `https://forms.gle/hyKcfkuXYmFnb7TE8`. Keep its approved URL, enabled flag and
+  UAE date guard; support `closed: true`. Places are confirmed only by email.
   Keep Limited spots and email confirmation clear. Do not copy Metaverse's first-come
   allocation policy or invent equipment requirements, assessment rules, hours, prizes,
   deadlines, total capacity, specific rooms or additional eligibility restrictions.
   Quantum in the Metaverse uses the user's newer four-panel `quantum-metaverse.ts`
   brief: National, In person, individual registration opening 22 October 2026 and a
   single-day VR challenge at Khalifa University's MetaHub Lab on 30 October. Groups
-  of 12 are scheduled sessions, not teams or total capacity. Slots are allocated first
+  of 12 are scheduled sessions, not teams or total capacity. The confirmed total limit
+  is 80 competitors. Slots are allocated first
   come, first served by submission time, with organizer confirmation by email.
   Its independent registration URL remains unset. Require an approved URL, explicit
   release flag and UAE opening date; `closed: true` overrides them all. Preserve the
-  limited-slot note beside the action. Do not invent hours, deadlines, capacity,
+  80-competitor limit and email-confirmation note beside the action. Do not invent hours, deadlines,
   prizes, prerequisites or required laptops. Quantum Cybersecurity uses the user's newer four-panel
   brief in `src/content/quantum-cybersecurity.ts`, overriding the older track document.
   It is international and online, for 1–4 participants. Registration opens 23 October
