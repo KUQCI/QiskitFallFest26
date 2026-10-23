@@ -115,16 +115,16 @@ Track status chips are opt-in through `statusLabels`. Biology shows
 "Challenge live" and "Submissions open"; QML shows "Challenge live" and "Submission
 form coming soon". Media also shows its approved "Challenge live" status. Cybersecurity uses the user's approved
 registration and CTF date badges, with separate gold and sky tones. Metaverse uses its
-registration/challenge date labels and 80-competitor limit. Foundations shows Registration
+registration/challenge date labels and 40-slot limit. Foundations shows Registration
 open, its 31 October challenge date and Limited spots notice. Leave the remaining tracks'
 status chips unset until the user supplies their individual updates. A confirmed track
 never adds a chip by itself.
 
 Cybersecurity's newer approved content is in `quantum-cybersecurity.ts`, with four
 panels inside the same modal: Overview, How It Works, Participation & Registration,
-and Schedule & Preparation. Registration opens 23 October 2026 and the online CTF
-takes place on 30 October. Set `cybersecurityLinks.registration.href` to the approved
-form and `enabled: true` only when registration has actually opened. The UAE calendar
+and Schedule & Preparation. Registration opened 23 October 2026 and the online CTF
+takes place on 30 October. The organizer approved and enabled the independent form at
+`https://forms.gle/qc2R6mHAjuy6dCUD6`. The UAE calendar
 date is an additional guard, not a guessed opening hour. Without both an approved URL
 and release flag the action remains unavailable, including after 23 October. Keep
 `competitionPlatform` separate and unset until supplied. The global interest form must
@@ -133,12 +133,13 @@ never register someone for this track. Do not add Biology rules to Cybersecurity
 Metaverse's approved four-panel brief is in `quantum-metaverse.ts`, preserving the
 `peaked-circuits` slug. It is National, In person, with individual registration.
 Registration opens 22 October 2026; the VR challenge is at Khalifa University's
-MetaHub Lab on 30 October. The confirmed total capacity is 80 competitors, displayed
+MetaHub Lab on 30 October, 9:00 AM–12:00 PM UAE time (UTC+4), shared with the agenda
+through `metaverseTime`. The approved capacity is 40 slots only, displayed
 through `metaverseCapacity` and `metaverseCapacityLabel`. Groups of 12 are scheduled
 sessions, not teams or total capacity.
 Slots are first come, first served by registration submission time, with organizer
-confirmation by email. No form URL has been supplied. Set `metaverseRegistration.href`
-to the approved form and `enabled: true` only when registration is actually open.
+confirmation by email. The organizer approved and enabled `metaverseRegistration` at
+`https://forms.gle/HK3r1hHCkkPUmG956`; registration is open.
 The UAE calendar date is an additional guard. Set `closed: true` to show Registration
 closed and remove the link regardless of the date, URL or release flag. Keep the
 limited-slot/email-confirmation note beside the registration action in every state.

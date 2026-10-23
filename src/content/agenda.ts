@@ -1,7 +1,7 @@
 import { event } from "./event";
 import { foundationsRegistration } from "./quantum-foundations";
 import { qmlDeadline, qmlFinalPresentations } from "./quantum-machine-learning";
-import { metaverseCapacityLabel, metaverseRegistration } from "./quantum-metaverse";
+import { metaverseCapacityLabel, metaverseRegistration, metaverseTime } from "./quantum-metaverse";
 import { cybersecurityLinks } from "./quantum-cybersecurity";
 import { tracks } from "./tracks";
 import { fallFestAssets } from "./assets";
@@ -180,6 +180,7 @@ export const agendaItems: AgendaItem[] = [
   }),
   trackItem("peaked-circuits", {
     id: "metaverse-challenge", date: "2026-10-30", kind: "event", title: "In-person VR challenge",
+    time: metaverseTime,
     description: "Attend your assigned session. VR headsets are provided; participants are arranged into sessions of 12.",
     venue: "Khalifa University, MetaHub Lab",
   }),

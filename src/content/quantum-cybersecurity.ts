@@ -1,10 +1,10 @@
 import type { TrackBrief, TrackRegistration, TrackStatusLabel } from "./types";
 
-/** Independent of the event interest form and the competition platform. No URLs supplied yet. */
+/** Approved registration form, independent of the event interest form and competition platform. */
 export const cybersecurityLinks = {
   registration: {
-    href: null,
-    enabled: false,
+    href: "https://forms.gle/qc2R6mHAjuy6dCUD6",
+    enabled: true,
     opensOn: "2026-10-23",
     timeZone: "Asia/Dubai",
     label: "Register for the CTF",
@@ -15,7 +15,7 @@ export const cybersecurityLinks = {
 };
 
 export const cybersecurityDateLabels: TrackStatusLabel[] = [
-  { label: "Registration opens 23 October", tone: "gold", icon: "calendar" },
+  { label: "Registration open", tone: "gold", icon: "calendar" },
   { label: "CTF challenge: 30 October", tone: "sky", icon: "flag" },
 ];
 
@@ -57,7 +57,7 @@ export const quantumCybersecurityBrief: TrackBrief = {
       blocks: [
         { type: "heading", text: "Participate individually or as a team" },
         { type: "paragraph", text: "Enter individually or in a team of up to four people, including the team lead. Only the team lead needs to submit the registration form on behalf of the team." },
-        { type: "notice", paragraphs: ["Registration opens 23 October 2026."] },
+        { type: "notice", paragraphs: ["Registration is open. Register using the track form below."] },
         { type: "paragraph", text: "Prepare your team name, team size, the team lead’s contact details and institution, and the names, email addresses and institutions of any additional members." },
         { type: "paragraph", text: "Competition timings, platform access and preparation instructions will be shared through email. All announced times will use UAE time (UTC+4)." },
         { type: "registration", registration: cybersecurityLinks.registration },

@@ -77,18 +77,21 @@ Keep `/schedule/` as the separate How It Works overview of event phases.
   deadlines, total capacity, specific rooms or additional eligibility restrictions.
   Quantum in the Metaverse uses the user's newer four-panel `quantum-metaverse.ts`
   brief: National, In person, individual registration opening 22 October 2026 and a
-  single-day VR challenge at Khalifa University's MetaHub Lab on 30 October. Groups
-  of 12 are scheduled sessions, not teams or total capacity. The confirmed total limit
-  is 80 competitors. Slots are allocated first
+  single-day VR challenge at Khalifa University's MetaHub Lab on 30 October,
+  9:00 AM–12:00 PM UAE time (UTC+4), shared through `metaverseTime`. Groups
+  of 12 are scheduled sessions, not teams or total capacity. The approved capacity
+  is 40 slots only. Slots are allocated first
   come, first served by submission time, with organizer confirmation by email.
-  Its independent registration URL remains unset. Require an approved URL, explicit
+  Its independent registration is open at `https://forms.gle/HK3r1hHCkkPUmG956`.
+  Require an approved URL, explicit
   release flag and UAE opening date; `closed: true` overrides them all. Preserve the
-  80-competitor limit and email-confirmation note beside the action. Do not invent hours, deadlines,
+  40-slot limit and email-confirmation note beside the action. Do not invent hours, deadlines,
   prizes, prerequisites or required laptops. Quantum Cybersecurity uses the user's newer four-panel
   brief in `src/content/quantum-cybersecurity.ts`, overriding the older track document.
   It is international and online, for 1–4 participants. Registration opens 23 October
-  2026; the CTF is on 30 October. Its form and platform URLs are independent of global
-  registration and remain unset. A form needs an approved URL, an explicit release flag
+  2026; the CTF is on 30 October. Registration is open at
+  `https://forms.gle/qc2R6mHAjuy6dCUD6`; the competition platform remains unset.
+  Both are independent of global registration. A form needs an approved URL, an explicit release flag
   and the opening date to be reached in UAE time; the date alone never enables it.
   Do not invent an opening hour, competition hours, deadline, prizes or eligibility rules.
   International tracks
