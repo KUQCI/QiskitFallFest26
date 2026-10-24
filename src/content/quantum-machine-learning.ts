@@ -40,9 +40,9 @@ export const quantumMachineLearningBrief: TrackBrief = {
     {
       id: "overview", title: "Overview", blocks: [
         { type: "heading", text: "Quantum Machine Learning for Healthcare" },
-        { type: "paragraph", text: "Identify a specific healthcare problem and establish a robust classical machine learning baseline to address it." },
+        { type: "paragraph", text: "Identify a specific healthcare problem and establish a comparable & robust classical machine learning baseline to address it." },
         { type: "paragraph", text: "Use quantum techniques to improve the classical approach or develop a quantum model that outperforms the baseline on relevant metrics. The quantum integration must serve a clear purpose, addressing a limitation of the classical approach and supporting measurable performance gains." },
-        { type: "paragraph", text: "Deliver a functional codebase and a comparative evaluation demonstrating both approaches." },
+        { type: "paragraph", text: "Classical baselines should be chosen comparably similar to the quantum approach, whether that's through similar data preprocessing, feature engineering, or model architectures. Deliver a functional codebase and a comparative evaluation demonstrating both approaches." },
         { type: "notice", paragraphs: ["The challenge is live. You can begin developing your project now. The submission form will be added soon.", qmlFinalPresentations.description] },
         { type: "track-visual", kind: "qml" },
         {
