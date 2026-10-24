@@ -87,7 +87,15 @@ export const quantumMachineLearningBrief: TrackBrief = {
     {
       id: "resources-timeline", title: "Resources & Timeline", blocks: [
         { type: "heading", text: "Resources" },
-        { type: "paragraph", text: "Learning materials, useful tools and any organizer-provided resources will be added here." },
+        {
+          type: "links",
+          items: [
+            { 
+              label: "Introduction to Quantum Computing Reference", 
+              href: "https://shorturl.at/Awu2Q" 
+            }
+          ]
+        },
         { type: "resource-cards", items: qmlResources, sourceLabels: { official: "Official challenge resource", external: "External learning resource" } },
         { type: "heading", text: "Timeline" },
         { type: "table", presentation: "timeline", columns: ["2026 · UAE time (UTC+4)", "Milestone"], rows: [
