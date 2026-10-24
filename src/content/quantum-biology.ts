@@ -4,7 +4,7 @@ import { fallFestAssets } from "./assets";
 // "qiskit bio track website details (1) (1).pdf" is the sole source for challenge
 // information. Do not retain additional facts or rules from the earlier handoff.
 // Keep the six challenge panels, the separate Hosts tab and explicit release controls.
-// User overrides: proposal deadline confirmed as 24 October; QAOA required with flexible library choice;
+// User overrides: proposal deadline confirmed as 25 October; QAOA required with flexible library choice;
 // Qiskit is an example only; use the user's implementation and reproducibility wording;
 // use the supplied host profile/social links and asbmbclub@ku.ac.ae contact.
 // Initial proposal submission is registration: one PDF page, using the approved form.
@@ -27,7 +27,7 @@ export const biologyReleases = {
     label: "Register & submit proposal",
     href: "https://forms.gle/WLmXeHMbmCTj92tb9",
     enabled: true,
-    availability: "One PDF page · Due 24 October 2026",
+    availability: "One PDF page · Due 25 October 2026",
   },
 } satisfies Record<string, TrackReleaseLink>;
 
@@ -38,7 +38,7 @@ export const quantumBiologyBrief: TrackBrief = {
   tags: biologyTags,
   highlights: [
     { value: "4 genes", label: "Selected panel" },
-    { value: "24 October", label: "Initial proposal" },
+    { value: "25 October", label: "Initial proposal" },
     { value: "28 October", label: "Final submission" },
     { value: "1 November", label: "Final presentations" },
   ],
@@ -68,13 +68,13 @@ export const quantumBiologyBrief: TrackBrief = {
         { type: "table", columns: ["Item", "Details"], rows: [
           ["Host", "ASBMB"],
           ["Registration", "Your initial proposal submission registers you for this track."],
-          ["Initial proposal", "24 October 2026"],
+          ["Initial proposal", "25 October 2026"],
           ["Workshops", "26 October 2026"],
           ["Final submission", "28 October 2026"],
           ["Final presentations", "1 November 2026, on campus at Khalifa University"],
         ] },
         { type: "heading", text: "Registration & initial proposal" },
-        { type: "paragraph", text: "Submit your one-page proposal through the initial-submission form to register for the Quantum Biology track. Initial proposals are due no later than 24 October 2026. Semifinalists will be selected to continue." },
+        { type: "paragraph", text: "Submit your one-page proposal through the initial-submission form to register for the Quantum Biology track. Initial proposals are due no later than 25 October 2026. Semifinalists will be selected to continue." },
         { type: "releases", presentation: "cta", columns: ["Registration & initial submission", "Deadline"], items: [biologyReleases.registration] },
         { type: "heading", text: "Background reading" },
         { type: "links", items: [
@@ -173,8 +173,8 @@ export const quantumBiologyBrief: TrackBrief = {
       title: "Submissions",
       blocks: [
         { type: "notice", paragraphs: ["Your initial proposal submission is your registration for the Quantum Biology track."] },
-        { type: "heading", text: "Initial proposal - due 24 October 2026" },
-        { type: "paragraph", text: "Submit your one-page proposal at registration, no later than 24 October 2026. Semifinalists will be selected to continue." },
+        { type: "heading", text: "Initial proposal - due 25 October 2026" },
+        { type: "paragraph", text: "Submit your one-page proposal at registration, no later than 25 October 2026. Semifinalists will be selected to continue." },
         { type: "paragraph", text: "Keep it short: one PDF page. Include your names and team name and cover these four points, briefly:" },
         { type: "list", ordered: true, presentation: "steps", items: [
           { title: "The challenge", text: "What you want to achieve, and why a small gene panel could identify cancerous tissue." },
@@ -207,7 +207,7 @@ export const quantumBiologyBrief: TrackBrief = {
         { type: "table", presentation: "timeline", columns: ["Date (2026)", "Milestone"], rows: [
           ["19 October, 6:00 PM", "Premiere: Introduction to the event and biology track."],
           ["20 October", "Registration opens through the initial-submission form: Submit your one-page proposal to register."],
-          ["24 October", "Initial proposals due; semifinalists will be selected to continue."],
+          ["25 October", "Initial proposals due; semifinalists will be selected to continue."],
           ["26 October", "AD Omics and quantum computing workshops."],
           ["28 October", "Final submissions due; finalist selection follows."],
           ["1 November", "On-campus final presentations at Khalifa University."],
