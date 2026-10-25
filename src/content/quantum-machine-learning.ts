@@ -71,6 +71,15 @@ export const quantumMachineLearningBrief: TrackBrief = {
     {
       id: "submissions", title: "Submissions", blocks: [
         { type: "paragraph", text: "The challenge is live, and participants may begin working now. The official submission form and upload instructions will be added to this panel." },
+        {
+          type: "links",
+          items: [
+            { 
+              label: "Submission Link", 
+              href: "https://tally.so/r/OQDOD7" 
+            }
+          ]
+        },
         { type: "submission-control", submission: qmlSubmission },
         { type: "heading", text: "Prepare your submission" },
         { type: "list", presentation: "cards", items: [

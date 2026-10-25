@@ -137,9 +137,13 @@ export const tracks: Track[] = [
       description: [
         "Create with Moth Quantum's quantum media engines: Atlas API, Tessa, Blur, and the Entanglement Shader.",
       ],
-      dates: ["30 October 2026, 11:59 PM Pacific Time: submission deadline."],
+      dates: ["30 October 2026, 11:59 PM UTC-8: submission deadline."],
       submission: {
-        how: ["Submission details will be shared soon."],
+        how: ["Submit your project through the official submission form before the deadline."],
+        links: [{ 
+              label: "Submission Link", 
+              href: "https://tally.so/r/OQDOD7" 
+            }],
       },
       challenge: [
         "Use Moth's quantum media engines to process, generate, or build media applications or artifacts. Submissions are split into two tiers: projects made on the online platform, and projects that use the Atlas API in code. Pick a theme from either tier.",
@@ -297,7 +301,7 @@ export const tracksPageContent = {
     challengesPending: "Challenge details are to be announced soon.",
     judgingHeading: "How it's judged",
     tasksHeading: "What you need to do",
-    submissionHeading: "What to submit",
+    submissionHeading: "Submission instructions",
     resourcesHeading: "Resources",
     hostedByHeading: "Hosted by",
   },
