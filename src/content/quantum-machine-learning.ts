@@ -82,7 +82,7 @@ export const quantumMachineLearningBrief: TrackBrief = {
           { title: "Comparative evaluation", text: "Compare both models’ results. The comparison should be thorough and well-supported. \
             Emphasize the core comparison metrics, involving both classical machine learning performance but also quantum resource/efficiency metrics." },
           { title: "Explain your approach", text: "Explain the healthcare problem, methods and purpose of the quantum integration, \
-            focusing on the advantages and limitations. Include explainations of any tradeoffs between certain aspects and the proposed advantage." },
+            focusing on the advantages and limitations. Include explainations of any tradeoffs between other aspects of performance and the proposed advantage." },
           { title: "Problem & Baseline Choice", text: "Classical baselines should be chosen comparable to the quantum approach, \
             whether that's through similar data preprocessing, feature engineering, \
             or model architectures. This goes hand in hand with explaining the purpose of the quantum integration." },
