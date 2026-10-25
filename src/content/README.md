@@ -86,7 +86,8 @@ Quantum Biology has independent release controls in `biologyReleases`. To publis
 participant resource or form, supply its approved `href` and set `enabled: true`.
 Both are required; calendar dates never activate links. The user has explicitly approved
 and enabled the Biology registration/initial-proposal form at `https://forms.gle/WLmXeHMbmCTj92tb9`.
-Submitting the one-page PDF proposal is registration for this track, due 24 October 2026.
+Submitting the one-page PDF proposal is registration for this track, due 25 October 2026,
+11:59 PM UAE time (GMT+4), defined in `biologyProposalDeadline` and displayed on the card, popup and agenda.
 Include participant names, team name and the four supplied proposal points. The form
 accepts a viewable cloud link to the PDF. Teams of 3–4 remain encouraged; the user will
 update the form's team-size requirement. Resources go to shortlisted candidates after
@@ -100,7 +101,7 @@ its linked logo. This partner profile does not change the track's Hosted by labe
 The newer Biology website-details document is the sole source for challenge content.
 Do not add older handoff rules, material-release dates, form types, classifier parameters,
 rubric weights or submission requirements absent from it. The user has confirmed the
-initial proposal deadline as 24 October 2026 and supplied explicit wording requiring
+initial proposal deadline as 25 October 2026, 11:59 PM UAE time (GMT+4), and supplied explicit wording requiring
 QAOA with flexible library choice (Qiskit is an example). Preserve that wording and
 the reproducibility requirement. Existing track identity and approved host social links remain.
 The supplied Biology SVGs are decorative explanations alongside the approved copy.
@@ -185,8 +186,11 @@ hours, venue and further logistics remain unconfirmed.
 
 Quantum in Media (stable slug `quantum-media`) is hosted by Moth Quantum. Its challenge
 is live, with a submission deadline of 30 October 2026, 11:59 PM Pacific Time.
-Submission details will be shared soon. Preserve the published themes and clickable
-platform/video/Discord links. The new supplied `moth-lockup.svg` is the canonical
+Its brief in `quantum-media.ts` uses four panels: Overview, No-code themes,
+Code themes (Atlas API), and Submissions & Resources. Preserve all seven no-code and
+three code themes verbatim, the media animation, and the clickable platform/video/Discord links.
+The approved submission form is `https://tally.so/r/OQDOD7`.
+The new supplied `moth-lockup.svg` is the canonical
 Moth logo, shown on white plates in the track and technical sponsors.
 
 Sign-up runs in two stages, and the shared control resolves the furthest stage that is

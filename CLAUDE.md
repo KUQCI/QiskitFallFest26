@@ -50,7 +50,9 @@ Keep `/schedule/` as the separate How It Works overview of event phases.
   `qiskit bio track website details (1) (1).pdf` is the sole source for challenge content:
   scoring metrics, rubric weights, classifier settings, final-submission formats and
   external-data policy remain unconfirmed. Preserve the user's overrides: the initial
-  proposal deadline is confirmed as **24 October 2026**. QAOA is required; any suitable
+  proposal deadline is confirmed as **25 October 2026, 11:59 PM UAE time (GMT+4)**.
+  Keep the card, popup, release label and agenda consistent through `biologyProposalDeadline`.
+  QAOA is required; any suitable
   quantum computing library may be used, with Qiskit as an example only. Preserve the
   user's exact implementation and reproducibility wording. Visual references do not
   authorize added rules, rubric weights, participant counts, or submission formats.
@@ -108,7 +110,9 @@ Keep `/schedule/` as the separate How It Works overview of event phases.
   overall organisers and are not added to individual tracks.
 - Quantum in Media preserves the `quantum-media` slug and Moth's approved themes and
   clickable resources. The challenge is live. Submissions are due 30 October 2026,
-  11:59 PM Pacific Time; submission details will be shared soon. Use the supplied
+  11:59 PM Pacific Time. Its `quantum-media.ts` brief has Overview, No-code themes,
+  Code themes (Atlas API), and Submissions & Resources panels. Preserve all ten themes,
+  the media animation and the approved submission link `https://tally.so/r/OQDOD7`. Use the supplied
   `moth-lockup.svg` on white logo plates, including the technical sponsor display.
 - Quantum Machine Learning uses its newer four-panel healthcare brief in
   `src/content/quantum-machine-learning.ts`. Keep National / Hybrid, Challenge live,

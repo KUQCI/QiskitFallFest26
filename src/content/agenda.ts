@@ -1,4 +1,5 @@
 import { event } from "./event";
+import { biologyProposalDeadline } from "./quantum-biology";
 import { foundationsRegistration } from "./quantum-foundations";
 import { qmlDeadline, qmlFinalPresentations } from "./quantum-machine-learning";
 import { metaverseCapacityLabel, metaverseRegistration, metaverseTime } from "./quantum-metaverse";
@@ -142,7 +143,8 @@ export const agendaItems: AgendaItem[] = [
     description: "Registration is open for high school students. Limited spots; your place is confirmed by email.",
   }),
   trackItem("chemistry-drug-discovery", {
-    id: "biology-proposal", date: "2026-10-24", kind: "deadline", title: "Initial proposals due",
+    id: "biology-proposal", date: biologyProposalDeadline.at.slice(0, 10), kind: "deadline", title: "Initial proposals due",
+    time: "11:59 PM · UAE time (GMT+4)",
     description: "Submit one PDF page at registration. Semifinalists will be selected to continue.",
   }),
   {

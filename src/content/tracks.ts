@@ -1,9 +1,10 @@
 import { fallFestAssets } from "./assets";
-import { biologyTags, quantumBiologyBrief } from "./quantum-biology";
+import { biologyProposalDeadline, biologyProposalDeadlineCardLabel, biologyTags, quantumBiologyBrief } from "./quantum-biology";
 import { cybersecurityDateLabels, quantumCybersecurityBrief } from "./quantum-cybersecurity";
 import { metaverseStatusLabels, metaverseVenue, quantumMetaverseBrief } from "./quantum-metaverse";
 import { foundationsStatusLabels, quantumFoundationsBrief } from "./quantum-foundations";
 import { qmlDeadline, qmlDeadlineCardLabel, qmlStatusLabels, qmlSummary, quantumMachineLearningBrief } from "./quantum-machine-learning";
+import { quantumMediaBrief } from "./quantum-media";
 import { adOmics } from "./sponsors";
 import type { Track, TrackHost } from "./types";
 
@@ -106,12 +107,14 @@ export const tracks: Track[] = [
     format: "hybrid",
     status: "confirmed",
     statusLabels: ["Challenge live", "Submissions open"],
+    deadlineLabel: biologyProposalDeadlineCardLabel,
     tags: biologyTags,
     coverIcon: fallFestAssets.biologyVisuals.icon.src,
     hostedBy: [trackHosts.asbmb],
     banner: fallFestAssets.trackBanners.quantumBiology.src,
     details: {
       brief: quantumBiologyBrief,
+      deadline: biologyProposalDeadline,
       hostPartners: [{
         name: adOmics.name,
         logo: adOmics.logo,
@@ -133,87 +136,7 @@ export const tracks: Track[] = [
     deadlineLabel: "30 October · 11:59 PM Pacific Time",
     hostedBy: [trackHosts.mothQuantum],
     details: {
-      overviewVisual: "media",
-      description: [
-        "Create with Moth Quantum's quantum media engines: Atlas API, Tessa, Blur, and the Entanglement Shader.",
-      ],
-      dates: ["Submission Deadline: 30 October 2026, 11:59 PM (UTC-8)"],
-      submission: {
-        how: ["Submit your project through the official submission form before the deadline."],
-        links: [{ 
-              label: "Submission Link", 
-              href: "https://tally.so/r/OQDOD7" 
-            }],
-      },
-      challenge: [
-        "Use Moth's quantum media engines to process, generate, or build media applications or artifacts. Submissions are split into two tiers: projects made on the online platform, and projects that use the Atlas API in code. Pick a theme from either tier.",
-      ],
-      challengeThemes: [
-        {
-          title: "No-code themes",
-          themes: [
-            {
-              title: "One image, one engine",
-              description:
-                "Run an image through a visual engine (Blur, Tessa, or another) and submit the result with the parameters used.",
-            },
-            {
-              title: "Make it audible",
-              description:
-                "Use an Atlas engine for sound production. Submit an audio file (song, sample, or sound effect) with a summary of your workflow.",
-            },
-            {
-              title: "Three dimensions",
-              description:
-                "Use an engine to do something three-dimensional, for example a video where the Entanglement Shader has been applied to a 3D asset.",
-            },
-            {
-              title: "Moving image",
-              description: "Use at least one engine in a video piece. Any format.",
-            },
-            {
-              title: "Quantum game",
-              description:
-                "Use at least one engine in the making of a game, for example a browser game whose sprites are generated with Tessa.",
-            },
-            {
-              title: "Daisy chain",
-              description:
-                "Use as many engines as possible in a single project. Measured on the number of engines and how effectively they are used.",
-            },
-            {
-              title: "Make a VST or AU",
-              description:
-                "Build a music plugin using at least one engine. Submit the plugin and audio examples of it in use.",
-            },
-          ],
-        },
-        {
-          title: "Code themes (Atlas API)",
-          themes: [
-            {
-              title: "Make a web app",
-              description:
-                "Build a web app that calls the Atlas API. Submit a link and a short description of what it does.",
-            },
-            {
-              title: "Quantum native 1",
-              description:
-                "Provide a repo of a quantum application that runs a process on some kind of media (for example a video or a game). Applications that use the Atlas API are especially welcome.",
-            },
-            {
-              title: "Quantum native 2",
-              description:
-                "Provide a Python notebook showing how you used the API to build a workflow that generates some kind of media or application (for example a game).",
-            },
-          ],
-        },
-      ],
-      resources: [
-        { label: "Platform access", href: "https://mql.ink/khalifa" },
-        { label: "Starter guide (video)", href: "https://youtu.be/LcKl6Rsg2yk?si=r2uF8eQgrBfFDMd5&t=589" },
-        { label: "Discord community", href: "https://discord.gg/sDh29KsG5" },
-      ],
+      brief: quantumMediaBrief,
     },
   },
   {
