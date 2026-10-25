@@ -41,7 +41,8 @@ export const quantumMachineLearningBrief: TrackBrief = {
       id: "overview", title: "Overview", blocks: [
         { type: "heading", text: "Quantum Machine Learning for Healthcare" },
         { type: "paragraph", text: "Identify a specific healthcare problem and establish a comparable & robust classical machine learning baseline to address it." },
-        { type: "paragraph", text: "Use quantum techniques to improve the classical approach or develop a quantum model that outperforms the baseline on relevant metrics. The quantum integration must serve a clear purpose, addressing a limitation of the classical approach and supporting measurable performance gains." },
+        { type: "paragraph", text: "Use quantum techniques to improve the classical approach or develop a quantum model that rivals or outperforms the baseline on relevant metrics. \
+          The quantum integration must serve a clear purpose, addressing a limitation of the classical approach and supporting measurable performance gains." },
         { type: "paragraph", text: "Classical baselines should be chosen comparably similar to the quantum approach, whether that's through similar data preprocessing, feature engineering, or model architectures. Deliver a functional codebase and a comparative evaluation demonstrating both approaches." },
         { type: "notice", paragraphs: ["The challenge is live. You can begin developing your project now. The submission form will be added soon.", qmlFinalPresentations.description] },
         { type: "track-visual", kind: "qml" },
@@ -60,11 +61,13 @@ export const quantumMachineLearningBrief: TrackBrief = {
         { type: "list", ordered: true, presentation: "compact-steps", items: [
           { title: "Define the healthcare problem", text: "Explain the problem, its relevance, the data used and the intended outcome." },
           { title: "Establish a strong classical baseline", text: "Build or reproduce a suitable classical machine learning approach. Credit existing work and document its configuration and performance." },
-          { title: "Develop the quantum contribution", text: "Use quantum techniques to improve the classical model or develop a quantum model. Explain why the quantum component is appropriate and which limitation it addresses." },
+          { title: "Develop the quantum contribution", text: "Use quantum techniques to improve the classical model or develop a competing quantum model. Explain why the quantum component is appropriate and which limitation it addresses." },
           { title: "Evaluate both approaches fairly", text: "Use appropriate metrics and consistent data and evaluation conditions. Present the results, improvements and limitations clearly." },
         ] },
         { type: "heading", text: "How submissions are assessed" },
-        { type: "paragraph", text: "Submissions will be assessed on the quantum approach’s performance relative to its classical baseline, alongside the ingenuity, depth and soundness of the chosen problem-solving approach." },
+        { type: "paragraph", text: "Submissions will be assessed on the quantum approach’s performance relative to its classical baseline, \
+          alongside the ingenuity, depth and soundness of the chosen problem-solving approach. \
+          While the quantum approach doesn't have to beat the classical approach on all metrics, it should offer a unique advantage without sacrificing other aspects of performance." },
         { type: "note", text: "Both the problem choice and problem-solving approach should be justified. Assessment also considers the correctness of the chosen approach." },
       ],
     },
@@ -75,10 +78,11 @@ export const quantumMachineLearningBrief: TrackBrief = {
         { type: "submission-control", submission: qmlSubmission },
         { type: "heading", text: "Submission Guidelines" },
         { type: "list", presentation: "cards", items: [
-          { title: "Functional codebase", text: "Implement the classical and quantum approaches correctly." },
-          { title: "Comparative evaluation", text: "Compare both models’ results. The comparison should be thorough and well-supported." },
-          { title: "Explain your approach", text: "Explain the healthcare problem, methods and purpose of the quantum integration. \
+          { title: "Functional codebase", text: "Implement the classical and quantum approaches correctly. Teams have the freedom to choose their preferred implementation stack." },
+          { title: "Comparative evaluation", text: "Compare both models’ results. The comparison should be thorough and well-supported. \
             Emphasize the core comparison metrics, involving both classical machine learning performance but also quantum resource/efficiency metrics." },
+          { title: "Explain your approach", text: "Explain the healthcare problem, methods and purpose of the quantum integration, \
+            focusing on the advantages and limitations. Include explainations of any tradeoffs between certain aspects and the proposed advantage." },
           { title: "Problem & Baseline Choice", text: "Classical baselines should be chosen comparable to the quantum approach, \
             whether that's through similar data preprocessing, feature engineering, \
             or model architectures. This goes hand in hand with explaining the purpose of the quantum integration." },
