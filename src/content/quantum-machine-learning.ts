@@ -6,8 +6,8 @@ const deadlineDate = new Date(qmlDeadlineAt);
 const dateLabel = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "Asia/Dubai" }).format(deadlineDate);
 const shortDateLabel = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", timeZone: "Asia/Dubai" }).format(deadlineDate);
 const timeLabel = new Intl.DateTimeFormat("en-US", { hour: "numeric", minute: "2-digit", hour12: true, timeZone: "Asia/Dubai" }).format(deadlineDate);
-export const qmlDeadline = { at: qmlDeadlineAt, label: `${dateLabel}, ${timeLabel} UAE time (UTC+4)` };
-export const qmlDeadlineCardLabel = `Deadline: ${shortDateLabel} · ${timeLabel} UAE`;
+export const qmlDeadline = { at: qmlDeadlineAt, label: `${dateLabel}, ${timeLabel} (UTC+4)` };
+export const qmlDeadlineCardLabel = `Deadline: ${shortDateLabel} · ${timeLabel}`;
 export const qmlSummary = "Choose a healthcare problem, establish a strong classical machine learning baseline, and use quantum techniques to achieve measurable improvements.";
 export const qmlFinalPresentations = {
   date: "2026-10-31",
@@ -70,13 +70,15 @@ export const quantumMachineLearningBrief: TrackBrief = {
     },
     {
       id: "submissions", title: "Submissions", blocks: [
-        { type: "paragraph", text: "The challenge is live, and participants may begin working now." },
+        { type: "paragraph", text: "The final submission should be a GitHub repository featuring all the code. \
+          All explanation or analysis should be included in a README file." },
         { type: "submission-control", submission: qmlSubmission },
-        { type: "heading", text: "Prepare your submission" },
+        { type: "heading", text: "Submission Guidelines" },
         { type: "list", presentation: "cards", items: [
           { title: "Functional codebase", text: "Implement the classical and quantum approaches correctly." },
           { title: "Comparative evaluation", text: "Compare both models’ results. The comparison should be thorough and well-supported." },
-          { title: "Explain your approach", text: "Explain the healthcare problem, methods and purpose of the quantum integration." },
+          { title: "Explain your approach", text: "Explain the healthcare problem, methods and purpose of the quantum integration. \
+            Emphasize the core comparison metrics, involving both classical machine learning performance but also quantum resource/efficiency metrics." },
           { title: "Problem & Baseline Choice", text: "Classical baselines should be chosen comparable to the quantum approach, \
             whether that's through similar data preprocessing, feature engineering, \
             or model architectures. This goes hand in hand with explaining the purpose of the quantum integration." },
@@ -100,14 +102,14 @@ export const quantumMachineLearningBrief: TrackBrief = {
         },
         { type: "resource-cards", items: qmlResources, sourceLabels: { official: "Official challenge resource", external: "External learning resource" } },
         { type: "heading", text: "Timeline" },
-        { type: "table", presentation: "timeline", columns: ["2026 · UAE time (UTC+4)", "Milestone"], rows: [
+        { type: "table", presentation: "timeline", columns: ["2026 · (UTC+4)", "Milestone"], rows: [
           ["Now — Challenge live", "Choose your healthcare problem and begin developing your classical baseline and quantum approach."],
           [`${qmlDeadline.label} — Submission deadline`, "Submit your project through the official submission form before the deadline."],
           [`${qmlFinalPresentations.label} — Final presentations`, qmlFinalPresentations.description],
         ] },
         { type: "heading", text: "Track format" },
         { type: "paragraph", text: "This is a National / Hybrid track. Further presentation details will be announced." },
-        { type: "note", text: "All announced times use UAE time (UTC+4)." },
+        { type: "note", text: "All announced times use GST (UTC+4)." },
       ],
     },
   ],
