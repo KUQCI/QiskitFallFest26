@@ -17,8 +17,8 @@ export const qmlFinalPresentations = {
 
 /** Add only an approved form URL, then explicitly enable it. Never use the interest form. */
 export const qmlSubmission: TrackSubmission = {
-  href: null,
-  enabled: false,
+  href: "https://tally.so/r/OQDOD7",
+  enabled: true,
   closed: false,
   deadline: qmlDeadline,
   label: "Submit your project",
@@ -70,23 +70,16 @@ export const quantumMachineLearningBrief: TrackBrief = {
     },
     {
       id: "submissions", title: "Submissions", blocks: [
-        { type: "paragraph", text: "The challenge is live, and participants may begin working now. The official submission form and upload instructions will be added to this panel." },
-        {
-          type: "links",
-          items: [
-            { 
-              label: "Submission Link", 
-              href: "https://tally.so/r/OQDOD7" 
-            }
-          ]
-        },
+        { type: "paragraph", text: "The challenge is live, and participants may begin working now." },
         { type: "submission-control", submission: qmlSubmission },
         { type: "heading", text: "Prepare your submission" },
         { type: "list", presentation: "cards", items: [
-          { title: "Functional codebase", text: "Implement the classical and quantum approaches." },
-          { title: "Comparative evaluation", text: "Show both models’ results." },
+          { title: "Functional codebase", text: "Implement the classical and quantum approaches correctly." },
+          { title: "Comparative evaluation", text: "Compare both models’ results. The comparison should be thorough and well-supported." },
           { title: "Explain your approach", text: "Explain the healthcare problem, methods and purpose of the quantum integration." },
-          { title: "Reproduce the work", text: "Include relevant settings, dependency information and instructions needed to reproduce the work." },
+          { title: "Problem & Baseline Choice", text: "Classical baselines should be chosen comparable to the quantum approach, \
+            whether that's through similar data preprocessing, feature engineering, \
+            or model architectures. This goes hand in hand with explaining the purpose of the quantum integration." },
         ] },
         { type: "note", text: "Check this panel for the submission form and upload instructions." },
         { type: "heading", text: "Final presentations" },
@@ -109,7 +102,6 @@ export const quantumMachineLearningBrief: TrackBrief = {
         { type: "heading", text: "Timeline" },
         { type: "table", presentation: "timeline", columns: ["2026 · UAE time (UTC+4)", "Milestone"], rows: [
           ["Now — Challenge live", "Choose your healthcare problem and begin developing your classical baseline and quantum approach."],
-          ["Coming soon — Submission form added", "The official form and upload instructions will appear in the Submissions panel."],
           [`${qmlDeadline.label} — Submission deadline`, "Submit your project through the official submission form before the deadline."],
           [`${qmlFinalPresentations.label} — Final presentations`, qmlFinalPresentations.description],
         ] },

@@ -137,7 +137,7 @@ export const tracks: Track[] = [
       description: [
         "Create with Moth Quantum's quantum media engines: Atlas API, Tessa, Blur, and the Entanglement Shader.",
       ],
-      dates: ["30 October 2026, 11:59 PM UTC-8: submission deadline."],
+      dates: ["Submission Deadline: 30 October 2026, 11:59 PM (UTC-8)"],
       submission: {
         how: ["Submit your project through the official submission form before the deadline."],
         links: [{ 
