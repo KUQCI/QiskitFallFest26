@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { AgendaTimeline } from "@/components/AgendaTimeline";
+import { AgendaCalendar } from "@/components/AgendaCalendar";
 import { PageHeader } from "@/components/PageHeader";
 import { ArrowRightIcon } from "@/components/ui/Icons";
 import { Container, Section } from "@/components/ui/primitives";
-import { agendaDays, agendaPendingTracks, agendaPageContent as copy, workshopDialogCopy } from "@/content/agenda";
+import { agendaCalendar, agendaPendingTracks, agendaPageContent as copy, workshopDialogCopy } from "@/content/agenda";
 
 export const metadata: Metadata = { title: copy.title, description: copy.metadataDescription };
 
@@ -17,7 +17,7 @@ export default function AgendaPage() {
           <p className="text-sm leading-relaxed text-fg-muted">{copy.timezoneNote}</p>
           <p className="mt-2 text-sm leading-relaxed text-fg-muted">{copy.programmeNote}</p>
         </div>
-        <AgendaTimeline days={agendaDays} categories={copy.categories} kindLabels={copy.kindLabels} workshopLabels={copy.workshopLabels} dialogCopy={workshopDialogCopy} filterLabel={copy.filterLabel} timelineLabel={copy.timelineLabel} resultsLabel={copy.resultsLabel} />
+        <AgendaCalendar calendar={agendaCalendar} categories={copy.categories} kindLabels={copy.kindLabels} workshopLabels={copy.workshopLabels} dialogCopy={workshopDialogCopy} copy={copy} />
         {agendaPendingTracks.length ? <section className="mt-12 border-t border-border pt-8" aria-labelledby="agenda-pending">
           <h2 id="agenda-pending" className="text-xl font-semibold text-fg">{copy.pendingTitle}</h2>
           <p className="mt-2 text-sm leading-relaxed text-fg-muted">{copy.pendingDescription}</p>

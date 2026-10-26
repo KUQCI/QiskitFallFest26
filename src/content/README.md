@@ -29,7 +29,7 @@ After an edit, run `npm run build` with the development server stopped.
 | Quantum Foundations four-panel brief, high-school audience, date labels and independent registration controls | `quantum-foundations.ts` |
 | Quantum Machine Learning four-panel healthcare brief, exact deadline, submission controls and approved resources | `quantum-machine-learning.ts` |
 | Three phases, sessions, and How It Works page copy | `schedule.ts` |
-| Day-by-day Agenda milestones, category filters, time-zone notes and track links | `agenda.ts` |
+| Agenda milestones, week-calendar lanes, category filters, time-zone notes and track links | `agenda.ts` |
 | Confirmed partners, booth applications, and sponsorship contact copy | `sponsors.ts` |
 | Questions and cautious answers | `faq.ts` |
 | Organizer, advisor, past events, R&D projects, and speakers | `team.ts` |
@@ -50,12 +50,18 @@ When an approved track milestone changes, update its Agenda entry to match. Regi
 opening dates for Cybersecurity, Metaverse and Foundations read their track settings.
 Agenda links open the track details; they never enable an unreleased form.
 
-Every Agenda card has one whole-card control. Track milestones link to their existing
-track popup, and the premiere retains its recording link. Workshop cards open the
-reusable `WorkshopDialog`, with a single scrolling content view and a fixed close button.
-Native modal inertness, focus trapping/restoration, scroll locking and reduced-motion
-transitions are preserved. A related-track link closes the workshop before navigating;
-do not stack dialogs. Filters and date grouping remain independent of dialog state.
+The Agenda is a horizontally scrolling two-week calendar (`agendaCalendar` in
+`agenda.ts`), from 19 October to 1 November, with one column per day. Each track is a
+bar in its `accent` colour, running from its first to its last milestone. Event-wide
+items sit on a "Qiskit Fall Fest 2026" bar across the whole range. Bars that overlap in
+time are packed into separate lanes stacked on top of each other, so blocks never
+overlap. New milestones need only an `agendaItems` entry; spans and lanes are derived.
+
+Selecting a milestone shows its details below the calendar. Track milestones link to
+the track drawer, and the premiere keeps its recording link. Workshops open the
+reusable `WorkshopDialog` from the details card. Native modal inertness, focus
+trapping/restoration, scroll locking and reduced-motion transitions are preserved. A
+related-track link closes the workshop before navigating; do not stack dialogs.
 
 Add workshops to `agendaItems` with `kind: "workshop"`, an ISO `date`, `title`,
 event/track `context`, and confirmed `time` and `venue` (including online platform).

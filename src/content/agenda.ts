@@ -7,6 +7,7 @@ import { cybersecurityLinks } from "./quantum-cybersecurity";
 import { tracks } from "./tracks";
 import { fallFestAssets } from "./assets";
 import { adOmicsWorkshop, quantumComputingWorkshop } from "./workshops";
+import type { TrackAccent } from "./types";
 
 export interface WorkshopRegistration {
   href: string | null;
@@ -52,8 +53,9 @@ export interface AgendaItem {
   actionLabel?: string;
   external?: boolean;
   workshop?: AgendaWorkshop;
+  /** Set for track milestones; event-wide items have none. */
+  trackSlug?: string;
 }
-export interface AgendaDay { date: string; day: string; month: string; items: AgendaItem[] }
 
 export const workshopDialogCopy = {
   label: "Workshop",
@@ -84,12 +86,18 @@ export type WorkshopDialogCopy = typeof workshopDialogCopy;
 export const agendaPageContent = {
   eyebrow: event.dateLabel,
   title: "Agenda",
-  lede: "Registration, workshops, challenge days and submission deadlines — find the dates that matter to your track.",
+  lede: "Registration, workshops, challenge days and submission deadlines, laid out week by week. Each track has its own colour.",
   metadataDescription: "The Qiskit Fall Fest 2026 agenda: published registration dates, workshops, track challenges and submission deadlines from 19 October to 1 November.",
   timezoneNote: "Times are UAE time (UTC+4), except the Quantum in Media submission deadline, which uses Pacific Time.",
   programmeNote: "This agenda lists published milestones. Detailed session timings and the full daily programme will be added as confirmed.",
   filterLabel: "Filter agenda",
-  timelineLabel: "Fall Fest milestones, 2026",
+  timelineLabel: "Fall Fest week calendar, 19 October to 1 November 2026",
+  weeksLabel: "Jump to week",
+  legendLabel: "Track colours",
+  festLabel: "Qiskit Fall Fest 2026",
+  detailsLabel: "Selected date",
+  detailsHint: "Select a block in the calendar to see its details.",
+  scrollHint: "Scroll sideways to see every day.",
   resultsLabel: "milestones",
   categories: [
     { id: "all", label: "All dates" },
@@ -116,7 +124,7 @@ export const agendaPageContent = {
 function trackItem(slug: string, item: Omit<AgendaItem, "context" | "href" | "actionLabel">): AgendaItem {
   const track = tracks.find(candidate => candidate.slug === slug);
   if (!track) throw new Error(`Unknown agenda track: ${slug}`);
-  return { ...item, context: track.title, href: `/tracks/#${slug}`, actionLabel: "Track details" };
+  return { ...item, context: track.title, href: `/tracks/#${slug}`, actionLabel: "Track details", trackSlug: slug };
 }
 
 /** Published milestones only; unknown session hours and running orders stay omitted. */
@@ -224,10 +232,86 @@ export const agendaItems: AgendaItem[] = [
   }),
 ];
 
-export const agendaDays: AgendaDay[] = [...new Set(agendaItems.map(item => item.date))].sort().map(date => ({
-  date, day: String(Number(date.slice(8))),
-  month: new Intl.DateTimeFormat("en-GB", { month: "long", timeZone: "Asia/Dubai" }).format(new Date(`${date}T12:00:00+04:00`)),
-  items: agendaItems.filter(item => item.date === date),
-}));
-
 export const agendaPendingTracks = tracks.filter(track => !agendaItems.some(item => item.href === `/tracks/#${track.slug}`)).map(track => ({ title: track.title, href: `/tracks/#${track.slug}` }));
+
+/* ---------- Week calendar ---------- */
+
+export type AgendaAccent = TrackAccent | "lavender";
+
+export interface AgendaCalendarDay {
+  date: string;
+  weekday: string;
+  day: string;
+  month: string;
+  weekStart: boolean;
+  weekend: boolean;
+}
+
+/** A horizontal bar on the calendar: a track's first-to-last milestone, or the whole Fest. */
+export interface AgendaSpan {
+  id: string;
+  label: string;
+  accent: AgendaAccent;
+  href?: string;
+  /** Column indexes into `agendaCalendar.days`, inclusive. */
+  start: number;
+  end: number;
+  items: AgendaItem[];
+}
+
+const DAY_MS = 86_400_000;
+const calendarStart = "2026-10-19";
+const calendarEnd = "2026-11-01";
+const dayIndex = (date: string) => Math.round((Date.parse(`${date}T12:00:00Z`) - Date.parse(`${calendarStart}T12:00:00Z`)) / DAY_MS);
+const dubai = (options: Intl.DateTimeFormatOptions, date: string) =>
+  new Intl.DateTimeFormat("en-GB", { ...options, timeZone: "Asia/Dubai" }).format(new Date(`${date}T12:00:00+04:00`));
+
+const calendarDays: AgendaCalendarDay[] = Array.from({ length: dayIndex(calendarEnd) + 1 }, (_, index) => {
+  const date = new Date(Date.parse(`${calendarStart}T12:00:00Z`) + index * DAY_MS).toISOString().slice(0, 10);
+  const weekday = dubai({ weekday: "short" }, date);
+  return {
+    date, weekday,
+    day: String(Number(date.slice(8))),
+    month: dubai({ month: "short" }, date),
+    weekStart: weekday === "Mon",
+    weekend: weekday === "Sat" || weekday === "Sun",
+  };
+});
+
+const trackSpans: AgendaSpan[] = tracks.flatMap(track => {
+  const items = agendaItems.filter(item => item.trackSlug === track.slug);
+  if (!items.length) return [];
+  const indexes = items.map(item => dayIndex(item.date));
+  return [{ id: track.slug, label: track.title, accent: track.accent, href: `/tracks/#${track.slug}`, start: Math.min(...indexes), end: Math.max(...indexes), items }];
+});
+
+const festSpan: AgendaSpan = {
+  id: "fall-fest", label: agendaPageContent.festLabel, accent: "lavender",
+  start: 0, end: calendarDays.length - 1,
+  items: agendaItems.filter(item => !item.trackSlug),
+};
+
+/**
+ * Pack spans into lanes, first fit by start date, so bars never overlap: spans whose
+ * dates overlap sit in separate lanes stacked on top of each other, as all-day events
+ * do in a calendar app. The event-wide span always takes the first lane.
+ */
+function packLanes(spans: AgendaSpan[]) {
+  const lanes: AgendaSpan[][] = [];
+  for (const span of [...spans].sort((a, b) => a.start - b.start || b.end - a.end)) {
+    const lane = lanes.find(candidate => candidate.every(other => span.start > other.end || span.end < other.start));
+    if (lane) lane.push(span);
+    else lanes.push([span]);
+  }
+  return lanes;
+}
+
+export const agendaCalendar = {
+  days: calendarDays,
+  weeks: [0, 7].map(start => ({
+    start,
+    label: `${calendarDays[start].day} ${calendarDays[start].month} – ${calendarDays[start + 6].day} ${calendarDays[start + 6].month}`,
+  })),
+  lanes: [[festSpan], ...packLanes(trackSpans)],
+};
+export type AgendaCalendar = typeof agendaCalendar;

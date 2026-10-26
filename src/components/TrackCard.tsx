@@ -12,8 +12,8 @@ const statusKey = (status: string | TrackStatusLabel) => (typeof status === "str
 const isMetadataStatus = (status: string | TrackStatusLabel) => typeof status !== "string" && status.cardPlacement === "metadata";
 
 /** Inline style that hands a track's accent token to `.track-cover`, `.agenda-*` etc. */
-export function trackAccentStyle(track: Pick<Track, "accent">) {
-  return { "--track-accent": `var(--c-${track.accent})` } as React.CSSProperties;
+export function trackAccentStyle({ accent }: { accent: Track["accent"] | "lavender" }) {
+  return { "--track-accent": `var(--c-${accent})` } as React.CSSProperties;
 }
 
 /** The cover band shared by track cards and the drawer header. */
