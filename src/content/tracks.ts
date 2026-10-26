@@ -219,7 +219,7 @@ export const tracksPageContent = {
     ],
   },
   note: "Registration links and resource links for each track will be added here as they are shared.",
-  /** Copy for the track cards and the track details drawer. */
+  /** Copy for the track cards and the full-screen track panel. */
   panel: {
     openLabel: "View challenge",
     closeLabel: "Close track details",

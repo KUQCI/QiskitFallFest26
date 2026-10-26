@@ -14,8 +14,8 @@ import type { TrackBrief, TrackBriefBlock } from "@/content/types";
 import { cn } from "@/lib/utils";
 
 /**
- * A track's published brief inside the track drawer. The tabs stick to the top of the
- * drawer's scroll area, so the active panel is always one tap away from the others.
+ * A track's published brief inside the track panel. The tabs stick to the top of the
+ * panel's scroll area, so the active panel is always one tap away from the others.
  */
 export function TrackBriefTabs({
   brief,
@@ -33,7 +33,7 @@ export function TrackBriefTabs({
   // On a tab change, bring the new panel's start into view if the reader had scrolled past it.
   useEffect(() => {
     const tablist = tablistRef.current;
-    const scroller = tablist?.closest<HTMLElement>("[data-drawer-scroll]");
+    const scroller = tablist?.closest<HTMLElement>("[data-panel-scroll]");
     if (tablist && scroller && scroller.scrollTop > tablist.offsetTop) scroller.scrollTop = tablist.offsetTop;
     tabRefs.current[selected]?.scrollIntoView({ block: "nearest", inline: "nearest" });
   }, [selected]);

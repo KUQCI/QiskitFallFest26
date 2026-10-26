@@ -16,7 +16,7 @@ export function trackAccentStyle({ accent }: { accent: Track["accent"] | "lavend
   return { "--track-accent": `var(--c-${accent})` } as React.CSSProperties;
 }
 
-/** The cover band shared by track cards and the drawer header. */
+/** The cover band shared by track cards and the panel header. */
 export function TrackCover({ track, className, priority }: { track: Track; className?: string; priority?: boolean }) {
   return (
     <div aria-hidden="true" className={cn("track-cover", className)}>
@@ -33,7 +33,7 @@ export function TrackCover({ track, className, priority }: { track: Track; class
 }
 
 /**
- * A track summary that opens the track's details drawer. Every track uses the same
+ * A track summary that opens the track's full-screen panel. Every track uses the same
  * layout, top to bottom: cover band, status chips, title, summary, key facts, then
  * reach/format/participation tags. The title button carries the control and a stretched
  * pseudo-element makes the whole card clickable without nesting block content in it.

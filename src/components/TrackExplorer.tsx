@@ -10,7 +10,7 @@ import { tracksPageContent, type TrackPanelCopy } from "@/content/tracks";
 import type { Track } from "@/content/types";
 
 /**
- * The tracks grid, grouped by reach, plus the track details drawer. The open track is mirrored in
+ * The tracks grid, grouped by reach, plus its full-screen detail panel. The open track is mirrored in
  * the URL hash (`/tracks/#<slug>`) so links, including the home page's featured
  * cards, scroll to the card and open it. `replaceState` keeps Back leaving the page
  * instead of stepping through every track that was viewed. To change tracks, close the
@@ -18,9 +18,11 @@ import type { Track } from "@/content/types";
  */
 export function TrackExplorer({ tracks, copy }: { tracks: Track[]; copy: TrackPanelCopy }) {
   const [openSlug, setOpenSlug] = useState<string | null>(null);
+  const [origin, setOrigin] = useState<DOMRect | null>(null);
   const returnFocusRef = useRef<string | null>(null);
 
-  const open = useCallback((slug: string) => {
+  const open = useCallback((slug: string, rect: DOMRect | null) => {
+    setOrigin(rect);
     setOpenSlug(slug);
     window.history.replaceState(null, "", `#${slug}`);
   }, []);
@@ -52,7 +54,7 @@ export function TrackExplorer({ tracks, copy }: { tracks: Track[]; copy: TrackPa
       const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       card.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" });
       clearTimeout(timer);
-      timer = setTimeout(() => open(slug), reduced ? 0 : 650);
+      timer = setTimeout(() => open(slug, card.getBoundingClientRect()), reduced ? 0 : 650);
     };
 
     openFromHash();
@@ -92,7 +94,7 @@ export function TrackExplorer({ tracks, copy }: { tracks: Track[]; copy: TrackPa
                       track={track}
                       actionLabel={copy.openLabel}
                       expanded={openSlug === track.slug}
-                      onOpen={() => open(track.slug)}
+                      onOpen={(trigger) => open(track.slug, trigger.closest("article")?.getBoundingClientRect() ?? null)}
                     />
                   </Reveal>
                 ))}
@@ -102,7 +104,7 @@ export function TrackExplorer({ tracks, copy }: { tracks: Track[]; copy: TrackPa
         })}
       </div>
 
-      {openTrack ? <TrackPanel track={openTrack} copy={copy} onClosed={handleClosed} /> : null}
+      {openTrack ? <TrackPanel track={openTrack} copy={copy} origin={origin} onClosed={handleClosed} /> : null}
     </>
   );
 }

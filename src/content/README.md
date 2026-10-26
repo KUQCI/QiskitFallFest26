@@ -58,7 +58,7 @@ time are packed into separate lanes stacked on top of each other, so blocks neve
 overlap. New milestones need only an `agendaItems` entry; spans and lanes are derived.
 
 Selecting a milestone shows its details below the calendar. Track milestones link to
-the track drawer, and the premiere keeps its recording link. Workshops open the
+the track panel, and the premiere keeps its recording link. Workshops open the
 reusable `WorkshopDialog` from the details card. Native modal inertness, focus
 trapping/restoration, scroll locking and reduced-motion transitions are preserved. A
 related-track link closes the workshop before navigating; do not stack dialogs.
@@ -240,10 +240,10 @@ Topological Systems currently appear in the confirmed partner list.
 
 ## Track panel details
 
-Each track card on `/tracks/` opens a details drawer from the right. It can also be
-opened directly at `/tracks/#<slug>`. Every card and drawer uses the same layout: a cover
+Each track card on `/tracks/` opens a full-screen panel that grows out of the card. It can also be
+opened directly at `/tracks/#<slug>`. Every card and panel uses the same layout: a cover
 band (the host's `banner` when supplied, otherwise a tint of the track's `accent`), status
-chips, title, summary, then venue, deadline and hosts. The drawer body is the track's
+chips, title, summary, then venue, deadline and hosts. The panel body is the track's
 published `details.brief`, shown as tabs. `accent` must differ between tracks, because
 the agenda calendar colour-codes each track with it.
 

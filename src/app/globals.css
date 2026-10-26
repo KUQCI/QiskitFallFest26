@@ -511,8 +511,8 @@ p {
   .workshop-dialog::backdrop { animation: none; transition: none; }
 }
 
-/* Track details drawer (and the workshop dialog, which shares .track-panel) and the
-   dimmed page behind it. Defined here rather than with utilities so the mobile/desktop
+/* Full-screen track details panel (and the workshop dialog, which shares .track-panel)
+   and the dimmed page behind it. Defined here rather than with utilities so the mobile/desktop
    radius is not fighting class order. */
 .track-panel-backdrop {
   background: color-mix(in srgb, var(--c-bg) 78%, transparent);
@@ -591,7 +591,7 @@ p {
 
 .track-date-badge { text-transform: none; letter-spacing: 0; }
 
-/* Every track card and drawer header opens with the same cover band: the host's banner
+/* Every track card and panel header opens with the same cover band: the host's banner
    when supplied, otherwise a tint of the track's accent over the site grid. The accent
    comes from `--track-accent`, set inline from the track's `accent` field. */
 .track-cover {
@@ -616,13 +616,8 @@ p {
 .track-cover img { object-position: 65% 25%; }
 .track-cover-accent { height: 3px; background: var(--track-accent); }
 
-.track-drawer {
-  border-radius: 0;
-  border-width: 0 0 0 1px;
-}
-@media (min-width: 40rem) {
-  .track-drawer { border-radius: 20px 0 0 20px; }
-}
+/* A card is hidden while the panel animates in its place, so only one box is seen. */
+[data-track-hidden] { opacity: 0; }
 
 /* Agenda week calendar: one column per day, track spans and milestones placed on a
    shared grid. Lanes are assigned in agenda.ts so blocks never overlap. */
