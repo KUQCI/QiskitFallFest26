@@ -160,11 +160,11 @@ export function TrackPanel({
         tabIndex={-1}
         onKeyDown={handleKeyDown}
         style={trackAccentStyle(track)}
-        className="track-panel track-drawer absolute inset-y-0 right-0 flex w-full flex-col overflow-clip outline-none sm:w-[min(46rem,calc(100%-3rem))]"
+        className="track-panel track-drawer absolute inset-y-0 right-0 flex w-full flex-col overflow-clip outline-none sm:w-[calc(100%-3rem)] lg:w-[min(85vw,96rem)]"
       >
         <div data-drawer-scroll className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
           <header className="relative">
-            <TrackCover track={track} className="h-24 sm:h-28" priority />
+            <TrackCover track={track} className="h-24 sm:h-28 lg:h-40" priority />
             <div aria-hidden="true" className="track-cover-accent" />
             <button
               type="button"
@@ -175,18 +175,18 @@ export function TrackPanel({
               <CloseIcon className="h-5 w-5" />
             </button>
 
-            <div className="px-5 pb-6 pt-5 sm:px-8 sm:pb-8">
+            <div className="max-w-5xl px-5 pb-6 pt-5 sm:px-8 sm:pb-8 lg:px-12 lg:pb-10 lg:pt-7">
               <div className="flex flex-wrap gap-2">
                 {track.statusLabels?.map((status) => <TrackStatusBadge key={typeof status === "string" ? status : status.label} status={status} />)}
                 {track.reach ? <Badge tone="sky">{reachLabel(track.reach)}</Badge> : null}
                 {track.format ? <Badge tone="neutral">{track.formatDisplayLabel ?? formatLabel(track.format)}</Badge> : null}
                 {participation ? <Badge tone="purple"><UsersIcon className="h-3.5 w-3.5 shrink-0" />{participation}</Badge> : null}
               </div>
-              <h2 id={titleId} className="mt-4 text-3xl font-semibold leading-tight text-fg sm:text-4xl">
+              <h2 id={titleId} className="mt-4 text-3xl font-semibold leading-tight text-fg sm:text-4xl lg:text-5xl">
                 {track.title}
               </h2>
               {track.subtitle ? <p className="mt-1.5 text-sm font-semibold text-purple">{track.subtitle}</p> : null}
-              <p className="mt-4 text-base leading-relaxed text-fg-muted">{details.headerSummary ?? track.summary}</p>
+              <p className="mt-4 max-w-3xl text-base leading-relaxed text-fg-muted lg:text-lg">{details.headerSummary ?? track.summary}</p>
               <TrackFacts track={track} className="mt-5" />
             </div>
           </header>

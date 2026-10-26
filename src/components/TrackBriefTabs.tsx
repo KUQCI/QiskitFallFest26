@@ -57,7 +57,7 @@ export function TrackBriefTabs({
           role="tablist"
           aria-label={brief.navigationLabel}
           aria-orientation="horizontal"
-          className="flex gap-1 overflow-x-auto px-3 py-2 sm:px-6"
+          className="flex gap-1 overflow-x-auto px-3 py-2 sm:px-6 lg:px-10"
         >
           {brief.panels.map((item, index) => (
             <button
@@ -91,14 +91,14 @@ export function TrackBriefTabs({
           aria-labelledby={`${id}-tab-${item.id}`}
           hidden={selected !== index}
           tabIndex={selected === index ? 0 : -1}
-          className="space-y-5 px-5 py-7 [overflow-wrap:anywhere] focus-visible:outline-offset-[-4px] sm:px-8 sm:py-8"
+          className="space-y-5 px-5 py-7 [overflow-wrap:anywhere] focus-visible:outline-offset-[-4px] sm:px-8 sm:py-8 lg:px-12 lg:py-10 [&>*]:max-w-5xl"
         >
           {selected === index ? <>
             <h3 className="text-2xl font-semibold text-fg">{panel.title}</h3>
             {panel.id === "overview" ? <>
               {brief.tags?.length ? <div className="flex flex-wrap gap-2">{brief.tags.map(tag => <Badge key={tag} tone="purple">{tag}</Badge>)}</div> : null}
               {brief.highlights?.length ? (
-                <dl className="biology-highlights grid grid-cols-2 gap-3">
+                <dl className="biology-highlights grid grid-cols-2 gap-3 xl:grid-cols-4">
                   {brief.highlights.map(item => (
                     <div key={item.label} className="biology-highlight">
                       <dt className="text-xs leading-relaxed text-fg-muted">{item.label}</dt>
@@ -215,7 +215,7 @@ function BriefBlock({ block }: { block: TrackBriefBlock }) {
         );
       }
       return (
-        <ul className="grid gap-4 sm:grid-cols-2">
+        <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {block.items.map((item, index) => (
             <li key={item.label} className="biology-detail-card">
               <BiologyGlyph index={index} />

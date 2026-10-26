@@ -211,7 +211,7 @@ Each track runs its own registration, so the shared `RegisterButton` has two sta
 
 | Stage | Field | Button |
 |---|---|---|
-| Per-track registration (current) | `event.registrationTracksHref` | `event.registrationOpensLabel`, linking to Tracks |
+| Per-track registration (current) | `event.registrationTracksHref` | `event.registrationOpensLabel` ("Tracks"), linking to the tracks page |
 | Single event-wide registration | `event.registrationUrl` | Register (external) |
 
 The old "Get notified" interest-form stage has been removed. `registrationOpensLabel`
