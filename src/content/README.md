@@ -82,6 +82,14 @@ Its approved registration URL is `https://forms.gle/cSh5o9JDtdcB7oLv8`, shown as
 Register for workshop. Its speaker name and Teams joining URL remain unconfirmed.
 The poster supplies its topics.
 
+The AD-OMICS biology and data workshop remains on 26 October 2026 at 5:30 PM UAE time.
+Programming the Future is a separate QCI-only workshop on 27 October 2026, 8:00–9:30 PM
+UAE time (GMT+4), online on Microsoft Teams, introducing quantum computing and quantum
+machine learning. Its poster confirms four topics and certificates. Its approved registration
+form is enabled at `https://forms.gle/m3VbCpWPVt8aMaFV8`; the speaker and Teams joining
+URL remain unconfirmed. Both schedules live in `workshops.ts` and feed
+the agenda and Biology timeline. Do not combine these into one workshop on 26 October.
+
 Quantum Biology has independent release controls in `biologyReleases`. To publish a
 participant resource or form, supply its approved `href` and set `enabled: true`.
 Both are required; calendar dates never activate links. The user has explicitly approved

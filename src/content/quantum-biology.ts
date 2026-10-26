@@ -1,5 +1,6 @@
 import type { TrackBrief, TrackReleaseLink } from "./types";
 import { fallFestAssets } from "./assets";
+import { adOmicsWorkshop, quantumComputingWorkshop } from "./workshops";
 
 // "qiskit bio track website details (1) (1).pdf" is the sole source for challenge
 // information. Do not retain additional facts or rules from the earlier handoff.
@@ -68,14 +69,15 @@ export const quantumBiologyBrief: TrackBrief = {
         { type: "heading", text: "Who can join?" },
         { type: "paragraph", text: "Students from all majors are welcome! Whether you study biology, medicine, health sciences, computer science, engineering, or something entirely different, you can contribute." },
         { type: "paragraph", text: "We encourage teams of 3–4 students from different majors, ideally including at least one member with a background in biological or health sciences and one with a computer science or technical background." },
-        { type: "paragraph", text: "New to biology or computing? Don’t let that stop you. We’ll provide a biology workshop explaining the disease, the dataset, and what its measurements mean, alongside a quantum computing workshop covering the computational side of the challenge. You don’t need to arrive as an expert in both—come ready to learn and collaborate." },
+        { type: "paragraph", text: "New to biology or computing? Don’t let that stop you. We’ll provide an AD-OMICS biology and data workshop, alongside QCI’s introduction to quantum computing and quantum machine learning. You don’t need to arrive as an expert in both—come ready to learn and collaborate." },
         { type: "visual", src: fallFestAssets.biologyVisuals.team.src },
         { type: "heading", text: "At a glance" },
         { type: "table", columns: ["Item", "Details"], rows: [
           ["Host", "ASBMB"],
           ["Registration", "Your initial proposal submission registers you for this track."],
           ["Initial proposal", biologyProposalDeadline.label],
-          ["Workshops", "26 October 2026"],
+          ["AD-OMICS workshop", `${adOmicsWorkshop.dateLabel} · ${adOmicsWorkshop.time}`],
+          ["Quantum computing & machine learning workshop", `${quantumComputingWorkshop.dateLabel} · ${quantumComputingWorkshop.time}`],
           ["Final submission", "28 October 2026"],
           ["Final presentations", "1 November 2026, on campus at Khalifa University"],
         ] },
@@ -141,7 +143,7 @@ export const quantumBiologyBrief: TrackBrief = {
         { type: "paragraph", text: "Use only the supplied training and validation splits to develop and tune your method. The hidden test set remains with the organizers." },
         { type: "paragraph", text: "The policy on external datasets is to be confirmed." },
         { type: "heading", text: "Starter materials and support" },
-        { type: "paragraph", text: "After initial submissions, shortlisted candidates will receive the full challenge task statement, the prepared data package, and a starter notebook covering data loading, QUBO construction, a classical baseline, and the scoring function. Workshops will introduce the relevant biology and quantum optimization concepts, with mentor support during the development period." },
+        { type: "paragraph", text: "After initial submissions, shortlisted candidates will receive the full challenge task statement, the prepared data package, and a starter notebook covering data loading, QUBO construction, a classical baseline, and the scoring function. Workshops will introduce biology and data, quantum computing and quantum machine learning, with mentor support during the development period." },
         { type: "heading", text: "Resources" },
         { type: "releases", columns: ["Resource", "Availability"], items: [biologyReleases.statement, biologyReleases.dataset, biologyReleases.notebooks] },
       ],
@@ -214,13 +216,14 @@ export const quantumBiologyBrief: TrackBrief = {
           ["19 October, 6:00 PM", "Premiere: Introduction to the event and biology track."],
           ["20 October", "Registration opens through the initial-submission form: Submit your one-page proposal to register."],
           [biologyProposalDeadline.label, "Initial proposals due; semifinalists will be selected to continue."],
-          ["26 October", "AD Omics and quantum computing workshops."],
+          [`${adOmicsWorkshop.dateLabel} · ${adOmicsWorkshop.time}`, "AD-OMICS biology and data workshop."],
+          [`${quantumComputingWorkshop.dateLabel} · ${quantumComputingWorkshop.time}`, `${quantumComputingWorkshop.title}: Introduction to quantum computing and quantum machine learning, by ${quantumComputingWorkshop.organizer}. ${quantumComputingWorkshop.venue}.`],
           ["28 October", "Final submissions due; finalist selection follows."],
           ["1 November", "On-campus final presentations at Khalifa University."],
         ] },
         { type: "note", text: "Resources, including the prepared dataset and starter notebook, will be provided to shortlisted candidates after initial submissions." },
         { type: "heading", text: "Workshops and support" },
-        { type: "paragraph", text: "The biology workshop will introduce the disease context, dataset and interpretation of gene expression. The quantum computing workshop will introduce the optimization concepts and computational workflow. Starter materials and mentor support will help teams develop their approach." },
+        { type: "paragraph", text: "The AD-OMICS biology workshop will introduce the disease context, dataset and interpretation of gene expression. QCI’s Programming the Future workshop introduces quantum computing and quantum machine learning. Starter materials and mentor support will help teams develop their approach." },
         { type: "paragraph", text: "Workshop access details and the mentor contact channel are to be confirmed. No prior expertise in both biology and quantum computing is assumed." },
         { type: "heading", text: "Contact" },
         { type: "links", items: [

@@ -6,6 +6,7 @@ import { metaverseCapacityLabel, metaverseRegistration, metaverseTime } from "./
 import { cybersecurityLinks } from "./quantum-cybersecurity";
 import { tracks } from "./tracks";
 import { fallFestAssets } from "./assets";
+import { adOmicsWorkshop, quantumComputingWorkshop } from "./workshops";
 
 export interface WorkshopRegistration {
   href: string | null;
@@ -164,13 +165,28 @@ export const agendaItems: AgendaItem[] = [
     },
   },
   trackItem("chemistry-drug-discovery", {
-    id: "biology-workshops", date: "2026-10-26", kind: "workshop", title: "Biology and quantum computing workshops",
-    description: "AD-OMICS and quantum computing workshops. Access details and session timings are to be confirmed.",
+    id: "biology-workshops", date: adOmicsWorkshop.date, kind: "workshop", title: adOmicsWorkshop.title,
+    time: adOmicsWorkshop.time,
+    description: "A biology and data workshop with AD-OMICS. Access details are to be confirmed.",
     workshop: {
       registration: { href: null, enabled: false, closed: false },
+      organizers: "AD-OMICS",
       branding: [{ name: "AD-OMICS", logo: fallFestAssets.logos.adOmics.src }],
     },
   }),
+  {
+    id: "quantum-computing-ml-workshop", date: quantumComputingWorkshop.date, kind: "workshop",
+    title: quantumComputingWorkshop.title, context: event.name,
+    description: quantumComputingWorkshop.description,
+    time: quantumComputingWorkshop.time, venue: quantumComputingWorkshop.venue,
+    workshop: {
+      registration: { href: "https://forms.gle/m3VbCpWPVt8aMaFV8", enabled: true, closed: false },
+      organizers: quantumComputingWorkshop.organizer,
+      branding: [{ name: quantumComputingWorkshop.organizer, logo: fallFestAssets.logos.qciLogoFit.src }],
+      topics: quantumComputingWorkshop.topics,
+      certificates: true,
+    },
+  },
   trackItem("chemistry-drug-discovery", {
     id: "biology-submission", date: "2026-10-28", kind: "deadline", title: "Final submissions due",
     description: "Finalist selection follows the final-submission stage. Submission platform and format details are to be confirmed.",

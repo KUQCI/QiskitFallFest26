@@ -35,6 +35,12 @@ uses Agenda. The homepage keeps the organiser and technical-sponsor logos. Old
 fallback link. `src/content/agenda.ts` holds published track milestones, with no invented
 session hours or running order. Preserve the Media deadline's Pacific Time exception.
 Keep `/schedule/` as the separate How It Works overview of event phases.
+Workshop schedules in `src/content/workshops.ts` are shared by Agenda and Biology:
+AD-OMICS biology/data stays on 26 October 2026 at 5:30 PM UAE time. QCI alone gives
+Programming the Future (Introduction to Quantum Computing & Quantum Machine Learning)
+on 27 October, 8:00–9:30 PM UAE time (GMT+4), online on Microsoft Teams, with certificates.
+Keep its four poster topics. Its approved registration form is enabled at
+`https://forms.gle/m3VbCpWPVt8aMaFV8`; the Teams joining link and speaker names remain unconfirmed.
 
 ## Content honesty
 
