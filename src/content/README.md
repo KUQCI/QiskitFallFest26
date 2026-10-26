@@ -201,38 +201,17 @@ The approved submission form is `https://tally.so/r/OQDOD7`.
 The new supplied `moth-lockup.svg` is the canonical
 Moth logo, shown on white plates in the track and technical sponsors.
 
-Sign-up runs in two stages, and the shared control resolves the furthest stage that is
-actually open so the button label never overstates what the link does.
+Each track runs its own registration, so the shared `RegisterButton` has two stages:
 
-| Stage | Field | Button label |
+| Stage | Field | Button |
 |---|---|---|
-| Interest form open | `event.interestFormUrl` | Get notified |
-| Registration open | `event.registrationUrl` | Register |
-| Neither set | — | `event.registrationOpensLabel` (not a link) |
+| Per-track registration (current) | `event.registrationTracksHref` | `event.registrationOpensLabel`, linking to Tracks |
+| Single event-wide registration | `event.registrationUrl` | Register (external) |
 
-`registrationOpensLabel` is the status text shown while registration is closed. It
+The old "Get notified" interest-form stage has been removed. `registrationOpensLabel`
 lives in `event.ts`, not `homeContent`, because the CTA section renders on five routes
-and the status has to read the same on all of them. `RegisterButton` uses it as the
-default for `unavailableLabel`, so changing the date is a single edit.
-
-`registrationUrl` wins when both are set, so opening real registration is a one-line
-change and needs no edit to the interest form fields:
-
-```ts
-registrationUrl: "https://example.com/registration",
-```
-
-Keep `interestFormNote` and `registrationNote` accurate alongside the URLs. The CTA
-section shows `interestFormNote` while the interest form is the active stage, and drops
-the note entirely once registration is open.
-
-The field is named after the artifact it points at: the Google form is titled
-"Interest Form". The CTA says "Get notified" because that is why most people click it.
-Keep `interestFormNote` saying that a short form sits behind the button, so the label
-does not promise a one-field mail signup.
-
-It is not registration, so do not relabel it as registration, and do not reword the FAQ
-answers that say registration information will be published before registration opens.
+and the label has to read the same on all of them. The CTA section shows
+`registrationNote` beneath the button until `registrationUrl` is set.
 
 ## Statuses and content honesty
 

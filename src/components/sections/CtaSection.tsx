@@ -6,13 +6,8 @@ import { ctaCopy, event } from "@/content/event";
 export function CtaSection({ variant = "default" }: { variant?: "default" | "opening" }) {
   const copy = ctaCopy[variant];
 
-  // Registration needs no caveat. The interest form does, so people understand that
-  // submitting it is not the same as being registered.
-  const note = event.registrationUrl
-    ? null
-    : event.interestFormUrl
-      ? event.interestFormNote
-      : copy.note;
+  // A single registration link needs no caveat; per-track registration does.
+  const note = event.registrationUrl ? null : copy.note;
 
   return (
     <Section className="relative overflow-hidden border-t border-border">

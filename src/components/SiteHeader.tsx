@@ -243,7 +243,7 @@ export function SiteHeader() {
                 />
               </Link>
               <ThemeToggle />
-              <RegisterButton size="sm" showStatus={false} />
+              <RegisterButton size="sm" />
             </div>
             <button
               ref={menuTrigger}

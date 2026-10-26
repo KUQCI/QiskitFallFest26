@@ -25,32 +25,17 @@ export const event = {
   },
 
   /**
-   * Stage one: the live Google form people fill in before registration opens.
-   *
-   * The field keeps the name of the artifact it points at — the form is titled
-   * "Qiskit Fall Fest '26 - Interest Form" on Google's side. The public CTA says
-   * "Get notified" instead, because that is the reason most people will click it.
-   * The note below carries the honest part: it is a short form, not a mail signup,
-   * so nobody arrives expecting a single email box. It is not registration, and the
-   * public copy must not describe it as registration.
-   */
-  interestFormUrl:
-    "https://docs.google.com/forms/d/e/1FAIpQLScpoVvWppEMD47LRmtDzaPRb7f9Hq_MVnWkmYdp59OeAJvlZA/viewform" as
-      | string
-      | null,
-  interestFormNote:
-    "Each track has its own registration. Fill in the short interest form to be notified when registration opens; submitting it does not register you for a track.",
-
-  /**
-   * Shown on every sign-up control while `registrationUrl` is null. No date is published.
-   * This lives here rather than in `homeContent` because the CTA section renders on
-   * five routes, so the status has to read the same everywhere.
+   * Label of every sign-up control while `registrationUrl` is null. It links to
+   * `registrationTracksHref`, because each track runs its own registration. This lives
+   * here rather than in `homeContent` because the CTA section renders on five routes,
+   * so the label has to read the same everywhere.
    */
   registrationOpensLabel: "Registration varies by track",
+  registrationTracksHref: "/tracks/",
 
-  /** Stage two: real registration. Setting this takes over every CTA from the interest form. */
+  /** A single event-wide registration. Setting this takes over every CTA. */
   registrationUrl: null as string | null,
-  registrationNote: "Each track has its own registration. Registration details will be announced here first.",
+  registrationNote: "Each track has its own registration. Open a track for its registration details.",
   contactEmail: "quantum.club@ku.ac.ae",
 
   socials: {
