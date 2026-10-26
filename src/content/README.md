@@ -234,15 +234,12 @@ Topological Systems currently appear in the confirmed partner list.
 
 ## Track panel details
 
-Each track card on `/tracks/` opens a full-screen panel. It can also be opened directly
-at `/tracks/#<slug>`. The panel reads `track.details`, and every field is optional:
-`brief` (the published tabbed brief), `description`, `dates`, `sponsors`, `challenge` (paragraphs), `challengeThemes`
-(named options grouped by tier), `tasks`, `submission`, `judging`, `resources`
-(links), `resourceItems` (confirmed resources without a public link yet), and
-`resourcesNote`. Empty sections are hidden. Until `challenge` or `challengeThemes` is
-set, the panel shows `tracksPageContent.panel.challengesPending`. When a registration
-or resource URL is shared, move the item from `resourceItems` into `resources` or
-`submission.links`; no component change is needed.
+Each track card on `/tracks/` opens a details drawer from the right. It can also be
+opened directly at `/tracks/#<slug>`. Every card and drawer uses the same layout: a cover
+band (the host's `banner` when supplied, otherwise a tint of the track's `accent`), status
+chips, title, summary, then venue, deadline and hosts. The drawer body is the track's
+published `details.brief`, shown as tabs. `accent` must differ between tracks, because
+the agenda calendar colour-codes each track with it.
 
 The tracks page also shows `tracksPageContent.formats`, the national and international
 competition formats. To change tracks, visitors close the panel and

@@ -12,10 +12,15 @@ export type Reach = "national" | "international";
 /** A difficulty level is optional until track prerequisites have been agreed. */
 export type Level = "beginner" | "intermediate" | "advanced" | "all-levels";
 
+/** Colour token that identifies a track on its card, drawer and the agenda calendar. */
+export type TrackAccent = "sky" | "purple" | "orange" | "teal" | "pink" | "gold";
+
 export interface Track {
   /** Stable internal anchor. Preserve this when a visible track name changes. */
   slug: string;
   title: string;
+  /** Each track uses a different accent so the agenda calendar can tell them apart. */
+  accent: TrackAccent;
   subtitle?: string;
   summary: string;
   description?: string;

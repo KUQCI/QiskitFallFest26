@@ -13,7 +13,10 @@ import { TrackResourceCards } from "@/components/TrackResourceCards";
 import type { TrackBrief, TrackBriefBlock } from "@/content/types";
 import { cn } from "@/lib/utils";
 
-/** A track's published brief, inside the existing modal and focus trap. */
+/**
+ * A track's published brief inside the track drawer. The tabs stick to the top of the
+ * drawer's scroll area, so the active panel is always one tap away from the others.
+ */
 export function TrackBriefTabs({
   brief,
   hostProfiles,
@@ -23,21 +26,15 @@ export function TrackBriefTabs({
 }) {
   const id = useId();
   const [selected, setSelected] = useState(0);
-  const [vertical, setVertical] = useState(false);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
-  const contentRef = useRef<HTMLDivElement>(null);
+  const tablistRef = useRef<HTMLDivElement>(null);
   const panel = brief.panels[selected];
 
+  // On a tab change, bring the new panel's start into view if the reader had scrolled past it.
   useEffect(() => {
-    const media = window.matchMedia("(min-width: 768px)");
-    const update = () => setVertical(media.matches);
-    update();
-    media.addEventListener("change", update);
-    return () => media.removeEventListener("change", update);
-  }, []);
-
-  useEffect(() => {
-    if (contentRef.current) contentRef.current.scrollTop = 0;
+    const tablist = tablistRef.current;
+    const scroller = tablist?.closest<HTMLElement>("[data-drawer-scroll]");
+    if (tablist && scroller && scroller.scrollTop > tablist.offsetTop) scroller.scrollTop = tablist.offsetTop;
     tabRefs.current[selected]?.scrollIntoView({ block: "nearest", inline: "nearest" });
   }, [selected]);
 
@@ -45,8 +42,8 @@ export function TrackBriefTabs({
     let next: number;
     if (event.key === "Home") next = 0;
     else if (event.key === "End") next = brief.panels.length - 1;
-    else if (event.key === (vertical ? "ArrowDown" : "ArrowRight")) next = (index + 1) % brief.panels.length;
-    else if (event.key === (vertical ? "ArrowUp" : "ArrowLeft")) next = (index - 1 + brief.panels.length) % brief.panels.length;
+    else if (event.key === "ArrowRight") next = (index + 1) % brief.panels.length;
+    else if (event.key === "ArrowLeft") next = (index - 1 + brief.panels.length) % brief.panels.length;
     else return;
     event.preventDefault();
     setSelected(next);
@@ -54,13 +51,13 @@ export function TrackBriefTabs({
   }
 
   return (
-    <div className="flex min-h-0 min-w-0 flex-1 flex-col md:flex-row">
-      <div className="min-h-0 shrink-0 border-b border-border bg-surface md:w-48 md:overflow-y-auto md:border-b-0 md:border-r">
+    <div>
+      <div ref={tablistRef} className="sticky top-0 z-10 border-y border-border bg-surface">
         <div
           role="tablist"
           aria-label={brief.navigationLabel}
-          aria-orientation={vertical ? "vertical" : "horizontal"}
-          className="flex gap-1 overflow-x-auto p-3 md:flex-col md:overflow-x-visible md:p-4"
+          aria-orientation="horizontal"
+          className="flex gap-1 overflow-x-auto px-3 py-2 sm:px-6"
         >
           {brief.panels.map((item, index) => (
             <button
@@ -75,7 +72,7 @@ export function TrackBriefTabs({
               onClick={() => setSelected(index)}
               onKeyDown={(event) => navigate(event, index)}
               className={cn(
-                "min-h-11 shrink-0 rounded-lg border px-3 py-2.5 text-left text-sm font-semibold whitespace-nowrap transition-colors md:whitespace-normal",
+                "min-h-11 shrink-0 whitespace-nowrap rounded-lg border px-3.5 py-2.5 text-sm font-semibold transition-colors",
                 selected === index
                   ? "border-gold/50 bg-gold/10 text-gold"
                   : "border-transparent text-fg-muted hover:bg-surface-2 hover:text-fg",
@@ -86,38 +83,36 @@ export function TrackBriefTabs({
           ))}
         </div>
       </div>
-      <div ref={contentRef} className="min-h-0 min-w-0 flex-1 overflow-y-auto overscroll-contain">
-        {brief.panels.map((item, index) => (
-          <div
-            key={item.id}
-            role="tabpanel"
-            id={`${id}-panel-${item.id}`}
-            aria-labelledby={`${id}-tab-${item.id}`}
-            hidden={selected !== index}
-            tabIndex={selected === index ? 0 : -1}
-            className="mx-auto max-w-3xl space-y-5 px-5 py-6 [overflow-wrap:anywhere] focus-visible:outline-offset-[-4px] sm:px-8 sm:py-8"
-          >
-            {selected === index ? <>
-              <h3 className="text-2xl font-semibold text-fg">{panel.title}</h3>
-              {panel.id === "overview" ? <>
-                {brief.tags?.length ? <div className="flex flex-wrap gap-2">{brief.tags.map(tag => <Badge key={tag} tone="purple">{tag}</Badge>)}</div> : null}
-                {brief.highlights?.length ? (
-                  <dl className="biology-highlights grid grid-cols-2 gap-3 xl:grid-cols-4">
-                    {brief.highlights.map(item => (
-                      <div key={item.label} className="biology-highlight">
-                        <dt className="text-xs leading-relaxed text-fg-muted">{item.label}</dt>
-                        <dd className="mt-2 text-xl font-semibold tracking-tight text-gold">{item.value}</dd>
-                      </div>
-                    ))}
-                  </dl>
-                ) : null}
-              </> : null}
-              {panel.blocks.map((block, blockIndex) => <BriefBlock key={blockIndex} block={block} />)}
-              {panel.showHosts ? hostProfiles : null}
+      {brief.panels.map((item, index) => (
+        <div
+          key={item.id}
+          role="tabpanel"
+          id={`${id}-panel-${item.id}`}
+          aria-labelledby={`${id}-tab-${item.id}`}
+          hidden={selected !== index}
+          tabIndex={selected === index ? 0 : -1}
+          className="space-y-5 px-5 py-7 [overflow-wrap:anywhere] focus-visible:outline-offset-[-4px] sm:px-8 sm:py-8"
+        >
+          {selected === index ? <>
+            <h3 className="text-2xl font-semibold text-fg">{panel.title}</h3>
+            {panel.id === "overview" ? <>
+              {brief.tags?.length ? <div className="flex flex-wrap gap-2">{brief.tags.map(tag => <Badge key={tag} tone="purple">{tag}</Badge>)}</div> : null}
+              {brief.highlights?.length ? (
+                <dl className="biology-highlights grid grid-cols-2 gap-3">
+                  {brief.highlights.map(item => (
+                    <div key={item.label} className="biology-highlight">
+                      <dt className="text-xs leading-relaxed text-fg-muted">{item.label}</dt>
+                      <dd className="mt-2 text-xl font-semibold tracking-tight text-gold">{item.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              ) : null}
             </> : null}
-          </div>
-        ))}
-      </div>
+            {panel.blocks.map((block, blockIndex) => <BriefBlock key={blockIndex} block={block} />)}
+            {panel.showHosts ? hostProfiles : null}
+          </> : null}
+        </div>
+      ))}
     </div>
   );
 }
@@ -220,7 +215,7 @@ function BriefBlock({ block }: { block: TrackBriefBlock }) {
         );
       }
       return (
-        <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        <ul className="grid gap-4 sm:grid-cols-2">
           {block.items.map((item, index) => (
             <li key={item.label} className="biology-detail-card">
               <BiologyGlyph index={index} />

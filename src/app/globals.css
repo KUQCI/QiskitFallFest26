@@ -23,6 +23,9 @@
   /* Lightened from #8a63d2, which only reached 4.06:1 on --c-surface (needs 4.5). */
   --c-purple: #ae8aff;
   --c-pink: #ff8fc7;
+  /* Track accents beyond the brand hues (track cards and agenda calendar). */
+  --c-teal: #5fdcc4;
+  --c-orange: #ffad6b;
   --c-lavender: #d7c7ff;
 
   /* Text */
@@ -82,6 +85,8 @@
   --c-sky: #24579f;
   --c-purple: #6932b6;
   --c-pink: #a52168;
+  --c-teal: #0a6b5f;
+  --c-orange: #9e4510;
   --c-lavender: #5e4292;
 
   --c-fg: #10142a;
@@ -132,6 +137,8 @@
   --color-sky: var(--c-sky);
   --color-purple: var(--c-purple);
   --color-pink: var(--c-pink);
+  --color-teal: var(--c-teal);
+  --color-orange: var(--c-orange);
   --color-lavender: var(--c-lavender);
 
   --color-fg: var(--c-fg);
@@ -467,23 +474,7 @@ p {
   box-shadow: var(--shadow-card);
 }
 
-/* Card controls stay still while their visual surface lifts gently. */
-.agenda-card:focus-within .agenda-card-surface {
-  transform: translateY(-2px);
-  border-color: var(--c-gold);
-  box-shadow: var(--shadow-card);
-}
-@media (hover: hover) and (pointer: fine) {
-  .agenda-card:hover .agenda-card-surface {
-    transform: translateY(-2px);
-    border-color: var(--c-border-strong);
-    box-shadow: var(--shadow-card);
-  }
-}
 .agenda-workshop-visual { animation: agenda-workshop-float 10s ease-in-out infinite; }
-.agenda-card:hover .agenda-workshop-visual,
-.agenda-card:focus-within .agenda-workshop-visual,
-.agenda-card:has([aria-expanded="true"]) .agenda-workshop-visual { animation-play-state: paused; }
 @keyframes agenda-workshop-float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-2px); }
@@ -517,14 +508,12 @@ p {
 }
 @media (prefers-reduced-motion: reduce) {
   .agenda-workshop-visual { animation: none; }
-  .agenda-card .agenda-card-surface,
-  .agenda-card:hover .agenda-card-surface,
-  .agenda-card:focus-within .agenda-card-surface { transform: none; transition: none; }
   .workshop-dialog::backdrop { animation: none; transition: none; }
 }
 
-/* Full-screen track details panel and the dimmed page behind it. Defined here rather
-   than with utilities so the mobile/desktop radius is not fighting class order. */
+/* Track details drawer (and the workshop dialog, which shares .track-panel) and the
+   dimmed page behind it. Defined here rather than with utilities so the mobile/desktop
+   radius is not fighting class order. */
 .track-panel-backdrop {
   background: color-mix(in srgb, var(--c-bg) 78%, transparent);
   backdrop-filter: blur(6px);
@@ -566,27 +555,6 @@ p {
   mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
 }
 
-/* Behind a card's title and summary: solid under that text so its light colour keeps its
-   contrast in both themes, then fading out across the block's 3rem bottom padding. */
-.track-banner-behind {
-  -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 3rem), transparent 100%);
-  mask-image: linear-gradient(to bottom, black calc(100% - 3rem), transparent 100%);
-}
-
-/* Light at the top so the image shows, dark under the summary. Tuned against this image:
-   title ≥ 4:1 and summary ≥ 5.5:1 against its brightest pixels, 375–1280 px. Re-check for a new image. */
-.track-banner-behind::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    color-mix(in srgb, var(--c-image-scrim) 10%, transparent) 0%,
-    color-mix(in srgb, var(--c-image-scrim) 62%, transparent) 35%
-  );
-}
-
-/* A card is hidden while the panel animates in its place, so only one box is seen. */
 .logo-plate-dark {
   background: var(--c-image-scrim);
 }
@@ -621,77 +589,94 @@ p {
   background: radial-gradient(ellipse at 50% 40%, color-mix(in srgb, var(--c-purple) 7%, var(--c-surface)), var(--c-surface));
 }
 
-.biology-track-card .track-banner-behind img {
-  object-position: 65% 25%;
-}
-
-.biology-track-card .track-banner-behind::after {
-  background: linear-gradient(to bottom,
-    color-mix(in srgb, var(--c-surface) 10%, transparent),
-    color-mix(in srgb, var(--c-surface) 88%, transparent) 38%,
-    var(--c-surface) 76%);
-}
-
-.biology-track-card h3,
-.biology-track-card h3 + p { color: var(--c-fg); }
-.biology-track-card h3 + p { color: var(--c-fg-muted); }
-.biology-track-card .track-banner-behind { mask-image: none; }
-.track-card-masthead { min-height: 2rem; }
-.track-status-badges > span > span { padding-inline: .5rem; font-size: .6rem; line-height: 1.4; letter-spacing: .03em; }
 .track-date-badge { text-transform: none; letter-spacing: 0; }
-.track-status-badges > span > .track-date-badge { font-size: .6875rem; line-height: 1.5; letter-spacing: 0; }
-.track-status-badges:has(.track-date-badge) { justify-content: flex-start; margin-left: 0; }
-.biology-track-card h3 { margin-top: .75rem; }
-.track-venue-card h3 { font-size: 1.25rem; }
-.track-venue-card .track-card-tags { margin-top: .75rem; }
-.track-card-masthead .track-cover-icon { width: 2rem; height: 2rem; border-radius: .6rem; }
-.track-card-masthead .track-host-mark { width: 7rem; min-height: 2rem; padding: .4rem .65rem; }
-.track-summary-grid { grid-auto-rows: 1fr; }
-.track-summary-grid .track-summary-card { min-height: 25rem; }
-.track-card-tags > span { padding-inline: .5rem; font-size: .6rem; }
-@media (max-width: 359px) {
-  .track-summary-grid .track-summary-card { padding: 1.25rem; }
-  .track-summary-grid .biology-track-card > .grid { margin: -1.25rem -1.25rem 0; }
-  .track-summary-grid .biology-track-card > .grid > div { padding: 1.25rem 1.25rem 0; }
-  .track-summary-card h3 { margin-top: .75rem; }
-  .track-summary-card h3 + p { margin-top: .5rem; }
-  .track-summary-card > p, .track-summary-card .track-card-tags { margin-top: .75rem; }
-  .track-summary-card > div:last-child { padding-top: 1rem; }
-  .track-card-tags > span { letter-spacing: .03em; }
+
+/* Every track card and drawer header opens with the same cover band: the host's banner
+   when supplied, otherwise a tint of the track's accent over the site grid. The accent
+   comes from `--track-accent`, set inline from the track's `accent` field. */
+.track-cover {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--track-accent) 30%, transparent), transparent 70%),
+    color-mix(in srgb, var(--track-accent) 8%, var(--c-surface-2));
+}
+.track-cover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--track-accent) 18%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--track-accent) 18%, transparent) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: linear-gradient(110deg, transparent 15%, black 85%);
+}
+.track-cover img { object-position: 65% 25%; }
+.track-cover-accent { height: 3px; background: var(--track-accent); }
+
+.track-drawer {
+  border-radius: 0;
+  border-width: 0 0 0 1px;
+}
+@media (min-width: 40rem) {
+  .track-drawer { border-radius: 20px 0 0 20px; }
 }
 
-.track-subtitled-card > p,
-.track-subtitled-card .track-card-tags { margin-top: .5rem; }
-.track-subtitled-card h3 ~ p:last-child { margin-top: .5rem; }
-.track-subtitled-card > div:last-child { padding-top: .75rem; }
-
-.track-text-brief-cover {
+/* Agenda week calendar: one column per day, track spans and milestones placed on a
+   shared grid. Lanes are assigned in agenda.ts so blocks never overlap. */
+.agenda-calendar {
+  --agenda-day: 9.5rem;
+  display: grid;
+  grid-template-columns: repeat(var(--agenda-days), var(--agenda-day));
+  column-gap: 0;
+  min-width: max-content;
+}
+@media (min-width: 64rem) {
+  .agenda-calendar { --agenda-day: 10.5rem; }
+}
+.agenda-day-head {
+  border-left: 1px solid var(--c-border);
+  padding: .75rem .75rem .625rem;
+}
+.agenda-day-head[data-week-start="true"] { border-left-color: var(--c-border-strong); }
+.agenda-day-col {
+  border-left: 1px solid var(--c-border);
+}
+.agenda-day-col[data-weekend="true"] { background: color-mix(in srgb, var(--c-surface-2) 45%, transparent); }
+.agenda-day-col[data-today="true"],
+.agenda-day-head[data-today="true"] { background: color-mix(in srgb, var(--c-gold) 7%, transparent); }
+.agenda-span {
+  border: 1px solid color-mix(in srgb, var(--track-accent) 45%, transparent);
+  border-left: 3px solid var(--track-accent);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--track-accent) 14%, var(--c-surface));
+}
+.agenda-event {
+  border: 1px solid color-mix(in srgb, var(--track-accent) 40%, transparent);
+  border-left: 3px solid var(--track-accent);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--track-accent) 10%, var(--c-surface));
+  transition: background-color .2s ease, border-color .2s ease, transform .2s ease;
+}
+.agenda-event:hover,
+.agenda-event[aria-pressed="true"],
+.agenda-event[aria-expanded="true"] {
+  background: color-mix(in srgb, var(--track-accent) 20%, var(--c-surface));
+  border-color: var(--track-accent);
+}
+.agenda-event:focus-visible { outline: 2px solid var(--c-gold); outline-offset: 2px; }
+.agenda-swatch {
+  display: inline-block;
+  width: .75rem;
+  height: .75rem;
   flex-shrink: 0;
-  padding: 1rem 4.25rem 1rem 1.25rem;
+  border-radius: 3px;
+  background: var(--track-accent);
 }
-.track-text-brief-cover h2 { margin-top: .625rem; font-size: clamp(1.25rem, 2vw, 1.75rem); }
-.track-text-brief-cover .track-date-badge { font-size: .6875rem; }
-.track-text-brief-cover > button { position: absolute; right: 1.25rem; top: 1rem; }
-.track-brief-metadata > span:not(.track-date-badge) { font-size: .6rem; }
-.track-intro-brief-cover { padding-right: 1.25rem; }
-.track-intro-brief-cover > .min-w-0 { width: 100%; }
-.track-intro-brief-cover .track-date-badge { padding-inline: .5rem; font-size: .625rem; }
-.track-header-topline {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: .5rem .75rem;
-  padding-right: 3.5rem;
-}
-.track-header-topline .track-brief-metadata { flex: 1 1 12rem; }
-.track-header-deadline {
-  max-width: 100%;
-  margin-left: auto;
-  font-size: .6875rem;
-}
-@media (min-width: 768px) {
-  .track-header-topline { flex-wrap: nowrap; }
-  .track-header-deadline { flex: 0 1 auto; max-width: 45%; }
+@media (prefers-reduced-motion: reduce) {
+  .agenda-event { transition: none; }
 }
 
 .qml-workflow-connector {
@@ -718,35 +703,6 @@ p {
 }
 @media (prefers-reduced-motion: reduce) {
   .qml-workflow-connector::after { animation: none; top: 50%; }
-}
-
-.biology-panel-cover {
-  padding: 1rem 4.25rem 1rem 4.5rem;
-  flex-shrink: 0;
-}
-
-.biology-panel-cover .track-banner {
-  height: 100%;
-  opacity: .38;
-  mask-image: linear-gradient(110deg, transparent 5%, black 75%);
-}
-.biology-panel-cover .track-banner::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, transparent, var(--c-surface));
-}
-.biology-panel-icon { position: absolute; left: 1.25rem; top: 1rem; }
-.biology-panel-icon .track-cover-icon { width: 2.25rem; height: 2.25rem; border-radius: .7rem; }
-.biology-panel-cover h2 { margin-top: .5rem; font-size: clamp(1.25rem, 2vw, 1.75rem); }
-.biology-panel-cover h2 + p { margin-top: .375rem; font-size: .75rem; }
-.biology-panel-cover > .min-w-0 > .flex > span { font-size: .6rem; }
-
-.biology-panel-cover > button {
-  position: absolute;
-  top: 1rem;
-  right: 1.25rem;
-  background: var(--c-surface);
 }
 
 .biology-highlight,
@@ -929,23 +885,8 @@ p {
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--c-purple) 15%, transparent);
 }
 
-@media (min-width: 640px) {
-  .biology-panel-cover { padding: 1rem 5.5rem 1rem 5.5rem; }
-  .biology-panel-icon { left: 2rem; }
-  .biology-panel-cover > button { right: 2rem; top: 1rem; }
-}
-
-@media (max-height: 600px) {
-  .biology-panel-cover { padding-top: .625rem; padding-bottom: .625rem; }
-  .biology-panel-cover h2 + p { display: none; }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .biology-visual * { animation: none !important; }
-}
-
-[data-track-hidden] {
-  opacity: 0;
 }
 
 

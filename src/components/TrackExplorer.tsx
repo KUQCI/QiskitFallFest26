@@ -5,11 +5,12 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Reveal } from "@/components/Reveal";
 import { TrackCard } from "@/components/TrackCard";
 import { TrackPanel } from "@/components/TrackPanel";
+import { Badge } from "@/components/ui/primitives";
 import { tracksPageContent, type TrackPanelCopy } from "@/content/tracks";
 import type { Track } from "@/content/types";
 
 /**
- * The tracks grid plus its full-screen detail panel. The open track is mirrored in
+ * The tracks grid, grouped by reach, plus the track details drawer. The open track is mirrored in
  * the URL hash (`/tracks/#<slug>`) so links, including the home page's featured
  * cards, scroll to the card and open it. `replaceState` keeps Back leaving the page
  * instead of stepping through every track that was viewed. To change tracks, close the
@@ -17,11 +18,9 @@ import type { Track } from "@/content/types";
  */
 export function TrackExplorer({ tracks, copy }: { tracks: Track[]; copy: TrackPanelCopy }) {
   const [openSlug, setOpenSlug] = useState<string | null>(null);
-  const [origin, setOrigin] = useState<DOMRect | null>(null);
   const returnFocusRef = useRef<string | null>(null);
 
-  const open = useCallback((slug: string, rect: DOMRect | null) => {
-    setOrigin(rect);
+  const open = useCallback((slug: string) => {
     setOpenSlug(slug);
     window.history.replaceState(null, "", `#${slug}`);
   }, []);
@@ -53,7 +52,7 @@ export function TrackExplorer({ tracks, copy }: { tracks: Track[]; copy: TrackPa
       const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       card.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" });
       clearTimeout(timer);
-      timer = setTimeout(() => open(slug, card.getBoundingClientRect()), reduced ? 0 : 650);
+      timer = setTimeout(() => open(slug), reduced ? 0 : 650);
     };
 
     openFromHash();
@@ -68,37 +67,42 @@ export function TrackExplorer({ tracks, copy }: { tracks: Track[]; copy: TrackPa
 
   return (
     <>
-      <div className="space-y-12">
-        {tracksPageContent.groups.map((group) => (
-          <section key={group.reach} aria-labelledby={`tracks-${group.reach}`}>
-            <h2 id={`tracks-${group.reach}`} className="mb-5 text-2xl font-semibold text-fg sm:text-3xl">{group.heading}</h2>
-            <ul className="track-summary-grid grid gap-5 md:grid-cols-2">
-              {tracks.filter((track) => track.reach === group.reach).map((track, index) => (
-                <Reveal as="li" key={track.slug} delay={(index % 2) * 55}>
-                  <TrackCard
-                    track={track}
-                    variant="planning"
-                    actionLabel={copy.openLabel}
-                    expanded={openSlug === track.slug}
-                    onOpen={(trigger) =>
-                      open(track.slug, trigger.closest("article")?.getBoundingClientRect() ?? null)
-                    }
-                  />
-                </Reveal>
-              ))}
-            </ul>
-          </section>
-        ))}
+      <div className="space-y-16">
+        {tracksPageContent.groups.map((group) => {
+          const format = tracksPageContent.formats.items.find((item) => item.reach === group.reach);
+          return (
+            <section key={group.reach} aria-labelledby={`tracks-${group.reach}`}>
+              <div className="mb-6 max-w-3xl">
+                <div className="flex flex-wrap items-center gap-3">
+                  <h2 id={`tracks-${group.reach}`} className="text-2xl font-semibold text-fg sm:text-3xl">{group.heading}</h2>
+                  {format ? <Badge tone={group.reach === "national" ? "sky" : "neutral"}>{format.format}</Badge> : null}
+                </div>
+                {format ? (
+                  <ul className="mt-3 space-y-1.5 text-sm leading-relaxed text-fg-muted sm:text-base">
+                    {format.points.map((point) => (
+                      <li key={point.label}><strong className="font-semibold text-fg">{point.label}:</strong> {point.text}</li>
+                    ))}
+                  </ul>
+                ) : null}
+              </div>
+              <ul className="grid gap-6 lg:grid-cols-2">
+                {tracks.filter((track) => track.reach === group.reach).map((track, index) => (
+                  <Reveal as="li" key={track.slug} delay={(index % 2) * 55}>
+                    <TrackCard
+                      track={track}
+                      actionLabel={copy.openLabel}
+                      expanded={openSlug === track.slug}
+                      onOpen={() => open(track.slug)}
+                    />
+                  </Reveal>
+                ))}
+              </ul>
+            </section>
+          );
+        })}
       </div>
 
-      {openTrack ? (
-        <TrackPanel
-          track={openTrack}
-          copy={copy}
-          origin={origin}
-          onClosed={handleClosed}
-        />
-      ) : null}
+      {openTrack ? <TrackPanel track={openTrack} copy={copy} onClosed={handleClosed} /> : null}
     </>
   );
 }

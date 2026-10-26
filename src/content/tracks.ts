@@ -54,6 +54,7 @@ export const trackHosts = {
 export const tracks: Track[] = [
   {
     slug: "first-qubit",
+    accent: "sky",
     title: "Quantum Foundations",
     subtitle: "High School Track",
     summary:
@@ -70,6 +71,7 @@ export const tracks: Track[] = [
   },
   {
     slug: "quantum-machine-learning",
+    accent: "purple",
     title: "Quantum Machine Learning",
     summary: qmlSummary,
     reach: "national",
@@ -85,6 +87,7 @@ export const tracks: Track[] = [
   },
   {
     slug: "quantum-cybersecurity",
+    accent: "orange",
     title: "Quantum Cybersecurity",
     summary:
       "Query quantum machine learning models, uncover protected information and capture flags in an online model-extraction competition.",
@@ -100,6 +103,7 @@ export const tracks: Track[] = [
   },
   {
     slug: "chemistry-drug-discovery",
+    accent: "teal",
     title: "Quantum Biology",
     summary:
       "Use quantum optimization to identify a four-gene panel that distinguishes lung tumour from non-cancerous tissue, and compare your approach with classical methods.",
@@ -125,6 +129,7 @@ export const tracks: Track[] = [
   },
   {
     slug: "quantum-media",
+    accent: "pink",
     title: "Quantum in Media",
     coverLogo: fallFestAssets.logos.mothQuantum.src,
     summary:
@@ -141,6 +146,7 @@ export const tracks: Track[] = [
   },
   {
     slug: "peaked-circuits",
+    accent: "gold",
     title: "Quantum in the Metaverse",
     summary:
       "Use VR to arrange quantum gates and guide a virtual qubit along a path on the Bloch sphere. Compete on completion time and accuracy.",
@@ -213,7 +219,7 @@ export const tracksPageContent = {
     ],
   },
   note: "Registration links and resource links for each track will be added here as they are shared.",
-  /** Copy for the expandable track cards and the full-screen track panel. */
+  /** Copy for the track cards and the track details drawer. */
   panel: {
     openLabel: "View challenge",
     closeLabel: "Close track details",
