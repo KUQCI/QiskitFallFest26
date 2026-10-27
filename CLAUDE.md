@@ -97,7 +97,7 @@ Keep its four poster topics. Its approved registration form is enabled at
   prizes, prerequisites or required laptops. Quantum Cybersecurity uses the user's newer four-panel
   brief in `src/content/quantum-cybersecurity.ts`, overriding the older track document.
   It is international and online, for 1–4 participants. Registration opens 23 October
-  2026; the CTF is on 30 October. Registration is open at
+  2026; the CTF is on 1 November (moved from 30 October). Registration is open at
   `https://forms.gle/qc2R6mHAjuy6dCUD6`; the competition platform remains unset.
   Both are independent of global registration. A form needs an approved URL, an explicit release flag
   and the opening date to be reached in UAE time; the date alone never enables it.
@@ -109,7 +109,7 @@ Keep its four poster topics. Its approved registration form is enabled at
   National tracks have in-person days on 30 October, 31 October or 1 November, with
   Quantum in the Metaverse at the MetaHub Lab on 30 October and Quantum Foundations
   at Khalifa University on 31 October. The international
-  Quantum Cybersecurity CTF runs online on 30 October.
+  Quantum Cybersecurity CTF runs online on 1 November.
 - Per-track hosts come from `trackHosts` in `src/content/tracks.ts` and are shown as
   "Hosted by" labels. Confirmed so far: ASBMB Student Chapter at Khalifa University
   (Quantum Biology) and Moth Quantum (Quantum in Media). QCI and NYUAD are the

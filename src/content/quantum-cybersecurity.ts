@@ -16,7 +16,7 @@ export const cybersecurityLinks = {
 
 export const cybersecurityDateLabels: TrackStatusLabel[] = [
   { label: "Registration open", tone: "gold", icon: "calendar" },
-  { label: "CTF challenge: 30 October", tone: "sky", icon: "flag" },
+  { label: "CTF challenge: 1 November", tone: "sky", icon: "flag" },
 ];
 
 export const quantumCybersecurityBrief: TrackBrief = {
@@ -73,7 +73,7 @@ export const quantumCybersecurityBrief: TrackBrief = {
           columns: ["2026 · UAE time (UTC+4)", "Milestone"],
           rows: [
             ["23 October 2026 — Registration opens", "The team lead submits one registration form for the team."],
-            ["30 October 2026 — Online CTF competition", "A single-day competition featuring quantum machine learning model-extraction challenges."],
+            ["1 November 2026 — Online CTF competition", "A single-day competition featuring quantum machine learning model-extraction challenges."],
           ],
         },
         { type: "heading", text: "Before the competition" },

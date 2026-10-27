@@ -211,7 +211,7 @@ export const agendaItems: AgendaItem[] = [
     venue: "Khalifa University, MetaHub Lab",
   }),
   trackItem("quantum-cybersecurity", {
-    id: "cybersecurity-ctf", date: "2026-10-30", kind: "event", title: "Online CTF competition",
+    id: "cybersecurity-ctf", date: "2026-11-01", kind: "event", title: "Online CTF competition",
     description: "A single-day quantum machine learning model-extraction competition. Timings and platform access will be shared by email.", venue: "Online",
   }),
   trackItem("quantum-media", {

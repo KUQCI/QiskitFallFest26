@@ -213,7 +213,7 @@ export const tracksPageContent = {
         format: "Fully virtual",
         points: [
           { label: "Schedules", text: "Track-specific registration and competition dates, separate from national qualifiers and finals." },
-          { label: "Quantum Cybersecurity · 30 October", text: "Online CTF competition." },
+          { label: "Quantum Cybersecurity · 1 November", text: "Online CTF competition." },
         ],
       },
     ],
