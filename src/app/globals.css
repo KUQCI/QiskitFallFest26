@@ -656,7 +656,6 @@ p {
   transition: background-color .2s ease, border-color .2s ease, transform .2s ease;
 }
 .agenda-event:hover,
-.agenda-event[aria-pressed="true"],
 .agenda-event[aria-expanded="true"] {
   background: color-mix(in srgb, var(--track-accent) 20%, var(--c-surface));
   border-color: var(--track-accent);

@@ -57,12 +57,14 @@ export interface AgendaItem {
   trackSlug?: string;
 }
 
-export const workshopDialogCopy = {
-  label: "Workshop",
-  openLabel: "View workshop details",
-  closeLabel: "Close workshop details",
-  detailsLabel: "Workshop details",
+/** Copy for the details dialog every agenda block opens; workshops use the extra sections. */
+export const agendaDialogCopy = {
+  closeLabel: "Close details",
+  detailsLabel: "Agenda details",
   aboutHeading: "About the workshop",
+  overviewHeading: "Overview",
+  whenHeading: "When & where",
+  nextHeading: "Next steps",
   topicsHeading: "Topics covered",
   audienceHeading: "Audience",
   preparationHeading: "Preparation",
@@ -81,7 +83,7 @@ export const workshopDialogCopy = {
   joiningHeading: "Joining information",
   relatedTrackLabel: "View related track",
 } as const;
-export type WorkshopDialogCopy = typeof workshopDialogCopy;
+export type AgendaDialogCopy = typeof agendaDialogCopy;
 
 export const agendaPageContent = {
   eyebrow: event.dateLabel,
@@ -95,8 +97,7 @@ export const agendaPageContent = {
   weeksLabel: "Jump to week",
   legendLabel: "Track colours",
   festLabel: "Qiskit Fall Fest 2026",
-  detailsLabel: "Selected date",
-  detailsHint: "Select a block in the calendar to see its details.",
+  selectHint: "Select a block to see its details.",
   scrollHint: "Scroll sideways to see every day.",
   resultsLabel: "milestones",
   categories: [

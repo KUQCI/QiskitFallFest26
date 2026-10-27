@@ -4,16 +4,10 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import { AgendaDialog } from "@/components/AgendaDialog";
 import { trackAccentStyle } from "@/components/TrackCard";
-import { WorkshopBranding } from "@/components/WorkshopBranding";
-import { WorkshopDetails } from "@/components/WorkshopDetails";
-import { WorkshopDialog } from "@/components/WorkshopDialog";
-import { ArrowRightIcon, CalendarIcon, ExternalLinkIcon, MapPinIcon } from "@/components/ui/Icons";
-import { Badge } from "@/components/ui/primitives";
-import type { AgendaCalendar as Calendar, AgendaItem, AgendaKind, AgendaWorkshopLabels, WorkshopDialogCopy } from "@/content/agenda";
+import type { AgendaCalendar as Calendar, AgendaDialogCopy, AgendaItem, AgendaKind, AgendaWorkshopLabels } from "@/content/agenda";
 import { cn } from "@/lib/utils";
-
-const kindTone = (kind: AgendaKind) => (kind === "deadline" ? "gold" : kind === "registration" ? "sky" : kind === "workshop" ? "purple" : "neutral");
 
 /** Today's date in UAE time as YYYY-MM-DD, read on the client so the static export stays deterministic. */
 function todayInDubai() {
@@ -24,18 +18,17 @@ function todayInDubai() {
  * The agenda as a horizontally scrolling two-week calendar. Each day is a column. Each
  * track is a colour-coded bar from its first to its last milestone, with the milestones
  * placed on their day. Bars that overlap in time sit in separate lanes (packed in
- * agenda.ts) so nothing overlaps on screen. Selecting a milestone shows its details
- * below the calendar; workshops also open their dialog from there.
+ * agenda.ts) so nothing overlaps on screen. Selecting any block opens its details dialog.
  */
 export function AgendaCalendar({ calendar, categories, kindLabels, workshopLabels, dialogCopy, copy }: {
   calendar: Calendar;
   categories: readonly { id: "all" | AgendaKind; label: string }[];
   kindLabels: Record<AgendaKind, string>;
   workshopLabels: AgendaWorkshopLabels;
-  dialogCopy: WorkshopDialogCopy;
+  dialogCopy: AgendaDialogCopy;
   copy: {
     filterLabel: string; timelineLabel: string; resultsLabel: string; weeksLabel: string;
-    legendLabel: string; detailsLabel: string; detailsHint: string; scrollHint: string;
+    legendLabel: string; selectHint: string; scrollHint: string;
   };
 }) {
   const router = useRouter();
@@ -44,16 +37,13 @@ export function AgendaCalendar({ calendar, categories, kindLabels, workshopLabel
   const allItems = spans.flatMap(span => span.items);
   const [filter, setFilter] = useState<"all" | AgendaKind>("all");
   const [today, setToday] = useState<string | null>(null);
-  const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [workshop, setWorkshop] = useState<AgendaItem | null>(null);
+  const [openItem, setOpenItem] = useState<AgendaItem | null>(null);
   const scrollerRef = useRef<HTMLDivElement>(null);
-  const workshopTriggerRef = useRef<HTMLButtonElement | null>(null);
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
 
   const visible = (item: AgendaItem) => filter === "all" || item.kind === filter;
   const count = allItems.filter(visible).length;
   const column = (date: string) => days.findIndex(day => day.date === date);
-  const selected = allItems.find(item => item.id === selectedId) ?? null;
-  const selectedSpan = selected ? spans.find(span => span.items.includes(selected)) : undefined;
 
   const scrollToDay = useCallback((index: number, smooth = true) => {
     const scroller = scrollerRef.current;
@@ -64,24 +54,22 @@ export function AgendaCalendar({ calendar, categories, kindLabels, workshopLabel
     scroller.scrollTo({ left, behavior: smooth && !reduced ? "smooth" : "auto" });
   }, []);
 
-  // Open on the current week, with the next upcoming milestone selected.
+  // Open on the current week.
   useEffect(() => {
     const now = todayInDubai();
     setToday(now);
-    const upcoming = [...allItems].sort((a, b) => a.date.localeCompare(b.date)).find(item => item.date >= now);
-    setSelectedId(upcoming?.id ?? null);
     const index = column(now);
     if (index >= 0) scrollToDay(index >= 7 ? 7 : 0, false);
     // Only on mount.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleWorkshopClosed = useCallback((destination?: string) => {
-    setWorkshop(null);
+  const handleDialogClosed = useCallback((destination?: string) => {
+    setOpenItem(null);
     // Release the dialog's scroll lock before opening a track on its own page.
     requestAnimationFrame(() => {
       if (destination) router.push(destination);
-      else if (workshopTriggerRef.current?.isConnected) workshopTriggerRef.current.focus({ preventScroll: true });
+      else if (triggerRef.current?.isConnected) triggerRef.current.focus({ preventScroll: true });
     });
   }, [router]);
 
@@ -106,7 +94,7 @@ export function AgendaCalendar({ calendar, categories, kindLabels, workshopLabel
       </div>
 
       <div className="mt-4 flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
-        <p role="status" className="text-sm text-fg-subtle">{count} {copy.resultsLabel}</p>
+        <p role="status" className="text-sm text-fg-subtle">{count} {copy.resultsLabel} · {copy.selectHint}</p>
         <ul aria-label={copy.legendLabel} className="flex flex-wrap gap-x-4 gap-y-2 text-xs text-fg-muted">
           {spans.map(span => (
             <li key={span.id} className="flex items-center gap-2" style={trackAccentStyle({ accent: span.accent })}>
@@ -153,9 +141,10 @@ export function AgendaCalendar({ calendar, categories, kindLabels, workshopLabel
                   <button
                     key={item.id}
                     type="button"
-                    aria-pressed={selectedId === item.id}
+                    aria-haspopup="dialog"
+                    aria-expanded={openItem?.id === item.id}
                     aria-label={`${item.title}, ${item.context}, ${days[column(item.date)].weekday} ${days[column(item.date)].day} ${days[column(item.date)].month}`}
-                    onClick={() => setSelectedId(item.id)}
+                    onClick={event => { triggerRef.current = event.currentTarget; setOpenItem(item); }}
                     style={{ gridColumn: column(item.date) - span.start + 1 }}
                     className="agenda-event mx-0.5 min-h-11 px-2.5 py-2 text-left"
                   >
@@ -171,49 +160,7 @@ export function AgendaCalendar({ calendar, categories, kindLabels, workshopLabel
       </div>
       <p className="mt-2 text-xs text-fg-subtle sm:hidden">{copy.scrollHint}</p>
 
-      <section aria-label={copy.detailsLabel} aria-live="polite" className="mt-6">
-        {selected ? (
-          <article style={trackAccentStyle({ accent: selectedSpan?.accent ?? "lavender" })} className="card overflow-hidden">
-            <div aria-hidden="true" className="track-cover-accent" />
-            <div className="p-5 sm:p-7">
-              <div className="flex flex-wrap items-center justify-between gap-3">
-                <p className="flex items-center gap-2 text-sm font-semibold text-fg-muted"><span aria-hidden="true" className="agenda-swatch" />{selected.context}</p>
-                <Badge tone={kindTone(selected.kind)}>{kindLabels[selected.kind]}</Badge>
-              </div>
-              {selected.workshop?.branding?.length ? <div className="mt-4"><WorkshopBranding items={selected.workshop.branding} compact /></div> : null}
-              <h2 className="mt-3 text-2xl font-semibold text-fg">{selected.title}</h2>
-              {selected.description ? <p className="mt-2 max-w-3xl text-base leading-relaxed text-fg-muted">{selected.description}</p> : null}
-              <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm">
-                <p className="flex items-start gap-2 font-semibold text-gold">
-                  <CalendarIcon className="mt-0.5 h-4 w-4 shrink-0" />
-                  <time dateTime={selected.date}>{days[column(selected.date)].weekday} {days[column(selected.date)].day} {days[column(selected.date)].month}</time>
-                  {selected.time ? <span>· {selected.time}</span> : null}
-                </p>
-                {selected.venue ? <p className="flex items-start gap-2 text-fg-muted"><MapPinIcon className="mt-0.5 h-4 w-4 shrink-0" />{selected.venue}</p> : null}
-              </div>
-              {selected.workshop ? <WorkshopDetails workshop={selected.workshop} labels={workshopLabels} /> : null}
-              <div className="mt-4 flex flex-wrap gap-3">
-                {selected.kind === "workshop" ? (
-                  <button type="button" aria-haspopup="dialog" aria-expanded={workshop?.id === selected.id}
-                    onClick={event => { workshopTriggerRef.current = event.currentTarget; setWorkshop(selected); }}
-                    className="inline-flex min-h-11 items-center gap-2 rounded-full bg-gold px-5 py-2.5 text-sm font-semibold text-on-gold hover:bg-gold-strong">
-                    {dialogCopy.openLabel}<ArrowRightIcon className="h-4 w-4" />
-                  </button>
-                ) : null}
-                {selected.href ? (
-                  <Link href={selected.href} target={selected.external ? "_blank" : undefined} rel={selected.external ? "noopener noreferrer" : undefined}
-                    className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-gold hover:underline">
-                    {selected.actionLabel}
-                    {selected.external ? <><ExternalLinkIcon className="h-4 w-4" /><span className="sr-only"> (opens in a new tab)</span></> : <ArrowRightIcon className="h-4 w-4" />}
-                  </Link>
-                ) : null}
-              </div>
-            </div>
-          </article>
-        ) : <p className="text-sm text-fg-muted">{copy.detailsHint}</p>}
-      </section>
-
-      {workshop ? <WorkshopDialog key={workshop.id} item={workshop} labels={workshopLabels} copy={dialogCopy} onClosed={handleWorkshopClosed} /> : null}
+      {openItem ? <AgendaDialog key={openItem.id} item={openItem} kindLabel={kindLabels[openItem.kind]} labels={workshopLabels} copy={dialogCopy} onClosed={handleDialogClosed} /> : null}
     </div>
   );
 }

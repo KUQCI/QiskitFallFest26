@@ -57,11 +57,12 @@ items sit on a "Qiskit Fall Fest 2026" bar across the whole range. Bars that ove
 time are packed into separate lanes stacked on top of each other, so blocks never
 overlap. New milestones need only an `agendaItems` entry; spans and lanes are derived.
 
-Selecting a milestone shows its details below the calendar. Track milestones link to
-the track panel, and the premiere keeps its recording link. Workshops open the
-reusable `WorkshopDialog` from the details card. Native modal inertness, focus
-trapping/restoration, scroll locking and reduced-motion transitions are preserved. A
-related-track link closes the workshop before navigating; do not stack dialogs.
+Selecting any block opens `AgendaDialog` with its details; there is no inline details
+card. Workshops add topics, speakers, registration and resources. Other milestones show
+an overview, when & where, and their track-panel or premiere link; unknown times and
+venues are omitted, and each time string carries its own zone. Native modal inertness,
+focus trapping/restoration, scroll locking and reduced-motion transitions are preserved.
+A track link closes the dialog before navigating; do not stack dialogs.
 
 Add workshops to `agendaItems` with `kind: "workshop"`, an ISO `date`, `title`,
 event/track `context`, and confirmed `time` and `venue` (including online platform).
