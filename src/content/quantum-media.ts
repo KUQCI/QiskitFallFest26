@@ -100,7 +100,7 @@ export const quantumMediaBrief: TrackBrief = {
       title: "Submissions & Resources",
       blocks: [
         { type: "heading", text: "Submit your project" },
-        { type: "notice", paragraphs: ["Submission deadline: 30 October 2026, 11:59 PM Pacific Time (UTC-8)."] },
+        { type: "notice", paragraphs: ["Submission deadline: 1st November 2026, 11:59 PM Pacific Time (UTC-8)."] },
         { type: "paragraph", text: "Submit your project through the official submission form before the deadline. Check your chosen theme for what to include." },
         { type: "links", items: [{ label: "Submit your project", href: "https://tally.so/r/OQDOD7" }] },
         { type: "heading", text: "Tools & support" },

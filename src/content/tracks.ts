@@ -138,7 +138,7 @@ export const tracks: Track[] = [
     format: "online",
     status: "confirmed",
     statusLabels: ["Challenge live"],
-    deadlineLabel: "30 October · 11:59 PM Pacific Time",
+    deadlineLabel: "1st Novemeber · 11:59 PM Pacific Time",
     hostedBy: [trackHosts.mothQuantum],
     details: {
       brief: quantumMediaBrief,
