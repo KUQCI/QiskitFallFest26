@@ -88,12 +88,12 @@ Keep its four poster topics. Its approved registration form is enabled at
   single-day VR challenge at Khalifa University's MetaHub Lab on 30 October,
   9:00 AM–12:00 PM UAE time (UTC+4), shared through `metaverseTime`. Groups
   of 12 are scheduled sessions, not teams or total capacity. The approved capacity
-  is 40 slots only. Slots are allocated first
+  is 20 slots only. Slots are allocated first
   come, first served by submission time, with organizer confirmation by email.
   Its independent registration is open at `https://forms.gle/HK3r1hHCkkPUmG956`.
   Require an approved URL, explicit
   release flag and UAE opening date; `closed: true` overrides them all. Preserve the
-  40-slot limit and email-confirmation note beside the action. Do not invent hours, deadlines,
+  20-slot limit and email-confirmation note beside the action. Do not invent hours, deadlines,
   prizes, prerequisites or required laptops. Quantum Cybersecurity uses the user's newer four-panel
   brief in `src/content/quantum-cybersecurity.ts`, overriding the older track document.
   It is international and online, for 1–4 participants. Registration opens 23 October

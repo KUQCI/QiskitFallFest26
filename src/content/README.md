@@ -131,7 +131,7 @@ Track status chips are opt-in through `statusLabels`. Biology shows
 "Challenge live" and "Submissions open"; QML shows "Challenge live" and "Submission
 form coming soon". Media also shows its approved "Challenge live" status. Cybersecurity uses the user's approved
 registration and CTF date badges, with separate gold and sky tones. Metaverse uses its
-registration/challenge date labels and 40-slot limit. Foundations shows Registration
+registration/challenge date labels and 20-slot limit. Foundations shows Registration
 open, its 31 October challenge date and Limited spots notice. Leave the remaining tracks'
 status chips unset until the user supplies their individual updates. A confirmed track
 never adds a chip by itself.
@@ -150,7 +150,7 @@ Metaverse's approved four-panel brief is in `quantum-metaverse.ts`, preserving t
 `peaked-circuits` slug. It is National, In person, with individual registration.
 Registration opens 22 October 2026; the VR challenge is at Khalifa University's
 MetaHub Lab on 30 October, 9:00 AM–12:00 PM UAE time (UTC+4), shared with the agenda
-through `metaverseTime`. The approved capacity is 40 slots only, displayed
+through `metaverseTime`. The approved capacity is 20 slots only, displayed
 through `metaverseCapacity` and `metaverseCapacityLabel`. Groups of 12 are scheduled
 sessions, not teams or total capacity.
 Slots are first come, first served by registration submission time, with organizer

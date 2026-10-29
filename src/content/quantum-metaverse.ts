@@ -1,6 +1,6 @@
 import type { TrackBrief, TrackRegistration, TrackStatusLabel } from "./types";
 
-export const metaverseCapacity = 40;
+export const metaverseCapacity = 20;
 export const metaverseCapacityLabel = `${metaverseCapacity} slots only`;
 
 /** Independent of global and other track forms. Explicitly opened by the organizer. */
