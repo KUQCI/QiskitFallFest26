@@ -255,6 +255,8 @@ open another card.
 "Hosted by" labels come from `track.hostedBy`, which picks entries from `trackHosts`.
 A host with a logo or About Us text also gets a "Hosted by" section in the panel, below
 the challenges. Biology shows its host profile in the separate Hosts tab instead.
+"Sponsored by" labels come from `track.sponsoredBy`. Quantum Africa sponsors Quantum
+Machine Learning and is also listed with the homepage technical sponsors.
 Sponsor and host logos must use a `fallFestAssets` src.
 
 ## Assets

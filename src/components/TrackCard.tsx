@@ -105,9 +105,9 @@ export function TrackCard({
   );
 }
 
-/** Venue, deadline and hosts, in that order, wherever a track has them. */
+/** Venue, deadline, hosts and sponsors, in that order, wherever a track has them. */
 export function TrackFacts({ track, className }: { track: Track; className?: string }) {
-  if (!track.venueLabel && !track.deadlineLabel && !track.hostedBy?.length) return null;
+  if (!track.venueLabel && !track.deadlineLabel && !track.hostedBy?.length && !track.sponsoredBy?.length) return null;
   return (
     <ul className={cn("space-y-2.5 text-sm leading-relaxed", className)}>
       {track.venueLabel ? (
@@ -120,6 +120,12 @@ export function TrackFacts({ track, className }: { track: Track; className?: str
         <li className="flex flex-wrap items-center gap-2 text-fg-muted">
           {tracksPageContent.panel.hostedByHeading}
           {track.hostedBy.map((host) => <Badge key={host.name} tone="gold">{host.label ?? host.name}</Badge>)}
+        </li>
+      ) : null}
+      {track.sponsoredBy?.length ? (
+        <li className="flex flex-wrap items-center gap-2 text-fg-muted">
+          {tracksPageContent.panel.sponsoredByHeading}
+          {track.sponsoredBy.map((sponsor) => <Badge key={sponsor.name} tone="gold">{sponsor.name}</Badge>)}
         </li>
       ) : null}
     </ul>

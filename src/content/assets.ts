@@ -53,6 +53,8 @@ export const fallFestAssets = {
     adOmics: imageAsset("adomics-logo.svg", "adomics-logo.svg"),
     /** Latest vector lockup supplied by Moth Quantum. Black artwork on a white plate. */
     mothQuantum: imageAsset("moth-lockup.svg", "moth-lockup.svg"),
+    /** Quantum Africa lockup with its grey background removed ("Quantum Africa logo.png" is the supplied original). */
+    quantumAfrica: imageAsset("quantum-africa-logo.png", "quantum-africa-logo.png"),
     /** ASBMB Khalifa University Student Chapter, as supplied (white background). */
     asbmbKu: imageAsset("asbmb-ku-logo.png", "asbmb-ku-logo.png"),
     ibmQuantum: imageAsset("IBM Quantum.png", "IBM Quantum.png"),

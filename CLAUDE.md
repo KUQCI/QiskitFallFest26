@@ -114,6 +114,9 @@ Keep its four poster topics. Its approved registration form is enabled at
   "Hosted by" labels. Confirmed so far: ASBMB Student Chapter at Khalifa University
   (Quantum Biology) and Moth Quantum (Quantum in Media). QCI and NYUAD are the
   overall organisers and are not added to individual tracks.
+- Quantum Africa (`https://quantum-africa.org/`) is a confirmed technical sponsor supporting
+  Quantum Machine Learning: a "Sponsored by" label via `track.sponsoredBy` and a homepage
+  technical-sponsor logo. Its supplied original logo is kept beside the transparent derivative.
 - Quantum in Media preserves the `quantum-media` slug and Moth's approved themes and
   clickable resources. The challenge is live. Submissions are due 30 October 2026,
   11:59 PM Pacific Time. Its `quantum-media.ts` brief has Overview, No-code themes,

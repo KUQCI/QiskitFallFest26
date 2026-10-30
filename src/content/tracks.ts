@@ -5,7 +5,7 @@ import { metaverseStatusLabels, metaverseVenue, quantumMetaverseBrief } from "./
 import { foundationsStatusLabels, quantumFoundationsBrief } from "./quantum-foundations";
 import { qmlDeadline, qmlDeadlineCardLabel, qmlStatusLabels, qmlSummary, quantumMachineLearningBrief } from "./quantum-machine-learning";
 import { quantumMediaBrief } from "./quantum-media";
-import { adOmics } from "./sponsors";
+import { adOmics, quantumAfrica } from "./sponsors";
 import type { Track, TrackHost } from "./types";
 
 /**
@@ -79,6 +79,7 @@ export const tracks: Track[] = [
     status: "confirmed",
     statusLabels: qmlStatusLabels,
     deadlineLabel: qmlDeadlineCardLabel,
+    sponsoredBy: [quantumAfrica],
     details: {
       headerSummary: qmlSummary,
       deadline: qmlDeadline,
@@ -233,6 +234,7 @@ export const tracksPageContent = {
     submissionHeading: "Submission instructions",
     resourcesHeading: "Resources",
     hostedByHeading: "Hosted by",
+    sponsoredByHeading: "Sponsored by",
   },
   metadataDescription:
     "Challenges for the six Qiskit Fall Fest 2026 tracks, from quantum circuit building to quantum machine learning, biology, cybersecurity, media, and VR, across hybrid, in-person, and virtual formats.",

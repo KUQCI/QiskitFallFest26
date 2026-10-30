@@ -35,6 +35,15 @@ export const adOmics = {
   status: "confirmed",
 } satisfies Partner;
 
+/** Supports the Quantum Machine Learning track; shared with its "Sponsored by" label. */
+export const quantumAfrica = {
+  name: "Quantum Africa",
+  kind: "Technical sponsor",
+  url: "https://quantum-africa.org/",
+  logo: fallFestAssets.logos.quantumAfrica.src,
+  status: "confirmed",
+} satisfies Partner;
+
 export const technicalSponsors: Partner[] = [
   adOmics,
   {
@@ -45,6 +54,7 @@ export const technicalSponsors: Partner[] = [
     logoOnDark: false,
     status: "confirmed",
   },
+  quantumAfrica,
 ];
 
 export const partnersSectionContent = {
