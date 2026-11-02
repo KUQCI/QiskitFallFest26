@@ -47,6 +47,7 @@ export function AgendaCalendar({ calendar, categories, kindLabels, workshopLabel
   const visible = (item: AgendaItem) => filter === "all" || item.kind === filter;
   const count = allItems.filter(visible).length;
   const column = (date: string) => days.findIndex(day => day.date === date);
+  const workshopFinished = (item: AgendaItem) => item.kind === "workshop" && today !== null && item.date < today;
 
   const scrollToDay = useCallback((index: number, smooth = true) => {
     const scroller = scrollerRef.current;
@@ -78,7 +79,7 @@ export function AgendaCalendar({ calendar, categories, kindLabels, workshopLabel
 
   return (
     <div>
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+      <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
         <div role="group" aria-label={copy.filterLabel} className="flex gap-2 overflow-x-auto pb-1">
           {categories.map(category => (
             <button key={category.id} type="button" aria-pressed={filter === category.id} onClick={() => setFilter(category.id)} className={cn(
@@ -87,7 +88,7 @@ export function AgendaCalendar({ calendar, categories, kindLabels, workshopLabel
             )}>{category.label}</button>
           ))}
         </div>
-        <div role="group" aria-label={copy.weeksLabel} className="flex gap-2 overflow-x-auto pb-1 lg:shrink-0">
+        <div role="group" aria-label={copy.weeksLabel} className="flex gap-2 overflow-x-auto pb-1 xl:shrink-0">
           {weeks.map(week => (
             <button key={week.start} type="button" onClick={() => scrollToDay(week.start)} className="min-h-11 shrink-0 whitespace-nowrap rounded-full border border-border-strong px-4 py-2 text-sm font-semibold text-fg transition-colors hover:border-gold hover:text-gold">
               {week.label}
@@ -147,12 +148,13 @@ export function AgendaCalendar({ calendar, categories, kindLabels, workshopLabel
                     type="button"
                     aria-haspopup="dialog"
                     aria-expanded={openItem?.id === item.id}
-                    aria-label={`${item.title}, ${item.context}, ${days[column(item.date)].weekday} ${days[column(item.date)].day} ${days[column(item.date)].month}`}
+                    data-finished={workshopFinished(item) || undefined}
+                    aria-label={`${item.title}, ${item.context}, ${days[column(item.date)].weekday} ${days[column(item.date)].day} ${days[column(item.date)].month}${workshopFinished(item) ? `, ${tracksPageContent.progress.finishedLabel}` : ""}`}
                     onClick={event => { triggerRef.current = event.currentTarget; setOpenItem(item); }}
                     style={{ gridColumn: column(item.date) - span.start + 1 }}
                     className="agenda-event mx-0.5 min-h-11 px-2.5 py-2 text-left"
                   >
-                    <span className="block font-mono text-[0.625rem] uppercase tracking-wider text-fg-muted">{kindLabels[item.kind]}</span>
+                    <span className="block font-mono text-[0.625rem] uppercase tracking-wider text-fg-muted">{kindLabels[item.kind]}{workshopFinished(item) ? ` · ${tracksPageContent.progress.finishedLabel}` : ""}</span>
                     <span className="mt-0.5 block text-[0.8125rem] font-semibold leading-snug text-fg">{item.title}</span>
                     {item.time ? <span className="mt-1 block text-[0.6875rem] leading-snug text-fg-muted">{item.time}</span> : null}
                   </button>

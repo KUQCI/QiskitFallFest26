@@ -8,6 +8,7 @@ import { WorkshopDetails } from "@/components/WorkshopDetails";
 import { ArrowRightIcon, CalendarIcon, CloseIcon, ExternalLinkIcon, MapPinIcon } from "@/components/ui/Icons";
 import { Badge } from "@/components/ui/primitives";
 import type { AgendaDialogCopy, AgendaItem, AgendaKind, AgendaWorkshopLabels } from "@/content/agenda";
+import { tracksPageContent } from "@/content/tracks";
 import { isWorkshopUrl, resolveWorkshopRegistration } from "@/lib/workshop-registration";
 
 const reducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -39,9 +40,11 @@ export function AgendaDialog({ item, kindLabel, labels, copy, onClosed }: {
   const resources = workshop.resources?.filter(resource => isWorkshopUrl(resource.href)) ?? [];
   const internalLink = item.href && !item.external ? item.href : null;
 
-  // Workshops always list time and venue (unconfirmed if unknown); other milestones omit
-  // unknown fields, and their time strings carry their own zone (Media uses Pacific Time).
-  const sessionRows: [string, string][] = isWorkshop
+  // Upcoming workshops always list time and venue (unconfirmed if unknown); finished ones and
+  // other milestones omit unknown fields, and their time strings carry their own zone
+  // (Media uses Pacific Time).
+  const finished = isWorkshop && registration.status === "closed";
+  const sessionRows: [string, string][] = isWorkshop && !finished
     ? [[copy.dateLabel, date], [copy.timeLabel, item.time ?? copy.unconfirmedLabel], [copy.timezoneLabel, copy.timezone], [copy.venueLabel, item.venue ?? copy.unconfirmedLabel]]
     : [[copy.dateLabel, date], ...(item.time ? [[copy.timeLabel, item.time] as [string, string]] : []), ...(item.venue ? [[copy.venueLabel, item.venue] as [string, string]] : [])];
 
@@ -121,6 +124,7 @@ export function AgendaDialog({ item, kindLabel, labels, copy, onClosed }: {
       <header className="relative shrink-0 border-b border-border px-5 py-4 pr-18 sm:px-8 sm:pr-20">
         <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
           <Badge tone={agendaKindTone(item.kind)}>{kindLabel}</Badge>
+          {finished ? <Badge tone="neutral">{tracksPageContent.progress.finishedLabel}</Badge> : null}
           <p className="text-sm font-semibold text-fg-muted">{item.context}</p>
         </div>
         <h2 id={titleId} className="mt-2 text-xl font-semibold leading-tight text-fg sm:text-2xl">{item.title}</h2>

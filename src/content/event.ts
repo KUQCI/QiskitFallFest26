@@ -4,16 +4,16 @@ export const event = {
   host: "Quantum Computing Initiative",
   hostShort: "QCI",
   university: "Khalifa University",
-  tagline: "19 October – 1 November 2026",
+  tagline: "19 October – 7 November 2026",
   intro:
-    "Two weeks of quantum computing for learners at every level.",
+    "Three weeks of quantum computing for learners at every level.",
 
   /** Confirmed opening session in Gulf Standard Time (UTC+04:00). */
   countdownTarget: "2026-10-19T18:00:00+04:00",
   openingDateLabel: "19 October 2026 · 6:00 PM",
   premiereUrl: "https://www.youtube.com/live/1h3hqHFWAvs?si=8703JbLk1sDLQpHr",
   premiereLabel: "Watch the premiere",
-  dateLabel: "19 October – 1 November 2026",
+  dateLabel: "19 October – 7 November 2026",
   closingDateLabel: "31 October – 1 November 2026",
 
   venue: {
@@ -105,7 +105,7 @@ const sharedCta = {
 
 export const ctaCopy = {
   default: {
-    eyebrow: "19 October – 1 November 2026 · Khalifa University",
+    eyebrow: "19 October – 7 November 2026 · Khalifa University",
     ...sharedCta,
     note: event.registrationNote,
   },

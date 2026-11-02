@@ -50,7 +50,7 @@ When an approved track milestone changes, update its Agenda entry to match. Regi
 opening dates for Cybersecurity, Metaverse and Foundations read their track settings.
 Agenda links open the track details; they never enable an unreleased form.
 
-The Agenda is a horizontally scrolling two-week calendar (`agendaCalendar` in
+The Agenda is a horizontally scrolling week-by-week calendar (`agendaCalendar` in
 `agenda.ts`), from 19 October to 8 November, with one column per day. Each track is a
 bar in its `accent` colour, running from its first to its last milestone. Event-wide
 items sit on a "Qiskit Fall Fest 2026" bar across the whole range. Bars that overlap in

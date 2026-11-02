@@ -6,7 +6,8 @@ at Khalifa University as part of IBM Quantum’s annual global event series.
 ## Confirmed timing
 
 - **19 October 2026 at 6:00 PM UAE time (UTC+04:00)** — opening session and countdown target
-- **31 October – 1 November 2026** — closing showcases (the Fall Fest ends 1 November)
+- **31 October – 1 November 2026** — closing showcases
+- **7 November 2026** — the Fall Fest ends (Quantum in Media and Quantum Cybersecurity finish)
 - **10 October 2026** — team target for the site to be live
 
 Never restore a previous unconfirmed closing date or regional-superlative claim.

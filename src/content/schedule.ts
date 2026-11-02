@@ -12,7 +12,7 @@ export const formatSectionCopy = {
     eyebrow: "How it works",
     title: "Three phases, from kickoff to showcase",
     lede:
-      "The Fall Fest begins with an opening session, followed by two weeks of development and presentation, and concludes with closing showcases on 31 October and 1 November where participants present their work and winners are announced.",
+      "The Fall Fest begins with an opening session, followed by two weeks of development and presentation, with closing showcases on 31 October and 1 November where participants present their work and winners are announced. The Fall Fest ends on 7 November.",
   },
 } as const;
 
@@ -20,7 +20,7 @@ export const schedulePageContent = {
   eyebrow: "How it works",
   title: "What happens, and when",
   lede:
-    "The Fall Fest runs from 19 October to 1 November across three phases: an opening premiere, a two-week development period, and closing showcases.",
+    "The Fall Fest runs from 19 October to 7 November across three phases: an opening premiere, a two-week development period, and closing showcases.",
   countdownLabel: "Fall Fest begins",
   metadataDescription:
     "How Qiskit Fall Fest 2026 works: an opening premiere on 19 October, a two-week development period, and closing showcases on 31 October and 1 November.",

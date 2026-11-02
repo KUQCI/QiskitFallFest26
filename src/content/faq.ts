@@ -103,6 +103,6 @@ export const faqs: FaqItem[] = [
     category: "The Fest",
     question: "When will the exact dates be announced?",
     answer:
-      "The Fall Fest begins on 19 October 2026 at 6:00 PM UAE time and ends on 1 November, with the closing showcase on 31 October and 1 November. Remaining programme details will be announced here once they are confirmed.",
+      "The Fall Fest begins on 19 October 2026 at 6:00 PM UAE time and ends on 7 November. The closing showcase is on 31 October and 1 November. Remaining programme details will be announced here once they are confirmed.",
   },
 ];

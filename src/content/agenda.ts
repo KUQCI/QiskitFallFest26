@@ -176,9 +176,9 @@ export const agendaItems: AgendaItem[] = [
   trackItem("chemistry-drug-discovery", {
     id: "biology-workshops", date: adOmicsWorkshop.date, kind: "workshop", title: adOmicsWorkshop.title,
     time: adOmicsWorkshop.time,
-    description: "A biology and data workshop with AD-OMICS. Access details are to be confirmed.",
+    description: "A biology and data workshop with AD-OMICS.",
     workshop: {
-      registration: { href: null, enabled: false, closed: false },
+      registration: { href: null, enabled: false, closed: true },
       organizers: "AD-OMICS",
       branding: [{ name: "AD-OMICS", logo: fallFestAssets.logos.adOmics.src }],
     },
