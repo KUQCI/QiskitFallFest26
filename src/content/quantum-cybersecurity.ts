@@ -16,7 +16,7 @@ export const cybersecurityLinks = {
 
 export const cybersecurityDateLabels: TrackStatusLabel[] = [
   { label: "Registration open", tone: "gold", icon: "calendar" },
-  { label: "CTF challenge: 1 November", tone: "sky", icon: "flag" },
+  { label: "CTF challenge: 7 November", tone: "sky", icon: "flag" },
 ];
 
 export const quantumCybersecurityBrief: TrackBrief = {
@@ -57,7 +57,7 @@ export const quantumCybersecurityBrief: TrackBrief = {
       blocks: [
         { type: "heading", text: "Participate individually or as a team" },
         { type: "paragraph", text: "Enter individually or in a team of up to four people, including the team lead. Only the team lead needs to submit the registration form on behalf of the team." },
-        { type: "notice", paragraphs: ["Registration is open. Register using the track form below."] },
+        { type: "notice", hideWhenOver: true, paragraphs: ["Registration is open. Register using the track form below."] },
         { type: "paragraph", text: "Prepare your team name, team size, the team lead’s contact details and institution, and the names, email addresses and institutions of any additional members." },
         { type: "paragraph", text: "Competition timings, platform access and preparation instructions will be shared through email. All announced times will use UAE time (UTC+4)." },
         { type: "registration", registration: cybersecurityLinks.registration },
@@ -73,7 +73,7 @@ export const quantumCybersecurityBrief: TrackBrief = {
           columns: ["2026 · UAE time (UTC+4)", "Milestone"],
           rows: [
             ["23 October 2026 — Registration opens", "The team lead submits one registration form for the team."],
-            ["1 November 2026 — Online CTF competition", "A single-day competition featuring quantum machine learning model-extraction challenges."],
+            ["7 November 2026 — Online CTF competition", "A single-day competition featuring quantum machine learning model-extraction challenges."],
           ],
         },
         { type: "heading", text: "Before the competition" },

@@ -10,6 +10,7 @@ import { TrackVisual } from "@/components/TrackVisual";
 import { TrackRegistrationAction } from "@/components/TrackRegistrationAction";
 import { TrackSubmissionAction } from "@/components/TrackSubmissionAction";
 import { TrackResourceCards } from "@/components/TrackResourceCards";
+import { tracksPageContent } from "@/content/tracks";
 import type { TrackBrief, TrackBriefBlock } from "@/content/types";
 import { cn } from "@/lib/utils";
 
@@ -20,9 +21,12 @@ import { cn } from "@/lib/utils";
 export function TrackBriefTabs({
   brief,
   hostProfiles,
+  over = false,
 }: {
   brief: TrackBrief;
   hostProfiles?: React.ReactNode;
+  /** The track has finished: close its forms and hide copy that only applies while it runs. */
+  over?: boolean;
 }) {
   const id = useId();
   const [selected, setSelected] = useState(0);
@@ -108,7 +112,7 @@ export function TrackBriefTabs({
                 </dl>
               ) : null}
             </> : null}
-            {panel.blocks.map((block, blockIndex) => <BriefBlock key={blockIndex} block={block} />)}
+            {panel.blocks.map((block, blockIndex) => <BriefBlock key={blockIndex} block={block} over={over} />)}
             {panel.showHosts ? hostProfiles : null}
           </> : null}
         </div>
@@ -117,7 +121,8 @@ export function TrackBriefTabs({
   );
 }
 
-function BriefBlock({ block }: { block: TrackBriefBlock }) {
+function BriefBlock({ block, over }: { block: TrackBriefBlock; over: boolean }) {
+  if (over && "hideWhenOver" in block && block.hideWhenOver) return null;
   switch (block.type) {
     case "heading":
       return <h4 className="biology-section-heading pt-4 text-lg font-semibold text-fg">{block.text}</h4>;
@@ -203,7 +208,7 @@ function BriefBlock({ block }: { block: TrackBriefBlock }) {
                   <p className="font-mono text-2xs uppercase tracking-wider text-gold">{block.columns[0]}</p>
                   <p className="mt-2 text-base font-semibold leading-relaxed text-fg">{item.availability}</p>
                 </div>
-                {item.enabled && item.href && /^https?:\/\//i.test(item.href) ? (
+                {over ? <p className="text-sm font-semibold text-fg">{tracksPageContent.progress.registrationClosedLabel}</p> : item.enabled && item.href && /^https?:\/\//i.test(item.href) ? (
                   <a href={item.href} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-gold px-5 py-3 text-center text-sm font-semibold text-on-gold transition-colors hover:bg-gold-strong lg:w-auto lg:max-w-64">
                     {item.label}<ArrowRightIcon className="h-4 w-4 shrink-0" />
                     <span className="sr-only"> (opens in a new tab)</span>
@@ -230,9 +235,11 @@ function BriefBlock({ block }: { block: TrackBriefBlock }) {
         </ul>
       );
     case "registration":
-      return <TrackRegistrationAction registration={block.registration} />;
+      return <TrackRegistrationAction registration={over
+        ? { ...block.registration, closed: true, closedLabel: tracksPageContent.progress.registrationClosedLabel, note: undefined }
+        : block.registration} />;
     case "submission-control":
-      return <TrackSubmissionAction submission={block.submission} />;
+      return <TrackSubmissionAction submission={over ? { ...block.submission, closed: true } : block.submission} />;
     case "comparison":
       return (
         <div className="qml-workflow">

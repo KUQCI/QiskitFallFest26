@@ -11,6 +11,7 @@ import { Container, Section, SectionHeading } from "@/components/ui/primitives";
 import { ArrowRightIcon } from "@/components/ui/Icons";
 import { homeContent } from "@/content/event";
 import { faqs } from "@/content/faq";
+import { TrackProgressBadge } from "@/components/TrackProgressBadge";
 import { homeTrackPreviews, tracksPageContent } from "@/content/tracks";
 
 export default function HomePage() {
@@ -70,7 +71,10 @@ export default function HomePage() {
                           <h4 className="text-base font-semibold text-fg group-hover:text-gold">{track.title}</h4>
                           {track.description ? <p className="mt-1 hidden text-sm leading-relaxed text-fg-muted sm:block">{track.description}</p> : null}
                         </div>
-                        <ArrowRightIcon className="h-4 w-4 shrink-0 text-gold transition-transform group-hover:translate-x-1" />
+                        <span className="flex shrink-0 items-center gap-3">
+                          <TrackProgressBadge endsAt={track.endsAt} />
+                          <ArrowRightIcon className="h-4 w-4 shrink-0 text-gold transition-transform group-hover:translate-x-1" />
+                        </span>
                       </Link>
                     </li>
                   ))}

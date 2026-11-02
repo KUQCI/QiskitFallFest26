@@ -8,6 +8,7 @@ import { TrackPanel } from "@/components/TrackPanel";
 import { Badge } from "@/components/ui/primitives";
 import { tracksPageContent, type TrackPanelCopy } from "@/content/tracks";
 import type { Track } from "@/content/types";
+import { isTrackOver, useNow } from "@/lib/track-progress";
 
 /**
  * The tracks grid, grouped by reach, plus its full-screen detail panel. The open track is mirrored in
@@ -20,6 +21,7 @@ export function TrackExplorer({ tracks, copy }: { tracks: Track[]; copy: TrackPa
   const [openSlug, setOpenSlug] = useState<string | null>(null);
   const [origin, setOrigin] = useState<DOMRect | null>(null);
   const returnFocusRef = useRef<string | null>(null);
+  const now = useNow();
 
   const open = useCallback((slug: string, rect: DOMRect | null) => {
     setOrigin(rect);
@@ -66,9 +68,27 @@ export function TrackExplorer({ tracks, copy }: { tracks: Track[]; copy: TrackPa
   }, [tracks, open]);
 
   const openTrack = openSlug ? tracks.find((track) => track.slug === openSlug) : undefined;
+  const over = (track: Track) => isTrackOver(track.endsAt, now);
+  const running = tracks.filter((track) => !over(track));
 
   return (
     <>
+      {now ? (
+        <div role="status" className="biology-notice mb-12 max-w-3xl">
+          {running.length ? (
+            <>
+              <h2 className="text-sm font-semibold text-fg">{tracksPageContent.progress.runningHeading}</h2>
+              <ul className="mt-1 flex flex-wrap gap-x-5">
+                {running.map((track) => (
+                  <li key={track.slug}>
+                    <a href={`#${track.slug}`} className="inline-flex min-h-11 items-center font-semibold text-gold underline underline-offset-4">{track.title}</a>
+                  </li>
+                ))}
+              </ul>
+            </>
+          ) : <p className="text-sm font-semibold leading-relaxed text-fg">{tracksPageContent.progress.allFinished}</p>}
+        </div>
+      ) : null}
       <div className="space-y-16">
         {tracksPageContent.groups.map((group) => {
           const format = tracksPageContent.formats.items.find((item) => item.reach === group.reach);
@@ -88,10 +108,14 @@ export function TrackExplorer({ tracks, copy }: { tracks: Track[]; copy: TrackPa
                 ) : null}
               </div>
               <ul className="grid gap-6 lg:grid-cols-2">
-                {tracks.filter((track) => track.reach === group.reach).map((track, index) => (
+                {tracks
+                  .filter((track) => track.reach === group.reach)
+                  .sort((a, b) => Number(over(a)) - Number(over(b)))
+                  .map((track, index) => (
                   <Reveal as="li" key={track.slug} delay={(index % 2) * 55}>
                     <TrackCard
                       track={track}
+                      over={over(track)}
                       actionLabel={copy.openLabel}
                       expanded={openSlug === track.slug}
                       onOpen={(trigger) => open(track.slug, trigger.closest("article")?.getBoundingClientRect() ?? null)}
@@ -104,7 +128,7 @@ export function TrackExplorer({ tracks, copy }: { tracks: Track[]; copy: TrackPa
         })}
       </div>
 
-      {openTrack ? <TrackPanel track={openTrack} copy={copy} origin={origin} onClosed={handleClosed} /> : null}
+      {openTrack ? <TrackPanel track={openTrack} over={over(openTrack)} copy={copy} origin={origin} onClosed={handleClosed} /> : null}
     </>
   );
 }

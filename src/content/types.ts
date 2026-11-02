@@ -33,6 +33,8 @@ export interface Track {
   participationLabel?: string;
   venueLabel?: string;
   deadlineLabel?: string;
+  /** When the track's last published milestone ends. Drives the Finished / Still running state and closes its forms. Omit while the end date is unconfirmed; the track counts as still running. */
+  endsAt?: string;
   status: Status;
   /** Explicitly approved status chips. Omit until that track's labels are agreed. */
   statusLabels?: (string | TrackStatusLabel)[];
@@ -191,8 +193,8 @@ export interface TrackBriefResource {
 }
 
 export type TrackBriefBlock =
-  | { type: "paragraph" | "heading" | "note"; text: string; presentation?: "spotlight" }
-  | { type: "notice"; paragraphs: string[] }
+  | { type: "paragraph" | "heading" | "note"; text: string; presentation?: "spotlight"; hideWhenOver?: boolean }
+  | { type: "notice"; paragraphs: string[]; hideWhenOver?: boolean }
   | { type: "list"; ordered?: boolean; presentation?: "cards" | "steps" | "compact-steps"; items: { title: string; text: string }[] }
   | { type: "table"; presentation?: "timeline"; columns: string[]; rows: string[][] }
   | { type: "visual"; src: string; motion?: "float" | "wave" }
@@ -204,7 +206,7 @@ export type TrackBriefBlock =
   | { type: "comparison"; methods: { title: string; text: string }[]; evaluation: { title: string; text: string } }
   | { type: "resource-cards"; items: TrackBriefResource[]; sourceLabels: { official: string; external: string } }
   | { type: "facts"; columns?: 2 | 3; items: { label: string; value: string; icon: "location" | "headset" | "users" | "students" | "calendar" }[] }
-  | { type: "links"; items: TrackLink[] };
+  | { type: "links"; items: TrackLink[]; hideWhenOver?: boolean };
 
 export type TrackVisualKind = "circuit" | "qml" | "bloch" | "ctf" | "media";
 

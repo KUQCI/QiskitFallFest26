@@ -6,10 +6,11 @@ import { createPortal } from "react-dom";
 
 import { Badge } from "@/components/ui/primitives";
 import { TrackBriefTabs } from "@/components/TrackBriefTabs";
-import { TrackCover, TrackFacts, trackAccentStyle } from "@/components/TrackCard";
+import { TrackCover, TrackFacts, isDateStatus, trackAccentStyle } from "@/components/TrackCard";
+import { TrackProgressBadge } from "@/components/TrackProgressBadge";
 import { TrackStatusBadge } from "@/components/TrackStatusBadge";
 import { CloseIcon, ExternalLinkIcon, UsersIcon } from "@/components/ui/Icons";
-import type { TrackPanelCopy } from "@/content/tracks";
+import { tracksPageContent, type TrackPanelCopy } from "@/content/tracks";
 import type { Track, TrackHost, TrackLink, TrackOrganization } from "@/content/types";
 import { cn, formatLabel, reachLabel } from "@/lib/utils";
 
@@ -66,11 +67,13 @@ function settle(animation: Animation, ms: number) {
  */
 export function TrackPanel({
   track,
+  over = false,
   copy,
   origin,
   onClosed,
 }: {
   track: Track;
+  over?: boolean;
   copy: TrackPanelCopy;
   /** Bounding box of the card the panel was opened from, for the grow animation. */
   origin: DOMRect | null;
@@ -280,7 +283,8 @@ export function TrackPanel({
 
             <div className="max-w-5xl px-5 pb-6 pt-5 sm:px-8 sm:pb-8 lg:px-12 lg:pb-10 lg:pt-7">
               <div className="flex flex-wrap gap-2">
-                {track.statusLabels?.map((status) => <TrackStatusBadge key={typeof status === "string" ? status : status.label} status={status} />)}
+                <TrackProgressBadge endsAt={track.endsAt} />
+                {track.statusLabels?.filter((status) => !over || isDateStatus(status)).map((status) => <TrackStatusBadge key={typeof status === "string" ? status : status.label} status={status} />)}
                 {track.reach ? <Badge tone="sky">{reachLabel(track.reach)}</Badge> : null}
                 {track.format ? <Badge tone="neutral">{track.formatDisplayLabel ?? formatLabel(track.format)}</Badge> : null}
                 {participation ? <Badge tone="purple"><UsersIcon className="h-3.5 w-3.5 shrink-0" />{participation}</Badge> : null}
@@ -291,6 +295,7 @@ export function TrackPanel({
               {track.subtitle ? <p className="mt-1.5 text-sm font-semibold text-purple">{track.subtitle}</p> : null}
               <p className="mt-4 max-w-3xl text-base leading-relaxed text-fg-muted lg:text-lg">{details.headerSummary ?? track.summary}</p>
               <TrackFacts track={track} className="mt-5" />
+              {over ? <p className="biology-notice mt-5 max-w-3xl text-sm font-semibold leading-relaxed text-fg">{tracksPageContent.progress.panelNotice}</p> : null}
             </div>
           </header>
 
@@ -298,6 +303,7 @@ export function TrackPanel({
             <TrackBriefTabs
               key={track.slug}
               brief={details.brief}
+              over={over}
               hostProfiles={hostProfiles.length ? <HostProfiles hosts={hostProfiles} heading={copy.hostedByHeading} /> : null}
             />
           ) : null}

@@ -51,7 +51,7 @@ opening dates for Cybersecurity, Metaverse and Foundations read their track sett
 Agenda links open the track details; they never enable an unreleased form.
 
 The Agenda is a horizontally scrolling two-week calendar (`agendaCalendar` in
-`agenda.ts`), from 19 October to 1 November, with one column per day. Each track is a
+`agenda.ts`), from 19 October to 8 November, with one column per day. Each track is a
 bar in its `accent` colour, running from its first to its last milestone. Event-wide
 items sit on a "Qiskit Fall Fest 2026" bar across the whole range. Bars that overlap in
 time are packed into separate lanes stacked on top of each other, so blocks never
@@ -139,7 +139,7 @@ never adds a chip by itself.
 Cybersecurity's newer approved content is in `quantum-cybersecurity.ts`, with four
 panels inside the same modal: Overview, How It Works, Participation & Registration,
 and Schedule & Preparation. Registration opened 23 October 2026 and the online CTF
-takes place on 30 October. The organizer approved and enabled the independent form at
+takes place on 7 November. The organizer approved and enabled the independent form at
 `https://forms.gle/qc2R6mHAjuy6dCUD6`. The UAE calendar
 date is an additional guard, not a guessed opening hour. Without both an approved URL
 and release flag the action remains unavailable, including after 23 October. Keep
@@ -200,7 +200,7 @@ No fixed algorithm, framework, dataset, team size or scoring weights. Presentati
 hours, venue and further logistics remain unconfirmed.
 
 Quantum in Media (stable slug `quantum-media`) is hosted by Moth Quantum. Its challenge
-is live, with a submission deadline of 30 October 2026, 11:59 PM Pacific Time.
+is live, with a submission deadline of 7 November 2026, 11:59 PM Pacific Time.
 Its brief in `quantum-media.ts` uses four panels: Overview, No-code themes,
 Code themes (Atlas API), and Submissions & Resources. Preserve all seven no-code and
 three code themes verbatim, the media animation, and the clickable platform/video/Discord links.

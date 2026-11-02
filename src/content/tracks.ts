@@ -65,6 +65,7 @@ export const tracks: Track[] = [
     venueLabel: "Khalifa University",
     status: "confirmed",
     statusLabels: foundationsStatusLabels,
+    endsAt: "2026-10-31T23:59:59+04:00",
     details: {
       brief: quantumFoundationsBrief,
     },
@@ -79,6 +80,7 @@ export const tracks: Track[] = [
     status: "confirmed",
     statusLabels: qmlStatusLabels,
     deadlineLabel: qmlDeadlineCardLabel,
+    endsAt: "2026-10-31T23:59:59+04:00",
     sponsoredBy: [quantumAfrica],
     details: {
       headerSummary: qmlSummary,
@@ -98,6 +100,7 @@ export const tracks: Track[] = [
     teamSizeLabel: "1–4 participants",
     status: "confirmed",
     statusLabels: cybersecurityDateLabels,
+    endsAt: "2026-11-07T23:59:59+04:00",
     details: {
       brief: quantumCybersecurityBrief,
     },
@@ -113,6 +116,7 @@ export const tracks: Track[] = [
     status: "confirmed",
     statusLabels: ["Challenge live", "Submissions open"],
     deadlineLabel: biologyProposalDeadlineCardLabel,
+    endsAt: "2026-11-01T23:59:59+04:00",
     tags: biologyTags,
     coverIcon: fallFestAssets.biologyVisuals.icon.src,
     hostedBy: [trackHosts.asbmb],
@@ -139,7 +143,8 @@ export const tracks: Track[] = [
     format: "online",
     status: "confirmed",
     statusLabels: ["Challenge live"],
-    deadlineLabel: "1st Novemeber · 11:59 PM Pacific Time",
+    deadlineLabel: "7 November · 11:59 PM Pacific Time",
+    endsAt: "2026-11-07T23:59:00-08:00",
     hostedBy: [trackHosts.mothQuantum],
     details: {
       brief: quantumMediaBrief,
@@ -157,6 +162,7 @@ export const tracks: Track[] = [
     venueLabel: metaverseVenue,
     status: "confirmed",
     statusLabels: metaverseStatusLabels,
+    endsAt: "2026-10-30T12:00:00+04:00",
     details: {
       brief: quantumMetaverseBrief,
     },
@@ -173,8 +179,8 @@ const homeTrackDescriptions: Record<string, string> = {
   "quantum-media": "Create with Moth Quantum",
 };
 
-export const homeTrackPreviews = tracks.map(({ slug, title, reach }) => ({
-  slug, title, reach, description: homeTrackDescriptions[slug],
+export const homeTrackPreviews = tracks.map(({ slug, title, reach, endsAt }) => ({
+  slug, title, reach, endsAt, description: homeTrackDescriptions[slug],
 }));
 
 export const featuredTrackSlugs = [
@@ -214,12 +220,21 @@ export const tracksPageContent = {
         format: "Fully virtual",
         points: [
           { label: "Schedules", text: "Track-specific registration and competition dates, separate from national qualifiers and finals." },
-          { label: "Quantum Cybersecurity · 1 November", text: "Online CTF competition." },
+          { label: "Quantum Cybersecurity · 7 November", text: "Online CTF competition." },
         ],
       },
     ],
   },
   note: "Registration links and resource links for each track will be added here as they are shared.",
+  /** Finished / Still running state, derived from each track's `endsAt`. */
+  progress: {
+    finishedLabel: "Finished",
+    runningLabel: "Still running",
+    runningHeading: "Still running",
+    allFinished: "All six tracks have finished. Their challenge briefs stay here for reference.",
+    panelNotice: "This track has finished. Registration and submissions are closed.",
+    registrationClosedLabel: "Registration closed",
+  },
   /** Copy for the track cards and the full-screen track panel. */
   panel: {
     openLabel: "View challenge",

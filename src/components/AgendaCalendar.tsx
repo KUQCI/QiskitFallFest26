@@ -7,6 +7,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { AgendaDialog } from "@/components/AgendaDialog";
 import { trackAccentStyle } from "@/components/TrackCard";
 import type { AgendaCalendar as Calendar, AgendaDialogCopy, AgendaItem, AgendaKind, AgendaWorkshopLabels } from "@/content/agenda";
+import { tracksPageContent } from "@/content/tracks";
+import { isTrackOver, useNow } from "@/lib/track-progress";
 import { cn } from "@/lib/utils";
 
 /** Today's date in UAE time as YYYY-MM-DD, read on the client so the static export stays deterministic. */
@@ -15,7 +17,7 @@ function todayInDubai() {
 }
 
 /**
- * The agenda as a horizontally scrolling two-week calendar. Each day is a column. Each
+ * The agenda as a horizontally scrolling week-by-week calendar. Each day is a column. Each
  * track is a colour-coded bar from its first to its last milestone, with the milestones
  * placed on their day. Bars that overlap in time sit in separate lanes (packed in
  * agenda.ts) so nothing overlaps on screen. Selecting any block opens its details dialog.
@@ -32,6 +34,7 @@ export function AgendaCalendar({ calendar, categories, kindLabels, workshopLabel
   };
 }) {
   const router = useRouter();
+  const now = useNow();
   const { days, weeks, lanes } = calendar;
   const spans = lanes.flat();
   const allItems = spans.flatMap(span => span.items);
@@ -59,7 +62,7 @@ export function AgendaCalendar({ calendar, categories, kindLabels, workshopLabel
     const now = todayInDubai();
     setToday(now);
     const index = column(now);
-    if (index >= 0) scrollToDay(index >= 7 ? 7 : 0, false);
+    if (index >= 0) scrollToDay(Math.floor(index / 7) * 7, false);
     // Only on mount.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -84,9 +87,9 @@ export function AgendaCalendar({ calendar, categories, kindLabels, workshopLabel
             )}>{category.label}</button>
           ))}
         </div>
-        <div role="group" aria-label={copy.weeksLabel} className="flex shrink-0 gap-2">
+        <div role="group" aria-label={copy.weeksLabel} className="flex gap-2 overflow-x-auto pb-1 lg:shrink-0">
           {weeks.map(week => (
-            <button key={week.start} type="button" onClick={() => scrollToDay(week.start)} className="min-h-11 whitespace-nowrap rounded-full border border-border-strong px-4 py-2 text-sm font-semibold text-fg transition-colors hover:border-gold hover:text-gold">
+            <button key={week.start} type="button" onClick={() => scrollToDay(week.start)} className="min-h-11 shrink-0 whitespace-nowrap rounded-full border border-border-strong px-4 py-2 text-sm font-semibold text-fg transition-colors hover:border-gold hover:text-gold">
               {week.label}
             </button>
           ))}
@@ -97,7 +100,7 @@ export function AgendaCalendar({ calendar, categories, kindLabels, workshopLabel
         <p role="status" className="text-sm text-fg-subtle">{count} {copy.resultsLabel} · {copy.selectHint}</p>
         <ul aria-label={copy.legendLabel} className="flex flex-wrap gap-x-4 gap-y-2 text-xs text-fg-muted">
           {spans.map(span => (
-            <li key={span.id} className="flex items-center gap-2" style={trackAccentStyle({ accent: span.accent })}>
+            <li key={span.id} data-track-over={isTrackOver(span.endsAt, now) || undefined} className="flex items-center gap-2" style={trackAccentStyle({ accent: span.accent })}>
               <span aria-hidden="true" className="agenda-swatch" />{span.label}
             </li>
           ))}
@@ -129,11 +132,12 @@ export function AgendaCalendar({ calendar, categories, kindLabels, workshopLabel
           ))}
 
           {lanes.map((lane, laneIndex) => lane.map(span => (
-            <div key={span.id} style={{ ...trackAccentStyle({ accent: span.accent }), gridColumn: `${span.start + 1} / ${span.end + 2}`, gridRow: laneIndex + 2 }}
+            <div key={span.id} data-track-over={isTrackOver(span.endsAt, now) || undefined} style={{ ...trackAccentStyle({ accent: span.accent }), gridColumn: `${span.start + 1} / ${span.end + 2}`, gridRow: laneIndex + 2 }}
               className="relative z-[1] mx-1 my-1.5 grid grid-cols-subgrid content-start">
               <div className="agenda-span col-span-full px-2.5 py-1.5">
-                <p className="sticky left-3 inline-flex max-w-full items-center gap-2 truncate text-xs font-semibold text-fg">
+                <p className="sticky left-3 inline-flex max-w-full flex-wrap items-center gap-x-2 text-xs font-semibold text-fg">
                   {span.href ? <Link href={span.href} className="truncate hover:underline">{span.label}</Link> : span.label}
+                  {isTrackOver(span.endsAt, now) ? <span className="shrink-0 font-mono text-[0.625rem] font-normal uppercase tracking-wider text-fg-muted">{tracksPageContent.progress.finishedLabel}</span> : null}
                 </p>
               </div>
               <div className="col-span-full grid grid-flow-row-dense grid-cols-subgrid gap-y-1.5 pt-1.5">

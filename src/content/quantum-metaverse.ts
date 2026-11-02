@@ -63,7 +63,7 @@ export const quantumMetaverseBrief: TrackBrief = {
       id: "participation-registration",
       title: "Participation & Registration",
       blocks: [
-        { type: "heading", text: "Registration open" },
+        { type: "heading", hideWhenOver: true, text: "Registration open" },
         { type: "paragraph", text: "Register individually using your full name, institution, email address and phone number, including country code." },
         { type: "heading", text: `${metaverseCapacityLabel} — first come, first served` },
         { type: "paragraph", text: "Slots will be allocated on a first-come, first-served basis, according to registration submission time." },

@@ -31,7 +31,7 @@ export const quantumFoundationsBrief: TrackBrief = {
         { type: "paragraph", text: "Explore quantum computing through a single-day challenge for high school students, taking place entirely in person at Khalifa University on 31 October 2026." },
         { type: "paragraph", text: "Participants will compete individually, completing unfinished quantum circuits by identifying and inserting the missing gates needed to achieve a specified target output or quantum state." },
         { type: "paragraph", text: "The challenge develops an understanding of quantum gates, circuit structure and how the order of operations affects a circuit’s behaviour." },
-        { type: "notice", paragraphs: ["Registration is open. Limited spots; your place will be confirmed by email."] },
+        { type: "notice", hideWhenOver: true, paragraphs: ["Registration is open. Limited spots; your place will be confirmed by email."] },
         { type: "circuit-motif" },
       ],
     },

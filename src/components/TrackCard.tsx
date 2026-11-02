@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import { Badge } from "@/components/ui/primitives";
 import { TrackCoverMark } from "@/components/TrackCoverMark";
+import { TrackProgressBadge } from "@/components/TrackProgressBadge";
 import { TrackStatusBadge } from "@/components/TrackStatusBadge";
 import { ArrowRightIcon, CalendarIcon, MapPinIcon, UsersIcon } from "@/components/ui/Icons";
 import { tracksPageContent } from "@/content/tracks";
@@ -10,6 +11,8 @@ import { cn, formatLabel, reachLabel } from "@/lib/utils";
 
 const statusKey = (status: string | TrackStatusLabel) => (typeof status === "string" ? status : status.label);
 const isMetadataStatus = (status: string | TrackStatusLabel) => typeof status !== "string" && status.cardPlacement === "metadata";
+/** Once a track is over only its date chips still hold, not "Registration open" or "Challenge live". */
+export const isDateStatus = (status: string | TrackStatusLabel) => typeof status !== "string" && status.icon === "flag";
 
 /** Inline style that hands a track's accent token to `.track-cover`, `.agenda-*` etc. */
 export function trackAccentStyle({ accent }: { accent: Track["accent"] | "lavender" }) {
@@ -43,20 +46,24 @@ export function TrackCard({
   onOpen,
   actionLabel,
   expanded,
+  over = false,
 }: {
   track: Track;
   onOpen: (trigger: HTMLButtonElement) => void;
   actionLabel: string;
   expanded?: boolean;
+  over?: boolean;
 }) {
   const participation = track.participationLabel ?? track.teamSizeLabel;
-  const statuses = track.statusLabels?.filter((status) => !isMetadataStatus(status)) ?? [];
-  const metadataStatuses = track.statusLabels?.filter(isMetadataStatus) ?? [];
+  const currentStatuses = track.statusLabels?.filter((status) => !over || isDateStatus(status)) ?? [];
+  const statuses = currentStatuses.filter((status) => !isMetadataStatus(status));
+  const metadataStatuses = currentStatuses.filter(isMetadataStatus);
 
   return (
     <article
       id={track.slug}
       data-track-card={track.slug}
+      data-track-over={over || undefined}
       style={trackAccentStyle(track)}
       className="card card-interactive group relative isolate flex h-full scroll-mt-28 flex-col overflow-hidden"
     >
@@ -64,11 +71,10 @@ export function TrackCard({
       <div aria-hidden="true" className="track-cover-accent" />
 
       <div className="flex flex-1 flex-col p-6 sm:p-8">
-        {statuses.length ? (
-          <div className="flex flex-wrap gap-2">
-            {statuses.map((status) => <TrackStatusBadge key={statusKey(status)} status={status} />)}
-          </div>
-        ) : null}
+        <div className="flex min-h-7 flex-wrap gap-2">
+          <TrackProgressBadge endsAt={track.endsAt} />
+          {statuses.map((status) => <TrackStatusBadge key={statusKey(status)} status={status} />)}
+        </div>
 
         <h3 className="mt-4 text-2xl font-semibold leading-tight text-fg sm:text-[1.75rem]">
           <button

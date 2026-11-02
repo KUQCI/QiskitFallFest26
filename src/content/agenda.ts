@@ -89,11 +89,11 @@ export const agendaPageContent = {
   eyebrow: event.dateLabel,
   title: "Agenda",
   lede: "Registration, workshops, challenge days and submission deadlines, laid out week by week. Each track has its own colour.",
-  metadataDescription: "The Qiskit Fall Fest 2026 agenda: published registration dates, workshops, track challenges and submission deadlines from 19 October to 1 November.",
+  metadataDescription: "The Qiskit Fall Fest 2026 agenda: published registration dates, workshops, track challenges and submission deadlines from 19 October to 7 November.",
   timezoneNote: "Times are UAE time (UTC+4), except the Quantum in Media submission deadline, which uses Pacific Time.",
   programmeNote: "This agenda lists published milestones. Detailed session timings and the full daily programme will be added as confirmed.",
   filterLabel: "Filter agenda",
-  timelineLabel: "Fall Fest week calendar, 19 October to 1 November 2026",
+  timelineLabel: "Fall Fest week calendar, 19 October to 8 November 2026",
   weeksLabel: "Jump to week",
   legendLabel: "Track colours",
   festLabel: "Qiskit Fall Fest 2026",
@@ -163,7 +163,7 @@ export const agendaItems: AgendaItem[] = [
     description: "An introduction to classical and quantum cryptography.",
     time: "8–9 PM · UAE time (GMT+4)", venue: "Online · Microsoft Teams",
     workshop: {
-      registration: { href: "https://forms.gle/cSh5o9JDtdcB7oLv8", enabled: true, closed: false },
+      registration: { href: "https://forms.gle/cSh5o9JDtdcB7oLv8", enabled: true, closed: true },
       organizers: "Quantum Computing Initiative × Cybersecurity Club",
       branding: [
         { name: "Quantum Computing Initiative", logo: fallFestAssets.logos.qciLogoFit.src },
@@ -189,7 +189,7 @@ export const agendaItems: AgendaItem[] = [
     description: quantumComputingWorkshop.description,
     time: quantumComputingWorkshop.time, venue: quantumComputingWorkshop.venue,
     workshop: {
-      registration: { href: "https://forms.gle/m3VbCpWPVt8aMaFV8", enabled: true, closed: false },
+      registration: { href: "https://forms.gle/m3VbCpWPVt8aMaFV8", enabled: true, closed: true },
       organizers: quantumComputingWorkshop.organizer,
       branding: [{ name: quantumComputingWorkshop.organizer, logo: fallFestAssets.logos.qciLogoFit.src }],
       topics: quantumComputingWorkshop.topics,
@@ -205,6 +205,13 @@ export const agendaItems: AgendaItem[] = [
     description: "Prepare a functional codebase and comparative evaluation of the classical and quantum approaches. The submission form will be added soon.",
     time: qmlDeadline.label,
   }),
+  {
+    id: "quantum-circuit-breakers-workshop", date: "2026-10-29", kind: "workshop",
+    title: "Quantum Circuit Breakers", context: event.name,
+    workshop: {
+      registration: { href: null, enabled: false, closed: true },
+    },
+  },
   trackItem("peaked-circuits", {
     id: "metaverse-challenge", date: "2026-10-30", kind: "event", title: "In-person VR challenge",
     time: metaverseTime,
@@ -212,11 +219,11 @@ export const agendaItems: AgendaItem[] = [
     venue: "Khalifa University, MetaHub Lab",
   }),
   trackItem("quantum-cybersecurity", {
-    id: "cybersecurity-ctf", date: "2026-11-01", kind: "event", title: "Online CTF competition",
+    id: "cybersecurity-ctf", date: "2026-11-07", kind: "event", title: "Online CTF competition",
     description: "A single-day quantum machine learning model-extraction competition. Timings and platform access will be shared by email.", venue: "Online",
   }),
   trackItem("quantum-media", {
-    id: "media-submission", date: "2026-10-30", kind: "deadline", title: "Submission deadline",
+    id: "media-submission", date: "2026-11-07", kind: "deadline", title: "Submission deadline",
     description: "Submission details will be shared soon. This deadline uses Pacific Time.", time: "11:59 PM · Pacific Time",
   }),
   trackItem("first-qubit", {
@@ -254,6 +261,7 @@ export interface AgendaSpan {
   label: string;
   accent: AgendaAccent;
   href?: string;
+  endsAt?: string;
   /** Column indexes into `agendaCalendar.days`, inclusive. */
   start: number;
   end: number;
@@ -262,7 +270,7 @@ export interface AgendaSpan {
 
 const DAY_MS = 86_400_000;
 const calendarStart = "2026-10-19";
-const calendarEnd = "2026-11-01";
+const calendarEnd = "2026-11-08";
 const dayIndex = (date: string) => Math.round((Date.parse(`${date}T12:00:00Z`) - Date.parse(`${calendarStart}T12:00:00Z`)) / DAY_MS);
 const dubai = (options: Intl.DateTimeFormatOptions, date: string) =>
   new Intl.DateTimeFormat("en-GB", { ...options, timeZone: "Asia/Dubai" }).format(new Date(`${date}T12:00:00+04:00`));
@@ -283,12 +291,12 @@ const trackSpans: AgendaSpan[] = tracks.flatMap(track => {
   const items = agendaItems.filter(item => item.trackSlug === track.slug);
   if (!items.length) return [];
   const indexes = items.map(item => dayIndex(item.date));
-  return [{ id: track.slug, label: track.title, accent: track.accent, href: `/tracks/#${track.slug}`, start: Math.min(...indexes), end: Math.max(...indexes), items }];
+  return [{ id: track.slug, label: track.title, accent: track.accent, href: `/tracks/#${track.slug}`, endsAt: track.endsAt, start: Math.min(...indexes), end: Math.max(...indexes), items }];
 });
 
 const festSpan: AgendaSpan = {
   id: "fall-fest", label: agendaPageContent.festLabel, accent: "lavender",
-  start: 0, end: calendarDays.length - 1,
+  start: 0, end: Math.max(...agendaItems.map(item => dayIndex(item.date))),
   items: agendaItems.filter(item => !item.trackSlug),
 };
 
@@ -309,7 +317,7 @@ function packLanes(spans: AgendaSpan[]) {
 
 export const agendaCalendar = {
   days: calendarDays,
-  weeks: [0, 7].map(start => ({
+  weeks: [0, 7, 14].map(start => ({
     start,
     label: `${calendarDays[start].day} ${calendarDays[start].month} – ${calendarDays[start + 6].day} ${calendarDays[start + 6].month}`,
   })),
