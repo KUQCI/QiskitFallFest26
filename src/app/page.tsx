@@ -72,7 +72,7 @@ export default function HomePage() {
                           {track.description ? <p className="mt-1 hidden text-sm leading-relaxed text-fg-muted sm:block">{track.description}</p> : null}
                         </div>
                         <span className="flex shrink-0 items-center gap-3">
-                          <TrackProgressBadge endsAt={track.endsAt} />
+                          <TrackProgressBadge endsAt={track.endsAt} showRunning={track.showRunningBadge} />
                           <ArrowRightIcon className="h-4 w-4 shrink-0 text-gold transition-transform group-hover:translate-x-1" />
                         </span>
                       </Link>

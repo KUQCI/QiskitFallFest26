@@ -3,16 +3,16 @@ import type { Phase } from "./types";
 export const formatSectionCopy = {
   compact: {
     eyebrow: "How it works",
-    title: "Three phases, two weeks of building",
+    title: "Four phases, from kickoff to final challenges",
     lede:
-      "Get started, take on your challenge, then share your work.",
+      "Get started, build and present, then finish with the international challenges on 7 November.",
     link: { label: "View How It Works", href: "/schedule/" },
   },
   detailed: {
     eyebrow: "How it works",
-    title: "Three phases, from kickoff to showcase",
+    title: "Four phases, from kickoff to international challenges",
     lede:
-      "The Fall Fest begins with an opening session, followed by two weeks of development and presentation, with closing showcases on 31 October and 1 November where participants present their work and winners are announced. The Fall Fest ends on 7 November.",
+      "The Fall Fest begins with an opening session, followed by development and closing showcases on 31 October and 1 November. International challenges conclude the Fest on 7 November with the Quantum Cybersecurity CTF and Quantum in Media submission deadline.",
   },
 } as const;
 
@@ -20,10 +20,10 @@ export const schedulePageContent = {
   eyebrow: "How it works",
   title: "What happens, and when",
   lede:
-    "The Fall Fest runs from 19 October to 7 November across three phases: an opening premiere, a two-week development period, and closing showcases.",
+    "The Fall Fest runs from 19 October to 7 November across four phases: the opening premiere, development, closing showcases, and international challenges.",
   countdownLabel: "Fall Fest begins",
   metadataDescription:
-    "How Qiskit Fall Fest 2026 works: an opening premiere on 19 October, a two-week development period, and closing showcases on 31 October and 1 November.",
+    "How Qiskit Fall Fest 2026 works: opening on 19 October, development, closing showcases on 31 October and 1 November, and international challenges on 7 November.",
 } as const;
 
 export const phases: Phase[] = [
@@ -105,7 +105,31 @@ export const phases: Phase[] = [
       {
         title: "Winner Announcements",
         description:
-          "Track and competition winners are announced as the Fall Fest comes to a close.",
+          "Winners of the closing showcase tracks and competitions are announced.",
+        status: "confirmed",
+      },
+    ],
+  },
+  {
+    slug: "international-challenges",
+    label: "Phase 04",
+    title: "International Challenges",
+    dateRange: "7 November 2026",
+    summary:
+      "The international tracks conclude online with the Quantum Cybersecurity CTF and the Quantum in Media submission deadline. Each track has its own participation and submission details.",
+    status: "confirmed",
+    sessions: [
+      {
+        title: "Quantum Cybersecurity CTF",
+        description: "An online Capture the Flag competition focused on quantum cybersecurity and quantum cryptography. Competition timings and platform access will be shared by email.",
+        format: "online",
+        status: "confirmed",
+      },
+      {
+        title: "Quantum in Media — Submission Deadline",
+        description: "Submit your Moth Quantum media project through the official submission form.",
+        time: "11:59 PM Pacific Time",
+        format: "online",
         status: "confirmed",
       },
     ],
@@ -117,6 +141,7 @@ const homePhaseSummaries: Record<string, string> = {
   opening: "Get to know the Fest and its tracks at Khalifa University or online.",
   hacking: "Work on your track challenge with workshops and mentors. In-person track days start on 30 October.",
   closing: "Project presentations, coding competitions and track winner announcements.",
+  "international-challenges": "Join the online Quantum Cybersecurity CTF or submit your Quantum in Media project. Media submissions close at 11:59 PM Pacific Time on 7 November.",
 };
 
 export const homePhases: Phase[] = phases.map(({ slug, label, title, dateRange, summary, status }) => ({

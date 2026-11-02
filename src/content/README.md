@@ -28,7 +28,7 @@ After an edit, run `npm run build` with the development server stopped.
 | Quantum in the Metaverse four-panel brief, venue, date labels and independent registration controls | `quantum-metaverse.ts` |
 | Quantum Foundations four-panel brief, high-school audience, date labels and independent registration controls | `quantum-foundations.ts` |
 | Quantum Machine Learning four-panel healthcare brief, exact deadline, submission controls and approved resources | `quantum-machine-learning.ts` |
-| Three phases, sessions, and How It Works page copy | `schedule.ts` |
+| Four phases, sessions, and How It Works page copy | `schedule.ts` |
 | Agenda milestones, week-calendar lanes, category filters, time-zone notes and track links | `agenda.ts` |
 | Confirmed partners, booth applications, and sponsorship contact copy | `sponsors.ts` |
 | Questions and cautious answers | `faq.ts` |
@@ -126,7 +126,9 @@ in `TrackBriefTabs`, `BiologyArtwork` and `globals.css`; list and timeline prese
 `BiologyArtwork` adapts the supplied SVG geometry to theme tokens and animates individual
 elements. Keep illustrations after their explanatory copy, retain reduced-motion support,
 and keep the compact popup header so the selected panel has room to scroll. The track
-directory groups national tracks before international tracks, with uniform card spacing.
+directory groups international tracks before national tracks, with uniform card spacing.
+How It Works includes Phase 04, International Challenges, on 7 November: the online
+Cybersecurity CTF and Media deadline at 11:59 PM Pacific Time. Keep CTF hours unconfirmed.
 Track status chips are opt-in through `statusLabels`. Biology shows
 "Challenge live" and "Submissions open"; QML shows "Challenge live" and "Submission
 form coming soon". Media also shows its approved "Challenge live" status. Cybersecurity uses the user's approved
@@ -139,7 +141,11 @@ never adds a chip by itself.
 Cybersecurity's newer approved content is in `quantum-cybersecurity.ts`, with four
 panels inside the same modal: Overview, How It Works, Participation & Registration,
 and Schedule & Preparation. Registration opened 23 October 2026 and the online CTF
-takes place on 7 November. The organizer approved and enabled the independent form at
+takes place on 7 November. Its theme is quantum cybersecurity and quantum cryptography;
+the earlier QML model-extraction theme is superseded, including animation labels and
+homepage/agenda summaries. `showRunningBadge: false` hides Still running on the CTF card
+and popup while retaining its Finished state after the end date. Registration and team
+rules stay unchanged. The organizer approved and enabled the independent form at
 `https://forms.gle/qc2R6mHAjuy6dCUD6`. The UAE calendar
 date is an additional guard, not a guessed opening hour. Without both an approved URL
 and release flag the action remains unavailable, including after 23 October. Keep
@@ -177,7 +183,7 @@ scoring rules, mandatory software/laptops, prizes or further eligibility restric
 
 The newer premiere HTML supplies visual references only, never replacement challenge
 copy. `TrackVisual` and `track-visuals/draw.ts` adapt its circuit, model comparison,
-Bloch sphere, CTF query flow and media pixel field. The Foundations circuit keeps its
+Bloch sphere, CTF challenge/clue/flag flow and media pixel field. The Foundations circuit keeps its
 missing gates hidden, while the CTF contains no actual flags or challenge data.
 QML retains its original animated graphical comparison alongside the balanced
 classical/quantum workflow and shared evaluation strip. Its caption makes clear that

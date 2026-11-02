@@ -35,6 +35,8 @@ export interface Track {
   deadlineLabel?: string;
   /** When the track's last published milestone ends. Drives the Finished / Still running state and closes its forms. Omit while the end date is unconfirmed; the track counts as still running. */
   endsAt?: string;
+  /** Hide the running badge for a future event while retaining its Finished state. */
+  showRunningBadge?: boolean;
   status: Status;
   /** Explicitly approved status chips. Omit until that track's labels are agreed. */
   statusLabels?: (string | TrackStatusLabel)[];

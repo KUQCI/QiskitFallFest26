@@ -283,7 +283,7 @@ export function TrackPanel({
 
             <div className="max-w-5xl px-5 pb-6 pt-5 sm:px-8 sm:pb-8 lg:px-12 lg:pb-10 lg:pt-7">
               <div className="flex flex-wrap gap-2">
-                <TrackProgressBadge endsAt={track.endsAt} />
+                <TrackProgressBadge endsAt={track.endsAt} showRunning={track.showRunningBadge} />
                 {track.statusLabels?.filter((status) => !over || isDateStatus(status)).map((status) => <TrackStatusBadge key={typeof status === "string" ? status : status.label} status={status} />)}
                 {track.reach ? <Badge tone="sky">{reachLabel(track.reach)}</Badge> : null}
                 {track.format ? <Badge tone="neutral">{track.formatDisplayLabel ?? formatLabel(track.format)}</Badge> : null}

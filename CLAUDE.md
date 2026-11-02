@@ -36,6 +36,9 @@ uses Agenda. The homepage keeps the organiser and technical-sponsor logos. Old
 fallback link. `src/content/agenda.ts` holds published track milestones, with no invented
 session hours or running order. Preserve the Media deadline's Pacific Time exception.
 Keep `/schedule/` as the separate How It Works overview of event phases.
+How It Works has four phases, ending with International Challenges on 7 November:
+the online Quantum Cybersecurity CTF and Quantum in Media deadline at 11:59 PM Pacific Time.
+Show international tracks before national tracks on both the homepage and Tracks page.
 Workshop schedules in `src/content/workshops.ts` are shared by Agenda and Biology:
 AD-OMICS biology/data stays on 26 October 2026 at 5:30 PM UAE time. QCI alone gives
 Programming the Future (Introduction to Quantum Computing & Quantum Machine Learning)
@@ -98,7 +101,11 @@ Keep its four poster topics. Its approved registration form is enabled at
   prizes, prerequisites or required laptops. Quantum Cybersecurity uses the user's newer four-panel
   brief in `src/content/quantum-cybersecurity.ts`, overriding the older track document.
   It is international and online, for 1–4 participants. Registration opens 23 October
-  2026; the CTF is on 7 November (rescheduled). Registration is open at
+  2026; the CTF is on 7 November (rescheduled), focused on quantum cybersecurity and
+  quantum cryptography, replacing all QML/model-extraction content and illustration labels.
+  Keep the existing participation/team rules and omit competition hours until confirmed.
+  Hide Still running for this track using `showRunningBadge: false`; keep date and
+  Registration open badges and its Finished state. Registration is open at
   `https://forms.gle/qc2R6mHAjuy6dCUD6`; the competition platform remains unset.
   Both are independent of global registration. A form needs an approved URL, an explicit release flag
   and the opening date to be reached in UAE time; the date alone never enables it.

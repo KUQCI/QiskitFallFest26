@@ -27,9 +27,8 @@ export const quantumCybersecurityBrief: TrackBrief = {
       title: "Overview",
       blocks: [
         { type: "heading", text: "Quantum Cybersecurity CTF" },
-        { type: "paragraph", text: "Investigate the security of quantum machine learning through a series of model-extraction challenges in an online Capture the Flag competition." },
-        { type: "paragraph", text: "Teams will interact with trained quantum models through black-box interfaces that accept inputs and return classification labels or probabilities, while internal parameters remain hidden. The challenge is to analyse what these outputs reveal, uncover protected information and complete defined extraction objectives." },
-        { type: "paragraph", text: "Participants may adapt existing model-extraction techniques or develop their own strategies. The competition rewards effective querying, analytical reasoning and a practical understanding of how model predictions can expose information about internal behaviour." },
+        { type: "paragraph", text: "Join an online Capture the Flag competition focused on quantum cybersecurity and quantum cryptography on 7 November 2026." },
+        { type: "paragraph", text: "Investigate security and cryptography challenges, work through clues and capture flags. Challenge instructions and platform access will be shared before the competition." },
         { type: "track-visual", kind: "ctf" },
       ],
     },
@@ -42,9 +41,9 @@ export const quantumCybersecurityBrief: TrackBrief = {
           ordered: true,
           presentation: "compact-steps",
           items: [
-            { title: "Query the model", text: "Submit inputs to the organizer-provided interface and examine the model’s responses." },
-            { title: "Investigate the outputs", text: "Develop strategies to recover the information required by each challenge." },
-            { title: "Capture flags and earn points", text: "Successfully completing extraction objectives and submitting the required information unlocks flags and earns points." },
+            { title: "Access the challenges", text: "Use the organizer-provided platform to explore the quantum cybersecurity and quantum cryptography challenges." },
+            { title: "Investigate and solve", text: "Analyse each challenge and its clues, then develop a solution individually or with your team." },
+            { title: "Capture flags and earn points", text: "Submit the flags you find through the competition platform to earn points." },
           ],
         },
         { type: "heading", text: "Scoring" },
@@ -73,7 +72,7 @@ export const quantumCybersecurityBrief: TrackBrief = {
           columns: ["2026 · UAE time (UTC+4)", "Milestone"],
           rows: [
             ["23 October 2026 — Registration opens", "The team lead submits one registration form for the team."],
-            ["7 November 2026 — Online CTF competition", "A single-day competition featuring quantum machine learning model-extraction challenges."],
+            ["7 November 2026 — Online CTF competition", "Quantum cybersecurity and quantum cryptography challenges. Participate online, individually or with your team."],
           ],
         },
         { type: "heading", text: "Before the competition" },

@@ -140,7 +140,7 @@ function bloch(g: Context, time: number, c: Palette) {
 function ctf(g: Context, t: number, c: Palette) {
   const progress = Math.min(1, (t % 11600) / 9000), ease = progress * progress * (3 - 2 * progress);
   g.strokeStyle = c.purple; g.lineWidth = 2; g.beginPath(); g.roundRect(230, 72, 164, 178, 8); g.stroke();
-  text(g, trackVisualCopy.ctf.model, 312, 103, c, c.purple, 21, "center");
+  text(g, trackVisualCopy.ctf.challenge, 312, 103, c, c.purple, 21, "center");
   for (let i = 0; i < 6; i++) {
     const target = 36 + 65 * (.5 + .5 * Math.sin(i * 2.1 + .8));
     g.fillStyle = c.purple; g.globalAlpha = .2; g.fillRect(246 + i * 23, 230 - target, 14, target);
@@ -154,8 +154,8 @@ function ctf(g: Context, t: number, c: Palette) {
     if (p < .52) halo(g, 60 + p / .52 * 170, y, c, 3);
     else if (p > .7) halo(g, 394 + (p - .7) / .3 * 45, y, c, 3);
   }
-  text(g, trackVisualCopy.ctf.queries, 104, 277, c, c.muted, 20, "center");
-  text(g, trackVisualCopy.ctf.outputs, 516, 277, c, c.muted, 20, "center");
+  text(g, trackVisualCopy.ctf.clues, 104, 277, c, c.muted, 20, "center");
+  text(g, trackVisualCopy.ctf.flags, 516, 277, c, c.muted, 20, "center");
   // Abstract masked cells and a flag icon only: never generate a flag value or secret.
   for (let i = 0; i < 16; i++) {
     g.fillStyle = i / 16 < progress ? c.purple : c.line; g.globalAlpha = i / 16 < progress ? .85 : .3;

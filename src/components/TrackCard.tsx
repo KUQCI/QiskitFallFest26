@@ -72,7 +72,7 @@ export function TrackCard({
 
       <div className="flex flex-1 flex-col p-6 sm:p-8">
         <div className="flex min-h-7 flex-wrap gap-2">
-          <TrackProgressBadge endsAt={track.endsAt} />
+          <TrackProgressBadge endsAt={track.endsAt} showRunning={track.showRunningBadge} />
           {statuses.map((status) => <TrackStatusBadge key={statusKey(status)} status={status} />)}
         </div>
 

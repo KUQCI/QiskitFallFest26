@@ -5,5 +5,5 @@ export const trackVisualCopy = {
     quantum: "Quantum model",
     caption: "Illustrative comparison — not measured results.",
   },
-  ctf: { model: "QML model", queries: "Queries", outputs: "Outputs" },
+  ctf: { challenge: "Challenge", clues: "Clues", flags: "Flags" },
 };

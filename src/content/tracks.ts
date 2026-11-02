@@ -93,13 +93,14 @@ export const tracks: Track[] = [
     accent: "orange",
     title: "Quantum Cybersecurity",
     summary:
-      "Query quantum machine learning models, uncover protected information and capture flags in an online model-extraction competition.",
+      "Solve quantum cybersecurity and quantum cryptography challenges in an online Capture the Flag competition on 7 November.",
     reach: "international",
     format: "online",
     formatDisplayLabel: "Online",
     teamSizeLabel: "1–4 participants",
     status: "confirmed",
     statusLabels: cybersecurityDateLabels,
+    showRunningBadge: false,
     endsAt: "2026-11-07T23:59:59+04:00",
     details: {
       brief: quantumCybersecurityBrief,
@@ -175,12 +176,12 @@ const homeTrackDescriptions: Record<string, string> = {
   "quantum-machine-learning": "Quantum ML for healthcare",
   "chemistry-drug-discovery": "Find a four-gene panel",
   "peaked-circuits": "Quantum gates in VR",
-  "quantum-cybersecurity": "Quantum model extraction",
+  "quantum-cybersecurity": "Quantum cybersecurity & cryptography",
   "quantum-media": "Create with Moth Quantum",
 };
 
-export const homeTrackPreviews = tracks.map(({ slug, title, reach, endsAt }) => ({
-  slug, title, reach, endsAt, description: homeTrackDescriptions[slug],
+export const homeTrackPreviews = tracks.map(({ slug, title, reach, endsAt, showRunningBadge }) => ({
+  slug, title, reach, endsAt, showRunningBadge, description: homeTrackDescriptions[slug],
 }));
 
 export const featuredTrackSlugs = [
@@ -192,8 +193,8 @@ export const featuredTrackSlugs = [
 
 export const tracksPageContent = {
   groups: [
-    { reach: "national", heading: "National" },
     { reach: "international", heading: "International" },
+    { reach: "national", heading: "National" },
   ] as const,
   eyebrow: "Tracks",
   title: "Find your path into quantum",
@@ -230,7 +231,7 @@ export const tracksPageContent = {
   progress: {
     finishedLabel: "Finished",
     runningLabel: "Still running",
-    runningHeading: "Still running",
+    runningHeading: "Upcoming & open tracks",
     allFinished: "All six tracks have finished. Their challenge briefs stay here for reference.",
     panelNotice: "This track has finished. Registration and submissions are closed.",
     registrationClosedLabel: "Registration closed",
