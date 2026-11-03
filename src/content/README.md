@@ -128,7 +128,8 @@ elements. Keep illustrations after their explanatory copy, retain reduced-motion
 and keep the compact popup header so the selected panel has room to scroll. The track
 directory groups international tracks before national tracks, with uniform card spacing.
 How It Works includes Phase 04, International Challenges, on 7 November: the online
-Cybersecurity CTF and Media deadline at 11:59 PM Pacific Time. Keep CTF hours unconfirmed.
+Cybersecurity CTF and Quantum in Media. Omit the Media submission deadline from How It
+Works and its homepage preview; keep it on the Media track and Agenda. Keep CTF hours unconfirmed.
 Track status chips are opt-in through `statusLabels`. Biology shows
 "Challenge live" and "Submissions open"; QML shows "Challenge live" and "Submission
 form coming soon". Media also shows its approved "Challenge live" status. Cybersecurity uses the user's approved

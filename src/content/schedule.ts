@@ -12,7 +12,7 @@ export const formatSectionCopy = {
     eyebrow: "How it works",
     title: "Four phases, from kickoff to international challenges",
     lede:
-      "The Fall Fest begins with an opening session, followed by development and closing showcases on 31 October and 1 November. International challenges conclude the Fest on 7 November with the Quantum Cybersecurity CTF and Quantum in Media submission deadline.",
+      "The Fall Fest begins with an opening session, followed by development and closing showcases on 31 October and 1 November. International challenges round out the Fest on 7 November with Quantum Cybersecurity and Quantum in Media.",
   },
 } as const;
 
@@ -116,7 +116,7 @@ export const phases: Phase[] = [
     title: "International Challenges",
     dateRange: "7 November 2026",
     summary:
-      "The international tracks conclude online with the Quantum Cybersecurity CTF and the Quantum in Media submission deadline. Each track has its own participation and submission details.",
+      "Explore the international tracks online through the Quantum Cybersecurity CTF and Quantum in Media. See each track for its participation and submission details.",
     status: "confirmed",
     sessions: [
       {
@@ -126,9 +126,8 @@ export const phases: Phase[] = [
         status: "confirmed",
       },
       {
-        title: "Quantum in Media — Submission Deadline",
-        description: "Submit your Moth Quantum media project through the official submission form.",
-        time: "11:59 PM Pacific Time",
+        title: "Quantum in Media",
+        description: "Create images, sound, video, games or apps with Moth Quantum’s media engines. See the track page for submission details.",
         format: "online",
         status: "confirmed",
       },
@@ -141,7 +140,7 @@ const homePhaseSummaries: Record<string, string> = {
   opening: "Get to know the Fest and its tracks at Khalifa University or online.",
   hacking: "Work on your track challenge with workshops and mentors. In-person track days start on 30 October.",
   closing: "Project presentations, coding competitions and track winner announcements.",
-  "international-challenges": "Join the online Quantum Cybersecurity CTF or submit your Quantum in Media project. Media submissions close at 11:59 PM Pacific Time on 7 November.",
+  "international-challenges": "Explore the online Quantum Cybersecurity CTF and Quantum in Media tracks.",
 };
 
 export const homePhases: Phase[] = phases.map(({ slug, label, title, dateRange, summary, status }) => ({

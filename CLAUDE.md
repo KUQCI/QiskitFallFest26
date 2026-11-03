@@ -37,7 +37,8 @@ fallback link. `src/content/agenda.ts` holds published track milestones, with no
 session hours or running order. Preserve the Media deadline's Pacific Time exception.
 Keep `/schedule/` as the separate How It Works overview of event phases.
 How It Works has four phases, ending with International Challenges on 7 November:
-the online Quantum Cybersecurity CTF and Quantum in Media deadline at 11:59 PM Pacific Time.
+the online Quantum Cybersecurity CTF and Quantum in Media. Do not display Media’s
+submission deadline in How It Works or its homepage preview; keep it on the track and Agenda.
 Show international tracks before national tracks on both the homepage and Tracks page.
 Workshop schedules in `src/content/workshops.ts` are shared by Agenda and Biology:
 AD-OMICS biology/data stays on 26 October 2026 at 5:30 PM UAE time. QCI alone gives
