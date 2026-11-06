@@ -100,19 +100,9 @@ export const quantumMediaBrief: TrackBrief = {
       title: "Submissions & Resources",
       blocks: [
         { type: "heading", text: "Submit your project" },
-<<<<<<< HEAD
-        { type: "notice", paragraphs: ["Submission deadline: 7 November 2026, 11:59 PM Pacific Time (UTC-8)."] },
-        { type: "paragraph", hideWhenOver: true, text: "Submit your project through the official submission form before the deadline. Check your chosen theme for what to include." },
-        { type: "links", hideWhenOver: true, items: [{ label: "Submit your project", href: "https://tally.so/r/OQDOD7" }] },
-||||||| parent of 7de2847 (fix: corrupt submission link)
-        { type: "notice", paragraphs: ["Submission deadline: 1st November 2026, 11:59 PM Pacific Time (UTC-8)."] },
-        { type: "paragraph", text: "Submit your project through the official submission form before the deadline. Check your chosen theme for what to include." },
-        { type: "links", items: [{ label: "Submit your project", href: "https://tally.so/r/OQDOD7" }] },
-=======
         { type: "notice", paragraphs: ["Submission deadline: 1st November 2026, 11:59 PM Pacific Time (UTC-8)."] },
         { type: "paragraph", text: "Submit your project through the official submission form before the deadline. Check your chosen theme for what to include." },
         { type: "links", items: [{ label: "Submit your project", href: "https://tally.so/r/o9bq55" }] },
->>>>>>> 7de2847 (fix: corrupt submission link)
         { type: "heading", text: "Tools & support" },
         { type: "links", items: mediaResources },
       ],
