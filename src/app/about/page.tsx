@@ -3,42 +3,20 @@ import Image from "next/image";
 
 import { PageHeader } from "@/components/PageHeader";
 import { Reveal } from "@/components/Reveal";
-import { CtaSection } from "@/components/sections/CtaSection";
-import { ResourcesSection } from "@/components/sections/ResourcesSection";
 import { Badge, Container, Section, SectionHeading } from "@/components/ui/primitives";
 import { ArrowRightIcon, ExternalLinkIcon } from "@/components/ui/Icons";
 import { fallFestAssets } from "@/content/assets";
 import { event } from "@/content/event";
 import {
   aboutContent,
-  advisor,
   pastEvents,
   researchProjects,
-  speakers,
 } from "@/content/team";
 
 export const metadata: Metadata = {
   title: "About",
   description: aboutContent.metadataDescription,
 };
-
-function Initials({ name }: { name: string }) {
-  const initials = name
-    .split(" ")
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((word) => word[0])
-    .join("");
-
-  return (
-    <span
-      className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-border bg-surface-2 font-mono text-sm font-semibold text-gold"
-      aria-hidden="true"
-    >
-      {initials}
-    </span>
-  );
-}
 
 export default function AboutPage() {
   return (
@@ -82,18 +60,6 @@ export default function AboutPage() {
           </div>
         </Container>
       </div>
-
-      <Section className="border-t border-border bg-surface/25">
-        <Container>
-          <SectionHeading eyebrow={aboutContent.facultyAdvisorEyebrow} title={advisor.name} />
-          <div className="mt-8 max-w-3xl">
-            <p className="font-mono text-sm text-sky">{advisor.organization}</p>
-            <p className="mt-4 text-base leading-relaxed text-fg-muted sm:text-lg">
-              {aboutContent.facultyAdvisorDescription}
-            </p>
-          </div>
-        </Container>
-      </Section>
 
       <Section className="border-t border-border">
         <Container>
@@ -198,61 +164,6 @@ export default function AboutPage() {
         </Container>
       </Section>
 
-      <Section className="border-t border-border">
-        <Container>
-          <SectionHeading
-            eyebrow={aboutContent.speakersEyebrow}
-            title={aboutContent.speakersTitle}
-            lede={aboutContent.speakersDescription}
-          />
-
-          {speakers.length > 0 ? (
-            <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {speakers.map((speaker, index) => (
-                <Reveal as="li" key={speaker.name} delay={(index % 3) * 60}>
-                  <div className="card flex h-full items-start gap-4 p-5">
-                    <Initials name={speaker.name} />
-                    <div className="min-w-0">
-                      <h3 className="text-base font-semibold text-fg">{speaker.name}</h3>
-                      <p className="mt-0.5 text-sm text-sky">{speaker.role}</p>
-                      <p className="mt-0.5 text-sm text-fg-subtle">{speaker.organization}</p>
-                      {speaker.bio ? (
-                        <p className="mt-2 text-sm leading-relaxed text-fg-muted">
-                          {speaker.bio}
-                        </p>
-                      ) : null}
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
-            </ul>
-          ) : (
-            <div className="card mt-10 flex flex-col items-start gap-4 p-8 sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <h3 className="text-base font-medium text-fg">
-                  {aboutContent.speakersEmptyTitle}
-                </h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-fg-muted">
-                  {aboutContent.speakersEmptyDescription}
-                </p>
-              </div>
-              <a
-                href={event.socials.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${aboutContent.followAnnouncementsLabel} (opens in a new tab)`}
-                className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full border border-border-strong px-5 py-2.5 text-sm font-semibold text-fg transition-colors hover:border-gold hover:text-gold"
-              >
-                {aboutContent.followAnnouncementsLabel}
-                <ExternalLinkIcon className="h-4 w-4" />
-              </a>
-            </div>
-          )}
-        </Container>
-      </Section>
-
-      <ResourcesSection />
-      <CtaSection variant="opening" />
     </>
   );
 }

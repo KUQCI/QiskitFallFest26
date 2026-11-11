@@ -67,10 +67,10 @@ export const fallFestAssets = {
     ),
     khalifaUniversityWhiteBackground: imageAsset("ku-logo_white-bg.jpg", "ku-logo_white-bg.jpg"),
     nyuadCqts: imageAsset("nyuad-cqts-logo.png", "nyuad-cqts-logo.png"),
-    /** QCI badge cut from a 4x vector render of "QCI logo badge.pdf" (supplied original, kept alongside). */
-    qciLogo: imageAsset("qci-logo.png", "qci-logo.png"),
-    qciLogoFit: imageAsset("qci-logo-fit.png", "qci-logo-fit.png"),
-    qciLogoHeader: imageAsset("qci-logo-header.png", "qci-logo-header.png"),
+    /** Supplied original transparent QCI badge, without "Khalifa University" lettering. */
+    qciLogo: imageAsset("qci-logo-original.png", "qci-logo-original.png"),
+    qciLogoFit: imageAsset("qci-logo-original.png", "qci-logo-original.png"),
+    qciLogoHeader: imageAsset("qci-logo-original.png", "qci-logo-original.png"),
     quantaTransparent: imageAsset(
       "Quanta version_1_backgroundless.png",
       "Quanta version_1_backgroundless.png",

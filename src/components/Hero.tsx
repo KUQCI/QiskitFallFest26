@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { Countdown } from "@/components/Countdown";
 import { PremiereLink } from "@/components/PremiereLink";
 import { QuantumField } from "@/components/QuantumField";
 import { RegisterButton } from "@/components/RegisterButton";
@@ -85,12 +84,12 @@ export function Hero() {
 
             <div className="absolute inset-x-4 bottom-4 rounded-[1.125rem] border border-border bg-bg/90 p-5 backdrop-blur-md sm:inset-x-6 sm:bottom-6 sm:p-6">
               <p className="font-mono text-2xs uppercase tracking-[0.2em] text-pink">
-                Fall Fest begins
+                {event.name}
               </p>
               <p className="mt-2 text-lg font-semibold text-fg sm:text-xl">
-                {event.openingDateLabel}
+                {event.dateLabel}
               </p>
-              <Countdown className="mt-4" />
+              <p className="mt-4 font-mono text-sm uppercase tracking-[0.16em] text-gold">{event.statusLabel}</p>
               <PremiereLink className="mt-4" />
             </div>
           </div>

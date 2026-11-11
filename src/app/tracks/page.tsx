@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 
 import { PageHeader } from "@/components/PageHeader";
 import { TrackExplorer } from "@/components/TrackExplorer";
-import { CtaSection } from "@/components/sections/CtaSection";
 import { Container, Section } from "@/components/ui/primitives";
 import { tracks, tracksPageContent } from "@/content/tracks";
 
@@ -31,7 +30,6 @@ export default function TracksPage() {
         </Container>
       </Section>
 
-      <CtaSection />
     </>
   );
 }

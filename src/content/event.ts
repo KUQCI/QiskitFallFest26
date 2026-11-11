@@ -14,6 +14,7 @@ export const event = {
   premiereUrl: "https://www.youtube.com/live/1h3hqHFWAvs?si=8703JbLk1sDLQpHr",
   premiereLabel: "Watch the premiere",
   dateLabel: "19 October – 7 November 2026",
+  statusLabel: "Fall Fest has concluded",
   closingDateLabel: "31 October – 1 November 2026",
 
   venue: {
@@ -27,7 +28,7 @@ export const event = {
   /**
    * Label of every sign-up control while `registrationUrl` is null. It links to
    * `registrationTracksHref`, because each track runs its own registration. This lives
-   * here rather than in `homeContent` because the CTA section renders on five routes,
+   * here rather than in `homeContent` because the header and homepage CTA share it,
    * so the label has to read the same everywhere.
    */
   registrationOpensLabel: "Tracks",

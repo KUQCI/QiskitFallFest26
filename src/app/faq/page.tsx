@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 
 import { PageHeader } from "@/components/PageHeader";
-import { CtaSection } from "@/components/sections/CtaSection";
 import { FaqAccordion } from "@/components/sections/FaqAccordion";
 import { Container, Section } from "@/components/ui/primitives";
 import { MailIcon } from "@/components/ui/Icons";
@@ -52,7 +51,6 @@ export default function FaqPage() {
         </Container>
       </Section>
 
-      <CtaSection />
     </>
   );
 }

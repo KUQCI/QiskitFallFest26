@@ -36,6 +36,9 @@ uses Agenda. The homepage keeps the organiser and technical-sponsor logos. Old
 fallback link. `src/content/agenda.ts` holds published track milestones, with no invented
 session hours or running order. Preserve the Media deadline's Pacific Time exception.
 Keep `/schedule/` as the separate How It Works overview of event phases.
+The event has concluded. The homepage bird card and How It Works event summary show
+`event.statusLabel` (Fall Fest has concluded) and the full event date range, with no opening
+countdown or underway message. Post-event results will be supplied separately; do not invent them.
 How It Works has four phases, ending with International Challenges on 7 November:
 the online Quantum Cybersecurity CTF and Quantum in Media. Do not display Media’s
 submission deadline in How It Works or its homepage preview; keep it on the track and Agenda.
@@ -48,6 +51,11 @@ Keep its four poster topics. Its approved registration form is enabled at
 `https://forms.gle/m3VbCpWPVt8aMaFV8`; the Teams joining link and speaker names remain unconfirmed.
 
 ## Content honesty
+
+Use `fallFestAssets.logos.qciLogo`, `qciLogoFit` or `qciLogoHeader` for all QCI branding.
+They point to `qci-logo-original.png`, an unchanged copy of the supplied transparent
+`Initiative logo bg_less.png`, without Khalifa University lettering. Do not restore the
+university-labelled badge on the About page, navigation, footer or workshop branding.
 
 - Never list a sponsor, speaker, department, or partner that has not agreed in writing.
 - Use `confirmed`, `planning`, `tentative`, and `tba` accurately.

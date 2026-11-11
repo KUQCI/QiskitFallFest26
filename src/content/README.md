@@ -32,10 +32,15 @@ After an edit, run `npm run build` with the development server stopped.
 | Agenda milestones, week-calendar lanes, category filters, time-zone notes and track links | `agenda.ts` |
 | Confirmed partners, booth applications, and sponsorship contact copy | `sponsors.ts` |
 | Questions and cautious answers | `faq.ts` |
-| Organizer, advisor, past events, R&D projects, and speakers | `team.ts` |
+| Organizer, faculty advisors, past events, R&D projects, and speakers | `team.ts` |
 | Learning links and shared section copy | `resources.ts` |
 | Public design assets and base-path-safe URLs | `assets.ts` |
 | Labels for decorative track animations; no challenge rules or measured results | `track-visuals.ts` |
+
+The Faculty Advisors section is temporarily removed from the About page at the organizer's
+request. The advisor content remains in `team.ts` for later use; do not restore it unless asked.
+The shared learning Resources and registration CTA sections appear on Home only.
+Do not add `ResourcesSection` or `CtaSection` to the other pages.
 
 ## Interest form and registration
 
@@ -223,7 +228,7 @@ Each track runs its own registration, so the shared `RegisterButton` has two sta
 | Single event-wide registration | `event.registrationUrl` | Register (external) |
 
 The old "Get notified" interest-form stage has been removed. `registrationOpensLabel`
-lives in `event.ts`, not `homeContent`, because the CTA section renders on five routes
+lives in `event.ts`, not `homeContent`, because the header and homepage CTA share it
 and the label has to read the same on all of them. The CTA section shows
 `registrationNote` beneath the button until `registrationUrl` is set.
 
@@ -278,7 +283,9 @@ The original CR2/JPG event photos are preserved. Pages should use the web deriva
 
 ## Adding speakers or projects
 
-The empty `speakers` array creates an honest announcement state. Add a `Speaker` only
+The Speakers and Mentors section and its announcement placeholder are removed from
+the About page at the organizer's request. The `speakers` array is retained for later use;
+do not restore the section unless asked. Add a `Speaker` only
 after the person has agreed to be named. R&D cards use verified existing links; omit a
 link rather than guessing a project URL.
 

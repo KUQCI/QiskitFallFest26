@@ -21,7 +21,6 @@ export const schedulePageContent = {
   title: "What happens, and when",
   lede:
     "The Fall Fest runs from 19 October to 7 November across four phases: the opening premiere, development, closing showcases, and international challenges.",
-  countdownLabel: "Fall Fest begins",
   metadataDescription:
     "How Qiskit Fall Fest 2026 works: opening on 19 October, development, closing showcases on 31 October and 1 November, and international challenges on 7 November.",
 } as const;

@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 
-import { Countdown } from "@/components/Countdown";
 import { PageHeader } from "@/components/PageHeader";
 import { PremiereLink } from "@/components/PremiereLink";
-import { CtaSection } from "@/components/sections/CtaSection";
 import { FormatSection } from "@/components/sections/FormatSection";
 import { Container } from "@/components/ui/primitives";
 import { event } from "@/content/event";
@@ -28,24 +26,23 @@ export default function SchedulePage() {
         <div className="editorial-panel grid gap-7 p-6 sm:p-8 lg:grid-cols-12 lg:items-center lg:gap-10">
           <div className="lg:col-span-5">
             <p className="font-mono text-2xs uppercase tracking-[0.2em] text-pink">
-              {schedulePageContent.countdownLabel}
+              {event.name}
             </p>
             <p className="mt-3 text-2xl font-semibold text-fg sm:text-3xl">
-              {event.openingDateLabel}
+              {event.dateLabel}
             </p>
             <p className="mt-2 text-sm text-fg-muted sm:text-base">
               {event.venue.name}, {event.venue.city}
             </p>
           </div>
           <div className="space-y-5 lg:col-span-7">
-            <Countdown />
+            <p className="font-mono text-sm uppercase tracking-[0.16em] text-gold">{event.statusLabel}</p>
             <PremiereLink />
           </div>
         </div>
       </Container>
 
       <FormatSection variant="detailed" />
-      <CtaSection />
     </>
   );
 }
