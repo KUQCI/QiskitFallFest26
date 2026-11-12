@@ -32,11 +32,11 @@ export const workshopResults = [
 type TrackResult = { line: string; blocks: TrackBriefBlock[] };
 export const trackResults: Record<string, TrackResult> = {
   "quantum-cybersecurity": {
-    line: "178 players · 45 institutions · 8 countries · 1,630 flags",
+    line: "178 hackers · 45 institutions · 8 countries · 1,630 flags",
     blocks: [
-      { type: "paragraph", text: "QCTF took place online on 7 November 2026. 178 players competed as 57 teams and 52 solo entrants, representing 45 institutions in 8 countries." },
+      { type: "paragraph", text: "QCTF took place online on 7 November 2026. 178 hackers competed as 57 teams and 52 solo entrants, representing 45 institutions in 8 countries." },
       { type: "facts", columns: 2, items: [
-        { label: "Players", value: "178", icon: "users" },
+        { label: "Hackers", value: "178", icon: "users" },
         { label: "Institutions", value: "45", icon: "students" },
         { label: "Countries", value: "8", icon: "location" },
         { label: "Flags captured", value: "1,630", icon: "users" },

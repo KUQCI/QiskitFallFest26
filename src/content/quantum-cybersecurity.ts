@@ -1,5 +1,6 @@
 import type { TrackBrief, TrackStatusLabel } from "./types";
 import { resultsPanel } from "./results";
+import { ctfCategoryPanel } from "./ctf-categories";
 
 export const cybersecurityLinks = {
   "registration": {
@@ -19,20 +20,21 @@ export const cybersecurityLinks = {
 export const cybersecurityDateLabels: TrackStatusLabel[] = [];
 
 export const quantumCybersecurityBrief: TrackBrief = {
-  "navigationLabel": "Quantum Cybersecurity challenge panels",
+  "navigationLabel": "Quantum Capture the Flag (QCTF) challenge panels",
   "panels": [
   resultsPanel("quantum-cybersecurity"),
+  ctfCategoryPanel,
   {
     "id": "overview",
     "title": "Overview",
     "blocks": [
       {
         "type": "paragraph",
-        "text": "QCTF was an online Capture the Flag competition focused on quantum cybersecurity and quantum cryptography, held on 7 November 2026."
+        "text": "Quantum Capture the Flag (QCTF) was an online competition held on 7 November 2026, spanning quantum circuits, cryptography, machine learning and Peaked Circuits challenges."
       },
       {
         "type": "paragraph",
-        "text": "Players investigated security and cryptography challenges, worked through clues and captured flags. The QCI R&D team built the platform and all 26 challenges across 5 categories."
+        "text": "Hackers solved challenges, worked through clues and captured flags. The QCI R&D team built the platform and all 26 challenges across five categories, highlighted in the Challenge Categories panel."
       },
       {
         "type": "track-visual",
@@ -51,15 +53,15 @@ export const quantumCybersecurityBrief: TrackBrief = {
         "items": [
           {
             "title": "Explore the challenges",
-            "text": "Players accessed the quantum cybersecurity and quantum cryptography challenges on the QCI-built platform."
+            "text": "Hackers explored challenges across all five categories on the QCI-built platform."
           },
           {
             "title": "Investigate and solve",
-            "text": "Players analysed each challenge and its clues, working individually or as a team."
+            "text": "Hackers analysed each challenge and its clues, working individually or as a team."
           },
           {
             "title": "Capture flags and earn points",
-            "text": "Players submitted flags through the platform. Entries were ranked by points and time."
+            "text": "Hackers submitted flags through the platform. Entries were ranked by points and time."
           }
         ]
       }
@@ -81,7 +83,7 @@ export const quantumCybersecurityBrief: TrackBrief = {
       },
       {
         "type": "paragraph",
-        "text": "178 players competed as 57 teams and 52 solo entrants, from 45 institutions in 8 countries."
+        "text": "178 hackers competed as 57 teams and 52 solo entrants, from 45 institutions in 8 countries."
       }
     ]
   },
@@ -99,7 +101,7 @@ export const quantumCybersecurityBrief: TrackBrief = {
         "rows": [
           [
             "7 November 2026",
-            "Online CTF competition focused on quantum cybersecurity and quantum cryptography."
+            "Online competition spanning quantum circuits, quantum cryptography and QKD, quantum ML, post-quantum cryptography, and Peaked Circuits."
           ]
         ]
       },

@@ -92,9 +92,9 @@ const trackDefinitions: Track[] = [
   {
     slug: "quantum-cybersecurity",
     accent: "orange",
-    title: "Quantum Cybersecurity",
+    title: "Quantum Capture the Flag (QCTF)",
     summary:
-      "Players tackled quantum cybersecurity and quantum cryptography challenges in an online CTF on 7 November.",
+      "Hackers tackled 26 quantum challenges across five categories in an online Capture the Flag competition on 7 November.",
     reach: "international",
     format: "online",
     formatDisplayLabel: "Online",
@@ -185,7 +185,7 @@ const homeTrackDescriptions: Record<string, string> = {
   "quantum-machine-learning": "Quantum ML for healthcare",
   "chemistry-drug-discovery": "Find a four-gene panel",
   "peaked-circuits": "Quantum gates in VR",
-  "quantum-cybersecurity": "Quantum cybersecurity & cryptography",
+  "quantum-cybersecurity": "26 challenges across five categories",
   "quantum-media": "Create with Moth Quantum",
 };
 
@@ -230,7 +230,7 @@ export const tracksPageContent = {
         format: "Fully virtual",
         points: [
           { label: "Schedules", text: "The online international challenges concluded on 7 November, following the national finals." },
-          { label: "Quantum Cybersecurity · 7 November", text: "Online CTF competition with 178 players from 45 institutions in 8 countries." },
+          { label: "Quantum Capture the Flag (QCTF) · 7 November", text: "Online CTF competition with 178 hackers from 45 institutions in 8 countries." },
         ],
       },
     ],

@@ -38,7 +38,8 @@ After an edit, run `npm run build` with the development server stopped.
 | Event identity, opening time, venue, registration, contact, socials, home/footer/CTA copy | `event.ts` |
 | Track names, broad descriptions, reach, format, order, Tracks page copy, and expanded panel `details` | `tracks.ts` |
 | Published Quantum Biology brief, six panels, and participant resource/form release flags | `quantum-biology.ts` |
-| Quantum Cybersecurity four-panel brief, date labels, independent registration and platform configuration | `quantum-cybersecurity.ts` |
+| Quantum Capture the Flag (QCTF) archived brief and closed registration configuration | `quantum-cybersecurity.ts` |
+| Verified QCTF categories, challenge counts and examples | `ctf-categories.ts` |
 | Quantum in the Metaverse four-panel brief, venue, date labels and independent registration controls | `quantum-metaverse.ts` |
 | Quantum Foundations four-panel brief, high-school audience, date labels and independent registration controls | `quantum-foundations.ts` |
 | Quantum Machine Learning four-panel healthcare brief, exact deadline, submission controls and approved resources | `quantum-machine-learning.ts` |
@@ -162,9 +163,13 @@ never adds a chip by itself.
 Cybersecurity's newer approved content is in `quantum-cybersecurity.ts`, with four
 panels inside the same modal: Overview, How It Works, Participation & Registration,
 and Schedule & Preparation. Registration opened 23 October 2026 and the online CTF
-takes place on 7 November. Its theme is quantum cybersecurity and quantum cryptography;
-the earlier QML model-extraction theme is superseded, including animation labels and
-homepage/agenda summaries. `showRunningBadge: false` hides Still running on the CTF card
+took place on 7 November. Its visible name is Quantum Capture the Flag (QCTF); keep the
+`quantum-cybersecurity` slug and existing panel IDs. Its Challenge Categories panel uses
+the supplied workbook's Challenges!A2:B27: Quantum Circuits (10), Quantum Crypto & QKD (5),
+Quantum ML (1), Post-Quantum Crypto (5), and Peaked Circuits (5). The workbook was read
+only for category names, counts and example challenge titles; retain the organizer's corrected
+2,561 submissions and existing published participation totals. Do not publish personal data
+or named winners from the workbook. `showRunningBadge: false` hides Still running on the CTF card
 and popup while retaining its Finished state after the end date. Registration and team
 rules stay unchanged. The organizer approved and enabled the independent form at
 `https://forms.gle/qc2R6mHAjuy6dCUD6`. The UAE calendar

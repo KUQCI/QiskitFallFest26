@@ -105,12 +105,12 @@ export const phases: Phase[] = [
     "label": "Phase 04",
     "title": "International Challenges",
     "dateRange": "7 November 2026",
-    "summary": "The international challenges concluded on 7 November. QCTF brought together 178 players; Quantum in Media received 4 submissions.",
+    "summary": "The international challenges concluded on 7 November. QCTF brought together 178 hackers; Quantum in Media received 4 submissions.",
     "status": "confirmed",
     "sessions": [
       {
-        "title": "Quantum Cybersecurity CTF",
-        "description": "178 players represented 45 institutions in 8 countries and captured 1,630 flags. The QCI R&D team built the platform and all challenges.",
+        "title": "Quantum Capture the Flag (QCTF)",
+        "description": "178 hackers represented 45 institutions in 8 countries and captured 1,630 flags. The QCI R&D team built the platform and all challenges.",
         "status": "confirmed"
       },
       {
@@ -126,7 +126,7 @@ const homePhaseSummaries: Record<string, string> = {
   "opening": "The premiere introduced six tracks and brought the community together on 19 October.",
   "hacking": "Four workshops recorded 265, 33, 336 and 173 attendees, alongside project development.",
   "closing": "National events included Biology’s 6 finalist teams, QML finals, 109 Foundations students and 5 Metaverse contestants.",
-  "international-challenges": "QCTF recorded 178 players and 1,630 flags; Quantum in Media received 4 submissions."
+  "international-challenges": "QCTF recorded 178 hackers and 1,630 flags; Quantum in Media received 4 submissions."
 };
 
 export const homePhases: Phase[] = phases.map(phase => ({ ...phase, summary: homePhaseSummaries[phase.slug], sessions: [] }));

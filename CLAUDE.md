@@ -26,7 +26,7 @@ at Khalifa University as part of IBM Quantum’s annual global event series.
 
 - **19 October 2026 at 6:00 PM UAE time (UTC+04:00)** — opening session and countdown target
 - **31 October – 1 November 2026** — closing showcases
-- **7 November 2026** — the Fall Fest ends (Quantum in Media and Quantum Cybersecurity finish)
+- **7 November 2026** — the Fall Fest ends (Quantum in Media and Quantum Capture the Flag (QCTF) finish)
 - **10 October 2026** — team target for the site to be live
 
 Never restore a previous unconfirmed closing date or regional-superlative claim.
@@ -59,7 +59,7 @@ The event has concluded. The homepage bird card and How It Works event summary s
 `event.statusLabel` (Fall Fest has concluded) and the full event date range, with no opening
 countdown or underway message. Post-event results will be supplied separately; do not invent them.
 How It Works has four phases, ending with International Challenges on 7 November:
-the online Quantum Cybersecurity CTF and Quantum in Media. Do not display Media’s
+the online Quantum Capture the Flag (QCTF) and Quantum in Media. Do not display Media’s
 submission deadline in How It Works or its homepage preview; keep it on the track and Agenda.
 Show international tracks before national tracks on both the homepage and Tracks page.
 Workshop schedules in `src/content/workshops.ts` are shared by Agenda and Biology:
@@ -126,11 +126,15 @@ university-labelled badge on the About page, navigation, footer or workshop bran
   Require an approved URL, explicit
   release flag and UAE opening date; `closed: true` overrides them all. Preserve the
   20-slot limit and email-confirmation note beside the action. Do not invent hours, deadlines,
-  prizes, prerequisites or required laptops. Quantum Cybersecurity uses the user's newer four-panel
+  prizes, prerequisites or required laptops. Quantum Capture the Flag (QCTF) uses its archived
   brief in `src/content/quantum-cybersecurity.ts`, overriding the older track document.
   It is international and online, for 1–4 participants. Registration opens 23 October
-  2026; the CTF is on 7 November (rescheduled), focused on quantum cybersecurity and
-  quantum cryptography, replacing all QML/model-extraction content and illustration labels.
+  2026; the CTF ran on 7 November. The supplied event workbook confirms five categories:
+  Quantum Circuits (10), Quantum Crypto & QKD (5), Quantum ML (1), Post-Quantum Crypto (5),
+  and Peaked Circuits (5). `ctf-categories.ts` supplies the Challenge Categories panel.
+  Retain `quantum-cybersecurity` as the stable slug and source filename; the visible name
+  is Quantum Capture the Flag (QCTF). Keep the corrected 2,561-submission total, not the
+  older workbook summary total. Never publish player emails, individual winners or flags.
   Keep the existing participation/team rules and omit competition hours until confirmed.
   Hide Still running for this track using `showRunningBadge: false`; keep date and
   Registration open badges and its Finished state. Registration is open at
@@ -145,7 +149,7 @@ university-labelled badge on the About page, navigation, footer or workshop bran
   National tracks have in-person days on 30 October, 31 October or 1 November, with
   Quantum in the Metaverse at the MetaHub Lab on 30 October and Quantum Foundations
   at Khalifa University on 31 October. The international
-  Quantum Cybersecurity CTF runs online on 7 November.
+  Quantum Capture the Flag (QCTF) runs online on 7 November.
 - Per-track hosts come from `trackHosts` in `src/content/tracks.ts` and are shown as
   "Hosted by" labels. Confirmed so far: ASBMB Student Chapter at Khalifa University
   (Quantum Biology) and Moth Quantum (Quantum in Media). QCI and NYUAD are the

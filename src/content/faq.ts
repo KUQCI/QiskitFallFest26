@@ -44,12 +44,12 @@ export const faqs: FaqItem[] = [
   {
     "category": "Format",
     "question": "How did national and international tracks differ?",
-    "answer": "The four national tracks were Foundations, Machine Learning, Biology and Metaverse, with in-person challenges or finals at Khalifa University. The two international tracks, Quantum Cybersecurity and Quantum in Media, were online."
+    "answer": "The four national tracks were Foundations, Machine Learning, Biology and Metaverse, with in-person challenges or finals at Khalifa University. The two international tracks, Quantum Capture the Flag (QCTF) and Quantum in Media, were online."
   },
   {
     "category": "Getting started",
     "question": "Did participants compete individually or in teams?",
-    "answer": "Formats varied by track. Foundations and Metaverse were individual challenges. QML received 13 individual and 8 team projects; Biology received 21 initial team proposals. QCTF players competed as 57 teams and 52 solo entrants."
+    "answer": "Formats varied by track. Foundations and Metaverse were individual challenges. QML received 13 individual and 8 team projects; Biology received 21 initial team proposals. QCTF hackers competed as 57 teams and 52 solo entrants."
   },
   {
     "category": "Format",

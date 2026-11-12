@@ -224,7 +224,7 @@ const agendaMilestones: AgendaItem[] = [
   }),
   trackItem("quantum-cybersecurity", {
     id: "cybersecurity-ctf", date: "2026-11-07", kind: "event", title: "Online CTF competition",
-    description: "178 players from 45 institutions in 8 countries tackled 26 challenges across 5 categories and captured 1,630 flags.", venue: "Online",
+    description: "178 hackers from 45 institutions in 8 countries tackled 26 challenges across 5 categories and captured 1,630 flags.", venue: "Online",
   }),
   trackItem("quantum-media", {
     id: "media-submission", date: "2026-11-07", kind: "deadline", title: "Submission deadline",
