@@ -2,6 +2,10 @@
 
 ## Post-event recap (12 November organizer update)
 
+Keep original vivid track and agenda colours after completion. Finished badges and
+closed forms communicate status; do not apply grayscale, reduced opacity or grey accents
+to completed cards, popup covers, workshop entries or calendar legends.
+
 Show Foundations as 109 students from 12 schools competing, with 3 winners chosen;
 omit the campus count. Do not publish WhatsApp/community membership counts. Credit
 Quantum Africa as a supporter (Supported by), not as a sponsor.
