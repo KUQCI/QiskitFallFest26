@@ -23,6 +23,8 @@ export interface Track {
   accent: TrackAccent;
   subtitle?: string;
   summary: string;
+  /** Organizer-supplied outcome shown on cards and homepage previews. */
+  resultLine?: string;
   description?: string;
   level?: Level;
   reach?: Reach;
@@ -52,8 +54,8 @@ export interface Track {
    * "Hosted by" labels on the card and panel, with logo and About Us in the panel.
    */
   hostedBy?: TrackHost[];
-  /** Organizations sponsoring this track, shown as "Sponsored by" labels beside the hosts. */
-  sponsoredBy?: TrackOrganization[];
+  /** Organizations supporting this track, shown as "Supported by" labels beside the hosts. */
+  supportedBy?: TrackOrganization[];
   /**
    * Decorative image behind the top of the card and panel header, supplied by the
    * track's host. Use a `fallFestAssets` src so the GitHub Pages base path is applied.

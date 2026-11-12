@@ -90,6 +90,7 @@ export function TrackCard({
         </h3>
         {track.subtitle ? <p className="mt-1.5 text-sm font-semibold text-purple">{track.subtitle}</p> : null}
         <p className="mt-4 text-base leading-relaxed text-fg-muted">{track.summary}</p>
+        {track.resultLine ? <p className="mt-3 text-sm font-semibold leading-relaxed text-gold">{track.resultLine}</p> : null}
 
         <TrackFacts track={track} className="mt-6" />
 
@@ -113,7 +114,7 @@ export function TrackCard({
 
 /** Venue, deadline, hosts and sponsors, in that order, wherever a track has them. */
 export function TrackFacts({ track, className }: { track: Track; className?: string }) {
-  if (!track.venueLabel && !track.deadlineLabel && !track.hostedBy?.length && !track.sponsoredBy?.length) return null;
+  if (!track.venueLabel && !track.deadlineLabel && !track.hostedBy?.length && !track.supportedBy?.length) return null;
   return (
     <ul className={cn("space-y-2.5 text-sm leading-relaxed", className)}>
       {track.venueLabel ? (
@@ -128,10 +129,10 @@ export function TrackFacts({ track, className }: { track: Track; className?: str
           {track.hostedBy.map((host) => <Badge key={host.name} tone="gold">{host.label ?? host.name}</Badge>)}
         </li>
       ) : null}
-      {track.sponsoredBy?.length ? (
+      {track.supportedBy?.length ? (
         <li className="flex flex-wrap items-center gap-2 text-fg-muted">
-          {tracksPageContent.panel.sponsoredByHeading}
-          {track.sponsoredBy.map((sponsor) => <Badge key={sponsor.name} tone="gold">{sponsor.name}</Badge>)}
+          {tracksPageContent.panel.supportedByHeading}
+          {track.supportedBy.map((sponsor) => <Badge key={sponsor.name} tone="gold">{sponsor.name}</Badge>)}
         </li>
       ) : null}
     </ul>

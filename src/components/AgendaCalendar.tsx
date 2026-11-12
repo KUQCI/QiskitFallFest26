@@ -157,6 +157,7 @@ export function AgendaCalendar({ calendar, categories, kindLabels, workshopLabel
                     <span className="block font-mono text-[0.625rem] uppercase tracking-wider text-fg-muted">{kindLabels[item.kind]}{workshopFinished(item) ? ` · ${tracksPageContent.progress.finishedLabel}` : ""}</span>
                     <span className="mt-0.5 block text-[0.8125rem] font-semibold leading-snug text-fg">{item.title}</span>
                     {item.time ? <span className="mt-1 block text-[0.6875rem] leading-snug text-fg-muted">{item.time}</span> : null}
+                    {item.attendance ? <span className="mt-1 block text-[0.6875rem] font-semibold leading-snug text-gold">{item.attendance}</span> : null}
                   </button>
                 ))}
               </div>

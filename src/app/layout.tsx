@@ -26,8 +26,8 @@ const plexMono = IBM_Plex_Mono({
 });
 
 const metadataDescription =
-  `Join ${event.name}, hosted by the ${event.host} at ${event.university}, ` +
-  "as part of IBM Quantum's annual global Qiskit Fall Fest event series.";
+  `${event.name} results and recap, hosted by the ${event.host} at ${event.university}: ` +
+  "1,200+ participations, 850+ unique participants, 76 institutions and 14 countries.";
 
 export const metadata: Metadata = {
   title: {

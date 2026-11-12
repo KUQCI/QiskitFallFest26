@@ -1,5 +1,24 @@
 # CLAUDE.md — Qiskit Fall Fest 2026 site
 
+## Post-event recap (12 November organizer update)
+
+Show Foundations as 109 students from 12 schools competing, with 3 winners chosen;
+omit the campus count. Do not publish WhatsApp/community membership counts. Credit
+Quantum Africa as a supporter (Supported by), not as a sponsor.
+
+The event is concluded; this is now a results and archive site. `src/content/results.ts`
+is the source for the supplied headline, workshop and track figures. Do not add named
+winners or infer missing results. Corrected QCTF totals exclude duplicate correct
+submissions: 2,561 flag submissions = 1,630 correct + 931 incorrect (64% correct).
+Use “1,630 flags captured · 931 failed submissions out of 2,561 (64% correct)”.
+All track panels start with Results; keep the existing route,
+track and brief-panel IDs and learning links. Registration and submissions remain closed.
+The explicit email/social update supersedes older contact guidance: use
+`quantum.club@ku.ac.ae` for site contact links and `ku.qci` for QCI Instagram.
+The main qcinit.tech events site is not in this repository; report its needed update
+rather than modifying another checkout or deploying. Keep Faculty Advisors and the
+speaker-lineup placeholder removed, and keep shared resources/CTA on Home only.
+
 Website for Qiskit Fall Fest 2026, organized by the Quantum Computing Initiative
 at Khalifa University as part of IBM Quantum’s annual global event series.
 
@@ -131,8 +150,8 @@ university-labelled badge on the About page, navigation, footer or workshop bran
   "Hosted by" labels. Confirmed so far: ASBMB Student Chapter at Khalifa University
   (Quantum Biology) and Moth Quantum (Quantum in Media). QCI and NYUAD are the
   overall organisers and are not added to individual tracks.
-- Quantum Africa (`https://quantum-africa.org/`) is a confirmed technical sponsor supporting
-  Quantum Machine Learning: a "Sponsored by" label via `track.sponsoredBy` and a homepage
+- Quantum Africa (`https://quantum-africa.org/`) is a confirmed supporter of
+  Quantum Machine Learning: a "Supported by" label via `track.supportedBy` and a homepage
   technical-sponsor logo. Its supplied original logo is kept beside the transparent derivative.
 - Quantum in Media preserves the `quantum-media` slug and Moth's approved themes and
   clickable resources. Submissions are due 7 November 2026,

@@ -1,10 +1,10 @@
 import type { ResourceLink } from "./types";
 
 export const resourcesSectionCopy = {
-  eyebrow: "Start learning now",
-  title: "Get a head start before the Fest",
+  eyebrow: "Continue exploring",
+  title: "Keep learning",
   lede:
-    "Everything below is free to explore. If you want to arrive ready to build and run your first quantum circuits, IBM Quantum Learning is a great place to start.",
+    "The Fest has concluded, but the learning continues. Explore these free resources to build and run quantum circuits, discover applications and contribute to open-source projects.",
 } as const;
 
 /** Ordered intentionally; shared resource sections should preserve this order. */
@@ -19,7 +19,7 @@ export const resources: ResourceLink[] = [
   {
     title: "IBM Quantum Learning",
     description:
-      "Structured courses covering everything from quantum fundamentals to algorithms and applications. A great place to start before the Fest.",
+      "Structured courses covering everything from quantum fundamentals to algorithms and applications.",
     url: "https://learning.quantum.ibm.com/",
     group: "learn",
   },

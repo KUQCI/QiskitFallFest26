@@ -1,3 +1,5 @@
+import { headlineResults } from "./results";
+
 /** Canonical event details shared by every route. */
 export const event = {
   name: "Qiskit Fall Fest 2026",
@@ -15,6 +17,7 @@ export const event = {
   premiereLabel: "Watch the premiere",
   dateLabel: "19 October – 7 November 2026",
   statusLabel: "Fall Fest has concluded",
+  concluded: true,
   closingDateLabel: "31 October – 1 November 2026",
 
   venue: {
@@ -36,12 +39,12 @@ export const event = {
 
   /** A single event-wide registration. Setting this takes over every CTA. */
   registrationUrl: null as string | null,
-  registrationNote: "Each track has its own registration. Open a track for its registration details.",
+  registrationNote: "Registration and submissions are closed. Track briefs and results remain available.",
   contactEmail: "quantum.club@ku.ac.ae",
 
   socials: {
     website: "https://qcinit.tech/",
-    instagram: "https://www.instagram.com/ku.qci/?hl=en",
+    instagram: "https://www.instagram.com/ku.qci/",
     linkedin: "https://www.linkedin.com/company/ku-qci/",
     github: "https://github.com/KUQCI",
     whatsapp: "https://chat.whatsapp.com/Cc4OqqKTKbnLaBDJuqCQkG",
@@ -54,11 +57,7 @@ export const event = {
   },
 
   /** Honest, descriptive facts rather than attendance or regional-superlative claims. */
-  stats: [
-    { value: "Multiple", label: "Tracks", detail: "Foundations through applications" },
-    { value: "2", label: "Weeks", detail: "Development period" },
-    { value: "Hybrid", label: "Format", detail: "Varies by phase and track" },
-  ],
+  stats: headlineResults,
 } as const;
 
 export const homeContent = {
@@ -66,13 +65,13 @@ export const homeContent = {
   /** The full hero heading is rendered as text in the shared heading typeface. */
   heroTitle: { brand: "IBM", lead: "Qiskit", rest: "Fall Fest 2026" },
   heroHighlights: [
-    "Challenge tracks, coding competitions and real projects",
-    "Hands-on workshops, technical talks and mentorship",
+    "6 competition tracks: 4 national and 2 international",
+    "4 workshops and an IBM Quantum speaker session",
   ],
   heroShowcase: {
     label: "Two-day closing showcase",
     dates: event.closingDateLabel,
-    detail: "At Khalifa University, with the international quantum community joining online.",
+    detail: "Held at Khalifa University, with the international community joining online.",
   },
   about: {
     eyebrow: "What this is",
@@ -86,9 +85,9 @@ export const homeContent = {
   },
   tracks: {
     eyebrow: "Tracks",
-    title: "Choose where to explore",
+    title: "Explore the track results",
     lede:
-      "Find your challenge. Visit the Tracks page for full briefs, dates and registration details.",
+      "Six tracks brought learners together across quantum computing. Explore their results and the challenges participants tackled.",
     linkLabel: "View all tracks",
   },
   faq: {
@@ -99,9 +98,9 @@ export const homeContent = {
 } as const;
 
 const sharedCta = {
-  heading: "You don’t need prior quantum experience to start",
+  heading: "Three weeks. Six tracks. A growing quantum community.",
   body:
-    "Whether you’re discovering quantum computing for the first time or looking to explore a new application, the Fall Fest is designed to welcome a range of backgrounds and experience levels.",
+    "The Fall Fest concluded with 1,200+ participations, 850+ unique participants, 76 participating institutions and 14 countries. Explore the results and the community behind them.",
 } as const;
 
 export const ctaCopy = {

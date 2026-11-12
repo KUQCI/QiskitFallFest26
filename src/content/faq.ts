@@ -1,108 +1,69 @@
 import type { FaqItem } from "./types";
 
 export const faqPageContent = {
-  eyebrow: "FAQ",
-  title: "Questions, answered honestly",
-  lede:
-    "The event is still being developed. Here is what is known now, and where details depend on the final track or programme.",
-  contactTitle: "Still have a question?",
-  contactDescription:
-    "Ask the organizing team directly. We’ll answer what we can and update this page as event details are confirmed.",
-  contactActionLabel: "Ask a question",
-  metadataDescription:
-    "Answers to common questions about Qiskit Fall Fest 2026, including experience, teams, equipment, eligibility, format, dates, and registration.",
+  "eyebrow": "FAQ",
+  "title": "Questions about the Fest",
+  "lede": "Qiskit Fall Fest 2026 concluded on 7 November. Here are the results, participation figures and a recap of how the event ran.",
+  "contactTitle": "Still have a question?",
+  "contactDescription": "Contact the organizing team with questions about the event or its results.",
+  "contactActionLabel": "Ask a question",
+  "metadataDescription": "Qiskit Fall Fest 2026 results and FAQ: participation, workshops, track formats and finals."
 } as const;
 
-/** Categories become the filter tabs on the full FAQ page. */
 export const faqs: FaqItem[] = [
   {
-    category: "Getting started",
-    question: "Do I need to know quantum computing already?",
-    answer:
-      "No. Some tracks will be designed to introduce participants to quantum computing, while others will explore more specialized applications. Final track requirements and prerequisites will be published as development progresses.",
+    "category": "The Fest",
+    "question": "How many people took part?",
+    "answer": "The Fest recorded 1,204 participations (1,200+) across workshops and tracks, with 850 unique participants (850+). 76 institutions took part: 49 universities and 27 schools, across 14 countries. In total, 1,249 unique people registered or took part, with 91 institutions and 16 countries involved. About half of participants came from outside Khalifa University, and 242 people took part in two or more events."
   },
   {
-    category: "Getting started",
-    question: "How do I sign up?",
-    answer:
-      "Each track has its own registration. For Quantum Biology, submitting the one-page proposal through the form in the track’s Submissions panel also registers you for that track. Check each track for its registration details. The general interest form is for updates and does not register you for a track.",
+    "category": "The Fest",
+    "question": "When did the Fall Fest take place?",
+    "answer": "The Fest ran from 19 October to 7 November 2026. The Opening Day Premiere was on 19 October, the closing showcase on 31 October–1 November, and the international challenges on 7 November."
   },
   {
-    category: "Getting started",
-    question: "Do I need a team?",
-    answer:
-      "Team requirements will depend on the track. Some challenges may allow individual participation, while others may involve teams. Full participation and team-format details will be announced with the tracks.",
+    "category": "Getting started",
+    "question": "Is registration still open?",
+    "answer": "No. The Fall Fest has concluded, and registration and submissions are closed. The track results and archived challenge briefs remain available."
   },
   {
-    category: "Getting started",
-    question: "What do I need to bring?",
-    answer:
-      "Equipment and preparation requirements depend on the track. Quantum in the Metaverse provides VR headsets; check your email for preparation instructions. Any required software, accounts, datasets, or other track-specific resources will be communicated before the event.",
+    "category": "Getting started",
+    "question": "Did participants need prior quantum experience?",
+    "answer": "The tracks covered both introductory and specialized applications. Quantum Foundations introduced 109 high school students to quantum circuits, and the workshops covered cryptography, biology, quantum computing and machine learning."
   },
   {
-    category: "Getting started",
-    question: "How much time does this actually take?",
-    answer:
-      "The development period runs for two weeks, from Opening Day on 19 October to the closing showcase on 31 October and 1 November. The exact workload will vary by track, and more detailed expectations will be published once the challenges are finalized.",
+    "category": "Format",
+    "question": "What workshops and speaker sessions were held?",
+    "answer": "Four workshops were held: Cryptography in the Quantum Era (265 attendees), Quantum Biology with AD-OMICS (33), Programming the Future (336), and Quantum Circuit Breakers (173). Dr. Ahmed Al Qatatsheh from IBM Quantum also gave an online Introduction to Quantum Computing session to the High School Track (~110 students)."
   },
   {
-    category: "Eligibility",
-    question: "Who can take part?",
-    answer:
-      "The Fall Fest is being designed for participants with a range of backgrounds and experience levels. Some activities will take place at Khalifa University, while others may be available online internationally. Detailed eligibility and registration requirements will be announced with each track.",
+    "category": "Eligibility",
+    "question": "Did participants have to be Khalifa University students?",
+    "answer": "No. About half of participants came from outside Khalifa University. Participants represented 76 institutions and 14 countries."
   },
   {
-    category: "Eligibility",
-    question: "Do I have to be a Khalifa University student?",
-    answer:
-      "The event is not being designed only for Khalifa University students. Exact eligibility may vary by track or activity, and the full requirements will be published with registration information.",
+    "category": "Format",
+    "question": "How did national and international tracks differ?",
+    "answer": "The four national tracks were Foundations, Machine Learning, Biology and Metaverse, with in-person challenges or finals at Khalifa University. The two international tracks, Quantum Cybersecurity and Quantum in Media, were online."
   },
   {
-    category: "Eligibility",
-    question: "Is there a fee?",
-    answer:
-      "Participation is currently planned to be free. Final registration information, including any requirements for individual activities, will be published before registration opens.",
+    "category": "Getting started",
+    "question": "Did participants compete individually or in teams?",
+    "answer": "Formats varied by track. Foundations and Metaverse were individual challenges. QML received 13 individual and 8 team projects; Biology received 21 initial team proposals. QCTF players competed as 57 teams and 52 solo entrants."
   },
   {
-    category: "Format",
-    question: "What does hybrid actually mean here?",
-    answer:
-      "The opening session will be available at Khalifa University and online internationally. National tracks include hybrid competitions and entirely in-person challenges. Quantum Foundations runs entirely in person at Khalifa University on 31 October 2026, and Quantum in the Metaverse runs in person on 30 October. International tracks are virtual. Each track is labelled on the Tracks page.",
+    "category": "Format",
+    "question": "What happened at the finals?",
+    "answer": "QML held its finals at KU on 31 October and had 3 winning teams. Six Biology finalist teams presented on 1 November, with 3 winning teams. Foundations held its circuit competition on 31 October and had 3 winners."
   },
   {
-    category: "Format",
-    question: "Can I join from outside the UAE?",
-    answer:
-      "The opening session will be available online internationally. Quantum Cybersecurity and Quantum in Media are international, virtual tracks. Quantum Cybersecurity consists of a single online CTF. Track-specific access and eligibility details will be published with each track's registration.",
+    "category": "The Fest",
+    "question": "What is the Qiskit Fall Fest?",
+    "answer": "Qiskit Fall Fest is IBM Quantum’s annual global event series. This PLUS edition was organized by the Quantum Computing Initiative at Khalifa University."
   },
   {
-    category: "Format",
-    question: "What happens at the closing showcase?",
-    answer:
-      "The closing phase is planned to include project showcases, coding competitions, and winner announcements. It takes place on 31 October and 1 November 2026. The exact format will be announced as the programme is finalized.",
-  },
-  {
-    category: "Format",
-    question: "How are finalists selected?",
-    answer:
-      "Selection will depend on the track. Some tracks may include an intermediate submission or shortlisting stage, while others may use a different process. Criteria will be published before participants begin each challenge.",
-  },
-  {
-    category: "The Fest",
-    question: "What is the Qiskit Fall Fest?",
-    answer:
-      "Qiskit Fall Fest is IBM Quantum’s annual global event series. Each event is independently organized by an approved host institution as part of the wider IBM Quantum and Qiskit community.",
-  },
-  {
-    category: "The Fest",
-    question: "Who is organizing this?",
-    answer:
-      "The event is organized by the Quantum Computing Initiative at Khalifa University as part of the Qiskit Fall Fest event series.",
-  },
-  {
-    category: "The Fest",
-    question: "When will the exact dates be announced?",
-    answer:
-      "The Fall Fest begins on 19 October 2026 at 6:00 PM UAE time and ends on 7 November. The closing showcase is on 31 October and 1 November. Remaining programme details will be announced here once they are confirmed.",
-  },
+    "category": "The Fest",
+    "question": "Where can I find the track results?",
+    "answer": "Open any track on the Tracks page. Its Results panel appears first, followed by the archived challenge brief."
+  }
 ];

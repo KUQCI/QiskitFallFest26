@@ -1,6 +1,6 @@
-import { RegisterButton } from "@/components/RegisterButton";
+import Link from "next/link";
 import { Container, Section } from "@/components/ui/primitives";
-import { MailIcon } from "@/components/ui/Icons";
+import { ArrowRightIcon } from "@/components/ui/Icons";
 import { ctaCopy, event } from "@/content/event";
 
 export function CtaSection({ variant = "default" }: { variant?: "default" | "opening" }) {
@@ -26,14 +26,13 @@ export function CtaSection({ variant = "default" }: { variant?: "default" | "ope
         </p>
 
         <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
-          <RegisterButton size="lg" />
-          <a
-            href={`mailto:${event.contactEmail}`}
+          <Link href="/tracks/" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-gold px-7 py-3.5 text-base font-semibold text-on-gold hover:bg-gold-strong">Track results<ArrowRightIcon className="h-4 w-4" /></Link>
+          <Link
+            href="/about/"
             className="inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-border-strong px-7 py-3.5 text-base font-semibold text-fg transition-colors hover:border-pink hover:text-pink"
           >
-            <MailIcon className="h-4.5 w-4.5" />
-            Ask a question
-          </a>
+            About QCI<ArrowRightIcon className="h-4 w-4" />
+          </Link>
         </div>
 
         {note ? <p className="mt-5 text-sm text-fg-subtle">{note}</p> : null}

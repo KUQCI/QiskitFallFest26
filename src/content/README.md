@@ -1,5 +1,19 @@
 # Editing site content
 
+## Results and recap
+
+The Fest has concluded. `results.ts` holds the organizer-supplied headline, workshop
+attendance and track results. Every track starts with a Results panel; `resultLine`
+also appears on its card and homepage preview. Challenge panels are archived context,
+not invitations to register. `event.concluded` makes the Finished state deterministic
+for the static export, and all registration/submission configurations remain closed.
+Corrected QCTF totals exclude duplicate correct submissions: 2,561 flag submissions,
+comprising 1,630 correct and 931 incorrect (64% correct). Display the organizer's wording:
+“1,630 flags captured · 931 failed submissions out of 2,561 (64% correct)”.
+Use `quantum.club@ku.ac.ae` and QCI Instagram `ku.qci`. Partner social links retain
+their own identities. Preserve the original QCI logo and previously removed sections.
+The main QCI `/events` page is managed outside this repository.
+
 Event facts and page copy live in this folder. Components should render these exports;
 they should not duplicate dates, track descriptions, partner claims, or other event data.
 
@@ -12,8 +26,8 @@ The homepage How It Works section uses short `homePhaseSummaries` in `schedule.t
 and links to `/schedule/`. Keep the full `phases` summaries and sessions on that page;
 shortening the homepage preview must not remove those details or change phase dates.
 Keep the homepage track list compact: canonical names and groups come from `tracks`,
-with short `homeTrackDescriptions` teasers in `tracks.ts`. On narrow screens show names
-only. Full cards, status labels, deadlines, artwork and challenge panels stay on `/tracks/`.
+with short `homeTrackDescriptions` teasers in `tracks.ts`. Names and result lines remain
+visible on narrow screens. Full cards, artwork and challenge panels stay on `/tracks/`.
 
 After an edit, run `npm run build` with the development server stopped.
 
@@ -35,6 +49,7 @@ After an edit, run `npm run build` with the development server stopped.
 | Organizer, faculty advisors, past events, R&D projects, and speakers | `team.ts` |
 | Learning links and shared section copy | `resources.ts` |
 | Public design assets and base-path-safe URLs | `assets.ts` |
+| Organizer-supplied headline, workshop attendance and track outcomes | `results.ts` |
 | Labels for decorative track animations; no challenge rules or measured results | `track-visuals.ts` |
 
 The Faculty Advisors section is temporarily removed from the About page at the organizer's
@@ -267,7 +282,7 @@ open another card.
 "Hosted by" labels come from `track.hostedBy`, which picks entries from `trackHosts`.
 A host with a logo or About Us text also gets a "Hosted by" section in the panel, below
 the challenges. Biology shows its host profile in the separate Hosts tab instead.
-"Sponsored by" labels come from `track.sponsoredBy`. Quantum Africa sponsors Quantum
+"Supported by" labels come from `track.supportedBy`. Quantum Africa supports Quantum
 Machine Learning and is also listed with the homepage technical sponsors.
 Sponsor and host logos must use a `fallFestAssets` src.
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { event } from "@/content/event";
 
 /** The current time, read on the client so the static export stays deterministic. Null until mounted. */
 export function useNow() {
@@ -20,5 +21,5 @@ export function useNow() {
 
 /** A track with no end date, or before the clock is known, is never reported as over. */
 export function isTrackOver(endsAt: string | undefined, now: Date | null) {
-  return Boolean(endsAt && now && now.getTime() >= Date.parse(endsAt));
+  return event.concluded || Boolean(endsAt && now && now.getTime() >= Date.parse(endsAt));
 }

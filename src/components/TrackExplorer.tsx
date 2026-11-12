@@ -7,6 +7,7 @@ import { TrackCard } from "@/components/TrackCard";
 import { TrackPanel } from "@/components/TrackPanel";
 import { Badge } from "@/components/ui/primitives";
 import { tracksPageContent, type TrackPanelCopy } from "@/content/tracks";
+import { event } from "@/content/event";
 import type { Track } from "@/content/types";
 import { isTrackOver, useNow } from "@/lib/track-progress";
 
@@ -73,7 +74,7 @@ export function TrackExplorer({ tracks, copy }: { tracks: Track[]; copy: TrackPa
 
   return (
     <>
-      {now ? (
+      {event.concluded || now ? (
         <div role="status" className="biology-notice mb-12 max-w-3xl">
           {running.length ? (
             <>

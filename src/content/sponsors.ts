@@ -35,10 +35,10 @@ export const adOmics = {
   status: "confirmed",
 } satisfies Partner;
 
-/** Supports the Quantum Machine Learning track; shared with its "Sponsored by" label. */
+/** Supports the Quantum Machine Learning track; shared with its "Supported by" label. */
 export const quantumAfrica = {
   name: "Quantum Africa",
-  kind: "Technical sponsor",
+  kind: "Supporter",
   url: "https://quantum-africa.org/",
   logo: fallFestAssets.logos.quantumAfrica.src,
   status: "confirmed",
@@ -60,11 +60,11 @@ export const technicalSponsors: Partner[] = [
 export const partnersSectionContent = {
   eyebrow: "Partners",
   organizersTitle: "Who is behind the Fest",
-  technicalSponsorsTitle: "Technical sponsors",
+  technicalSponsorsTitle: "Technical partners & supporters",
 } as const;
 
 export const partnersIntro =
-  "The Qiskit Fall Fest is IBM Quantum’s annual global event series. This PLUS edition is organised by the Quantum Computing Initiative at Khalifa University.";
+  "The Qiskit Fall Fest is IBM Quantum’s annual global event series. This PLUS edition was organised by the Quantum Computing Initiative at Khalifa University.";
 
 export const partnerReasons: PartnerReason[] = [
   {
@@ -87,9 +87,9 @@ export const partnerReasons: PartnerReason[] = [
 /** Booth applications replace sponsorship packages for now. */
 export const boothContent = {
   eyebrow: "Booths",
-  title: "Want a booth at the Fall Fest?",
+  title: "Fall Fest partnerships",
   description:
-    "Showcase your organisation, research, or products to Fall Fest participants and the wider quantum community. Apply for a booth and the organizing team will follow up with next steps.",
+    "The Fall Fest has concluded. Contact QCI with questions about partnerships and future activities.",
   benefits: [
     {
       title: "Visibility",
@@ -107,10 +107,10 @@ export const boothContent = {
   /** Mirrors the acknowledgement applicants make on the form. */
   provisions:
     "Tables and booths are provided. You bring your own materials, products, equipment, and other supplies.",
-  actionLabel: "Apply now",
+  actionLabel: "Contact QCI",
   /** Booth registration form. Until it is set, the button opens an email to the organizing team. */
   applicationUrl:
-    "https://docs.google.com/forms/d/e/1FAIpQLSdC5XOteOenz_B8T5wYHQPVfvwVlrhQ6Htpa5mZBCe2BXeSiw/viewform" as
+    null as
       | string
       | null,
 } as const;

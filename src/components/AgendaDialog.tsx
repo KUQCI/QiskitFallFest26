@@ -128,6 +128,7 @@ export function AgendaDialog({ item, kindLabel, labels, copy, onClosed }: {
           <p className="text-sm font-semibold text-fg-muted">{item.context}</p>
         </div>
         <h2 id={titleId} className="mt-2 text-xl font-semibold leading-tight text-fg sm:text-2xl">{item.title}</h2>
+        {item.attendance ? <p className="mt-2 text-sm font-semibold text-gold">{item.attendance}</p> : null}
         <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-xs leading-relaxed">
           <p className="flex items-start gap-2 text-gold"><CalendarIcon className="h-4 w-4 shrink-0" /><time className="whitespace-nowrap" dateTime={item.date}>{date}</time></p>
           {item.time ? <p className="text-gold">{item.time}</p> : null}

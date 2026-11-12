@@ -5,6 +5,7 @@ import { metaverseStatusLabels, metaverseVenue, quantumMetaverseBrief } from "./
 import { foundationsStatusLabels, quantumFoundationsBrief } from "./quantum-foundations";
 import { qmlDeadline, qmlDeadlineCardLabel, qmlStatusLabels, qmlSummary, quantumMachineLearningBrief } from "./quantum-machine-learning";
 import { quantumMediaBrief } from "./quantum-media";
+import { trackResults } from "./results";
 import { adOmics, quantumAfrica } from "./sponsors";
 import type { Track, TrackHost } from "./types";
 
@@ -51,14 +52,14 @@ export const trackHosts = {
  * `details` feeds the expanded track panel (`/tracks/#<slug>`). Leave a field out until
  * it is confirmed; the panel hides empty sections.
  */
-export const tracks: Track[] = [
+const trackDefinitions: Track[] = [
   {
     slug: "first-qubit",
     accent: "sky",
     title: "Quantum Foundations",
     subtitle: "High School Track",
     summary:
-      "Complete unfinished quantum circuits by filling in the missing gates to achieve a specified target output or quantum state.",
+      "High school students completed unfinished quantum circuits by identifying missing gates to achieve a target output or quantum state.",
     reach: "national",
     format: "in-person",
     participationLabel: "Individual",
@@ -81,7 +82,7 @@ export const tracks: Track[] = [
     statusLabels: qmlStatusLabels,
     deadlineLabel: qmlDeadlineCardLabel,
     endsAt: "2026-10-31T23:59:59+04:00",
-    sponsoredBy: [quantumAfrica],
+    supportedBy: [quantumAfrica],
     details: {
       headerSummary: qmlSummary,
       deadline: qmlDeadline,
@@ -93,7 +94,7 @@ export const tracks: Track[] = [
     accent: "orange",
     title: "Quantum Cybersecurity",
     summary:
-      "Solve quantum cybersecurity and quantum cryptography challenges in an online Capture the Flag competition on 7 November.",
+      "Players tackled quantum cybersecurity and quantum cryptography challenges in an online CTF on 7 November.",
     reach: "international",
     format: "online",
     formatDisplayLabel: "Online",
@@ -111,11 +112,11 @@ export const tracks: Track[] = [
     accent: "teal",
     title: "Quantum Biology",
     summary:
-      "Use quantum optimization to identify a four-gene panel that distinguishes lung tumour from non-cancerous tissue, and compare your approach with classical methods.",
+      "Teams explored four-gene panels for distinguishing lung tumour from non-cancerous tissue, comparing quantum and classical approaches.",
     reach: "national",
     format: "hybrid",
     status: "confirmed",
-    statusLabels: ["Challenge live", "Submissions open"],
+    statusLabels: [],
     deadlineLabel: biologyProposalDeadlineCardLabel,
     endsAt: "2026-11-01T23:59:59+04:00",
     tags: biologyTags,
@@ -139,11 +140,11 @@ export const tracks: Track[] = [
     title: "Quantum in Media",
     coverLogo: fallFestAssets.logos.mothQuantum.src,
     summary:
-      "Use Moth Quantum's media engines to make images, sound, video, games, or apps, with or without code.",
+      "Participants created media with Moth Quantum's engines, exploring images, sound, video, games and apps.",
     reach: "international",
     format: "online",
     status: "confirmed",
-    statusLabels: ["Challenge live"],
+    statusLabels: [],
     deadlineLabel: "7 November · 11:59 PM Pacific Time",
     endsAt: "2026-11-07T23:59:00-08:00",
     hostedBy: [trackHosts.mothQuantum],
@@ -156,7 +157,7 @@ export const tracks: Track[] = [
     accent: "gold",
     title: "Quantum in the Metaverse",
     summary:
-      "Use VR to arrange quantum gates and guide a virtual qubit along a path on the Bloch sphere. Compete on completion time and accuracy.",
+      "Contestants used VR to arrange quantum gates and guide a qubit along a Bloch-sphere path, balancing time and accuracy.",
     reach: "national",
     format: "in-person",
     participationLabel: "Individual",
@@ -170,6 +171,14 @@ export const tracks: Track[] = [
   },
 ];
 
+export const tracks: Track[] = trackDefinitions.map(track => ({
+  ...track,
+  statusLabels: [],
+  deadlineLabel: undefined,
+  resultLine: trackResults[track.slug].line,
+  details: track.details ? { ...track.details, deadline: undefined } : undefined,
+}));
+
 /** Short homepage teasers; full challenge descriptions remain on the Tracks page. */
 const homeTrackDescriptions: Record<string, string> = {
   "first-qubit": "Fill in missing gates",
@@ -180,8 +189,8 @@ const homeTrackDescriptions: Record<string, string> = {
   "quantum-media": "Create with Moth Quantum",
 };
 
-export const homeTrackPreviews = tracks.map(({ slug, title, reach, endsAt, showRunningBadge }) => ({
-  slug, title, reach, endsAt, showRunningBadge, description: homeTrackDescriptions[slug],
+export const homeTrackPreviews = tracks.map(({ slug, title, reach, endsAt, showRunningBadge, resultLine }) => ({
+  slug, title, reach, endsAt, showRunningBadge, resultLine, description: homeTrackDescriptions[slug],
 }));
 
 export const featuredTrackSlugs = [
@@ -197,22 +206,22 @@ export const tracksPageContent = {
     { reach: "national", heading: "National" },
   ] as const,
   eyebrow: "Tracks",
-  title: "Find your path into quantum",
+  title: "Six tracks. Six sets of results.",
   intro:
-    "Explore six independent tracks, from quantum fundamentals to specialized applications. Choose a challenge and check its registration and competition dates.",
+    "Explore the outcomes of four national and two international tracks. Each finished track includes its results and archived challenge brief.",
   /** How national and international tracks run, from the organisers' event format table. */
   formats: {
-    heading: "How the tracks run",
+    heading: "How the tracks ran",
     items: [
       {
         reach: "national",
         label: "National tracks",
         format: "Hybrid & in person",
         points: [
-          { label: "Qualifiers", text: "Before 31 October where required; each track sets its cutoff." },
-          { label: "In-person days", text: "30 or 31 October, or 1 November, depending on the track." },
-          { label: "Quantum in the Metaverse · 30 October 2026", text: "Single-day challenge at Khalifa University’s MetaHub Lab, with individual registration and scheduled sessions." },
-          { label: "Quantum Foundations · 31 October 2026", text: "Entirely in person at Khalifa University." },
+          { label: "Qualifiers", text: "Tracks used their own proposal, submission and shortlisting stages ahead of the finals." },
+          { label: "In-person days", text: "Challenges and finals were held on 30 and 31 October and 1 November." },
+          { label: "Quantum in the Metaverse · 30 October 2026", text: "Five contestants took part in the VR challenge at Khalifa University’s MetaHub Lab." },
+          { label: "Quantum Foundations · 31 October 2026", text: "109 high school students competed in person at Khalifa University." },
         ],
       },
       {
@@ -220,20 +229,20 @@ export const tracksPageContent = {
         label: "International tracks",
         format: "Fully virtual",
         points: [
-          { label: "Schedules", text: "Track-specific registration and competition dates, separate from national qualifiers and finals." },
-          { label: "Quantum Cybersecurity · 7 November", text: "Online CTF competition." },
+          { label: "Schedules", text: "The online international challenges concluded on 7 November, following the national finals." },
+          { label: "Quantum Cybersecurity · 7 November", text: "Online CTF competition with 178 players from 45 institutions in 8 countries." },
         ],
       },
     ],
   },
-  note: "Registration links and resource links for each track will be added here as they are shared.",
+  note: "All six tracks have finished. Their results, challenge briefs and public learning links remain available.",
   /** Finished / Still running state, derived from each track's `endsAt`. */
   progress: {
     finishedLabel: "Finished",
     runningLabel: "Still running",
     runningHeading: "Upcoming & open tracks",
-    allFinished: "All six tracks have finished. Their challenge briefs stay here for reference.",
-    panelNotice: "This track has finished. Registration and submissions are closed.",
+    allFinished: "All six tracks have finished. Explore their results and archived challenge briefs.",
+    panelNotice: "This track has finished. Registration and submissions are closed. Results are shown first; the challenge brief remains for reference.",
     registrationClosedLabel: "Registration closed",
   },
   /** Copy for the track cards and the full-screen track panel. */
@@ -244,13 +253,13 @@ export const tracksPageContent = {
     datesHeading: "Key dates",
     sponsorsHeading: "Sponsors",
     challengesHeading: "The challenge",
-    challengesPending: "Challenge details are to be announced soon.",
+    challengesPending: "The archived challenge brief is available in the track panels.",
     judgingHeading: "How it's judged",
     tasksHeading: "What you need to do",
     submissionHeading: "Submission instructions",
     resourcesHeading: "Resources",
     hostedByHeading: "Hosted by",
-    sponsoredByHeading: "Sponsored by",
+    supportedByHeading: "Supported by",
   },
   metadataDescription:
     "Challenges for the six Qiskit Fall Fest 2026 tracks, from quantum circuit building to quantum machine learning, biology, cybersecurity, media, and VR, across hybrid, in-person, and virtual formats.",

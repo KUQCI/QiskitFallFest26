@@ -1,153 +1,132 @@
 import type { Phase } from "./types";
 
 export const formatSectionCopy = {
-  compact: {
-    eyebrow: "How it works",
-    title: "Four phases, from kickoff to final challenges",
-    lede:
-      "Get started, build and present, then finish with the international challenges on 7 November.",
-    link: { label: "View How It Works", href: "/schedule/" },
+  "compact": {
+    "eyebrow": "How it works",
+    "title": "Four phases, three weeks of quantum computing",
+    "lede": "From the opening premiere to national finals and international challenges, learners built, competed and shared their work.",
+    "link": {
+      "label": "Explore the event recap",
+      "href": "/schedule/"
+    }
   },
-  detailed: {
-    eyebrow: "How it works",
-    title: "Four phases, from kickoff to international challenges",
-    lede:
-      "The Fall Fest begins with an opening session, followed by development and closing showcases on 31 October and 1 November. International challenges round out the Fest on 7 November with Quantum Cybersecurity and Quantum in Media.",
-  },
-} as const;
+  "detailed": {
+    "eyebrow": "How it works",
+    "title": "From kickoff to results",
+    "lede": "The Fest ran from 19 October to 7 November 2026, with national challenges and finals across 30 October–1 November and international challenges on 7 November."
+  }
+};
 
 export const schedulePageContent = {
-  eyebrow: "How it works",
-  title: "What happens, and when",
-  lede:
-    "The Fall Fest runs from 19 October to 7 November across four phases: the opening premiere, development, closing showcases, and international challenges.",
-  metadataDescription:
-    "How Qiskit Fall Fest 2026 works: opening on 19 October, development, closing showcases on 31 October and 1 November, and international challenges on 7 November.",
-} as const;
+  "eyebrow": "How it works",
+  "title": "How the Fest unfolded",
+  "lede": "The Fest ran from 19 October to 7 November 2026, with national challenges and finals across 30 October–1 November and international challenges on 7 November.",
+  "metadataDescription": "A recap of Qiskit Fall Fest 2026: opening premiere, workshops, national finals and international challenges, 19 October–7 November."
+};
 
 export const phases: Phase[] = [
   {
-    slug: "opening",
-    label: "Phase 01",
-    title: "Opening Day Premiere",
-    dateRange: "19 October 2026 · 6:00 PM",
-    summary:
-      "A hybrid kickoff session at Khalifa University, also available online internationally. Participants will be introduced to the Fall Fest, the challenge tracks, and what to expect during the two weeks ahead.",
-    status: "confirmed",
-    sessions: [
+    "slug": "opening",
+    "label": "Phase 01",
+    "title": "Opening Day Premiere",
+    "dateRange": "19 October 2026 · 6:00 PM",
+    "summary": "The Opening Day Premiere introduced the Fest and its six tracks at Khalifa University and online on 19 October 2026.",
+    "status": "confirmed",
+    "sessions": [
       {
-        title: "Welcome & Fall Fest Briefing",
-        description:
-          "An introduction to the Qiskit Fall Fest, the event structure, and the two-week development period.",
-        format: "hybrid",
-        status: "confirmed",
+        "title": "Welcome & Fall Fest Briefing",
+        "description": "The kickoff introduced the event structure and development period.",
+        "status": "confirmed"
       },
       {
-        title: "Track Introductions",
-        description:
-          "An overview of the different challenge tracks and the areas participants will be able to explore.",
-        format: "hybrid",
-        status: "confirmed",
-      },
-    ],
+        "title": "Track Introductions",
+        "description": "Participants explored the four national and two international tracks.",
+        "status": "confirmed"
+      }
+    ]
   },
   {
-    slug: "hacking",
-    label: "Phase 02",
-    title: "Development Period",
-    dateRange: "From Opening Day to the closing showcase",
-    summary:
-      "Participants work on their track challenges over the development period, with workshops, technical sessions, mentorship, and other guidance from organizers and track partners. Some tracks may include intermediate submissions or shortlisting ahead of the closing showcase. Quantum in the Metaverse runs as a single-day, in-person challenge at Khalifa University’s MetaHub Lab on 30 October 2026. Quantum Foundations takes place entirely in person at Khalifa University on 31 October 2026, with individual participation for high school students.",
-    status: "confirmed",
-    sessions: [
+    "slug": "hacking",
+    "label": "Phase 02",
+    "title": "Development Period",
+    "dateRange": "19 October – 1 November 2026",
+    "summary": "Participants developed projects with workshops, technical sessions and guidance. Four workshops covered cryptography, biology, quantum computing and machine learning, and circuits.",
+    "status": "confirmed",
+    "sessions": [
       {
-        title: "Challenge Work",
-        description:
-          "Participants develop their projects and work toward the requirements of their chosen track.",
-        status: "confirmed",
+        "title": "Workshops & Guidance",
+        "description": "The four workshops recorded 265, 33, 336 and 173 attendees respectively.",
+        "status": "confirmed"
       },
       {
-        title: "Workshops & Guidance",
-        description:
-          "Tracks may include workshops, technical sessions, mentorship, and other support throughout the development period.",
-        status: "confirmed",
+        "title": "Challenge Work",
+        "description": "Participants built projects and prepared competition entries across six tracks.",
+        "status": "confirmed"
       },
       {
-        title: "Intermediate Submissions",
-        description:
-          "Some tracks may include an intermediate submission or shortlisting stage before the closing showcase.",
-        status: "confirmed",
-      },
-    ],
+        "title": "Intermediate Submissions",
+        "description": "Quantum Biology received 21 initial team proposals involving 70 participants.",
+        "status": "confirmed"
+      }
+    ]
   },
   {
-    slug: "closing",
-    label: "Phase 03",
-    title: "Closing Showcase",
-    dateRange: "31 October – 1 November 2026",
-    summary:
-      "The development period concludes with project showcases, coding competitions, and final track activities. Participants present their work, compete in challenges, and come together for the announcement of track winners.",
-    status: "confirmed",
-    sessions: [
+    "slug": "closing",
+    "label": "Phase 03",
+    "title": "Closing Showcase",
+    "dateRange": "31 October – 1 November 2026",
+    "summary": "The national challenges and finals took place across 30 October, 31 October and 1 November. Quantum Biology brought 6 finalist teams to its presentations; QML held its finals at KU, while Foundations and Metaverse ran in-person challenges.",
+    "status": "confirmed",
+    "sessions": [
       {
-        title: "Project Showcases",
-        description:
-          "Participants present and demo their completed projects in the format appropriate to their track.",
-        status: "confirmed",
+        "title": "Quantum Biology finals",
+        "description": "Six finalist teams presented on 1 November; there were 3 winning teams.",
+        "status": "confirmed"
       },
       {
-        title: "Coding Competitions",
-        description:
-          "Participants put their skills to the test through live coding challenges and competitions.",
-        status: "confirmed",
+        "title": "Quantum Machine Learning finals",
+        "description": "The track received 21 projects from 31 participants and held finals on 31 October, with 3 winning teams.",
+        "status": "confirmed"
       },
       {
-        title: "Winner Announcements",
-        description:
-          "Winners of the closing showcase tracks and competitions are announced.",
-        status: "confirmed",
+        "title": "Foundations & Metaverse challenges",
+        "description": "Foundations brought 109 high school students to KU on 31 October, with 3 winners. Metaverse had 5 contestants at the MetaHub Lab on 30 October.",
+        "status": "confirmed"
       },
-    ],
+      {
+        "title": "IBM Quantum speaker session",
+        "description": "Dr. Ahmed Al Qatatsheh gave an online Introduction to Quantum Computing session on 31 October, attended by the High School Track (~110 students).",
+        "status": "confirmed"
+      }
+    ]
   },
   {
-    slug: "international-challenges",
-    label: "Phase 04",
-    title: "International Challenges",
-    dateRange: "7 November 2026",
-    summary:
-      "Explore the international tracks online through the Quantum Cybersecurity CTF and Quantum in Media. See each track for its participation and submission details.",
-    status: "confirmed",
-    sessions: [
+    "slug": "international-challenges",
+    "label": "Phase 04",
+    "title": "International Challenges",
+    "dateRange": "7 November 2026",
+    "summary": "The international challenges concluded on 7 November. QCTF brought together 178 players; Quantum in Media received 4 submissions.",
+    "status": "confirmed",
+    "sessions": [
       {
-        title: "Quantum Cybersecurity CTF",
-        description: "An online Capture the Flag competition focused on quantum cybersecurity and quantum cryptography. Competition timings and platform access will be shared by email.",
-        format: "online",
-        status: "confirmed",
+        "title": "Quantum Cybersecurity CTF",
+        "description": "178 players represented 45 institutions in 8 countries and captured 1,630 flags. The QCI R&D team built the platform and all challenges.",
+        "status": "confirmed"
       },
       {
-        title: "Quantum in Media",
-        description: "Create images, sound, video, games or apps with Moth Quantum’s media engines. See the track page for submission details.",
-        format: "online",
-        status: "confirmed",
-      },
-    ],
-  },
+        "title": "Quantum in Media",
+        "description": "The creative media track with Moth Quantum received 4 submissions.",
+        "status": "confirmed"
+      }
+    ]
+  }
 ];
 
-/** Homepage previews only; the full summaries and session details remain above. */
 const homePhaseSummaries: Record<string, string> = {
-  opening: "Get to know the Fest and its tracks at Khalifa University or online.",
-  hacking: "Work on your track challenge with workshops and mentors. In-person track days start on 30 October.",
-  closing: "Project presentations, coding competitions and track winner announcements.",
-  "international-challenges": "Explore the online Quantum Cybersecurity CTF and Quantum in Media tracks.",
+  "opening": "The premiere introduced six tracks and brought the community together on 19 October.",
+  "hacking": "Four workshops recorded 265, 33, 336 and 173 attendees, alongside project development.",
+  "closing": "National events included Biology’s 6 finalist teams, QML finals, 109 Foundations students and 5 Metaverse contestants.",
+  "international-challenges": "QCTF recorded 178 players and 1,630 flags; Quantum in Media received 4 submissions."
 };
 
-export const homePhases: Phase[] = phases.map(({ slug, label, title, dateRange, summary, status }) => ({
-  slug,
-  label,
-  title,
-  dateRange,
-  summary: homePhaseSummaries[slug] ?? summary,
-  status,
-  sessions: [],
-}));
+export const homePhases: Phase[] = phases.map(phase => ({ ...phase, summary: homePhaseSummaries[phase.slug], sessions: [] }));

@@ -7,6 +7,7 @@ import { FormatSection } from "@/components/sections/FormatSection";
 import { PartnersSection } from "@/components/sections/PartnersSection";
 import { ResourcesSection } from "@/components/sections/ResourcesSection";
 import { StatsStrip } from "@/components/sections/StatsStrip";
+import { ResultsSection } from "@/components/sections/ResultsSection";
 import { Container, Section, SectionHeading } from "@/components/ui/primitives";
 import { ArrowRightIcon } from "@/components/ui/Icons";
 import { homeContent } from "@/content/event";
@@ -18,8 +19,9 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <StatsStrip />
       <PartnersSection compact />
+      <StatsStrip />
+      <ResultsSection />
 
       <Section className="border-t border-border">
         <Container>
@@ -69,6 +71,7 @@ export default function HomePage() {
                       <Link href={`/tracks/#${track.slug}`} data-home-track={track.slug} className="group flex min-h-16 items-center justify-between gap-4 px-5 py-4 transition-colors hover:bg-surface-2 focus-visible:outline-offset-[-3px]">
                         <div className="min-w-0">
                           <h4 className="text-base font-semibold text-fg group-hover:text-gold">{track.title}</h4>
+                          <p className="mt-1 text-sm leading-relaxed text-gold">{track.resultLine}</p>
                           {track.description ? <p className="mt-1 hidden text-sm leading-relaxed text-fg-muted sm:block">{track.description}</p> : null}
                         </div>
                         <span className="flex shrink-0 items-center gap-3">

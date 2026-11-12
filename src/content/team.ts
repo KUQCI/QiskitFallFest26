@@ -19,10 +19,10 @@ export const aboutContent = {
   speakersEyebrow: "Speakers & mentors",
   speakersTitle: "Speakers and mentors",
   speakersDescription:
-    "Speakers and mentors are currently being confirmed, with announcements to follow as the line-up is finalized.",
-  speakersEmptyTitle: "The speaker line-up is being confirmed",
+    "The Fest included four workshops and an IBM Quantum speaker session.",
+  speakersEmptyTitle: "Speaker and mentor archive",
   speakersEmptyDescription:
-    "Announcements will be shared here as speakers and mentors are confirmed.",
+    "The completed programme is recorded in the Agenda.",
   moreFromQciLabel: "More from QCI",
   exploreProjectsLabel: "Explore QCI projects",
   followAnnouncementsLabel: "Follow for announcements",
@@ -43,6 +43,13 @@ export const facultyAdvisors = [
 ] as const;
 
 export const pastEvents: PastEvent[] = [
+  {
+    title: "Qiskit Fall Fest 2026 (PLUS edition)",
+    meta: "19 October – 7 November 2026 · Khalifa University & online",
+    description: "1,200+ participations, 850+ unique participants and 76 institutions took part across six competition tracks, four workshops and an IBM Quantum speaker session, representing 14 countries.",
+    image: fallFestAssets.hero.withoutTitleWeb.src,
+    alt: "Qiskit Fall Fest 2026 artwork",
+  },
   {
     title: "Introductory Quantum Hackathon",
     meta: "January 2026 · Khalifa University",

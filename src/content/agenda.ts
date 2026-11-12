@@ -2,11 +2,12 @@ import { event } from "./event";
 import { biologyProposalDeadline } from "./quantum-biology";
 import { foundationsRegistration } from "./quantum-foundations";
 import { qmlDeadline, qmlFinalPresentations } from "./quantum-machine-learning";
-import { metaverseCapacityLabel, metaverseRegistration, metaverseTime } from "./quantum-metaverse";
+import { metaverseRegistration, metaverseTime } from "./quantum-metaverse";
 import { cybersecurityLinks } from "./quantum-cybersecurity";
 import { tracks } from "./tracks";
 import { fallFestAssets } from "./assets";
 import { adOmicsWorkshop, quantumComputingWorkshop } from "./workshops";
+import { workshopResults } from "./results";
 import type { TrackAccent } from "./types";
 
 export interface WorkshopRegistration {
@@ -55,6 +56,7 @@ export interface AgendaItem {
   workshop?: AgendaWorkshop;
   /** Set for track milestones; event-wide items have none. */
   trackSlug?: string;
+  attendance?: string;
 }
 
 /** Copy for the details dialog every agenda block opens; workshops use the extra sections. */
@@ -64,7 +66,7 @@ export const agendaDialogCopy = {
   aboutHeading: "About the workshop",
   overviewHeading: "Overview",
   whenHeading: "When & where",
-  nextHeading: "Next steps",
+  nextHeading: "Explore the recap",
   topicsHeading: "Topics covered",
   audienceHeading: "Audience",
   preparationHeading: "Preparation",
@@ -74,10 +76,10 @@ export const agendaDialogCopy = {
   timezoneLabel: "Time zone",
   timezone: "UAE time (UTC+4)",
   venueLabel: "Platform / venue",
-  unconfirmedLabel: "To be confirmed",
+  unconfirmedLabel: "Not recorded",
   registrationHeading: "Registration & resources",
   registerLabel: "Register for this workshop",
-  pendingLabel: "Registration link coming soon",
+  pendingLabel: "Registration closed",
   closedLabel: "Registration closed",
   resourcesHeading: "Resources",
   joiningHeading: "Joining information",
@@ -88,10 +90,10 @@ export type AgendaDialogCopy = typeof agendaDialogCopy;
 export const agendaPageContent = {
   eyebrow: event.dateLabel,
   title: "Agenda",
-  lede: "Registration, workshops, challenge days and submission deadlines, laid out week by week. Each track has its own colour.",
+  lede: "The completed programme: workshops, speaker sessions, challenge days and finals, laid out week by week. Each track has its own colour.",
   metadataDescription: "The Qiskit Fall Fest 2026 agenda: published registration dates, workshops, track challenges and submission deadlines from 19 October to 7 November.",
   timezoneNote: "Times are UAE time (UTC+4), except the Quantum in Media submission deadline, which uses Pacific Time.",
-  programmeNote: "This agenda lists published milestones. Detailed session timings and the full daily programme will be added as confirmed.",
+  programmeNote: "The Fall Fest concluded on 7 November 2026. Select a milestone for its recorded details and results.",
   filterLabel: "Filter agenda",
   timelineLabel: "Fall Fest week calendar, 19 October to 8 November 2026",
   weeksLabel: "Jump to week",
@@ -112,13 +114,13 @@ export const agendaPageContent = {
     speaker: "Speaker", speakers: "Speakers", organizers: "Organized by",
     topics: "Workshop topics", certificates: "Certificates provided",
   },
-  moreTitle: "Explore your track",
+  moreTitle: "Explore the track results",
   pendingTitle: "More dates to come",
   pendingDescription: "Dates for these tracks have not yet been published. Check the track for its latest details.",
   pendingActionLabel: "Track details",
-  moreDescription: "Each track has its own registration, format and participation requirements. Open the track for its complete challenge brief and latest details.",
+  moreDescription: "All six tracks have finished. Explore their results and archived challenge briefs.",
   tracksLabel: "View all tracks",
-  formatLabel: "How the Fest works",
+  formatLabel: "How the Fest unfolded",
   legacyLabel: "View the agenda",
 } as const;
 
@@ -129,33 +131,33 @@ function trackItem(slug: string, item: Omit<AgendaItem, "context" | "href" | "ac
 }
 
 /** Published milestones only; unknown session hours and running orders stay omitted. */
-export const agendaItems: AgendaItem[] = [
+const agendaMilestones: AgendaItem[] = [
   {
     id: "premiere", date: "2026-10-19", kind: "event", title: "Opening Day Premiere", context: event.name,
-    description: "Introduction to the Fall Fest, its challenge tracks and the two weeks ahead.",
+    description: "The premiere introduced the Fall Fest and its six tracks.",
     time: "6:00 PM · UAE time", venue: "Khalifa University · also online",
     href: event.premiereUrl, actionLabel: event.premiereLabel, external: true,
   },
   trackItem("chemistry-drug-discovery", {
-    id: "biology-registration", date: "2026-10-20", kind: "registration", title: "Registration opens",
-    description: "Submit your one-page proposal through the initial-submission form to register for Quantum Biology.",
+    id: "biology-registration", date: "2026-10-20", kind: "registration", title: "Registration opened",
+    description: "Teams registered by submitting an initial one-page proposal. The track received 21 proposals and involved 70 participants.",
   }),
   trackItem("quantum-cybersecurity", {
-    id: "cybersecurity-registration", date: cybersecurityLinks.registration.opensOn, kind: "registration", title: "Registration opens",
-    description: "Enter individually or in a team of up to four. Only the team lead submits the form for a team.",
+    id: "cybersecurity-registration", date: cybersecurityLinks.registration.opensOn, kind: "registration", title: "Registration opened",
+    description: "Registration allowed individual entrants and teams of up to four; only the lead registered for a team.",
   }),
   trackItem("peaked-circuits", {
-    id: "metaverse-registration", date: metaverseRegistration.opensOn, kind: "registration", title: "Individual registration opens",
-    description: `${metaverseCapacityLabel}. Slots are allocated first come, first served by registration submission time, with confirmation by email.`,
+    id: "metaverse-registration", date: metaverseRegistration.opensOn, kind: "registration", title: "Individual registration opened",
+    description: "Registration was individual. Five contestants took part at the MetaHub Lab.",
   }),
   trackItem("first-qubit", {
-    id: "foundations-registration", date: foundationsRegistration.opensOn, kind: "registration", title: "Individual registration opens",
-    description: "Registration is open for high school students. Limited spots; your place is confirmed by email.",
+    id: "foundations-registration", date: foundationsRegistration.opensOn, kind: "registration", title: "Individual registration opened",
+    description: "234 high school students registered; 109 students from 12 schools competed, and 3 winners were chosen.",
   }),
   trackItem("chemistry-drug-discovery", {
     id: "biology-proposal", date: biologyProposalDeadline.at.slice(0, 10), kind: "deadline", title: "Initial proposals due",
     time: "11:59 PM · UAE time (GMT+4)",
-    description: "Submit one PDF page at registration. Semifinalists will be selected to continue.",
+    description: "The initial proposal stage closed with 21 team proposals and 70 participants.",
   }),
   {
     id: "quantum-cryptography-workshop", date: "2026-10-24", kind: "workshop",
@@ -198,16 +200,18 @@ export const agendaItems: AgendaItem[] = [
   },
   trackItem("chemistry-drug-discovery", {
     id: "biology-submission", date: "2026-10-28", kind: "deadline", title: "Final submissions due",
-    description: "Finalist selection follows the final-submission stage. Submission platform and format details are to be confirmed.",
+    description: "The final submission stage preceded presentations by 6 finalist teams on 1 November.",
   }),
   trackItem("quantum-machine-learning", {
     id: "qml-submission", date: qmlDeadline.at.slice(0, 10), kind: "deadline", title: "Submission deadline",
-    description: "Prepare a functional codebase and comparative evaluation of the classical and quantum approaches. The submission form will be added soon.",
+    description: "The track received 21 projects from 31 participants, comparing classical and quantum approaches.",
     time: qmlDeadline.label,
   }),
   {
     id: "quantum-circuit-breakers-workshop", date: "2026-10-29", kind: "workshop",
     title: "Quantum Circuit Breakers", context: event.name,
+    time: "8–9:30 PM · UAE time (GMT+4)",
+    description: "A quantum circuits workshop.",
     workshop: {
       registration: { href: null, enabled: false, closed: true },
     },
@@ -215,20 +219,26 @@ export const agendaItems: AgendaItem[] = [
   trackItem("peaked-circuits", {
     id: "metaverse-challenge", date: "2026-10-30", kind: "event", title: "In-person VR challenge",
     time: metaverseTime,
-    description: "Attend your assigned session. VR headsets are provided; participants are arranged into sessions of 12.",
+    description: "Five contestants explored quantum gates and the Bloch sphere using VR headsets.",
     venue: "Khalifa University, MetaHub Lab",
   }),
   trackItem("quantum-cybersecurity", {
     id: "cybersecurity-ctf", date: "2026-11-07", kind: "event", title: "Online CTF competition",
-    description: "An online Capture the Flag competition focused on quantum cybersecurity and quantum cryptography. Timings and platform access will be shared by email.", venue: "Online",
+    description: "178 players from 45 institutions in 8 countries tackled 26 challenges across 5 categories and captured 1,630 flags.", venue: "Online",
   }),
   trackItem("quantum-media", {
     id: "media-submission", date: "2026-11-07", kind: "deadline", title: "Submission deadline",
-    description: "Submission details will be shared soon. This deadline uses Pacific Time.", time: "11:59 PM · Pacific Time",
+    description: "Quantum in Media received 4 submissions. The recorded deadline used Pacific Time.", time: "11:59 PM · Pacific Time",
   }),
+  {
+    id: "ibm-quantum-speaker-session", date: "2026-10-31", kind: "event",
+    title: "Introduction to Quantum Computing", context: event.name,
+    time: "12:00–12:30 PM · UAE time (GMT+4)", venue: "Online",
+    description: "Speaker session with Dr. Ahmed Al Qatatsheh, IBM Quantum, attended by the High School Track (~110 students).",
+  },
   trackItem("first-qubit", {
     id: "foundations-challenge", date: "2026-10-31", kind: "event", title: "In-person circuit challenge",
-    description: "An individual challenge for high school students. Event timings, check-in details and preparation instructions will be shared by email.", venue: "Khalifa University",
+    description: "109 high school students from 12 schools competed individually in a live quantum circuit competition using custom learning platforms. Three winners were chosen.", venue: "Khalifa University",
   }),
   trackItem("quantum-machine-learning", {
     id: "qml-presentations", date: qmlFinalPresentations.date, kind: "event", title: "Final presentations",
@@ -236,9 +246,11 @@ export const agendaItems: AgendaItem[] = [
   }),
   trackItem("chemistry-drug-discovery", {
     id: "biology-presentations", date: "2026-11-01", kind: "event", title: "Finalist presentations",
-    description: "Shortlisted teams present their work to a judging panel on campus. Presentation timings and materials are to be confirmed.", venue: "Khalifa University",
+    description: "Six finalist teams presented at Khalifa University. There were 3 winning teams.", venue: "Khalifa University",
   }),
 ];
+
+export const agendaItems: AgendaItem[] = agendaMilestones.map(item => ({ ...item, attendance: workshopResults.find(result => result.id === item.id)?.attendance }));
 
 export const agendaPendingTracks = tracks.filter(track => !agendaItems.some(item => item.href === `/tracks/#${track.slug}`)).map(track => ({ title: track.title, href: `/tracks/#${track.slug}` }));
 
